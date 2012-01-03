@@ -3,7 +3,7 @@
 //  Marshmallows
 //
 //  Created by Hari Karam Singh on 03/01/2012.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Amritvela / Club 15CC.  MIT License.
 //
 
 #import <UIKit/UIKit.h>
