@@ -10,25 +10,30 @@
 		CE28679014B36EC5001E11D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28678F14B36EC5001E11D7 /* UIKit.framework */; };
 		CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
 		CE28679414B36EC5001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
-		CE28679A14B36EC5001E11D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE28679814B36EC5001E11D7 /* InfoPlist.strings */; };
-		CE28679C14B36EC5001E11D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28679B14B36EC5001E11D7 /* main.m */; };
-		CE2867A014B36EC5001E11D7 /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28679F14B36EC5001E11D7 /* MMAppDelegate.m */; };
 		CE2867A814B36EC5001E11D7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867A714B36EC5001E11D7 /* SenTestingKit.framework */; };
-		CE2867B214B36EC5001E11D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE2867B014B36EC5001E11D7 /* InfoPlist.strings */; };
-		CE2867DF14B37452001E11D7 /* MMGLK.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2867D814B37452001E11D7 /* MMGLK.m */; };
-		CE2867E114B37452001E11D7 /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2867DB14B37452001E11D7 /* CEObjectiveCRuntime.m */; };
-		CE2867E314B37452001E11D7 /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2867DE14B37452001E11D7 /* UIImage+MMPixelData.m */; };
 		CE2867ED14B378AD001E11D7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867C214B37156001E11D7 /* GLKit.framework */; };
 		CE2867EE14B378AD001E11D7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867C314B37156001E11D7 /* OpenGLES.framework */; };
-		CE2867EF14B378D2001E11D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
-		CE2867F014B3792B001E11D7 /* UIImageMMPixelDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2867CB14B3723A001E11D7 /* UIImageMMPixelDataTests.m */; };
-		CE2867F114B3795D001E11D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28678F14B36EC5001E11D7 /* UIKit.framework */; };
-		CE2867F514B37A18001E11D7 /* TestResources in Resources */ = {isa = PBXBuildFile; fileRef = CE2867F414B37A18001E11D7 /* TestResources */; };
-		CE2867F614B37A18001E11D7 /* TestResources in Resources */ = {isa = PBXBuildFile; fileRef = CE2867F414B37A18001E11D7 /* TestResources */; };
+		CE28688014BA0D6C001E11D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE28687914BA0D6C001E11D7 /* InfoPlist.strings */; };
+		CE28688114BA0D6C001E11D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28687B14BA0D6C001E11D7 /* main.m */; };
+		CE28688314BA0D6C001E11D7 /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28687F14BA0D6C001E11D7 /* MMAppDelegate.m */; };
+		CE28688614BA0FEF001E11D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
+		CE28688714BA0FFA001E11D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28678F14B36EC5001E11D7 /* UIKit.framework */; };
+		CE28689414BA105B001E11D7 /* MMGLK.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28688C14BA105B001E11D7 /* MMGLK.m */; };
+		CE28689514BA105B001E11D7 /* MMGLK.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28688C14BA105B001E11D7 /* MMGLK.m */; };
+		CE28689614BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28689014BA105B001E11D7 /* CEObjectiveCRuntime.m */; };
+		CE28689714BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28689014BA105B001E11D7 /* CEObjectiveCRuntime.m */; };
+		CE28689814BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28689314BA105B001E11D7 /* UIImage+MMPixelData.m */; };
+		CE28689914BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28689314BA105B001E11D7 /* UIImage+MMPixelData.m */; };
+		CE2868A614BA1063001E11D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE28689B14BA1063001E11D7 /* InfoPlist.strings */; };
+		CE2868AA14BA1063001E11D7 /* GradientChrome.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2868A314BA1063001E11D7 /* GradientChrome.png */; };
+		CE2868AB14BA1063001E11D7 /* UIImageMMPixelDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */; };
+		CE2868AC14BA10D1001E11D7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867C314B37156001E11D7 /* OpenGLES.framework */; };
+		CE2868AD14BA10D2001E11D7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867C214B37156001E11D7 /* GLKit.framework */; };
+		CE2868AE14BA10DF001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		CE2867AB14B36EC5001E11D7 /* PBXContainerItemProxy */ = {
+		CE28688414BA0D78001E11D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE28678214B36EC5001E11D7 /* Project object */;
 			proxyType = 1;
@@ -42,30 +47,30 @@
 		CE28678F14B36EC5001E11D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CE28679114B36EC5001E11D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CE28679314B36EC5001E11D7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		CE28679714B36EC5001E11D7 /* Marshmallows-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Marshmallows-Info.plist"; sourceTree = "<group>"; };
-		CE28679914B36EC5001E11D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CE28679B14B36EC5001E11D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CE28679D14B36EC5001E11D7 /* Marshmallows-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Marshmallows-Prefix.pch"; sourceTree = "<group>"; };
-		CE28679E14B36EC5001E11D7 /* MMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
-		CE28679F14B36EC5001E11D7 /* MMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
 		CE2867A614B36EC5001E11D7 /* MarshmallowsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarshmallowsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2867A714B36EC5001E11D7 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		CE2867AF14B36EC5001E11D7 /* MarshmallowsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarshmallowsTests-Info.plist"; sourceTree = "<group>"; };
-		CE2867B114B36EC5001E11D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CE2867B314B36EC5001E11D7 /* MarshmallowsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarshmallowsTests.h; sourceTree = "<group>"; };
 		CE2867C214B37156001E11D7 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		CE2867C314B37156001E11D7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		CE2867CA14B3723A001E11D7 /* UIImageMMPixelDataTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageMMPixelDataTests.h; sourceTree = "<group>"; };
-		CE2867CB14B3723A001E11D7 /* UIImageMMPixelDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageMMPixelDataTests.m; sourceTree = "<group>"; };
-		CE2867D714B37452001E11D7 /* MMGLK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGLK.h; sourceTree = "<group>"; };
-		CE2867D814B37452001E11D7 /* MMGLK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGLK.m; sourceTree = "<group>"; };
-		CE2867DA14B37452001E11D7 /* CEObjectiveCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEObjectiveCRuntime.h; sourceTree = "<group>"; };
-		CE2867DB14B37452001E11D7 /* CEObjectiveCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEObjectiveCRuntime.m; sourceTree = "<group>"; };
-		CE2867DD14B37452001E11D7 /* UIImage+MMPixelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MMPixelData.h"; sourceTree = "<group>"; };
-		CE2867DE14B37452001E11D7 /* UIImage+MMPixelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MMPixelData.m"; sourceTree = "<group>"; };
-		CE2867E514B374BC001E11D7 /* Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Marshmallows.h; path = Lib/Marshmallows.h; sourceTree = "<group>"; };
-		CE2867E614B3761B001E11D7 /* DebugLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugLogging.h; path = Lib/DebugLogging.h; sourceTree = SOURCE_ROOT; };
-		CE2867F414B37A18001E11D7 /* TestResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestResources; sourceTree = "<group>"; };
+		CE28687A14BA0D6C001E11D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CE28687B14BA0D6C001E11D7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CE28687C14BA0D6C001E11D7 /* Marshmallows-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Marshmallows-Info.plist"; sourceTree = "<group>"; };
+		CE28687D14BA0D6C001E11D7 /* Marshmallows-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Marshmallows-Prefix.pch"; sourceTree = "<group>"; };
+		CE28687E14BA0D6C001E11D7 /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
+		CE28687F14BA0D6C001E11D7 /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
+		CE28688914BA105B001E11D7 /* DebugLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLogging.h; sourceTree = "<group>"; };
+		CE28688B14BA105B001E11D7 /* MMGLK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGLK.h; sourceTree = "<group>"; };
+		CE28688C14BA105B001E11D7 /* MMGLK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGLK.m; sourceTree = "<group>"; };
+		CE28688D14BA105B001E11D7 /* Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Marshmallows.h; sourceTree = "<group>"; };
+		CE28688F14BA105B001E11D7 /* CEObjectiveCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEObjectiveCRuntime.h; sourceTree = "<group>"; };
+		CE28689014BA105B001E11D7 /* CEObjectiveCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEObjectiveCRuntime.m; sourceTree = "<group>"; };
+		CE28689214BA105B001E11D7 /* UIImage+MMPixelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MMPixelData.h"; sourceTree = "<group>"; };
+		CE28689314BA105B001E11D7 /* UIImage+MMPixelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MMPixelData.m"; sourceTree = "<group>"; };
+		CE28689C14BA1063001E11D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CE28689E14BA1063001E11D7 /* MarshmallowsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MarshmallowsTests-Info.plist"; sourceTree = "<group>"; };
+		CE28689F14BA1063001E11D7 /* MarshmallowsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowsTests.h; sourceTree = "<group>"; };
+		CE2868A314BA1063001E11D7 /* GradientChrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GradientChrome.png; sourceTree = "<group>"; };
+		CE2868A414BA1063001E11D7 /* UIImageMMPixelDataTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageMMPixelDataTests.h; sourceTree = "<group>"; };
+		CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageMMPixelDataTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +78,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */,
 				CE2867ED14B378AD001E11D7 /* GLKit.framework in Frameworks */,
 				CE2867EE14B378AD001E11D7 /* OpenGLES.framework in Frameworks */,
 				CE28679014B36EC5001E11D7 /* UIKit.framework in Frameworks */,
-				CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */,
 				CE28679414B36EC5001E11D7 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,9 +90,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2867F114B3795D001E11D7 /* UIKit.framework in Frameworks */,
-				CE2867EF14B378D2001E11D7 /* Foundation.framework in Frameworks */,
+				CE28688614BA0FEF001E11D7 /* Foundation.framework in Frameworks */,
+				CE2868AC14BA10D1001E11D7 /* OpenGLES.framework in Frameworks */,
+				CE2868AE14BA10DF001E11D7 /* CoreGraphics.framework in Frameworks */,
 				CE2867A814B36EC5001E11D7 /* SenTestingKit.framework in Frameworks */,
+				CE2868AD14BA10D2001E11D7 /* GLKit.framework in Frameworks */,
+				CE28688714BA0FFA001E11D7 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,9 +105,9 @@
 		CE28678014B36EC5001E11D7 = {
 			isa = PBXGroup;
 			children = (
-				CE2867EB14B376E6001E11D7 /* Lib */,
-				CE28679514B36EC5001E11D7 /* Marshmallows */,
-				CE2867AD14B36EC5001E11D7 /* MarshmallowsTests */,
+				CE28689A14BA1063001E11D7 /* Tests */,
+				CE28688814BA105B001E11D7 /* Source */,
+				CE28687814BA0D6C001E11D7 /* Project */,
 				CE28678E14B36EC5001E11D7 /* Frameworks */,
 				CE28678C14B36EC5001E11D7 /* Products */,
 			);
@@ -127,88 +135,77 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CE28679514B36EC5001E11D7 /* Marshmallows */ = {
+		CE28687814BA0D6C001E11D7 /* Project */ = {
 			isa = PBXGroup;
 			children = (
-				CE28679E14B36EC5001E11D7 /* MMAppDelegate.h */,
-				CE28679F14B36EC5001E11D7 /* MMAppDelegate.m */,
-				CE28679614B36EC5001E11D7 /* Supporting Files */,
+				CE28687914BA0D6C001E11D7 /* InfoPlist.strings */,
+				CE28687B14BA0D6C001E11D7 /* main.m */,
+				CE28687C14BA0D6C001E11D7 /* Marshmallows-Info.plist */,
+				CE28687D14BA0D6C001E11D7 /* Marshmallows-Prefix.pch */,
+				CE28687E14BA0D6C001E11D7 /* MMAppDelegate.h */,
+				CE28687F14BA0D6C001E11D7 /* MMAppDelegate.m */,
 			);
-			path = Marshmallows;
+			path = Project;
 			sourceTree = "<group>";
 		};
-		CE28679614B36EC5001E11D7 /* Supporting Files */ = {
+		CE28688814BA105B001E11D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CE28679714B36EC5001E11D7 /* Marshmallows-Info.plist */,
-				CE28679814B36EC5001E11D7 /* InfoPlist.strings */,
-				CE28679B14B36EC5001E11D7 /* main.m */,
-				CE28679D14B36EC5001E11D7 /* Marshmallows-Prefix.pch */,
+				CE28688914BA105B001E11D7 /* DebugLogging.h */,
+				CE28688A14BA105B001E11D7 /* GLKit */,
+				CE28688D14BA105B001E11D7 /* Marshmallows.h */,
+				CE28688E14BA105B001E11D7 /* ObjC */,
+				CE28689114BA105B001E11D7 /* UIKit */,
 			);
-			name = "Supporting Files";
+			path = Source;
 			sourceTree = "<group>";
 		};
-		CE2867AD14B36EC5001E11D7 /* MarshmallowsTests */ = {
+		CE28688A14BA105B001E11D7 /* GLKit */ = {
 			isa = PBXGroup;
 			children = (
-				CE2867F414B37A18001E11D7 /* TestResources */,
-				CE2867B314B36EC5001E11D7 /* MarshmallowsTests.h */,
-				CE2867CA14B3723A001E11D7 /* UIImageMMPixelDataTests.h */,
-				CE2867CB14B3723A001E11D7 /* UIImageMMPixelDataTests.m */,
-				CE2867AE14B36EC5001E11D7 /* Supporting Files */,
+				CE28688B14BA105B001E11D7 /* MMGLK.h */,
+				CE28688C14BA105B001E11D7 /* MMGLK.m */,
 			);
-			path = MarshmallowsTests;
+			path = GLKit;
 			sourceTree = "<group>";
 		};
-		CE2867AE14B36EC5001E11D7 /* Supporting Files */ = {
+		CE28688E14BA105B001E11D7 /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
-				CE2867AF14B36EC5001E11D7 /* MarshmallowsTests-Info.plist */,
-				CE2867B014B36EC5001E11D7 /* InfoPlist.strings */,
+				CE28688F14BA105B001E11D7 /* CEObjectiveCRuntime.h */,
+				CE28689014BA105B001E11D7 /* CEObjectiveCRuntime.m */,
 			);
-			name = "Supporting Files";
+			path = ObjC;
 			sourceTree = "<group>";
 		};
-		CE2867D614B37452001E11D7 /* GLKit */ = {
+		CE28689114BA105B001E11D7 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				CE2867D714B37452001E11D7 /* MMGLK.h */,
-				CE2867D814B37452001E11D7 /* MMGLK.m */,
+				CE28689214BA105B001E11D7 /* UIImage+MMPixelData.h */,
+				CE28689314BA105B001E11D7 /* UIImage+MMPixelData.m */,
 			);
-			name = GLKit;
-			path = Lib/GLKit;
+			path = UIKit;
 			sourceTree = "<group>";
 		};
-		CE2867D914B37452001E11D7 /* ObjC */ = {
+		CE28689A14BA1063001E11D7 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				CE2867DA14B37452001E11D7 /* CEObjectiveCRuntime.h */,
-				CE2867DB14B37452001E11D7 /* CEObjectiveCRuntime.m */,
+				CE28689B14BA1063001E11D7 /* InfoPlist.strings */,
+				CE28689E14BA1063001E11D7 /* MarshmallowsTests-Info.plist */,
+				CE28689F14BA1063001E11D7 /* MarshmallowsTests.h */,
+				CE2868A214BA1063001E11D7 /* TestResources */,
+				CE2868A414BA1063001E11D7 /* UIImageMMPixelDataTests.h */,
+				CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */,
 			);
-			name = ObjC;
-			path = Lib/ObjC;
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		CE2867DC14B37452001E11D7 /* UIKit */ = {
+		CE2868A214BA1063001E11D7 /* TestResources */ = {
 			isa = PBXGroup;
 			children = (
-				CE2867DD14B37452001E11D7 /* UIImage+MMPixelData.h */,
-				CE2867DE14B37452001E11D7 /* UIImage+MMPixelData.m */,
+				CE2868A314BA1063001E11D7 /* GradientChrome.png */,
 			);
-			name = UIKit;
-			path = Lib/UIKit;
-			sourceTree = "<group>";
-		};
-		CE2867EB14B376E6001E11D7 /* Lib */ = {
-			isa = PBXGroup;
-			children = (
-				CE2867DC14B37452001E11D7 /* UIKit */,
-				CE2867D914B37452001E11D7 /* ObjC */,
-				CE2867D614B37452001E11D7 /* GLKit */,
-				CE2867E614B3761B001E11D7 /* DebugLogging.h */,
-				CE2867E514B374BC001E11D7 /* Marshmallows.h */,
-			);
-			name = Lib;
+			path = TestResources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,7 +240,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				CE2867AC14B36EC5001E11D7 /* PBXTargetDependency */,
+				CE28688514BA0D78001E11D7 /* PBXTargetDependency */,
 			);
 			name = MarshmallowsTests;
 			productName = MarshmallowsTests;
@@ -281,8 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE28679A14B36EC5001E11D7 /* InfoPlist.strings in Resources */,
-				CE2867F514B37A18001E11D7 /* TestResources in Resources */,
+				CE28688014BA0D6C001E11D7 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,8 +286,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2867B214B36EC5001E11D7 /* InfoPlist.strings in Resources */,
-				CE2867F614B37A18001E11D7 /* TestResources in Resources */,
+				CE2868A614BA1063001E11D7 /* InfoPlist.strings in Resources */,
+				CE2868AA14BA1063001E11D7 /* GradientChrome.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,11 +314,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE28679C14B36EC5001E11D7 /* main.m in Sources */,
-				CE2867A014B36EC5001E11D7 /* MMAppDelegate.m in Sources */,
-				CE2867DF14B37452001E11D7 /* MMGLK.m in Sources */,
-				CE2867E114B37452001E11D7 /* CEObjectiveCRuntime.m in Sources */,
-				CE2867E314B37452001E11D7 /* UIImage+MMPixelData.m in Sources */,
+				CE28688114BA0D6C001E11D7 /* main.m in Sources */,
+				CE28688314BA0D6C001E11D7 /* MMAppDelegate.m in Sources */,
+				CE28689414BA105B001E11D7 /* MMGLK.m in Sources */,
+				CE28689614BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */,
+				CE28689814BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,33 +326,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2867F014B3792B001E11D7 /* UIImageMMPixelDataTests.m in Sources */,
+				CE28689514BA105B001E11D7 /* MMGLK.m in Sources */,
+				CE28689714BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */,
+				CE28689914BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */,
+				CE2868AB14BA1063001E11D7 /* UIImageMMPixelDataTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		CE2867AC14B36EC5001E11D7 /* PBXTargetDependency */ = {
+		CE28688514BA0D78001E11D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CE28678A14B36EC5001E11D7 /* Marshmallows */;
-			targetProxy = CE2867AB14B36EC5001E11D7 /* PBXContainerItemProxy */;
+			targetProxy = CE28688414BA0D78001E11D7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CE28679814B36EC5001E11D7 /* InfoPlist.strings */ = {
+		CE28687914BA0D6C001E11D7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CE28679914B36EC5001E11D7 /* en */,
+				CE28687A14BA0D6C001E11D7 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		CE2867B014B36EC5001E11D7 /* InfoPlist.strings */ = {
+		CE28689B14BA1063001E11D7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CE2867B114B36EC5001E11D7 /* en */,
+				CE28689C14BA1063001E11D7 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -413,8 +412,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Marshmallows/Marshmallows-Prefix.pch";
-				INFOPLIST_FILE = "Marshmallows/Marshmallows-Info.plist";
+				GCC_PREFIX_HEADER = "Project/Marshmallows-Prefix.pch";
+				INFOPLIST_FILE = "Project/Marshmallows-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -424,8 +423,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Marshmallows/Marshmallows-Prefix.pch";
-				INFOPLIST_FILE = "Marshmallows/Marshmallows-Info.plist";
+				GCC_PREFIX_HEADER = "Project/Marshmallows-Prefix.pch";
+				INFOPLIST_FILE = "Project/Marshmallows-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -440,9 +439,9 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Marshmallows/Marshmallows-Prefix.pch";
+				GCC_PREFIX_HEADER = "Project/Marshmallows-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "MarshmallowsTests/MarshmallowsTests-Info.plist";
+				INFOPLIST_FILE = "Tests/MarshmallowsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -458,9 +457,9 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Marshmallows/Marshmallows-Prefix.pch";
+				GCC_PREFIX_HEADER = "Project/Marshmallows-Prefix.pch";
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "MarshmallowsTests/MarshmallowsTests-Info.plist";
+				INFOPLIST_FILE = "Tests/MarshmallowsTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -486,6 +485,7 @@
 				CE2867BA14B36EC5001E11D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE2867BB14B36EC5001E11D7 /* Build configuration list for PBXNativeTarget "MarshmallowsTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +494,7 @@
 				CE2867BD14B36EC5001E11D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
