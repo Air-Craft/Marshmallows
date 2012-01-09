@@ -12,5 +12,6 @@
 #import "UIKit/UIImage+MMPixelData.h"
 #import "GLKit/MMGLK.h"
 #import "ObjC/CEObjectiveCRuntime.h"
+#import "Cocoa/MMMutablePointerKeyedDictionary.h"
 
 #endif
