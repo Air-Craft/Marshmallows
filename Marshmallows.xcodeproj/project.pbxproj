@@ -30,6 +30,8 @@
 		CE2868AC14BA10D1001E11D7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867C314B37156001E11D7 /* OpenGLES.framework */; };
 		CE2868AD14BA10D2001E11D7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867C214B37156001E11D7 /* GLKit.framework */; };
 		CE2868AE14BA10DF001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
+		CE94A1A214BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
+		CE94A1A314BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		CE2868A314BA1063001E11D7 /* GradientChrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GradientChrome.png; sourceTree = "<group>"; };
 		CE2868A414BA1063001E11D7 /* UIImageMMPixelDataTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageMMPixelDataTests.h; sourceTree = "<group>"; };
 		CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageMMPixelDataTests.m; sourceTree = "<group>"; };
+		CE94A1A014BB455200800354 /* MMMutablePointerKeyedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMutablePointerKeyedDictionary.h; sourceTree = "<group>"; };
+		CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMutablePointerKeyedDictionary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 		CE28688814BA105B001E11D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CE94A19F14BB455200800354 /* Cocoa */,
 				CE28688914BA105B001E11D7 /* DebugLogging.h */,
 				CE28688A14BA105B001E11D7 /* GLKit */,
 				CE28688D14BA105B001E11D7 /* Marshmallows.h */,
@@ -206,6 +211,15 @@
 				CE2868A314BA1063001E11D7 /* GradientChrome.png */,
 			);
 			path = TestResources;
+			sourceTree = "<group>";
+		};
+		CE94A19F14BB455200800354 /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				CE94A1A014BB455200800354 /* MMMutablePointerKeyedDictionary.h */,
+				CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */,
+			);
+			path = Cocoa;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +333,7 @@
 				CE28689414BA105B001E11D7 /* MMGLK.m in Sources */,
 				CE28689614BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */,
 				CE28689814BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */,
+				CE94A1A214BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +345,7 @@
 				CE28689714BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */,
 				CE28689914BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */,
 				CE2868AB14BA1063001E11D7 /* UIImageMMPixelDataTests.m in Sources */,
+				CE94A1A314BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
