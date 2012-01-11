@@ -30,6 +30,15 @@
 		CE2868AC14BA10D1001E11D7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867C314B37156001E11D7 /* OpenGLES.framework */; };
 		CE2868AD14BA10D2001E11D7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867C214B37156001E11D7 /* GLKit.framework */; };
 		CE2868AE14BA10DF001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
+		CE42C29D14BDC20D0049319C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE42C29C14BDC20D0049319C /* QuartzCore.framework */; };
+		CE42C2AA14BDDD0D0049319C /* MMAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A314BDDD0D0049319C /* MMAnimator.m */; };
+		CE42C2AB14BDDD0D0049319C /* MMAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A314BDDD0D0049319C /* MMAnimator.m */; };
+		CE42C2AC14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A514BDDD0D0049319C /* MMAnimatorTimingBlock.m */; };
+		CE42C2AD14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A514BDDD0D0049319C /* MMAnimatorTimingBlock.m */; };
+		CE42C2AE14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */; };
+		CE42C2AF14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */; };
+		CE42C2B014BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */; };
+		CE42C2B114BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */; };
 		CE94A1A214BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
 		CE94A1A314BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
 /* End PBXBuildFile section */
@@ -73,6 +82,15 @@
 		CE2868A314BA1063001E11D7 /* GradientChrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GradientChrome.png; sourceTree = "<group>"; };
 		CE2868A414BA1063001E11D7 /* UIImageMMPixelDataTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageMMPixelDataTests.h; sourceTree = "<group>"; };
 		CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageMMPixelDataTests.m; sourceTree = "<group>"; };
+		CE42C29C14BDC20D0049319C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CE42C2A214BDDD0D0049319C /* MMAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMAnimator.h; path = Animator/MMAnimator.h; sourceTree = "<group>"; };
+		CE42C2A314BDDD0D0049319C /* MMAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMAnimator.m; path = Animator/MMAnimator.m; sourceTree = "<group>"; };
+		CE42C2A414BDDD0D0049319C /* MMAnimatorTimingBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMAnimatorTimingBlock.h; path = Animator/MMAnimatorTimingBlock.h; sourceTree = "<group>"; };
+		CE42C2A514BDDD0D0049319C /* MMAnimatorTimingBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMAnimatorTimingBlock.m; path = Animator/MMAnimatorTimingBlock.m; sourceTree = "<group>"; };
+		CE42C2A614BDDD0D0049319C /* MMSimpleAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSimpleAnimator.h; path = Animator/MMSimpleAnimator.h; sourceTree = "<group>"; };
+		CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSimpleAnimator.m; path = Animator/MMSimpleAnimator.m; sourceTree = "<group>"; };
+		CE42C2A814BDDD0D0049319C /* MMSimplePinnedAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSimplePinnedAnimator.h; path = Animator/MMSimplePinnedAnimator.h; sourceTree = "<group>"; };
+		CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSimplePinnedAnimator.m; path = Animator/MMSimplePinnedAnimator.m; sourceTree = "<group>"; };
 		CE94A1A014BB455200800354 /* MMMutablePointerKeyedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMutablePointerKeyedDictionary.h; sourceTree = "<group>"; };
 		CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMutablePointerKeyedDictionary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE42C29D14BDC20D0049319C /* QuartzCore.framework in Frameworks */,
 				CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */,
 				CE2867ED14B378AD001E11D7 /* GLKit.framework in Frameworks */,
 				CE2867EE14B378AD001E11D7 /* OpenGLES.framework in Frameworks */,
@@ -129,6 +148,7 @@
 		CE28678E14B36EC5001E11D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE42C29C14BDC20D0049319C /* QuartzCore.framework */,
 				CE2867C314B37156001E11D7 /* OpenGLES.framework */,
 				CE2867C214B37156001E11D7 /* GLKit.framework */,
 				CE28678F14B36EC5001E11D7 /* UIKit.framework */,
@@ -155,6 +175,7 @@
 		CE28688814BA105B001E11D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CE42C28514BCB98A0049319C /* Animator */,
 				CE94A19F14BB455200800354 /* Cocoa */,
 				CE28688914BA105B001E11D7 /* DebugLogging.h */,
 				CE28688A14BA105B001E11D7 /* GLKit */,
@@ -211,6 +232,21 @@
 				CE2868A314BA1063001E11D7 /* GradientChrome.png */,
 			);
 			path = TestResources;
+			sourceTree = "<group>";
+		};
+		CE42C28514BCB98A0049319C /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				CE42C2A214BDDD0D0049319C /* MMAnimator.h */,
+				CE42C2A314BDDD0D0049319C /* MMAnimator.m */,
+				CE42C2A414BDDD0D0049319C /* MMAnimatorTimingBlock.h */,
+				CE42C2A514BDDD0D0049319C /* MMAnimatorTimingBlock.m */,
+				CE42C2A614BDDD0D0049319C /* MMSimpleAnimator.h */,
+				CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */,
+				CE42C2A814BDDD0D0049319C /* MMSimplePinnedAnimator.h */,
+				CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */,
+			);
+			name = Animator;
 			sourceTree = "<group>";
 		};
 		CE94A19F14BB455200800354 /* Cocoa */ = {
@@ -334,6 +370,10 @@
 				CE28689614BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */,
 				CE28689814BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */,
 				CE94A1A214BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */,
+				CE42C2AA14BDDD0D0049319C /* MMAnimator.m in Sources */,
+				CE42C2AC14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */,
+				CE42C2AE14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */,
+				CE42C2B014BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +386,10 @@
 				CE28689914BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */,
 				CE2868AB14BA1063001E11D7 /* UIImageMMPixelDataTests.m in Sources */,
 				CE94A1A314BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */,
+				CE42C2AB14BDDD0D0049319C /* MMAnimator.m in Sources */,
+				CE42C2AD14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */,
+				CE42C2AF14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */,
+				CE42C2B114BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
