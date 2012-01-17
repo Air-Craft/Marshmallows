@@ -6,4 +6,5 @@
 //  Copyright (c) 2012 Amritvela / Club 15CC.  MIT License.
 //
 
-#define DO_UIImageMMPixelDataTests 1
+#define DO_UIImageMMPixelDataTests 0
+#define DO_MMAnimatorTests 1

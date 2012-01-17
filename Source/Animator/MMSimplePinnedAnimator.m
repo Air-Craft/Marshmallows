@@ -13,14 +13,22 @@
 @synthesize pinValue, resetToPinValueOnFinish;
 
 
+- (id)init {
+    if (self = [super init]) {
+        resetToPinValueOnFinish = YES;      // Default to YES
+    }
+    return self;
+}
+
+
 /**
  Tweaks to use the pinValue where appropriate
  */
-- (CGFloat)getCurrentValue
+- (CGFloat)currentValue
 {
     CFTimeInterval t;
     
-    switch (self.status) {
+    switch (status) {
             
         case kMMAnimatorNotStarted:
             return pinValue;
@@ -38,6 +46,8 @@
             if (t <= beginTimeOffset) {
                 return pinValue;
             }
+            
+            t -= beginTimeOffset;
             
             // Past the duration => toValue
             // Set the status too

@@ -65,7 +65,7 @@ typedef enum {
 /** Time to wait from call to start in order to actually bgin the animation. Defaults to 0. */
 @property (atomic) CFTimeInterval beginTimeOffset;
 
-/** The animation duration. Defaults to 0. */
+/** The animation duration. Defaults to 0. Total time = beginTimeOffset + duration. */
 @property CFTimeInterval duration;
 
 /** @abstract The current value given the time the animation has been running.  MUST be handled by the subclass */
@@ -112,7 +112,9 @@ typedef enum {
 #pragma mark Public Methods
 
 /**
- Marks the start time ivar.  No need to override in subclass unless requried for specific implementation reasons.
+ Sets the start time and begins the animation. Also works as a restart for running animations.
+ 
+ Marks the start time ivar.  No need to override in subclass unless requried for specific implementation reasons.  
  */
 - (void)start;
 

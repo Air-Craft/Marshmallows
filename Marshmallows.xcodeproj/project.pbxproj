@@ -39,6 +39,8 @@
 		CE42C2AF14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */; };
 		CE42C2B014BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */; };
 		CE42C2B114BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */; };
+		CE42C2B414BDDF000049319C /* MMAnimatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2B314BDDF000049319C /* MMAnimatorTests.m */; };
+		CE42C2B514BDE2540049319C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE42C29C14BDC20D0049319C /* QuartzCore.framework */; };
 		CE94A1A214BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
 		CE94A1A314BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
 /* End PBXBuildFile section */
@@ -91,6 +93,8 @@
 		CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSimpleAnimator.m; path = Animator/MMSimpleAnimator.m; sourceTree = "<group>"; };
 		CE42C2A814BDDD0D0049319C /* MMSimplePinnedAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSimplePinnedAnimator.h; path = Animator/MMSimplePinnedAnimator.h; sourceTree = "<group>"; };
 		CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSimplePinnedAnimator.m; path = Animator/MMSimplePinnedAnimator.m; sourceTree = "<group>"; };
+		CE42C2B214BDDF000049319C /* MMAnimatorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAnimatorTests.h; sourceTree = "<group>"; };
+		CE42C2B314BDDF000049319C /* MMAnimatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAnimatorTests.m; sourceTree = "<group>"; };
 		CE94A1A014BB455200800354 /* MMMutablePointerKeyedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMutablePointerKeyedDictionary.h; sourceTree = "<group>"; };
 		CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMutablePointerKeyedDictionary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE42C2B514BDE2540049319C /* QuartzCore.framework in Frameworks */,
 				CE28688614BA0FEF001E11D7 /* Foundation.framework in Frameworks */,
 				CE2868AC14BA10D1001E11D7 /* OpenGLES.framework in Frameworks */,
 				CE2868AE14BA10DF001E11D7 /* CoreGraphics.framework in Frameworks */,
@@ -219,6 +224,8 @@
 				CE28689B14BA1063001E11D7 /* InfoPlist.strings */,
 				CE28689E14BA1063001E11D7 /* MarshmallowsTests-Info.plist */,
 				CE28689F14BA1063001E11D7 /* MarshmallowsTests.h */,
+				CE42C2B214BDDF000049319C /* MMAnimatorTests.h */,
+				CE42C2B314BDDF000049319C /* MMAnimatorTests.m */,
 				CE2868A214BA1063001E11D7 /* TestResources */,
 				CE2868A414BA1063001E11D7 /* UIImageMMPixelDataTests.h */,
 				CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */,
@@ -390,6 +397,7 @@
 				CE42C2AD14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */,
 				CE42C2AF14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */,
 				CE42C2B114BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */,
+				CE42C2B414BDDF000049319C /* MMAnimatorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

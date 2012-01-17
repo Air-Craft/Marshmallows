@@ -28,7 +28,7 @@ const MMAnimatorTimingBlock MMAnimatorTimingQuadraticEaseIn = ^(CFTimeInterval t
 const MMAnimatorTimingBlock MMAnimatorTimingQuadraticEaseOut = ^(CFTimeInterval t)
 {
     //return   -t * (t - 2.0) -1.0;
-    return -t * (t + 2.0);
+    return t * (2.0 - t);
 };
 
 /** ********************************************************************/

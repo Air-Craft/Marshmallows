@@ -29,4 +29,11 @@
 @property (atomic) CGFloat toValue;
 
 
+/** ********************************************************************************************************************/
+#pragma mark -
+#pragma mark Class Methods
+
++ (id)animatorFromValue:(CGFloat)theFromValue toValue:(CGFloat)theToValue;
+
+
 @end

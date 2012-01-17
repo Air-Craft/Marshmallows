@@ -16,7 +16,7 @@
 /** The value of the animation (ie currentValue) before the animation begins (start + offsetTime) and to which is immediately springs back if resetToPinValueOnFinish == YES */
 @property (atomic) CGFloat pinValue; 
 
-/** NO == Stay on toValue.  YES == revert to pinValue.  Defaults to NO. */
+/** NO == Stay on toValue.  YES == revert to pinValue.  Defaults to YES. */
 @property (atomic) BOOL resetToPinValueOnFinish;
  
 

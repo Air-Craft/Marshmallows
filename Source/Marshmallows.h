@@ -14,4 +14,11 @@
 #import "ObjC/CEObjectiveCRuntime.h"
 #import "Cocoa/MMMutablePointerKeyedDictionary.h"
 
+#import "Animator/MMAnimator.h"
+#import "Animator/MMSimpleAnimator.h"
+#import "Animator/MMSimplePinnedAnimator.h"
+#import "Animator/MMAnimatorTimingBlock.h"
+
+#import "MarshmallowAnimation/MarshmallowAnimation.h"
+
 #endif

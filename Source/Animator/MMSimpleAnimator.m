@@ -31,11 +31,11 @@
 #pragma mark -
 #pragma mark Abstract Methods from MMAnimator
 
-- (CGFloat)getCurrentValue
+- (CGFloat)currentValue
 {
     CFTimeInterval t;
     
-    switch (self.status) {
+    switch (status) {
             
         case kMMAnimatorNotStarted:
             return fromValue;
@@ -52,7 +52,10 @@
             if (t <= beginTimeOffset) {
                 return fromValue;
             }
-            
+
+            // adjust for offset time
+            t -= beginTimeOffset;
+
             // Past the duration => toValue
             // Set the status too
             if (t >= duration || duration == 0.0) {
@@ -63,6 +66,15 @@
             // Otherwise do the calculation
             return fromValue + (toValue - fromValue) * self.timingFunction(t / self.duration);
     }
+}
+
+/** ********************************************************************/
+
+- (MMAnimatorStatus)status 
+{
+    // Call currentValue to update
+    [self currentValue];
+    return status;
 }
 
 @end
