@@ -24,6 +24,13 @@
 }
 
 
+/** ********************************************************************/
+
++ (id)layerWithImageNamed:(NSString *)theImageName
+{
+    return [self layerWithImage:[UIImage imageNamed:theImageName]];
+}
+
 /** ********************************************************************************************************************/
 #pragma mark -
 #pragma mark Life Cycle

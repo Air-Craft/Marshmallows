@@ -12,13 +12,16 @@
 #import "UIKit/UIImage+MMPixelData.h"
 #import "GLKit/MMGLK.h"
 #import "ObjC/CEObjectiveCRuntime.h"
-#import "Cocoa/MMMutablePointerKeyedDictionary.h"
 
 #import "Animator/MMAnimator.h"
 #import "Animator/MMSimpleAnimator.h"
 #import "Animator/MMSimplePinnedAnimator.h"
 #import "Animator/MMAnimatorTimingBlock.h"
 
+
+// ^ old way   v new way
+
+#import "Cocoa/MarshmallowCocoa.h"
 #import "MarshmallowAnimation/MarshmallowAnimation.h"
 
 #endif

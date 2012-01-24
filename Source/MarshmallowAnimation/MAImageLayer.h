@@ -15,6 +15,7 @@
 @property (strong, atomic, readonly) UIImage *image;
 
 + (id)layerWithImage:(UIImage *)theImage;
++ (id)layerWithImageNamed:(NSString *)theImageName;
 
 - (id)initWithImage:(UIImage *)theImage;
 
