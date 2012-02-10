@@ -41,6 +41,12 @@
 		CE42C2B114BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */; };
 		CE42C2B414BDDF000049319C /* MMAnimatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2B314BDDF000049319C /* MMAnimatorTests.m */; };
 		CE42C2B514BDE2540049319C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE42C29C14BDC20D0049319C /* QuartzCore.framework */; };
+		CE7F626B14E5443600F46F03 /* MDBulkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626614E5443600F46F03 /* MDBulkLogger.m */; };
+		CE7F626C14E5443600F46F03 /* MDBulkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626614E5443600F46F03 /* MDBulkLogger.m */; };
+		CE7F626D14E5443600F46F03 /* MDTimeProfiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626814E5443600F46F03 /* MDTimeProfiler.mm */; };
+		CE7F626E14E5443600F46F03 /* MDTimeProfiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626814E5443600F46F03 /* MDTimeProfiler.mm */; };
+		CE7F626F14E5443600F46F03 /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626A14E5443600F46F03 /* MDTimeProfilerOC.mm */; };
+		CE7F627014E5443600F46F03 /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626A14E5443600F46F03 /* MDTimeProfilerOC.mm */; };
 		CE94A1A214BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
 		CE94A1A314BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
 /* End PBXBuildFile section */
@@ -95,6 +101,12 @@
 		CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSimplePinnedAnimator.m; path = Animator/MMSimplePinnedAnimator.m; sourceTree = "<group>"; };
 		CE42C2B214BDDF000049319C /* MMAnimatorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAnimatorTests.h; sourceTree = "<group>"; };
 		CE42C2B314BDDF000049319C /* MMAnimatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAnimatorTests.m; sourceTree = "<group>"; };
+		CE7F626514E5443600F46F03 /* MDBulkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBulkLogger.h; sourceTree = "<group>"; };
+		CE7F626614E5443600F46F03 /* MDBulkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDBulkLogger.m; sourceTree = "<group>"; };
+		CE7F626714E5443600F46F03 /* MDTimeProfiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTimeProfiler.h; sourceTree = "<group>"; };
+		CE7F626814E5443600F46F03 /* MDTimeProfiler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MDTimeProfiler.mm; sourceTree = "<group>"; };
+		CE7F626914E5443600F46F03 /* MDTimeProfilerOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTimeProfilerOC.h; sourceTree = "<group>"; };
+		CE7F626A14E5443600F46F03 /* MDTimeProfilerOC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MDTimeProfilerOC.mm; sourceTree = "<group>"; };
 		CE94A1A014BB455200800354 /* MMMutablePointerKeyedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMutablePointerKeyedDictionary.h; sourceTree = "<group>"; };
 		CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMutablePointerKeyedDictionary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,6 +192,7 @@
 		CE28688814BA105B001E11D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CE7F626414E5443600F46F03 /* MarshmallowDiagnostics */,
 				CE42C28514BCB98A0049319C /* Animator */,
 				CE94A19F14BB455200800354 /* Cocoa */,
 				CE28688914BA105B001E11D7 /* DebugLogging.h */,
@@ -254,6 +267,19 @@
 				CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */,
 			);
 			name = Animator;
+			sourceTree = "<group>";
+		};
+		CE7F626414E5443600F46F03 /* MarshmallowDiagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				CE7F626514E5443600F46F03 /* MDBulkLogger.h */,
+				CE7F626614E5443600F46F03 /* MDBulkLogger.m */,
+				CE7F626714E5443600F46F03 /* MDTimeProfiler.h */,
+				CE7F626814E5443600F46F03 /* MDTimeProfiler.mm */,
+				CE7F626914E5443600F46F03 /* MDTimeProfilerOC.h */,
+				CE7F626A14E5443600F46F03 /* MDTimeProfilerOC.mm */,
+			);
+			path = MarshmallowDiagnostics;
 			sourceTree = "<group>";
 		};
 		CE94A19F14BB455200800354 /* Cocoa */ = {
@@ -381,6 +407,9 @@
 				CE42C2AC14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */,
 				CE42C2AE14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */,
 				CE42C2B014BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */,
+				CE7F626B14E5443600F46F03 /* MDBulkLogger.m in Sources */,
+				CE7F626D14E5443600F46F03 /* MDTimeProfiler.mm in Sources */,
+				CE7F626F14E5443600F46F03 /* MDTimeProfilerOC.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +427,9 @@
 				CE42C2AF14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */,
 				CE42C2B114BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */,
 				CE42C2B414BDDF000049319C /* MMAnimatorTests.m in Sources */,
+				CE7F626C14E5443600F46F03 /* MDBulkLogger.m in Sources */,
+				CE7F626E14E5443600F46F03 /* MDTimeProfiler.mm in Sources */,
+				CE7F627014E5443600F46F03 /* MDTimeProfilerOC.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
