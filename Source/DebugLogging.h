@@ -3,7 +3,7 @@
 #define DEBUG_LOG_CHANNEL_3     0       // AudioEngine nitty-gritty (high detail!)
 #define DEBUG_LOG_CHANNEL_4     0       // SamplerEngine Info
 #define DEBUG_LOG_CHANNEL_5     0       // InstrumentView
-#define DEBUG_LOG_CHANNEL_6     0       // APInstrumentPlayController
+#define DEBUG_LOG_CHANNEL_6     0       // SWInstrumentPlayController
 #define DEBUG_LOG_CHANNEL_7     1
 #define DEBUG_LOG_CHANNEL_8     1
 #define DEBUG_LOG_CHANNEL_9     1

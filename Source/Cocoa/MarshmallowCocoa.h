@@ -1,13 +1,13 @@
 //
 //  MarshmallowCocoa.h
-//  AirPluck
+//  SoundWand
 //
 //  Created by Hari Karam Singh on 19/01/2012.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef AirPluck_MarshmallowCocoa_h
-#define AirPluck_MarshmallowCocoa_h
+#ifndef SoundWand_MarshmallowCocoa_h
+#define SoundWand_MarshmallowCocoa_h
 
 #import "MNSMutableObjectKeyDictionary.h"
 #import "NSTimer+MMBlocks.h"
