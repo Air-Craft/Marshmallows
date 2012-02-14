@@ -4,7 +4,7 @@
  An incomplete implementation which casts UITouch objects used as keys using NSValue:valueFromPointer to allow
  them to be safely used as MutableDictionary keys.
  */
-@interface MMMutablePointerKeyedDictionary : NSObject <NSFastEnumeration>
+@interface MNSMutableObjectKeyDictionary : NSObject <NSFastEnumeration>
 {
     NSMutableDictionary *dict;
     NSMutableSet *retainer;

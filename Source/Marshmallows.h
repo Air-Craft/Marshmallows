@@ -23,5 +23,6 @@
 
 #import "Cocoa/MarshmallowCocoa.h"
 #import "MarshmallowAnimation/MarshmallowAnimation.h"
+#import "MarshmallowConcurrency/MarshmallowConcurrency.h"
 
 #endif

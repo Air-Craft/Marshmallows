@@ -1,0 +1,26 @@
+//
+//  MCSimpleThread.h
+//  InstrumentMotion
+//
+//  Created by Hari Karam Singh on 29/01/2012.
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+#import <tgmath.h>
+#import "MCThreadProxyProtocol.h"
+#import "MNSMutableObjectKeyDictionary.h"
+
+@interface MCSimpleThreadProxy : NSThread <MCThreadProxyProtocol>
+{
+    MNSMutableObjectKeyDictionary *invocationIntervalDict;
+    MNSMutableObjectKeyDictionary *invocationCallCountDict;
+    NSTimeInterval startTime;
+}
+
+/// Setting is synonymous with calling [self pause] but used for convenient TS access
+@property (atomic) BOOL paused;
+
+
+@end

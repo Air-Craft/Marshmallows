@@ -9,7 +9,7 @@
 #ifndef AirPluck_MarshmallowCocoa_h
 #define AirPluck_MarshmallowCocoa_h
 
-#import "MMMutablePointerKeyedDictionary.h"
+#import "MNSMutableObjectKeyDictionary.h"
 #import "NSTimer+MMBlocks.h"
 
 #endif
