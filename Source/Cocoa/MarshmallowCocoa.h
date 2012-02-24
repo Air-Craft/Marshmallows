@@ -11,5 +11,5 @@
 
 #import "MNSMutableObjectKeyDictionary.h"
 #import "NSTimer+MMBlocks.h"
-
+#import "NSError+Marshmallows.h"
 #endif
