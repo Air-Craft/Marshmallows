@@ -22,5 +22,7 @@
 /// Setting is synonymous with calling [self pause] but used for convenient TS access
 @property (atomic) BOOL paused;
 
+/// YES after start and YES when paused.  NO prior to start and after cancel.
+@property (nonatomic) BOOL running;
 
 @end

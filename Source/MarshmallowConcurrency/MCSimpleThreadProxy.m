@@ -10,7 +10,7 @@
 
 @implementation MCSimpleThreadProxy
 
-@synthesize paused;
+@synthesize paused, running;
 
 /** ********************************************************************************************************************/
 #pragma mark -
@@ -61,15 +61,16 @@
 
 - (void)main
 {
-    @autoreleasepool {
-        startTime = CACurrentMediaTime();
+    startTime = CACurrentMediaTime();
 
-        while (!self.isCancelled) {
-            // Paused?
-            if (self.paused) {
-                [[self class] sleepForTimeInterval:0.01];
-                continue;
-            }
+    while (!self.isCancelled) {
+        // Paused?
+        if (self.paused) {
+            [[self class] sleepForTimeInterval:0.05];
+            continue;
+        }
+        
+        @autoreleasepool {
             
             // Loop through the invocations and call if time interval has lapsed
             for (NSInvocation *invoc in invocationIntervalDict) {
@@ -85,13 +86,14 @@
                     // Currently skips any dropped intervals.  Change to prevCallCount++ 
                     // to have a "catch up" paradigm
                     [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:currInterval] forKey:invoc];
-
+                    
                     [invoc invoke];
                 }
             }
         }
-        
     }
+    
+    
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -99,6 +101,8 @@
 /// Resume if pause, otherwise call NSThread's start
 - (void)start
 {
+    NSAssert(paused || !running, @"Start not allow on running unpaused thread proxy.");
+             
     // Resume
     if (paused) {
         self.paused = NO;       // property accessor to ensure thread safety
@@ -106,12 +110,21 @@
     }
     [super start];
     
+    running = YES;
 }
 /////////////////////////////////////////////////////////////////////////
 
 - (void)pause
 {
     self.paused = YES;      
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)cancel
+{
+    [super cancel];
+    running = NO;
 }
 
 @end
