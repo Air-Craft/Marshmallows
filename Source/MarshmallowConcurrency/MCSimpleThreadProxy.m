@@ -40,7 +40,7 @@
 
 - (void)addInvocation:(NSInvocation *)invocation desiredInterval:(NSTimeInterval)timeInterval
 {
-    [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)]forKey:invocation];
+    [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
     
     // Init the call count to 0
     [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
@@ -74,6 +74,7 @@
             
             // Loop through the invocations and call if time interval has lapsed
             for (NSInvocation *invoc in invocationIntervalDict) {
+                
                 NSUInteger prevCallCount = [[invocationCallCountDict objectForKey:invoc] unsignedIntegerValue];
                 NSTimeInterval interval;
                 [[invocationIntervalDict objectForKey:invoc] getValue:&interval];
@@ -89,11 +90,9 @@
                     
                     [invoc invoke];
                 }
-            }
-        }
-    }
-    
-    
+            } // for
+        } // @autorelease
+    } // while (run loop)
 }
 
 /////////////////////////////////////////////////////////////////////////
