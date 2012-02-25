@@ -10,9 +10,9 @@
 
 @implementation NSArray (Marshmallows)
 
-- (void)unpackInto:(__autoreleasing id *)obj1, ...
+- (void)unpackInto:(__strong id *)obj1, ...
 {
-    __autoreleasing id *idPtr;
+    __strong id *idPtr;
     va_list args;
     va_start(args, obj1);
 
@@ -24,7 +24,7 @@
         
         // Increment the args and idx count
         idx++;
-        idPtr = va_arg(args, __autoreleasing id *);
+        idPtr = va_arg(args, __strong id *);
     }
 }
 

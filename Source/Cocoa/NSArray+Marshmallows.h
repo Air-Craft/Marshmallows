@@ -15,6 +15,6 @@
  
  Elements remain in the array.  If there are fewer elements then the remaining object references will be untouched.  If there are fewer objects passed then they will be filled with the subset of the array.
  */
-- (void)unpackInto:(__autoreleasing id *)obj1, ...;
+- (void)unpackInto:(__strong id *)obj1, ...;
 
 @end
