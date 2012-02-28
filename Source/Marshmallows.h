@@ -1,7 +1,8 @@
 //
-//  Marshmallows.h
-//  Marshmallows
-//
+/// \file       Marshmallows.h
+/// \defgroup   Marshmallows    Cocoa extensions. Mmmmm...
+///
+
 //  Created by Hari Karam Singh on 03/01/2012.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
@@ -17,7 +18,7 @@
 #import "Animator/MMSimpleAnimator.h"
 #import "Animator/MMSimplePinnedAnimator.h"
 #import "Animator/MMAnimatorTimingBlock.h"
-
+#import "MarshmallowMath.h"
 
 // ^ old way   v new way
 
