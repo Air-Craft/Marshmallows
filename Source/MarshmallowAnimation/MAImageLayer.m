@@ -41,15 +41,11 @@
         image = theImage;
         
         // Draw the image 
-        self.contentsScale = 2.0;
-        
-        UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0);
-        [image drawAtPoint:CGPointMake(0, 0)];
-        
+        self.contentsScale = [[UIScreen mainScreen] scale];
+
         self.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
-        self.contents = (__bridge id)UIGraphicsGetImageFromCurrentImageContext().CGImage;
+        self.contents = (__bridge id)theImage.CGImage;
         
-        UIGraphicsEndImageContext();
     }
     return self;
 }
