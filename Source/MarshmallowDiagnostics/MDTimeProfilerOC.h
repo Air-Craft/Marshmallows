@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MDTimeProfiler.h"
+
+/// Forward definition for C++ class
+struct MDTimeProfiler;
+typedef struct MDTimeProfiler MDTimeProfiler;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Objective-C Interface

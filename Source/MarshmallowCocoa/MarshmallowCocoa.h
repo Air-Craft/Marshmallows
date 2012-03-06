@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#ifndef SoundWand_MarshmallowCocoa_h
-#define SoundWand_MarshmallowCocoa_h
+#ifndef Marshmallows_MarshmallowCocoa_h
+#define Marshmallows_MarshmallowCocoa_h
 
 #import "MNSMutableObjectKeyDictionary.h"
 #import "NSTimer+MMBlocks.h"

@@ -10,9 +10,8 @@
 #ifndef Marshmallows
 #define Marshmallows
 
-#import "UIKit/UIImage+MMPixelData.h"
 #import "GLKit/MMGLK.h"
-#import "UIKit/MUICrossfadeView.h"
+
 #import "ObjC/CEObjectiveCRuntime.h"
 
 #import "Animator/MMAnimator.h"
@@ -23,10 +22,11 @@
 
 // ^ old way   v new way
 
-#import "Cocoa/MarshmallowCocoa.h"
 #import "MarshmallowAnimation/MarshmallowAnimation.h"
+#import "MarshmallowCocoa/MarshmallowCocoa.h"
 #import "MarshmallowConcurrency/MarshmallowConcurrency.h"
+#import "MarshmallowDiagnostics/MarshmallowDiagnostics.h"
 #import "MarshmallowMath/MarshmallowMath.h"
-
+#import "MarshmallowUIKit/MarshmallowUIKit.h"
 
 #endif
