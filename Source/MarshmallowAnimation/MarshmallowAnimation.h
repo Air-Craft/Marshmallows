@@ -10,6 +10,7 @@
 #define MarshmallowAnimation_h
 
 #import "MAImageLayer.h"
+#import "MACrossfadeLayer.h"
 #import "MAImageCrossfadeLayer.h"
 
 

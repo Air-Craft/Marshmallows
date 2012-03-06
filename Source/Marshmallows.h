@@ -1,6 +1,6 @@
 //
 /// \file       Marshmallows.h
-/// \defgroup   Marshmallows    Cocoa extensions. Mmmmm...
+/// \defgroup   Marshmallows    Marshmallows: Cocoa extensions. Mmmmm...
 ///
 
 //  Created by Hari Karam Singh on 03/01/2012.
@@ -12,18 +12,21 @@
 
 #import "UIKit/UIImage+MMPixelData.h"
 #import "GLKit/MMGLK.h"
+#import "UIKit/MUICrossfadeView.h"
 #import "ObjC/CEObjectiveCRuntime.h"
 
 #import "Animator/MMAnimator.h"
 #import "Animator/MMSimpleAnimator.h"
 #import "Animator/MMSimplePinnedAnimator.h"
 #import "Animator/MMAnimatorTimingBlock.h"
-#import "MarshmallowMath.h"
+
 
 // ^ old way   v new way
 
 #import "Cocoa/MarshmallowCocoa.h"
 #import "MarshmallowAnimation/MarshmallowAnimation.h"
 #import "MarshmallowConcurrency/MarshmallowConcurrency.h"
+#import "MarshmallowMath/MarshmallowMath.h"
+
 
 #endif

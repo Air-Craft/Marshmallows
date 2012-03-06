@@ -1,0 +1,52 @@
+/** 
+ \ingroup    SoundWand
+ 
+ MUICrossfadeView.h
+ 
+ \author     Created by  on 05/03/2012.
+ \copyright  Copyright (c) 2012 Club 15CC. All rights reserved. 
+ */
+
+
+#import <UIKit/UIKit.h>
+
+
+/**
+ \brief Handles crossfading of multiple UIView's such as UILabel's
+ */
+@interface MUICrossfadeView : UIView
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Properties
+/////////////////////////////////////////////////////////////////////////
+
+@property (atomic) NSUInteger activeIndex;
+@property (atomic) NSTimeInterval fadeDuration;
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Init
+/////////////////////////////////////////////////////////////////////////
+
+- (id)initWithFrame:(CGRect)frame views:(NSArray *)theViews fadeDuration:(NSTimeInterval)theFadeDuration;
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Public API
+/////////////////////////////////////////////////////////////////////////
+
+/// Adds a layer (sublayer) to the cross fade set
+- (void)addView:(UIView *)view;
+
+/** Crossfades in the layer at the index */
+- (void)showViewAtIndex:(NSUInteger)theIdx;
+
+- (void)hideAll;
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Private API
+/////////////////////////////////////////////////////////////////////////
+
+
+
+@end
