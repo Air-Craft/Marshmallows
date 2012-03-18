@@ -108,6 +108,7 @@
     // Hide the visible one if any
     if (activeIndex != NSNotFound) {
         ((UIView *)[[self subviews] objectAtIndex:activeIndex]).hidden = YES;
+        activeIndex = NSNotFound;
     }
 }
 
