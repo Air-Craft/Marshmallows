@@ -1,6 +1,6 @@
 //
-//  MCSimpleThread.h
-//  InstrumentMotion
+//  MCSimpleThreadProxy.h
+/// \ingroup Marshmallows
 //
 //  Created by Hari Karam Singh on 29/01/2012.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
@@ -12,6 +12,10 @@
 #import "MCThreadProxyProtocol.h"
 #import "MNSMutableObjectKeyDictionary.h"
 
+
+/**
+ \brief A simple thread with a manual run loop.  Does NOT inherit from MCThreadProxyAbstract.
+ */
 @interface MCSimpleThreadProxy : NSThread <MCThreadProxyProtocol>
 {
     MNSMutableObjectKeyDictionary *invocationIntervalDict;

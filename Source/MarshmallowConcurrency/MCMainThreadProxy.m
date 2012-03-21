@@ -42,12 +42,14 @@
 /// Stop and remove any timers for the invocation
 - (void)removeInvocation:(NSInvocation *)invocation
 {
-    NSTimer *timer = [invocationTimerDict objectForKey:invocation];
-    if (timer) {
-        [timer invalidate];
-        [invocationTimerDict removeObjectForKey:invocation];
+    @synchronized(invocationIntervalDict) {
+        NSTimer *timer = [invocationTimerDict objectForKey:invocation];
+        if (timer) {
+            [timer invalidate];
+            [invocationTimerDict removeObjectForKey:invocation];
+        }
+        [super removeInvocation:invocation];
     }
-    [super removeInvocation:invocation];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -56,15 +58,16 @@
 - (void)start
 {   
     //MCLOG("MCMainThreadProxy starting...");
-    
-    for (NSInvocation *invoc in invocationIntervalDict) {
-        
-        // Get the interval value 
-        NSTimeInterval ti;
-        [(NSValue *)[invocationIntervalDict objectForKey:invoc] getValue:&ti];
-        
-        NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:ti invocation:invoc repeats:YES];
-        [invocationTimerDict setObject:t forKey:invoc];
+    @synchronized(invocationIntervalDict) {
+        for (NSInvocation *invoc in invocationIntervalDict) {
+            
+            // Get the interval value 
+            NSTimeInterval ti;
+            [(NSValue *)[invocationIntervalDict objectForKey:invoc] getValue:&ti];
+            
+            NSTimer *t = [NSTimer scheduledTimerWithTimeInterval:ti invocation:invoc repeats:YES];
+            [invocationTimerDict setObject:t forKey:invoc];
+        }
     }
 }
 
@@ -73,10 +76,12 @@
 /// Stop by invalidating and dealloc'ing all the timers
 - (void)cancel
 {
-    //MCLOG("MCMainThreadProxy ending...");
-    for (id key in invocationTimerDict) {
-        [[invocationTimerDict objectForKey:key] invalidate];
-        [invocationTimerDict removeObjectForKey:key];
+    @synchronized(invocationIntervalDict) {
+        //MCLOG("MCMainThreadProxy ending...");
+        for (id key in invocationTimerDict) {
+            [[invocationTimerDict objectForKey:key] invalidate];
+            [invocationTimerDict removeObjectForKey:key];
+        }
     }
 }
 

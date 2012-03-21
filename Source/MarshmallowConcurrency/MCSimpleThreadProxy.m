@@ -40,18 +40,23 @@
 
 - (void)addInvocation:(NSInvocation *)invocation desiredInterval:(NSTimeInterval)timeInterval
 {
-    [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
-    
-    // Init the call count to 0
-    [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
+    @synchronized(invocationIntervalDict) {
+
+        [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
+        
+        // Init the call count to 0
+        [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
 
 - (void)removeInvocation:(NSInvocation *)invocation
 {
-    [invocationIntervalDict removeObjectForKey:invocation];
-    [invocationCallCountDict removeObjectForKey:invocation];
+    @synchronized(invocationIntervalDict) {
+        [invocationIntervalDict removeObjectForKey:invocation];
+        [invocationCallCountDict removeObjectForKey:invocation];
+    }
 }
 
 
@@ -73,24 +78,27 @@
         @autoreleasepool {
             
             // Loop through the invocations and call if time interval has lapsed
-            for (NSInvocation *invoc in invocationIntervalDict) {
-                
-                NSUInteger prevCallCount = [[invocationCallCountDict objectForKey:invoc] unsignedIntegerValue];
-                NSTimeInterval interval;
-                [[invocationIntervalDict objectForKey:invoc] getValue:&interval];
-                
-                NSTimeInterval nowTime = CACurrentMediaTime();
-                NSUInteger currInterval = floor((nowTime - startTime) / interval);
-                
-                if ( currInterval > prevCallCount ) {
-                    // Update the call count dict.
-                    // Currently skips any dropped intervals.  Change to prevCallCount++ 
-                    // to have a "catch up" paradigm
-                    [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:currInterval] forKey:invoc];
+            @synchronized(invocationIntervalDict) {
+
+                for (NSInvocation *invoc in invocationIntervalDict) {
                     
-                    [invoc invoke];
-                }
-            } // for
+                    NSUInteger prevCallCount = [[invocationCallCountDict objectForKey:invoc] unsignedIntegerValue];
+                    NSTimeInterval interval;
+                    [[invocationIntervalDict objectForKey:invoc] getValue:&interval];
+                    
+                    NSTimeInterval nowTime = CACurrentMediaTime();
+                    NSUInteger currInterval = floor((nowTime - startTime) / interval);
+                    
+                    if ( currInterval > prevCallCount ) {
+                        // Update the call count dict.
+                        // Currently skips any dropped intervals.  Change to prevCallCount++ 
+                        // to have a "catch up" paradigm
+                        [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:currInterval] forKey:invoc];
+                        
+                        [invoc invoke];
+                    }
+                } // for
+            } // synchro
         } // @autorelease
     } // while (run loop)
 }

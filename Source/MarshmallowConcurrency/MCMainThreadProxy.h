@@ -9,6 +9,12 @@
 #import "MCThreadProxyAbstract.h"
 #import "MNSMutableObjectKeyDictionary.h"
 
+/**
+ \brief Uses NSTimer's to run task on the main thread
+ 
+ \todo Must be run from the main thread at the moment.  Should fix this really.
+ \todo Adding a new invocation to create a new timer if started
+ */
 @interface MCMainThreadProxy : MCThreadProxyAbstract 
 {
     MNSMutableObjectKeyDictionary *invocationTimerDict;

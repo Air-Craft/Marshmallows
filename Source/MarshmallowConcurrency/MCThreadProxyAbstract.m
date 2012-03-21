@@ -36,14 +36,18 @@
 
 - (void)addInvocation:(NSInvocation *)invocation desiredInterval:(NSTimeInterval)timeInterval
 {
-    [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)]forKey:invocation];
+    @synchronized(invocationIntervalDict) {
+        [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)]forKey:invocation];
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
 
 - (void)removeInvocation:(NSInvocation *)invocation
 {
-    [invocationIntervalDict removeObjectForKey:invocation];
+    @synchronized(invocationIntervalDict) {
+        [invocationIntervalDict removeObjectForKey:invocation];
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
