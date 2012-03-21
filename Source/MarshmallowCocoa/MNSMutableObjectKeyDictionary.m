@@ -64,6 +64,29 @@
 
 /////////////////////////////////////////////////////////////////////////
 
+- (void)removeAllObjects
+{
+    mutationCount++;
+    [dict removeAllObjects];
+    [retainer removeAllObjects];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)addEntriesFromObjectKeyDictionary:(MNSMutableObjectKeyDictionary *)otherDictionary
+{
+    mutationCount++;
+    // Fast enum undoes the keys.
+    for (id aKey in otherDictionary) {
+        [self setObject:[otherDictionary objectForKey:aKey] forKey:aKey];
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - NSFastEnumeration
+/////////////////////////////////////////////////////////////////////////
+
+
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len
 {
     if (state->state >= dict.count) {

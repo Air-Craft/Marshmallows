@@ -8,44 +8,62 @@
 
 #import "MCSimpleThreadProxy.h"
 
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - MCSimpleThreadProxy
+/////////////////////////////////////////////////////////////////////////
+
 @implementation MCSimpleThreadProxy
 
 @synthesize paused, running;
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Class Methods
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Class Methods
+/////////////////////////////////////////////////////////////////////////
+
 
 + (id<MCThreadProxyProtocol>)thread
 {
     return [[self alloc] init];
 }
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Life Cycle
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Life Cycle
+/////////////////////////////////////////////////////////////////////////
+
 
 - (id)init 
 {
     if (self = [super init]) {
         invocationIntervalDict = [MNSMutableObjectKeyDictionary dictionary];
         invocationCallCountDict = [MNSMutableObjectKeyDictionary dictionary];
+        invocationsToAddIntervalDict = [MNSMutableObjectKeyDictionary dictionary];
+        invocationsToAddCallCountDict = [MNSMutableObjectKeyDictionary dictionary];
     }
     return self;
 }
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark MCThreadProtocol API
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - MCThreadProtocol API
+/////////////////////////////////////////////////////////////////////////
 
 - (void)addInvocation:(NSInvocation *)invocation desiredInterval:(NSTimeInterval)timeInterval
 {
-    @synchronized(invocationIntervalDict) {
+    // Prevent mutation errors with delayed adding
+    if (self.isCancelled || self.paused) {
+        @synchronized(invocationIntervalDict) {
+            [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
+            
+            // Init the call count to 0
+            [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
+        }
+    } else {
+        @synchronized(invocationsToAddIntervalDict) {
+            [invocationsToAddIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
+            [invocationsToAddCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
 
-        [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
-        
-        // Init the call count to 0
-        [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
+        } 
     }
 }
 
@@ -68,9 +86,9 @@
 }
 
 
-/** ********************************************************************************************************************/
-#pragma mark -
-#pragma mark Main Loop
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Main Run Loop
+/////////////////////////////////////////////////////////////////////////
 
 - (void)main
 {
@@ -89,7 +107,6 @@
             @synchronized(invocationIntervalDict) {
 
                 for (NSInvocation *invoc in invocationIntervalDict) {
-                    
                     NSUInteger prevCallCount = [[invocationCallCountDict objectForKey:invoc] unsignedIntegerValue];
                     NSTimeInterval interval;
                     [[invocationIntervalDict objectForKey:invoc] getValue:&interval];
@@ -113,6 +130,14 @@
                     [invocationIntervalDict removeObjectsForKeys:invocationsToRemove];
                     [invocationsToRemove removeAllObjects];
                 }            
+                
+                // Add any additional
+                @synchronized(invocationsToAddIntervalDict) {
+                    [invocationIntervalDict addEntriesFromObjectKeyDictionary:invocationsToAddIntervalDict];
+                    [invocationCallCountDict addEntriesFromObjectKeyDictionary:invocationsToAddCallCountDict];
+                    [invocationsToAddIntervalDict removeAllObjects];
+                    [invocationsToAddCallCountDict removeAllObjects];
+                }
             } // synchro
         } // @autorelease
     } // while (run loop)
@@ -123,8 +148,10 @@
 /// Resume if pause, otherwise call NSThread's start
 - (void)start
 {
-    NSAssert(paused || !running, @"Start not allow on running unpaused thread proxy.");
-             
+    if (!paused && running) {
+        [NSException raise:NSInternalInconsistencyException format:@"Start not allow on running unpaused thread proxy."];
+    }
+    
     // Resume
     if (paused) {
         self.paused = NO;       // property accessor to ensure thread safety

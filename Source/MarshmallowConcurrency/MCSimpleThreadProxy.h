@@ -21,6 +21,10 @@
     MNSMutableObjectKeyDictionary *invocationIntervalDict;
     MNSMutableObjectKeyDictionary *invocationCallCountDict;
     NSMutableArray *invocationsToRemove;    ///< Temp hold invokes sent to removeInvocation to remove when run loop is finished
+
+    MNSMutableObjectKeyDictionary *invocationsToAddIntervalDict;    ///< Expedites the ease of delayed adding via the run loop
+    MNSMutableObjectKeyDictionary *invocationsToAddCallCountDict;
+    
     NSTimeInterval startTime;
 }
 
