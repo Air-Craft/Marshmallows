@@ -53,9 +53,17 @@
 
 - (void)removeInvocation:(NSInvocation *)invocation
 {
-    @synchronized(invocationIntervalDict) {
-        [invocationIntervalDict removeObjectForKey:invocation];
-        [invocationCallCountDict removeObjectForKey:invocation];
+    // Remove directly if thread isn't running.
+    // Otherwise store to have the run loop handle it
+    if (self.isCancelled || self.paused) {
+        @synchronized(invocationIntervalDict) {
+            [invocationIntervalDict removeObjectForKey:invocation];
+            [invocationCallCountDict removeObjectForKey:invocation];
+        }
+    } else {
+        @synchronized(invocationsToRemove) {
+            [invocationsToRemove addObject:invocation];
+        }
     }
 }
 
@@ -98,6 +106,13 @@
                         [invoc invoke];
                     }
                 } // for
+                
+                // Remove any invocations which have been removed while in the run loop
+                @synchronized(invocationsToRemove) {
+                    [invocationCallCountDict removeObjectsForKeys:invocationsToRemove];
+                    [invocationIntervalDict removeObjectsForKeys:invocationsToRemove];
+                    [invocationsToRemove removeAllObjects];
+                }            
             } // synchro
         } // @autorelease
     } // while (run loop)
