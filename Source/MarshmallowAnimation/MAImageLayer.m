@@ -44,11 +44,24 @@
         self.contentsScale = [[UIScreen mainScreen] scale];
 
         self.bounds = CGRectMake(0, 0, image.size.width, image.size.height);
-        self.contents = (__bridge id)theImage.CGImage;
-        
+
+        [self setNeedsDisplay];
+
     }
     return self;
 }
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)drawInContext:(CGContextRef)ctx
+{
+    UIGraphicsPushContext(ctx);
+    [image drawAtPoint:CGPointMake(0, 0)];
+    UIGraphicsPopContext();
+}
+
+/////////////////////////////////////////////////////////////////////////
+
 
 /** ********************************************************************/
 
