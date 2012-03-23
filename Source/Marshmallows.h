@@ -3,12 +3,17 @@
 /// \defgroup   Marshmallows    Marshmallows: Cocoa extensions. Mmmmm...
 ///
 
+
 //  Created by Hari Karam Singh on 03/01/2012.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #ifndef Marshmallows
 #define Marshmallows
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Imports
+/////////////////////////////////////////////////////////////////////////
 
 #import "GLKit/MMGLK.h"
 
@@ -29,4 +34,23 @@
 #import "MarshmallowMath/MarshmallowMath.h"
 #import "MarshmallowUIKit/MarshmallowUIKit.h"
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Macros
+/////////////////////////////////////////////////////////////////////////
+/// \ingroup Marshmallows
+/// @{
+
+/**
+ Use in a singleton class inside a sharedInstance method.  The block should alloc, init and return the object
+ */
+#define MM_DEFINE_SHARED_INSTANCE_USING_BLOCK(block) \
+    static dispatch_once_t token = 0; \
+    __strong static id _sharedObject = nil; \
+    dispatch_once(&token, ^{ \
+        _sharedObject = block(); \
+    }); \
+    return _sharedObject; \
+
+
+/// @}
 #endif
