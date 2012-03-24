@@ -33,6 +33,7 @@
 #import "MarshmallowDiagnostics/MarshmallowDiagnostics.h"
 #import "MarshmallowMath/MarshmallowMath.h"
 #import "MarshmallowUIKit/MarshmallowUIKit.h"
+#import "MarshmallowProfiling/MarshmallowProfiling.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Macros
