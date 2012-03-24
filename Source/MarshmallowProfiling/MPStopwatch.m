@@ -1,6 +1,6 @@
 //
 //  MPStopwatch.m
-//  SoundWand
+//  Marshmallows
 //
 //  Created by  on 23/03/2012.
 //  Copyright (c) 2012 Club 15CC. All rights reserved.
