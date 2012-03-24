@@ -18,12 +18,6 @@
 		CE28688314BA0D6C001E11D7 /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28687F14BA0D6C001E11D7 /* MMAppDelegate.m */; };
 		CE28688614BA0FEF001E11D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
 		CE28688714BA0FFA001E11D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28678F14B36EC5001E11D7 /* UIKit.framework */; };
-		CE28689414BA105B001E11D7 /* MMGLK.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28688C14BA105B001E11D7 /* MMGLK.m */; };
-		CE28689514BA105B001E11D7 /* MMGLK.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28688C14BA105B001E11D7 /* MMGLK.m */; };
-		CE28689614BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28689014BA105B001E11D7 /* CEObjectiveCRuntime.m */; };
-		CE28689714BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28689014BA105B001E11D7 /* CEObjectiveCRuntime.m */; };
-		CE28689814BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28689314BA105B001E11D7 /* UIImage+MMPixelData.m */; };
-		CE28689914BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE28689314BA105B001E11D7 /* UIImage+MMPixelData.m */; };
 		CE2868A614BA1063001E11D7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE28689B14BA1063001E11D7 /* InfoPlist.strings */; };
 		CE2868AA14BA1063001E11D7 /* GradientChrome.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2868A314BA1063001E11D7 /* GradientChrome.png */; };
 		CE2868AB14BA1063001E11D7 /* UIImageMMPixelDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */; };
@@ -31,24 +25,57 @@
 		CE2868AD14BA10D2001E11D7 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2867C214B37156001E11D7 /* GLKit.framework */; };
 		CE2868AE14BA10DF001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
 		CE42C29D14BDC20D0049319C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE42C29C14BDC20D0049319C /* QuartzCore.framework */; };
-		CE42C2AA14BDDD0D0049319C /* MMAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A314BDDD0D0049319C /* MMAnimator.m */; };
-		CE42C2AB14BDDD0D0049319C /* MMAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A314BDDD0D0049319C /* MMAnimator.m */; };
-		CE42C2AC14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A514BDDD0D0049319C /* MMAnimatorTimingBlock.m */; };
-		CE42C2AD14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A514BDDD0D0049319C /* MMAnimatorTimingBlock.m */; };
-		CE42C2AE14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */; };
-		CE42C2AF14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */; };
-		CE42C2B014BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */; };
-		CE42C2B114BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */; };
 		CE42C2B414BDDF000049319C /* MMAnimatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE42C2B314BDDF000049319C /* MMAnimatorTests.m */; };
 		CE42C2B514BDE2540049319C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE42C29C14BDC20D0049319C /* QuartzCore.framework */; };
-		CE7F626B14E5443600F46F03 /* MDBulkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626614E5443600F46F03 /* MDBulkLogger.m */; };
-		CE7F626C14E5443600F46F03 /* MDBulkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626614E5443600F46F03 /* MDBulkLogger.m */; };
-		CE7F626D14E5443600F46F03 /* MDTimeProfiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626814E5443600F46F03 /* MDTimeProfiler.mm */; };
-		CE7F626E14E5443600F46F03 /* MDTimeProfiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626814E5443600F46F03 /* MDTimeProfiler.mm */; };
-		CE7F626F14E5443600F46F03 /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626A14E5443600F46F03 /* MDTimeProfilerOC.mm */; };
-		CE7F627014E5443600F46F03 /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE7F626A14E5443600F46F03 /* MDTimeProfilerOC.mm */; };
-		CE94A1A214BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
-		CE94A1A314BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */; };
+		CE840228151DD86100BDC2D2 /* MMAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401E6151DD86100BDC2D2 /* MMAnimator.m */; };
+		CE840229151DD86100BDC2D2 /* MMAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401E6151DD86100BDC2D2 /* MMAnimator.m */; };
+		CE84022A151DD86100BDC2D2 /* MMAnimatorTimingBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401E8151DD86100BDC2D2 /* MMAnimatorTimingBlock.m */; };
+		CE84022B151DD86100BDC2D2 /* MMAnimatorTimingBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401E8151DD86100BDC2D2 /* MMAnimatorTimingBlock.m */; };
+		CE84022C151DD86100BDC2D2 /* MMSimpleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401EA151DD86100BDC2D2 /* MMSimpleAnimator.m */; };
+		CE84022D151DD86100BDC2D2 /* MMSimpleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401EA151DD86100BDC2D2 /* MMSimpleAnimator.m */; };
+		CE84022E151DD86100BDC2D2 /* MMSimplePinnedAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401EC151DD86100BDC2D2 /* MMSimplePinnedAnimator.m */; };
+		CE84022F151DD86100BDC2D2 /* MMSimplePinnedAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401EC151DD86100BDC2D2 /* MMSimplePinnedAnimator.m */; };
+		CE840230151DD86100BDC2D2 /* MMGLK.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F0151DD86100BDC2D2 /* MMGLK.m */; };
+		CE840231151DD86100BDC2D2 /* MMGLK.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F0151DD86100BDC2D2 /* MMGLK.m */; };
+		CE840232151DD86100BDC2D2 /* MACrossfadeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F3151DD86100BDC2D2 /* MACrossfadeLayer.m */; };
+		CE840233151DD86100BDC2D2 /* MACrossfadeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F3151DD86100BDC2D2 /* MACrossfadeLayer.m */; };
+		CE840234151DD86100BDC2D2 /* MAImageCrossfadeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F5151DD86100BDC2D2 /* MAImageCrossfadeLayer.m */; };
+		CE840235151DD86100BDC2D2 /* MAImageCrossfadeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F5151DD86100BDC2D2 /* MAImageCrossfadeLayer.m */; };
+		CE840236151DD86100BDC2D2 /* MAImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F7151DD86100BDC2D2 /* MAImageLayer.m */; };
+		CE840237151DD86100BDC2D2 /* MAImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F7151DD86100BDC2D2 /* MAImageLayer.m */; };
+		CE840238151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */; };
+		CE840239151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */; };
+		CE84023A151DD86100BDC2D2 /* NSArray+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */; };
+		CE84023B151DD86100BDC2D2 /* NSArray+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */; };
+		CE84023C151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */; };
+		CE84023D151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */; };
+		CE84023E151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */; };
+		CE84023F151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */; };
+		CE840240151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */; };
+		CE840241151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */; };
+		CE840242151DD86100BDC2D2 /* MCSimpleThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MCSimpleThreadProxy.m */; };
+		CE840243151DD86100BDC2D2 /* MCSimpleThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MCSimpleThreadProxy.m */; };
+		CE840244151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */; };
+		CE840245151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */; };
+		CE840246151DD86100BDC2D2 /* MDBulkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020F151DD86100BDC2D2 /* MDBulkLogger.m */; };
+		CE840247151DD86100BDC2D2 /* MDBulkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020F151DD86100BDC2D2 /* MDBulkLogger.m */; };
+		CE840248151DD86100BDC2D2 /* MDTimeProfiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840211151DD86100BDC2D2 /* MDTimeProfiler.mm */; };
+		CE840249151DD86100BDC2D2 /* MDTimeProfiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840211151DD86100BDC2D2 /* MDTimeProfiler.mm */; };
+		CE84024A151DD86100BDC2D2 /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840213151DD86100BDC2D2 /* MDTimeProfilerOC.mm */; };
+		CE84024B151DD86100BDC2D2 /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840213151DD86100BDC2D2 /* MDTimeProfilerOC.mm */; };
+		CE84024C151DD86100BDC2D2 /* MarshmallowMathFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */; };
+		CE84024D151DD86100BDC2D2 /* MarshmallowMathFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */; };
+		CE84024E151DD86100BDC2D2 /* MPStopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84021B151DD86100BDC2D2 /* MPStopwatch.m */; };
+		CE84024F151DD86100BDC2D2 /* MPStopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84021B151DD86100BDC2D2 /* MPStopwatch.m */; };
+		CE840250151DD86100BDC2D2 /* MUICrossfadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840220151DD86100BDC2D2 /* MUICrossfadeView.m */; };
+		CE840251151DD86100BDC2D2 /* MUICrossfadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840220151DD86100BDC2D2 /* MUICrossfadeView.m */; };
+		CE840252151DD86100BDC2D2 /* UIColor+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */; };
+		CE840253151DD86100BDC2D2 /* UIColor+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */; };
+		CE840254151DD86100BDC2D2 /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */; };
+		CE840255151DD86100BDC2D2 /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */; };
+		CE840256151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840227151DD86100BDC2D2 /* CEObjectiveCRuntime.m */; };
+		CE840257151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840227151DD86100BDC2D2 /* CEObjectiveCRuntime.m */; };
+		CE84025A151DDDE900BDC2D2 /* MPStopwatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840259151DDDE900BDC2D2 /* MPStopwatchTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,14 +103,6 @@
 		CE28687D14BA0D6C001E11D7 /* Marshmallows-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Marshmallows-Prefix.pch"; sourceTree = "<group>"; };
 		CE28687E14BA0D6C001E11D7 /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		CE28687F14BA0D6C001E11D7 /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
-		CE28688914BA105B001E11D7 /* DebugLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLogging.h; sourceTree = "<group>"; };
-		CE28688B14BA105B001E11D7 /* MMGLK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGLK.h; sourceTree = "<group>"; };
-		CE28688C14BA105B001E11D7 /* MMGLK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGLK.m; sourceTree = "<group>"; };
-		CE28688D14BA105B001E11D7 /* Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Marshmallows.h; sourceTree = "<group>"; };
-		CE28688F14BA105B001E11D7 /* CEObjectiveCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEObjectiveCRuntime.h; sourceTree = "<group>"; };
-		CE28689014BA105B001E11D7 /* CEObjectiveCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEObjectiveCRuntime.m; sourceTree = "<group>"; };
-		CE28689214BA105B001E11D7 /* UIImage+MMPixelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MMPixelData.h"; sourceTree = "<group>"; };
-		CE28689314BA105B001E11D7 /* UIImage+MMPixelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MMPixelData.m"; sourceTree = "<group>"; };
 		CE28689C14BA1063001E11D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CE28689E14BA1063001E11D7 /* MarshmallowsTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MarshmallowsTests-Info.plist"; sourceTree = "<group>"; };
 		CE28689F14BA1063001E11D7 /* MarshmallowsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowsTests.h; sourceTree = "<group>"; };
@@ -91,24 +110,68 @@
 		CE2868A414BA1063001E11D7 /* UIImageMMPixelDataTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageMMPixelDataTests.h; sourceTree = "<group>"; };
 		CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageMMPixelDataTests.m; sourceTree = "<group>"; };
 		CE42C29C14BDC20D0049319C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		CE42C2A214BDDD0D0049319C /* MMAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMAnimator.h; path = Animator/MMAnimator.h; sourceTree = "<group>"; };
-		CE42C2A314BDDD0D0049319C /* MMAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMAnimator.m; path = Animator/MMAnimator.m; sourceTree = "<group>"; };
-		CE42C2A414BDDD0D0049319C /* MMAnimatorTimingBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMAnimatorTimingBlock.h; path = Animator/MMAnimatorTimingBlock.h; sourceTree = "<group>"; };
-		CE42C2A514BDDD0D0049319C /* MMAnimatorTimingBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMAnimatorTimingBlock.m; path = Animator/MMAnimatorTimingBlock.m; sourceTree = "<group>"; };
-		CE42C2A614BDDD0D0049319C /* MMSimpleAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSimpleAnimator.h; path = Animator/MMSimpleAnimator.h; sourceTree = "<group>"; };
-		CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSimpleAnimator.m; path = Animator/MMSimpleAnimator.m; sourceTree = "<group>"; };
-		CE42C2A814BDDD0D0049319C /* MMSimplePinnedAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSimplePinnedAnimator.h; path = Animator/MMSimplePinnedAnimator.h; sourceTree = "<group>"; };
-		CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSimplePinnedAnimator.m; path = Animator/MMSimplePinnedAnimator.m; sourceTree = "<group>"; };
 		CE42C2B214BDDF000049319C /* MMAnimatorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAnimatorTests.h; sourceTree = "<group>"; };
 		CE42C2B314BDDF000049319C /* MMAnimatorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAnimatorTests.m; sourceTree = "<group>"; };
-		CE7F626514E5443600F46F03 /* MDBulkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBulkLogger.h; sourceTree = "<group>"; };
-		CE7F626614E5443600F46F03 /* MDBulkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDBulkLogger.m; sourceTree = "<group>"; };
-		CE7F626714E5443600F46F03 /* MDTimeProfiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTimeProfiler.h; sourceTree = "<group>"; };
-		CE7F626814E5443600F46F03 /* MDTimeProfiler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MDTimeProfiler.mm; sourceTree = "<group>"; };
-		CE7F626914E5443600F46F03 /* MDTimeProfilerOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTimeProfilerOC.h; sourceTree = "<group>"; };
-		CE7F626A14E5443600F46F03 /* MDTimeProfilerOC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MDTimeProfilerOC.mm; sourceTree = "<group>"; };
-		CE94A1A014BB455200800354 /* MMMutablePointerKeyedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMutablePointerKeyedDictionary.h; sourceTree = "<group>"; };
-		CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMutablePointerKeyedDictionary.m; sourceTree = "<group>"; };
+		CE8401E5151DD86100BDC2D2 /* MMAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAnimator.h; sourceTree = "<group>"; };
+		CE8401E6151DD86100BDC2D2 /* MMAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAnimator.m; sourceTree = "<group>"; };
+		CE8401E7151DD86100BDC2D2 /* MMAnimatorTimingBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAnimatorTimingBlock.h; sourceTree = "<group>"; };
+		CE8401E8151DD86100BDC2D2 /* MMAnimatorTimingBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAnimatorTimingBlock.m; sourceTree = "<group>"; };
+		CE8401E9151DD86100BDC2D2 /* MMSimpleAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSimpleAnimator.h; sourceTree = "<group>"; };
+		CE8401EA151DD86100BDC2D2 /* MMSimpleAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSimpleAnimator.m; sourceTree = "<group>"; };
+		CE8401EB151DD86100BDC2D2 /* MMSimplePinnedAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSimplePinnedAnimator.h; sourceTree = "<group>"; };
+		CE8401EC151DD86100BDC2D2 /* MMSimplePinnedAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSimplePinnedAnimator.m; sourceTree = "<group>"; };
+		CE8401ED151DD86100BDC2D2 /* DebugLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLogging.h; sourceTree = "<group>"; };
+		CE8401EF151DD86100BDC2D2 /* MMGLK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGLK.h; sourceTree = "<group>"; };
+		CE8401F0151DD86100BDC2D2 /* MMGLK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGLK.m; sourceTree = "<group>"; };
+		CE8401F2151DD86100BDC2D2 /* MACrossfadeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACrossfadeLayer.h; sourceTree = "<group>"; };
+		CE8401F3151DD86100BDC2D2 /* MACrossfadeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACrossfadeLayer.m; sourceTree = "<group>"; };
+		CE8401F4151DD86100BDC2D2 /* MAImageCrossfadeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAImageCrossfadeLayer.h; sourceTree = "<group>"; };
+		CE8401F5151DD86100BDC2D2 /* MAImageCrossfadeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAImageCrossfadeLayer.m; sourceTree = "<group>"; };
+		CE8401F6151DD86100BDC2D2 /* MAImageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAImageLayer.h; sourceTree = "<group>"; };
+		CE8401F7151DD86100BDC2D2 /* MAImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAImageLayer.m; sourceTree = "<group>"; };
+		CE8401F8151DD86100BDC2D2 /* MarshmallowAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowAnimation.h; sourceTree = "<group>"; };
+		CE8401FA151DD86100BDC2D2 /* MarshmallowCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowCocoa.h; sourceTree = "<group>"; };
+		CE8401FB151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNSMutableObjectKeyDictionary.h; sourceTree = "<group>"; };
+		CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNSMutableObjectKeyDictionary.m; sourceTree = "<group>"; };
+		CE8401FD151DD86100BDC2D2 /* NSArray+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Marshmallows.h"; sourceTree = "<group>"; };
+		CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Marshmallows.m"; sourceTree = "<group>"; };
+		CE8401FF151DD86100BDC2D2 /* NSError+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Marshmallows.h"; sourceTree = "<group>"; };
+		CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Marshmallows.m"; sourceTree = "<group>"; };
+		CE840201151DD86100BDC2D2 /* NSTimer+MMBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+MMBlocks.h"; sourceTree = "<group>"; };
+		CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+MMBlocks.m"; sourceTree = "<group>"; };
+		CE840204151DD86100BDC2D2 /* MarshmallowConcurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowConcurrency.h; sourceTree = "<group>"; };
+		CE840205151DD86100BDC2D2 /* MCMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMainThreadProxy.h; sourceTree = "<group>"; };
+		CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMainThreadProxy.m; sourceTree = "<group>"; };
+		CE840207151DD86100BDC2D2 /* MCSimpleThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSimpleThreadProxy.h; sourceTree = "<group>"; };
+		CE840208151DD86100BDC2D2 /* MCSimpleThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSimpleThreadProxy.m; sourceTree = "<group>"; };
+		CE840209151DD86100BDC2D2 /* MCThreadProxyAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCThreadProxyAbstract.h; sourceTree = "<group>"; };
+		CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCThreadProxyAbstract.m; sourceTree = "<group>"; };
+		CE84020B151DD86100BDC2D2 /* MCThreadProxyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCThreadProxyProtocol.h; sourceTree = "<group>"; };
+		CE84020D151DD86100BDC2D2 /* MarshmallowDiagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowDiagnostics.h; sourceTree = "<group>"; };
+		CE84020E151DD86100BDC2D2 /* MDBulkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBulkLogger.h; sourceTree = "<group>"; };
+		CE84020F151DD86100BDC2D2 /* MDBulkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDBulkLogger.m; sourceTree = "<group>"; };
+		CE840210151DD86100BDC2D2 /* MDTimeProfiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTimeProfiler.h; sourceTree = "<group>"; };
+		CE840211151DD86100BDC2D2 /* MDTimeProfiler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MDTimeProfiler.mm; sourceTree = "<group>"; };
+		CE840212151DD86100BDC2D2 /* MDTimeProfilerOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDTimeProfilerOC.h; sourceTree = "<group>"; };
+		CE840213151DD86100BDC2D2 /* MDTimeProfilerOC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MDTimeProfilerOC.mm; sourceTree = "<group>"; };
+		CE840215151DD86100BDC2D2 /* MarshmallowMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowMath.h; sourceTree = "<group>"; };
+		CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MarshmallowMathFunctions.c; sourceTree = "<group>"; };
+		CE840217151DD86100BDC2D2 /* MarshmallowMathFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowMathFunctions.h; sourceTree = "<group>"; };
+		CE840219151DD86100BDC2D2 /* MarshmallowProfiling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowProfiling.h; sourceTree = "<group>"; };
+		CE84021A151DD86100BDC2D2 /* MPStopwatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStopwatch.h; sourceTree = "<group>"; };
+		CE84021B151DD86100BDC2D2 /* MPStopwatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStopwatch.m; sourceTree = "<group>"; };
+		CE84021C151DD86100BDC2D2 /* Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Marshmallows.h; sourceTree = "<group>"; };
+		CE84021E151DD86100BDC2D2 /* MarshmallowUIKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowUIKit.h; sourceTree = "<group>"; };
+		CE84021F151DD86100BDC2D2 /* MUICrossfadeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUICrossfadeView.h; sourceTree = "<group>"; };
+		CE840220151DD86100BDC2D2 /* MUICrossfadeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUICrossfadeView.m; sourceTree = "<group>"; };
+		CE840221151DD86100BDC2D2 /* UIColor+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Marshmallows.h"; sourceTree = "<group>"; };
+		CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Marshmallows.m"; sourceTree = "<group>"; };
+		CE840223151DD86100BDC2D2 /* UIImage+MMPixelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MMPixelData.h"; sourceTree = "<group>"; };
+		CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MMPixelData.m"; sourceTree = "<group>"; };
+		CE840226151DD86100BDC2D2 /* CEObjectiveCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEObjectiveCRuntime.h; sourceTree = "<group>"; };
+		CE840227151DD86100BDC2D2 /* CEObjectiveCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEObjectiveCRuntime.m; sourceTree = "<group>"; };
+		CE840258151DDDE900BDC2D2 /* MPStopwatchTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStopwatchTests.h; sourceTree = "<group>"; };
+		CE840259151DDDE900BDC2D2 /* MPStopwatchTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPStopwatchTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,43 +255,20 @@
 		CE28688814BA105B001E11D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				CE7F626414E5443600F46F03 /* MarshmallowDiagnostics */,
-				CE42C28514BCB98A0049319C /* Animator */,
-				CE94A19F14BB455200800354 /* Cocoa */,
-				CE28688914BA105B001E11D7 /* DebugLogging.h */,
-				CE28688A14BA105B001E11D7 /* GLKit */,
-				CE28688D14BA105B001E11D7 /* Marshmallows.h */,
-				CE28688E14BA105B001E11D7 /* ObjC */,
-				CE28689114BA105B001E11D7 /* UIKit */,
+				CE8401E4151DD86100BDC2D2 /* Animator */,
+				CE8401ED151DD86100BDC2D2 /* DebugLogging.h */,
+				CE8401EE151DD86100BDC2D2 /* GLKit */,
+				CE8401F1151DD86100BDC2D2 /* MarshmallowAnimation */,
+				CE8401F9151DD86100BDC2D2 /* MarshmallowCocoa */,
+				CE840203151DD86100BDC2D2 /* MarshmallowConcurrency */,
+				CE84020C151DD86100BDC2D2 /* MarshmallowDiagnostics */,
+				CE840214151DD86100BDC2D2 /* MarshmallowMath */,
+				CE840218151DD86100BDC2D2 /* MarshmallowProfiling */,
+				CE84021C151DD86100BDC2D2 /* Marshmallows.h */,
+				CE84021D151DD86100BDC2D2 /* MarshmallowUIKit */,
+				CE840225151DD86100BDC2D2 /* ObjC */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		CE28688A14BA105B001E11D7 /* GLKit */ = {
-			isa = PBXGroup;
-			children = (
-				CE28688B14BA105B001E11D7 /* MMGLK.h */,
-				CE28688C14BA105B001E11D7 /* MMGLK.m */,
-			);
-			path = GLKit;
-			sourceTree = "<group>";
-		};
-		CE28688E14BA105B001E11D7 /* ObjC */ = {
-			isa = PBXGroup;
-			children = (
-				CE28688F14BA105B001E11D7 /* CEObjectiveCRuntime.h */,
-				CE28689014BA105B001E11D7 /* CEObjectiveCRuntime.m */,
-			);
-			path = ObjC;
-			sourceTree = "<group>";
-		};
-		CE28689114BA105B001E11D7 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				CE28689214BA105B001E11D7 /* UIImage+MMPixelData.h */,
-				CE28689314BA105B001E11D7 /* UIImage+MMPixelData.m */,
-			);
-			path = UIKit;
 			sourceTree = "<group>";
 		};
 		CE28689A14BA1063001E11D7 /* Tests */ = {
@@ -242,6 +282,8 @@
 				CE2868A214BA1063001E11D7 /* TestResources */,
 				CE2868A414BA1063001E11D7 /* UIImageMMPixelDataTests.h */,
 				CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */,
+				CE840258151DDDE900BDC2D2 /* MPStopwatchTests.h */,
+				CE840259151DDDE900BDC2D2 /* MPStopwatchTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -254,41 +296,130 @@
 			path = TestResources;
 			sourceTree = "<group>";
 		};
-		CE42C28514BCB98A0049319C /* Animator */ = {
+		CE8401E4151DD86100BDC2D2 /* Animator */ = {
 			isa = PBXGroup;
 			children = (
-				CE42C2A214BDDD0D0049319C /* MMAnimator.h */,
-				CE42C2A314BDDD0D0049319C /* MMAnimator.m */,
-				CE42C2A414BDDD0D0049319C /* MMAnimatorTimingBlock.h */,
-				CE42C2A514BDDD0D0049319C /* MMAnimatorTimingBlock.m */,
-				CE42C2A614BDDD0D0049319C /* MMSimpleAnimator.h */,
-				CE42C2A714BDDD0D0049319C /* MMSimpleAnimator.m */,
-				CE42C2A814BDDD0D0049319C /* MMSimplePinnedAnimator.h */,
-				CE42C2A914BDDD0D0049319C /* MMSimplePinnedAnimator.m */,
+				CE8401E5151DD86100BDC2D2 /* MMAnimator.h */,
+				CE8401E6151DD86100BDC2D2 /* MMAnimator.m */,
+				CE8401E7151DD86100BDC2D2 /* MMAnimatorTimingBlock.h */,
+				CE8401E8151DD86100BDC2D2 /* MMAnimatorTimingBlock.m */,
+				CE8401E9151DD86100BDC2D2 /* MMSimpleAnimator.h */,
+				CE8401EA151DD86100BDC2D2 /* MMSimpleAnimator.m */,
+				CE8401EB151DD86100BDC2D2 /* MMSimplePinnedAnimator.h */,
+				CE8401EC151DD86100BDC2D2 /* MMSimplePinnedAnimator.m */,
 			);
-			name = Animator;
+			path = Animator;
 			sourceTree = "<group>";
 		};
-		CE7F626414E5443600F46F03 /* MarshmallowDiagnostics */ = {
+		CE8401EE151DD86100BDC2D2 /* GLKit */ = {
 			isa = PBXGroup;
 			children = (
-				CE7F626514E5443600F46F03 /* MDBulkLogger.h */,
-				CE7F626614E5443600F46F03 /* MDBulkLogger.m */,
-				CE7F626714E5443600F46F03 /* MDTimeProfiler.h */,
-				CE7F626814E5443600F46F03 /* MDTimeProfiler.mm */,
-				CE7F626914E5443600F46F03 /* MDTimeProfilerOC.h */,
-				CE7F626A14E5443600F46F03 /* MDTimeProfilerOC.mm */,
+				CE8401EF151DD86100BDC2D2 /* MMGLK.h */,
+				CE8401F0151DD86100BDC2D2 /* MMGLK.m */,
+			);
+			path = GLKit;
+			sourceTree = "<group>";
+		};
+		CE8401F1151DD86100BDC2D2 /* MarshmallowAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				CE8401F2151DD86100BDC2D2 /* MACrossfadeLayer.h */,
+				CE8401F3151DD86100BDC2D2 /* MACrossfadeLayer.m */,
+				CE8401F4151DD86100BDC2D2 /* MAImageCrossfadeLayer.h */,
+				CE8401F5151DD86100BDC2D2 /* MAImageCrossfadeLayer.m */,
+				CE8401F6151DD86100BDC2D2 /* MAImageLayer.h */,
+				CE8401F7151DD86100BDC2D2 /* MAImageLayer.m */,
+				CE8401F8151DD86100BDC2D2 /* MarshmallowAnimation.h */,
+			);
+			path = MarshmallowAnimation;
+			sourceTree = "<group>";
+		};
+		CE8401F9151DD86100BDC2D2 /* MarshmallowCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				CE8401FA151DD86100BDC2D2 /* MarshmallowCocoa.h */,
+				CE8401FB151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.h */,
+				CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */,
+				CE8401FD151DD86100BDC2D2 /* NSArray+Marshmallows.h */,
+				CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */,
+				CE8401FF151DD86100BDC2D2 /* NSError+Marshmallows.h */,
+				CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */,
+				CE840201151DD86100BDC2D2 /* NSTimer+MMBlocks.h */,
+				CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */,
+			);
+			path = MarshmallowCocoa;
+			sourceTree = "<group>";
+		};
+		CE840203151DD86100BDC2D2 /* MarshmallowConcurrency */ = {
+			isa = PBXGroup;
+			children = (
+				CE840204151DD86100BDC2D2 /* MarshmallowConcurrency.h */,
+				CE840205151DD86100BDC2D2 /* MCMainThreadProxy.h */,
+				CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */,
+				CE840207151DD86100BDC2D2 /* MCSimpleThreadProxy.h */,
+				CE840208151DD86100BDC2D2 /* MCSimpleThreadProxy.m */,
+				CE840209151DD86100BDC2D2 /* MCThreadProxyAbstract.h */,
+				CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */,
+				CE84020B151DD86100BDC2D2 /* MCThreadProxyProtocol.h */,
+			);
+			path = MarshmallowConcurrency;
+			sourceTree = "<group>";
+		};
+		CE84020C151DD86100BDC2D2 /* MarshmallowDiagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				CE84020D151DD86100BDC2D2 /* MarshmallowDiagnostics.h */,
+				CE84020E151DD86100BDC2D2 /* MDBulkLogger.h */,
+				CE84020F151DD86100BDC2D2 /* MDBulkLogger.m */,
+				CE840210151DD86100BDC2D2 /* MDTimeProfiler.h */,
+				CE840211151DD86100BDC2D2 /* MDTimeProfiler.mm */,
+				CE840212151DD86100BDC2D2 /* MDTimeProfilerOC.h */,
+				CE840213151DD86100BDC2D2 /* MDTimeProfilerOC.mm */,
 			);
 			path = MarshmallowDiagnostics;
 			sourceTree = "<group>";
 		};
-		CE94A19F14BB455200800354 /* Cocoa */ = {
+		CE840214151DD86100BDC2D2 /* MarshmallowMath */ = {
 			isa = PBXGroup;
 			children = (
-				CE94A1A014BB455200800354 /* MMMutablePointerKeyedDictionary.h */,
-				CE94A1A114BB455200800354 /* MMMutablePointerKeyedDictionary.m */,
+				CE840215151DD86100BDC2D2 /* MarshmallowMath.h */,
+				CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */,
+				CE840217151DD86100BDC2D2 /* MarshmallowMathFunctions.h */,
 			);
-			path = Cocoa;
+			path = MarshmallowMath;
+			sourceTree = "<group>";
+		};
+		CE840218151DD86100BDC2D2 /* MarshmallowProfiling */ = {
+			isa = PBXGroup;
+			children = (
+				CE840219151DD86100BDC2D2 /* MarshmallowProfiling.h */,
+				CE84021A151DD86100BDC2D2 /* MPStopwatch.h */,
+				CE84021B151DD86100BDC2D2 /* MPStopwatch.m */,
+			);
+			path = MarshmallowProfiling;
+			sourceTree = "<group>";
+		};
+		CE84021D151DD86100BDC2D2 /* MarshmallowUIKit */ = {
+			isa = PBXGroup;
+			children = (
+				CE84021E151DD86100BDC2D2 /* MarshmallowUIKit.h */,
+				CE84021F151DD86100BDC2D2 /* MUICrossfadeView.h */,
+				CE840220151DD86100BDC2D2 /* MUICrossfadeView.m */,
+				CE840221151DD86100BDC2D2 /* UIColor+Marshmallows.h */,
+				CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */,
+				CE840223151DD86100BDC2D2 /* UIImage+MMPixelData.h */,
+				CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */,
+			);
+			path = MarshmallowUIKit;
+			sourceTree = "<group>";
+		};
+		CE840225151DD86100BDC2D2 /* ObjC */ = {
+			isa = PBXGroup;
+			children = (
+				CE840226151DD86100BDC2D2 /* CEObjectiveCRuntime.h */,
+				CE840227151DD86100BDC2D2 /* CEObjectiveCRuntime.m */,
+			);
+			path = ObjC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,17 +530,30 @@
 			files = (
 				CE28688114BA0D6C001E11D7 /* main.m in Sources */,
 				CE28688314BA0D6C001E11D7 /* MMAppDelegate.m in Sources */,
-				CE28689414BA105B001E11D7 /* MMGLK.m in Sources */,
-				CE28689614BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */,
-				CE28689814BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */,
-				CE94A1A214BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */,
-				CE42C2AA14BDDD0D0049319C /* MMAnimator.m in Sources */,
-				CE42C2AC14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */,
-				CE42C2AE14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */,
-				CE42C2B014BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */,
-				CE7F626B14E5443600F46F03 /* MDBulkLogger.m in Sources */,
-				CE7F626D14E5443600F46F03 /* MDTimeProfiler.mm in Sources */,
-				CE7F626F14E5443600F46F03 /* MDTimeProfilerOC.mm in Sources */,
+				CE840228151DD86100BDC2D2 /* MMAnimator.m in Sources */,
+				CE84022A151DD86100BDC2D2 /* MMAnimatorTimingBlock.m in Sources */,
+				CE84022C151DD86100BDC2D2 /* MMSimpleAnimator.m in Sources */,
+				CE84022E151DD86100BDC2D2 /* MMSimplePinnedAnimator.m in Sources */,
+				CE840230151DD86100BDC2D2 /* MMGLK.m in Sources */,
+				CE840232151DD86100BDC2D2 /* MACrossfadeLayer.m in Sources */,
+				CE840234151DD86100BDC2D2 /* MAImageCrossfadeLayer.m in Sources */,
+				CE840236151DD86100BDC2D2 /* MAImageLayer.m in Sources */,
+				CE840238151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m in Sources */,
+				CE84023A151DD86100BDC2D2 /* NSArray+Marshmallows.m in Sources */,
+				CE84023C151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */,
+				CE84023E151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */,
+				CE840240151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */,
+				CE840242151DD86100BDC2D2 /* MCSimpleThreadProxy.m in Sources */,
+				CE840244151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */,
+				CE840246151DD86100BDC2D2 /* MDBulkLogger.m in Sources */,
+				CE840248151DD86100BDC2D2 /* MDTimeProfiler.mm in Sources */,
+				CE84024A151DD86100BDC2D2 /* MDTimeProfilerOC.mm in Sources */,
+				CE84024C151DD86100BDC2D2 /* MarshmallowMathFunctions.c in Sources */,
+				CE84024E151DD86100BDC2D2 /* MPStopwatch.m in Sources */,
+				CE840250151DD86100BDC2D2 /* MUICrossfadeView.m in Sources */,
+				CE840252151DD86100BDC2D2 /* UIColor+Marshmallows.m in Sources */,
+				CE840254151DD86100BDC2D2 /* UIImage+MMPixelData.m in Sources */,
+				CE840256151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,19 +561,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE28689514BA105B001E11D7 /* MMGLK.m in Sources */,
-				CE28689714BA105B001E11D7 /* CEObjectiveCRuntime.m in Sources */,
-				CE28689914BA105B001E11D7 /* UIImage+MMPixelData.m in Sources */,
 				CE2868AB14BA1063001E11D7 /* UIImageMMPixelDataTests.m in Sources */,
-				CE94A1A314BB455200800354 /* MMMutablePointerKeyedDictionary.m in Sources */,
-				CE42C2AB14BDDD0D0049319C /* MMAnimator.m in Sources */,
-				CE42C2AD14BDDD0D0049319C /* MMAnimatorTimingBlock.m in Sources */,
-				CE42C2AF14BDDD0D0049319C /* MMSimpleAnimator.m in Sources */,
-				CE42C2B114BDDD0D0049319C /* MMSimplePinnedAnimator.m in Sources */,
 				CE42C2B414BDDF000049319C /* MMAnimatorTests.m in Sources */,
-				CE7F626C14E5443600F46F03 /* MDBulkLogger.m in Sources */,
-				CE7F626E14E5443600F46F03 /* MDTimeProfiler.mm in Sources */,
-				CE7F627014E5443600F46F03 /* MDTimeProfilerOC.mm in Sources */,
+				CE840229151DD86100BDC2D2 /* MMAnimator.m in Sources */,
+				CE84022B151DD86100BDC2D2 /* MMAnimatorTimingBlock.m in Sources */,
+				CE84022D151DD86100BDC2D2 /* MMSimpleAnimator.m in Sources */,
+				CE84022F151DD86100BDC2D2 /* MMSimplePinnedAnimator.m in Sources */,
+				CE840231151DD86100BDC2D2 /* MMGLK.m in Sources */,
+				CE840233151DD86100BDC2D2 /* MACrossfadeLayer.m in Sources */,
+				CE840235151DD86100BDC2D2 /* MAImageCrossfadeLayer.m in Sources */,
+				CE840237151DD86100BDC2D2 /* MAImageLayer.m in Sources */,
+				CE840239151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m in Sources */,
+				CE84023B151DD86100BDC2D2 /* NSArray+Marshmallows.m in Sources */,
+				CE84023D151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */,
+				CE84023F151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */,
+				CE840241151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */,
+				CE840243151DD86100BDC2D2 /* MCSimpleThreadProxy.m in Sources */,
+				CE840245151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */,
+				CE840247151DD86100BDC2D2 /* MDBulkLogger.m in Sources */,
+				CE840249151DD86100BDC2D2 /* MDTimeProfiler.mm in Sources */,
+				CE84024B151DD86100BDC2D2 /* MDTimeProfilerOC.mm in Sources */,
+				CE84024D151DD86100BDC2D2 /* MarshmallowMathFunctions.c in Sources */,
+				CE84024F151DD86100BDC2D2 /* MPStopwatch.m in Sources */,
+				CE840251151DD86100BDC2D2 /* MUICrossfadeView.m in Sources */,
+				CE840253151DD86100BDC2D2 /* UIColor+Marshmallows.m in Sources */,
+				CE840255151DD86100BDC2D2 /* UIImage+MMPixelData.m in Sources */,
+				CE840257151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */,
+				CE84025A151DDDE900BDC2D2 /* MPStopwatchTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

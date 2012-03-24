@@ -96,7 +96,7 @@
         return 0.0;
     }
     
-    NSTimeInterval timePaused = [(NSDate *)[pauseOnTimes lastObject] timeIntervalSinceNow];
+    NSTimeInterval timePaused = -[(NSDate *)[pauseOnTimes lastObject] timeIntervalSinceNow];
     
     // Add to the resumed dict
     [pauseOffTimes addObject:[NSDate date]];
@@ -147,8 +147,8 @@
 - (NSTimeInterval)runningTimeSinceDate:(NSDate *)fromDate
 {
     
-    // Start with the time plus pauses
-    NSTimeInterval totalTime = [fromDate timeIntervalSinceNow];
+    // Start with the time plus pauses (negate to get positive time)
+    NSTimeInterval totalTime = -[fromDate timeIntervalSinceNow];
     
     // Loop through paused periods and subtract if within mark time window
     
@@ -160,25 +160,26 @@
             pauseOff = [pauseOffTimes objectAtIndex:i];
         } 
         
+        // NOTE: Below uses "+=" because the times are negative wrt NOW
         
         // Case 1: Still paused and fromTime is before pause on = subtract current pause time
         if (!pauseOff && [fromDate compare:pauseOn] == NSOrderedAscending) {
-            totalTime -= [pauseOn timeIntervalSinceNow];
+            totalTime += [pauseOn timeIntervalSinceNow];
             
         // Case 2: Still pause and fromTime is *after* pause on.  = subtract from fromDate to now
         } else if (!pauseOff ) {
-            totalTime -= [fromDate timeIntervalSinceNow];
+            totalTime += [fromDate timeIntervalSinceNow];
             
         // Case 3:  Pause window is entirely *before* fromDate.  Ignore.
         } else if ([pauseOff compare:fromDate] == NSOrderedAscending) {
             
         // Case 4: Pause window is entirely after fromDate.  Subtract entire range
         } else if ([fromDate compare:pauseOn] == NSOrderedAscending) {
-            totalTime -= [pauseOn timeIntervalSinceDate:pauseOff];
+            totalTime += [pauseOn timeIntervalSinceDate:pauseOff];
             
         // Case 5: Pause window began before time and completed after = subtract (pause off - fromTime)
         } else if ([fromDate compare:pauseOff] == NSOrderedAscending) {
-            totalTime -= [pauseOff timeIntervalSinceDate:fromDate];
+            totalTime += [fromDate timeIntervalSinceDate:pauseOff];
         }
         else {
             [NSException raise:NSInternalInconsistencyException format:@"This MPMultiTimer case should not exist!"];
