@@ -4,9 +4,19 @@
  \copyright  Copyright (c) 2012 Club 15CC. All rights reserved.
  @{ 
  
- Many thanks to Matt Gallagher's UncaughtExceptionHandler code for the inspiration.
  */
-/// \file MRUncaughtExceptions.h
+/**
+ \file MRUncaughtExceptions.h
+
+ \section a Acknowledgements
+ 
+ Many thanks to Matt Gallagher's UncaughtExceptionHandler code for the inspiration. See http://cocoawithlove.com/2010/05/handling-unhandled-exceptions-and.html
+ 
+ \section l Limitations
+ - Handling with alert view won't work if the exception occurs before the run loop is set up
+ - GBD interferes (sometimes, not all the time!) so turn off all breakpoints to test.
+
+ */
  
  
 #import <Foundation/Foundation.h>

@@ -30,8 +30,8 @@ NSString * const kMRUncaughtExceptionsAddressesKey = @"kMRUncaughtExceptionsAddr
 
 /// Internal
 /// Skip the first number of backtraces and report the second number more.  
-static const NSInteger MRUESkipAddressCount = 4;
-static const NSInteger MRUEReportAddressCount = 5;
+static const NSInteger MRUESkipAddressCount = 7;
+static const NSInteger MRUEReportAddressCount = 10;
 static BOOL MRUEAlertViewDismissed = NO;
 
 /////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,6 @@ static MRUncaughtExceptionsBlock MRUncaughtExceptionsBlockHandler = nil;
 
 /////////////////////////////////////////////////////////////////////////
 
-
 + (void)processNormalException:(NSException *)exception
 {
     // Prevent exception abuse
@@ -96,15 +95,8 @@ static MRUncaughtExceptionsBlock MRUncaughtExceptionsBlockHandler = nil;
 	if (exceptionCount > MRUncaughtExceptionsMaximum) {
 		return;
 	}
-    
-    SEL selector = @selector(processExceptionCommon:);
-    NSMethodSignature *sig = [self methodSignatureForSelector:selector];
-    NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
-    [inv setTarget:self];
-    [inv setArgument:&exception atIndex:0];
-    [inv performSelectorOnMainThread:@selector(invoke) withObject:nil waitUntilDone:YES];
 
-    //[self processExceptionCommon:exception];
+    [[self class] performSelectorOnMainThread:@selector(processExceptionCommon:) withObject:exception waitUntilDone:YES];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -125,16 +117,7 @@ static MRUncaughtExceptionsBlock MRUncaughtExceptionsBlockHandler = nil;
                                        forKey:kMRUncaughtExceptionsSignalKey] 
                              ];
     
-    
-//    SEL selector = @selector(processExceptionCommon:);
-    SEL selector = NSSelectorFromString(@"processExceptionCommon:");
-    NSMethodSignature *sig = [self methodSignatureForSelector:selector];
-    NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
-    [inv setTarget:self];
-    [inv setArgument:&exception atIndex:0];
-    [inv performSelectorOnMainThread:@selector(invoke) withObject:nil waitUntilDone:YES];
-    
-    //[self processExceptionCommon:exception];
+    [[self class] performSelectorOnMainThread:@selector(processExceptionCommon:) withObject:exception waitUntilDone:YES];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -241,13 +224,13 @@ static MRUncaughtExceptionsBlock MRUncaughtExceptionsBlockHandler = nil;
     char **strs = backtrace_symbols(callstack, frames);
     
     int i;
-    NSMutableArray *backtrace = [NSMutableArray arrayWithCapacity:frames];
-    for (
-         i = MRUESkipAddressCount;
-         i < MRUESkipAddressCount +
-         MRUEReportAddressCount;
-         i++)
-    {
+    int start = MRUESkipAddressCount >= frames ? frames - 1 : MRUESkipAddressCount;
+    int stop = start + MRUEReportAddressCount;
+    stop = stop > frames ? frames : stop;
+    
+    NSMutableArray *backtrace = [NSMutableArray arrayWithCapacity:stop - start];
+
+    for (i = start; i < stop; i++) {
 	 	[backtrace addObject:[NSString stringWithUTF8String:strs[i]]];
     }
     free(strs);
@@ -261,7 +244,6 @@ static MRUncaughtExceptionsBlock MRUncaughtExceptionsBlockHandler = nil;
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Internal Functions
 /////////////////////////////////////////////////////////////////////////
-
 
 void MRUE_HandleException(NSException *exception)
 {
