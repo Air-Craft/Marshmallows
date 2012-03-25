@@ -19,8 +19,17 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
-/// Starts the timer as well.
-- (id)init;
+- (MPStopwatch *)init;
+
+/// Call to start the timer.  Must be called after init and before other methods.
+/// \throws NSInternalInconsistencyException if already started
+/// \return Returns self to allow for chaining with alloc/init
+- (MPStopwatch *)start;
+
+/// Clears out marks and pauses and restarts the timer.
+- (void)restart;
+
+- (BOOL)isStarted;
 
 /// \brief Pauses timer, excluding this time period from reported durations. Returns the time since start or last pause or 0 if already paused
 - (NSTimeInterval)pause;

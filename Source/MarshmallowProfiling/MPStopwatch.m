@@ -35,12 +35,13 @@
 
 @implementation MPStopwatch
 
-- (id)init 
+- (MPStopwatch *)init 
 {
     if (self = [super init]) {
         pauseOnTimes = [NSMutableArray array];
         pauseOffTimes = [NSMutableArray array];
-        startTime = [NSDate date];
+        startTime = nil;
+        lastMarkTime = nil;
     }
     return self;
 }
@@ -48,10 +49,39 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
+- (MPStopwatch *)start
+{
+    if (nil != startTime) [NSException raise:NSInternalInconsistencyException format:@"MPStopwatch: Already started!"];
+    
+    startTime = [NSDate date];
+    return self;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (BOOL)isStarted
+{
+    return (startTime != nil);
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)restart
+{
+    if (nil == startTime) [NSException raise:NSInternalInconsistencyException format:@"MPStopwatch: Must call 'start' first!"];
+    
+    pauseOnTimes = [NSMutableArray array];
+    pauseOffTimes = [NSMutableArray array];
+    lastMarkTime = nil;
+    startTime = [NSDate date];    
+}
+
 /////////////////////////////////////////////////////////////////////////
 
 - (NSTimeInterval)pause
 {
+    if (nil == startTime) [NSException raise:NSInternalInconsistencyException format:@"MPStopwatch: Must call 'start' first!"];
+
     // Paused already?  Do nothing
     if ([self isPaused]) {
         return 0.0;
@@ -72,7 +102,9 @@
 /////////////////////////////////////////////////////////////////////////
 
 - (BOOL)isPaused
-{    
+{   
+    if (nil == startTime) [NSException raise:NSInternalInconsistencyException format:@"MPStopwatch: Must call 'start' first!"];
+
     // We'll rely on the consistency in the pause dict's
     if (!pauseOnTimes) {                 // = no entry
         return NO;
@@ -83,7 +115,7 @@
     } else if ([pauseOnTimes count] == (1 + [pauseOffTimes count])) {   // paused
         return YES;
     } else {
-        NSAssert(false, @"This shouldn't be!  Pause dicts out of sync == BUG!");
+        NSAssert(false, @"This shouldn't be!  Pause arrays out of sync == BUG!");
         return NO;
     }
 }
@@ -92,6 +124,8 @@
 
 - (NSTimeInterval)resume
 {
+    if (nil == startTime) [NSException raise:NSInternalInconsistencyException format:@"MPStopwatch: Must call 'start' first!"];
+
     if (![self isPaused]) {
         return 0.0;
     }
@@ -108,6 +142,8 @@
 
 - (NSTimeInterval)mark
 {
+    if (nil == startTime) [NSException raise:NSInternalInconsistencyException format:@"MPStopwatch: Must call 'start' first!"];
+
     // Get the time since previous mark first
     NSTimeInterval timeSinceLastMark = [self runningTimeSinceLastMark];
     
@@ -121,6 +157,8 @@
 
 - (NSTimeInterval)runningTimeSinceLastMark
 {
+    if (nil == startTime) [NSException raise:NSInternalInconsistencyException format:@"MPStopwatch: Must call 'start' first!"];
+
     // Get the time since last mark excluding any paused periods
 
     // Get the last mark time or start time if none
@@ -136,6 +174,8 @@
 
 - (NSTimeInterval)runningTimeSinceStart
 {
+    if (nil == startTime) [NSException raise:NSInternalInconsistencyException format:@"MPStopwatch: Must call 'start' first!"];
+
     return [self runningTimeSinceDate:startTime];
 }
 
@@ -146,7 +186,8 @@
 
 - (NSTimeInterval)runningTimeSinceDate:(NSDate *)fromDate
 {
-    
+    if (nil == startTime) [NSException raise:NSInternalInconsistencyException format:@"MPStopwatch: Must call 'start' first!"];
+
     // Start with the time plus pauses (negate to get positive time)
     NSTimeInterval totalTime = -[fromDate timeIntervalSinceNow];
     

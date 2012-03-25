@@ -32,8 +32,9 @@
 #import "MarshmallowConcurrency/MarshmallowConcurrency.h"
 #import "MarshmallowDiagnostics/MarshmallowDiagnostics.h"
 #import "MarshmallowMath/MarshmallowMath.h"
-#import "MarshmallowUIKit/MarshmallowUIKit.h"
 #import "MarshmallowProfiling/MarshmallowProfiling.h"
+#import "MarshmallowRecovery/MarshmallowRecovery.h"
+#import "MarshmallowUIKit/MarshmallowUIKit.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Macros

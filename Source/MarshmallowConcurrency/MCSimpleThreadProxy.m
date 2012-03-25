@@ -107,6 +107,7 @@
             @synchronized(invocationIntervalDict) {
 
                 for (NSInvocation *invoc in invocationIntervalDict) {
+                    
                     NSUInteger prevCallCount = [[invocationCallCountDict objectForKey:invoc] unsignedIntegerValue];
                     NSTimeInterval interval;
                     [[invocationIntervalDict objectForKey:invoc] getValue:&interval];
@@ -120,7 +121,12 @@
                         // to have a "catch up" paradigm
                         [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:currInterval] forKey:invoc];
                         
-                        [invoc invoke];
+                        // Check that another thread hasn't added it for removal in the meantime as it may no longer exist as a method
+                        @synchronized(invocationsToRemove) {
+                            if (![invocationsToRemove containsObject:invoc]) {
+                                [invoc invoke];
+                            }
+                        }
                     }
                 } // for
                 
