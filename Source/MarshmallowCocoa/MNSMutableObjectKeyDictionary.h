@@ -14,6 +14,7 @@
 
 + (id)dictionary;
 
+- (NSUInteger)count;
 - (void)setObject:(id)anObject forKey:(id)aKey;
 - (id)objectForKey:(id)aKey;
 - (void)removeObjectForKey:(id)aKey;

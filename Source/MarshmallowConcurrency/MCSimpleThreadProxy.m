@@ -51,19 +51,19 @@
 - (void)addInvocation:(NSInvocation *)invocation desiredInterval:(NSTimeInterval)timeInterval
 {
     // Prevent mutation errors with delayed adding
-    if (self.isCancelled || self.paused) {
+    if (self.isExecuting && !self.paused) {
+        @synchronized(invocationsToAddIntervalDict) {
+            [invocationsToAddIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
+            [invocationsToAddCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
+            
+        } 
+    } else {
         @synchronized(invocationIntervalDict) {
             [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
             
             // Init the call count to 0
             [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
         }
-    } else {
-        @synchronized(invocationsToAddIntervalDict) {
-            [invocationsToAddIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
-            [invocationsToAddCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
-
-        } 
     }
 }
 
@@ -73,14 +73,14 @@
 {
     // Remove directly if thread isn't running.
     // Otherwise store to have the run loop handle it
-    if (self.isCancelled || self.paused) {
+    if (self.isExecuting && !self.paused) {
+        @synchronized(invocationsToRemove) {
+            [invocationsToRemove addObject:invocation];
+        }
+    } else {
         @synchronized(invocationIntervalDict) {
             [invocationIntervalDict removeObjectForKey:invocation];
             [invocationCallCountDict removeObjectForKey:invocation];
-        }
-    } else {
-        @synchronized(invocationsToRemove) {
-            [invocationsToRemove addObject:invocation];
         }
     }
 }
@@ -123,7 +123,7 @@
                         
                         // Check that another thread hasn't added it for removal in the meantime as it may no longer exist as a method
                         @synchronized(invocationsToRemove) {
-                            if (![invocationsToRemove containsObject:invoc]) {
+                            if (invoc && ![invocationsToRemove containsObject:invoc]) {
                                 [invoc invoke];
                             }
                         }
@@ -132,17 +132,21 @@
                 
                 // Remove any invocations which have been removed while in the run loop
                 @synchronized(invocationsToRemove) {
-                    [invocationCallCountDict removeObjectsForKeys:invocationsToRemove];
-                    [invocationIntervalDict removeObjectsForKeys:invocationsToRemove];
-                    [invocationsToRemove removeAllObjects];
+                    if ([invocationsToRemove count]) {
+                        [invocationCallCountDict removeObjectsForKeys:invocationsToRemove];
+                        [invocationIntervalDict removeObjectsForKeys:invocationsToRemove];
+                        [invocationsToRemove removeAllObjects];
+                    }
                 }            
                 
                 // Add any additional
                 @synchronized(invocationsToAddIntervalDict) {
-                    [invocationIntervalDict addEntriesFromObjectKeyDictionary:invocationsToAddIntervalDict];
-                    [invocationCallCountDict addEntriesFromObjectKeyDictionary:invocationsToAddCallCountDict];
-                    [invocationsToAddIntervalDict removeAllObjects];
-                    [invocationsToAddCallCountDict removeAllObjects];
+                    if ([invocationsToAddIntervalDict count]) {
+                        [invocationIntervalDict addEntriesFromObjectKeyDictionary:invocationsToAddIntervalDict];
+                        [invocationCallCountDict addEntriesFromObjectKeyDictionary:invocationsToAddCallCountDict];
+                        [invocationsToAddIntervalDict removeAllObjects];
+                        [invocationsToAddCallCountDict removeAllObjects];
+                    }
                 }
             } // synchro
         } // @autorelease
