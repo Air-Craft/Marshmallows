@@ -40,6 +40,7 @@
         invocationCallCountDict = [MNSMutableObjectKeyDictionary dictionary];
         invocationsToAddIntervalDict = [MNSMutableObjectKeyDictionary dictionary];
         invocationsToAddCallCountDict = [MNSMutableObjectKeyDictionary dictionary];
+        invocationsToRemove = [NSMutableArray array];
     }
     return self;
 }
@@ -51,7 +52,8 @@
 - (void)addInvocation:(NSInvocation *)invocation desiredInterval:(NSTimeInterval)timeInterval
 {
     // Prevent mutation errors with delayed adding
-    if (self.isExecuting && !self.paused) {
+    // Note just because it's benn recently paused doesn't mean the loop has finished its final iteration!
+    if (self.isExecuting && (!self.paused || runLoopCoreIsExecuting)) {
         @synchronized(invocationsToAddIntervalDict) {
             [invocationsToAddIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
             [invocationsToAddCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
@@ -73,7 +75,7 @@
 {
     // Remove directly if thread isn't running.
     // Otherwise store to have the run loop handle it
-    if (self.isExecuting && !self.paused) {
+    if (self.isExecuting && (!self.paused || runLoopCoreIsExecuting)) {
         @synchronized(invocationsToRemove) {
             [invocationsToRemove addObject:invocation];
         }
@@ -102,9 +104,37 @@
         }
         
         @autoreleasepool {
+        
+            runLoopCoreIsExecuting = YES;   // mark beginning of active run loop
             
-            // Loop through the invocations and call if time interval has lapsed
             @synchronized(invocationIntervalDict) {
+                
+                /////////////////////////////////////////
+                // LAZY ADD/REMOVE INVOCATIONS
+                /////////////////////////////////////////
+
+                // Remove any invocations which have been removed while in the run loop
+                @synchronized(invocationsToRemove) {
+                    if ([invocationsToRemove count]) {
+                        [invocationCallCountDict removeObjectsForKeys:invocationsToRemove];
+                        [invocationIntervalDict removeObjectsForKeys:invocationsToRemove];
+                        [invocationsToRemove removeAllObjects];
+                    }
+                }            
+                
+                // Add any additional
+                @synchronized(invocationsToAddIntervalDict) {
+                    if ([invocationsToAddIntervalDict count]) {
+                        [invocationIntervalDict addEntriesFromObjectKeyDictionary:invocationsToAddIntervalDict];
+                        [invocationCallCountDict addEntriesFromObjectKeyDictionary:invocationsToAddCallCountDict];
+                        [invocationsToAddIntervalDict removeAllObjects];
+                        [invocationsToAddCallCountDict removeAllObjects];
+                    }
+                }
+                
+                /////////////////////////////////////////
+                // PROCESSING
+                /////////////////////////////////////////
 
                 for (NSInvocation *invoc in invocationIntervalDict) {
                     
@@ -130,25 +160,10 @@
                     }
                 } // for
                 
-                // Remove any invocations which have been removed while in the run loop
-                @synchronized(invocationsToRemove) {
-                    if ([invocationsToRemove count]) {
-                        [invocationCallCountDict removeObjectsForKeys:invocationsToRemove];
-                        [invocationIntervalDict removeObjectsForKeys:invocationsToRemove];
-                        [invocationsToRemove removeAllObjects];
-                    }
-                }            
-                
-                // Add any additional
-                @synchronized(invocationsToAddIntervalDict) {
-                    if ([invocationsToAddIntervalDict count]) {
-                        [invocationIntervalDict addEntriesFromObjectKeyDictionary:invocationsToAddIntervalDict];
-                        [invocationCallCountDict addEntriesFromObjectKeyDictionary:invocationsToAddCallCountDict];
-                        [invocationsToAddIntervalDict removeAllObjects];
-                        [invocationsToAddCallCountDict removeAllObjects];
-                    }
-                }
             } // synchro
+            
+            runLoopCoreIsExecuting = NO;        // mark end of the active (unpaused) run loop
+            
         } // @autorelease
     } // while (run loop)
 }

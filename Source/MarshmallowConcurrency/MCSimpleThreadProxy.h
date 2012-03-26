@@ -28,10 +28,13 @@
     MNSMutableObjectKeyDictionary *invocationsToAddIntervalDict;    ///< Expedites the ease of delayed adding via the run loop
     MNSMutableObjectKeyDictionary *invocationsToAddCallCountDict;
     
+    BOOL runLoopCoreIsExecuting;     ///< Internal flag to determine whether pause stats have come into affect yet
+    
     NSTimeInterval startTime;
 }
 
 /// Setting is synonymous with calling [self pause] but used for convenient TS access
+/// Be careful as the run loop will finish it's iteration before this takes affect
 @property (atomic) BOOL paused;
 
 /// YES after start and YES when paused.  NO prior to start and after cancel.
