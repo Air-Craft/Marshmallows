@@ -153,7 +153,8 @@
                         
                         // Check that another thread hasn't added it for removal in the meantime as it may no longer exist as a method
                         @synchronized(invocationsToRemove) {
-                            if (invoc && ![invocationsToRemove containsObject:invoc]) {
+                            // Additional paused check in case thread has been paused during run loop
+                            if (!self.paused && invoc && ![invocationsToRemove containsObject:invoc]) {
                                 [invoc invoke];
                             }
                         }
@@ -190,7 +191,7 @@
 
 - (void)pause
 {
-    self.paused = YES;      
+    self.paused = YES;              
 }
 
 /////////////////////////////////////////////////////////////////////////
