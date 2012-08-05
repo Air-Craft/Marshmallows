@@ -2,14 +2,17 @@
 //  main.m
 //  Marshmallows
 //
-//  Created by Hari Karam Singh on 05/08/2012.
-//
+//  Created by Hari Karam Singh on 03/01/2012.
+//  Copyright (c) 2012 Amritvela / Club 15CC.  MIT License.
 //
 
-#import "Marshmallows.h"
+#import <UIKit/UIKit.h>
 
-int main(void) {
+#import "MMAppDelegate.h"
+
+int main(int argc, char *argv[])
+{
     @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([MMAppDelegate class]));
     }
-    return 0;
 }

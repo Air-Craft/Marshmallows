@@ -42,6 +42,7 @@
 		A664EFDB15CEEBB400182FFD /* MDTimeProfiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840211151DD86100BDC2D2 /* MDTimeProfiler.mm */; };
 		A664EFDC15CEEBB400182FFD /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840213151DD86100BDC2D2 /* MDTimeProfilerOC.mm */; };
 		A664EFDD15CEEBBB00182FFD /* MarshmallowMathFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */; };
+		A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFE515CEECB800182FFD /* MMAppDelegate.m */; };
 		CE28679014B36EC5001E11D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28678F14B36EC5001E11D7 /* UIKit.framework */; };
 		CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
 		CE28679414B36EC5001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
@@ -144,6 +145,8 @@
 		A664EFB915CEEB8900182FFD /* MarshmallowsStaticLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarshmallowsStaticLib-Prefix.pch"; sourceTree = "<group>"; };
 		A664EFBA15CEEB8900182FFD /* MarshmallowsStaticLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarshmallowsStaticLib.h; sourceTree = "<group>"; };
 		A664EFBC15CEEB8900182FFD /* MarshmallowsStaticLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarshmallowsStaticLib.m; sourceTree = "<group>"; };
+		A664EFE415CEECB800182FFD /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
+		A664EFE515CEECB800182FFD /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
 		CE28678B14B36EC5001E11D7 /* Marshmallows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE28678F14B36EC5001E11D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CE28679114B36EC5001E11D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -325,6 +328,8 @@
 		CE28687814BA0D6C001E11D7 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				A664EFE415CEECB800182FFD /* MMAppDelegate.h */,
+				A664EFE515CEECB800182FFD /* MMAppDelegate.m */,
 				CE28687914BA0D6C001E11D7 /* InfoPlist.strings */,
 				CE28687C14BA0D6C001E11D7 /* Marshmallows-Info.plist */,
 				CE28687D14BA0D6C001E11D7 /* Marshmallows-Prefix.pch */,
@@ -692,6 +697,7 @@
 				A61CB97915CEE0D00054DBCE /* main.m in Sources */,
 				A61CB97E15CEE3850054DBCE /* MUIMultiToggleButton.m in Sources */,
 				A61CB97F15CEE3850054DBCE /* MUIPushButton.m in Sources */,
+				A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
