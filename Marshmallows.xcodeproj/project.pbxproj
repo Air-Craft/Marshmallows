@@ -43,6 +43,8 @@
 		A664EFDC15CEEBB400182FFD /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840213151DD86100BDC2D2 /* MDTimeProfilerOC.mm */; };
 		A664EFDD15CEEBBB00182FFD /* MarshmallowMathFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */; };
 		A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFE515CEECB800182FFD /* MMAppDelegate.m */; };
+		A6BE0C6615D017D000E0F43D /* UIView+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */; };
+		A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */; };
 		CE28679014B36EC5001E11D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28678F14B36EC5001E11D7 /* UIKit.framework */; };
 		CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
 		CE28679414B36EC5001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
@@ -147,6 +149,8 @@
 		A664EFBC15CEEB8900182FFD /* MarshmallowsStaticLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarshmallowsStaticLib.m; sourceTree = "<group>"; };
 		A664EFE415CEECB800182FFD /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		A664EFE515CEECB800182FFD /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
+		A6BE0C6415D017D000E0F43D /* UIView+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Marshmallows.h"; sourceTree = "<group>"; };
+		A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Marshmallows.m"; sourceTree = "<group>"; };
 		CE28678B14B36EC5001E11D7 /* Marshmallows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE28678F14B36EC5001E11D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CE28679114B36EC5001E11D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -497,6 +501,8 @@
 				CE840220151DD86100BDC2D2 /* MUICrossfadeView.m */,
 				CE840221151DD86100BDC2D2 /* UIColor+Marshmallows.h */,
 				CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */,
+				A6BE0C6415D017D000E0F43D /* UIView+Marshmallows.h */,
+				A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */,
 				CE840223151DD86100BDC2D2 /* UIImage+MMPixelData.h */,
 				CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */,
 			);
@@ -663,6 +669,7 @@
 				A664EFD915CEEBA800182FFD /* UIImage+MMPixelData.m in Sources */,
 				A664EFDA15CEEBA800182FFD /* CEObjectiveCRuntime.m in Sources */,
 				A664EFBD15CEEB8900182FFD /* MarshmallowsStaticLib.m in Sources */,
+				A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +705,7 @@
 				A61CB97E15CEE3850054DBCE /* MUIMultiToggleButton.m in Sources */,
 				A61CB97F15CEE3850054DBCE /* MUIPushButton.m in Sources */,
 				A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */,
+				A6BE0C6615D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -920,6 +928,7 @@
 				A664EFC015CEEB8900182FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE28678514B36EC5001E11D7 /* Build configuration list for PBXProject "Marshmallows" */ = {
 			isa = XCConfigurationList;

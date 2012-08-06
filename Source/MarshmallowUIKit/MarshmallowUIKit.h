@@ -11,6 +11,7 @@
 
 #import "UIImage+MMPixelData.h"
 #import "UIColor+Marshmallows.h"
+#import "UIView+Marshmallows.h"
 #import "MUICrossfadeView.h"
 #import "MUIPushButton.h"
 #import "MUIMultiToggleButton.h"
