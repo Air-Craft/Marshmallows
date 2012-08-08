@@ -8,6 +8,7 @@
 #import "MRUncaughtExceptions.h"
 #import <libkern/OSAtomic.h>
 #import <execinfo.h>
+#import <UIKit/UIKit.h>
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Forward declarations

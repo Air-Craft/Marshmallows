@@ -60,6 +60,23 @@
                             );
 }
 
+/////////////////////////////////////////////////////////////////////////
+
+/*- (void)dumpViewHierarchy
+{
+    [self _dumpViewHierarchyForViewSelfWithIndent:@""];
+}
+- (void)_dumpViewHierarchyForView:(UIView *)aView withIndent:(NSString *)indent
+{
+    NSLog(@"%@%@", indent, self);      // dump this view
+    
+    if (aView.subviews.count > 0) {
+        NSString* subIndent = [[NSString alloc] initWithFormat:@"%@%@",
+                               indent, ([indent length]/2)%2==0 ? @"| " : @": "];
+        for (UIView* aSubview in aView.subviews) dumpView( aSubview, subIndent );
+        [subIndent release];
+    }
+}*/
 @end
 
 /// @}

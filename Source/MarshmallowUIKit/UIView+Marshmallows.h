@@ -13,11 +13,16 @@
  */
 @interface UIView (Marshmallows)
 
+/** @name Positioning convenience methods */
 - (void)moveByDeltaX:(CGFloat)delX deltaY:(CGFloat)delY;
-
 - (void)moveOriginToX:(CGFloat)theX;
 - (void)moveOriginToY:(CGFloat)theY;
 - (void)moveOriginToX:(CGFloat)theX y:(CGFloat)theY;
+/// *}
+
+
+//- (void)dumpViewHierarchy;
+
 
 @end
 /// @}

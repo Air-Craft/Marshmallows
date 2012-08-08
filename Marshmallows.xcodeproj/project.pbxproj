@@ -37,7 +37,7 @@
 		A664EFD615CEEBA800182FFD /* MUIPushButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A61CB97D15CEE3850054DBCE /* MUIPushButton.m */; };
 		A664EFD715CEEBA800182FFD /* MUICrossfadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840220151DD86100BDC2D2 /* MUICrossfadeView.m */; };
 		A664EFD815CEEBA800182FFD /* UIColor+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */; };
-		A664EFD915CEEBA800182FFD /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */; };
+		A664EFD915CEEBA800182FFD /* UIImage+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840224151DD86100BDC2D2 /* UIImage+Marshmallows.m */; };
 		A664EFDA15CEEBA800182FFD /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840227151DD86100BDC2D2 /* CEObjectiveCRuntime.m */; };
 		A664EFDB15CEEBB400182FFD /* MDTimeProfiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840211151DD86100BDC2D2 /* MDTimeProfiler.mm */; };
 		A664EFDC15CEEBB400182FFD /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840213151DD86100BDC2D2 /* MDTimeProfilerOC.mm */; };
@@ -45,6 +45,8 @@
 		A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFE515CEECB800182FFD /* MMAppDelegate.m */; };
 		A6BE0C6615D017D000E0F43D /* UIView+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */; };
 		A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */; };
+		A6CBD2B815D273F700A7933E /* MRUncaughtExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */; };
+		A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */; };
 		CE28679014B36EC5001E11D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28678F14B36EC5001E11D7 /* UIKit.framework */; };
 		CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
 		CE28679414B36EC5001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
@@ -107,8 +109,8 @@
 		CE840251151DD86100BDC2D2 /* MUICrossfadeView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840220151DD86100BDC2D2 /* MUICrossfadeView.m */; };
 		CE840252151DD86100BDC2D2 /* UIColor+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */; };
 		CE840253151DD86100BDC2D2 /* UIColor+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */; };
-		CE840254151DD86100BDC2D2 /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */; };
-		CE840255151DD86100BDC2D2 /* UIImage+MMPixelData.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */; };
+		CE840254151DD86100BDC2D2 /* UIImage+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840224151DD86100BDC2D2 /* UIImage+Marshmallows.m */; };
+		CE840255151DD86100BDC2D2 /* UIImage+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840224151DD86100BDC2D2 /* UIImage+Marshmallows.m */; };
 		CE840256151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840227151DD86100BDC2D2 /* CEObjectiveCRuntime.m */; };
 		CE840257151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840227151DD86100BDC2D2 /* CEObjectiveCRuntime.m */; };
 		CE84025A151DDDE900BDC2D2 /* MPStopwatchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840259151DDDE900BDC2D2 /* MPStopwatchTests.m */; };
@@ -151,6 +153,9 @@
 		A664EFE515CEECB800182FFD /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
 		A6BE0C6415D017D000E0F43D /* UIView+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Marshmallows.h"; sourceTree = "<group>"; };
 		A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Marshmallows.m"; sourceTree = "<group>"; };
+		A6CBD2B515D273F700A7933E /* MarshmallowRecovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowRecovery.h; sourceTree = "<group>"; };
+		A6CBD2B615D273F700A7933E /* MRUncaughtExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRUncaughtExceptions.h; sourceTree = "<group>"; };
+		A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRUncaughtExceptions.m; sourceTree = "<group>"; };
 		CE28678B14B36EC5001E11D7 /* Marshmallows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE28678F14B36EC5001E11D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CE28679114B36EC5001E11D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -225,8 +230,8 @@
 		CE840220151DD86100BDC2D2 /* MUICrossfadeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUICrossfadeView.m; sourceTree = "<group>"; };
 		CE840221151DD86100BDC2D2 /* UIColor+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Marshmallows.h"; sourceTree = "<group>"; };
 		CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Marshmallows.m"; sourceTree = "<group>"; };
-		CE840223151DD86100BDC2D2 /* UIImage+MMPixelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+MMPixelData.h"; sourceTree = "<group>"; };
-		CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MMPixelData.m"; sourceTree = "<group>"; };
+		CE840223151DD86100BDC2D2 /* UIImage+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Marshmallows.h"; sourceTree = "<group>"; };
+		CE840224151DD86100BDC2D2 /* UIImage+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Marshmallows.m"; sourceTree = "<group>"; };
 		CE840226151DD86100BDC2D2 /* CEObjectiveCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEObjectiveCRuntime.h; sourceTree = "<group>"; };
 		CE840227151DD86100BDC2D2 /* CEObjectiveCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEObjectiveCRuntime.m; sourceTree = "<group>"; };
 		CE840258151DDDE900BDC2D2 /* MPStopwatchTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPStopwatchTests.h; sourceTree = "<group>"; };
@@ -293,6 +298,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A6CBD2B415D273F700A7933E /* MarshmallowRecovery */ = {
+			isa = PBXGroup;
+			children = (
+				A6CBD2B515D273F700A7933E /* MarshmallowRecovery.h */,
+				A6CBD2B615D273F700A7933E /* MRUncaughtExceptions.h */,
+				A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */,
+			);
+			path = MarshmallowRecovery;
+			sourceTree = "<group>";
+		};
 		CE28678014B36EC5001E11D7 = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +370,7 @@
 				CE840214151DD86100BDC2D2 /* MarshmallowMath */,
 				CE840218151DD86100BDC2D2 /* MarshmallowProfiling */,
 				CE84021C151DD86100BDC2D2 /* Marshmallows.h */,
+				A6CBD2B415D273F700A7933E /* MarshmallowRecovery */,
 				CE84021D151DD86100BDC2D2 /* MarshmallowUIKit */,
 				CE840225151DD86100BDC2D2 /* ObjC */,
 			);
@@ -503,8 +519,8 @@
 				CE840222151DD86100BDC2D2 /* UIColor+Marshmallows.m */,
 				A6BE0C6415D017D000E0F43D /* UIView+Marshmallows.h */,
 				A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */,
-				CE840223151DD86100BDC2D2 /* UIImage+MMPixelData.h */,
-				CE840224151DD86100BDC2D2 /* UIImage+MMPixelData.m */,
+				CE840223151DD86100BDC2D2 /* UIImage+Marshmallows.h */,
+				CE840224151DD86100BDC2D2 /* UIImage+Marshmallows.m */,
 			);
 			path = MarshmallowUIKit;
 			sourceTree = "<group>";
@@ -666,10 +682,11 @@
 				A664EFD615CEEBA800182FFD /* MUIPushButton.m in Sources */,
 				A664EFD715CEEBA800182FFD /* MUICrossfadeView.m in Sources */,
 				A664EFD815CEEBA800182FFD /* UIColor+Marshmallows.m in Sources */,
-				A664EFD915CEEBA800182FFD /* UIImage+MMPixelData.m in Sources */,
+				A664EFD915CEEBA800182FFD /* UIImage+Marshmallows.m in Sources */,
 				A664EFDA15CEEBA800182FFD /* CEObjectiveCRuntime.m in Sources */,
 				A664EFBD15CEEB8900182FFD /* MarshmallowsStaticLib.m in Sources */,
 				A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
+				A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,13 +716,14 @@
 				CE84024E151DD86100BDC2D2 /* MPStopwatch.m in Sources */,
 				CE840250151DD86100BDC2D2 /* MUICrossfadeView.m in Sources */,
 				CE840252151DD86100BDC2D2 /* UIColor+Marshmallows.m in Sources */,
-				CE840254151DD86100BDC2D2 /* UIImage+MMPixelData.m in Sources */,
+				CE840254151DD86100BDC2D2 /* UIImage+Marshmallows.m in Sources */,
 				CE840256151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */,
 				A61CB97915CEE0D00054DBCE /* main.m in Sources */,
 				A61CB97E15CEE3850054DBCE /* MUIMultiToggleButton.m in Sources */,
 				A61CB97F15CEE3850054DBCE /* MUIPushButton.m in Sources */,
 				A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */,
 				A6BE0C6615D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
+				A6CBD2B815D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,7 +755,7 @@
 				CE84024F151DD86100BDC2D2 /* MPStopwatch.m in Sources */,
 				CE840251151DD86100BDC2D2 /* MUICrossfadeView.m in Sources */,
 				CE840253151DD86100BDC2D2 /* UIColor+Marshmallows.m in Sources */,
-				CE840255151DD86100BDC2D2 /* UIImage+MMPixelData.m in Sources */,
+				CE840255151DD86100BDC2D2 /* UIImage+Marshmallows.m in Sources */,
 				CE840257151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */,
 				CE84025A151DDDE900BDC2D2 /* MPStopwatchTests.m in Sources */,
 			);

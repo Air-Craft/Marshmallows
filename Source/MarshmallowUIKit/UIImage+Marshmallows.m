@@ -1,15 +1,19 @@
-//
-//  CEUIImage.m
-//  SoundWandGuiDev
-//
-//  Created by Hari Karam Singh on 01/01/2012.
-//  Copyright (c) 2012 Amritvela / Club 15CC.  MIT License.
-//
+/**
+ \addtogroup Marshmallows
+ \author     Created by Hari Karam Singh on 01/01/2012.
+ \copyright  Copyright (c) 2012 Club 15CC. All rights reserved.
+ @{
+ */
 
-#import "UIImage+MMPixelData.h"
+#import "UIImage+Marshmallows.h"
 
 
-@implementation UIImage (MMPixelData)
+@implementation UIImage (Marshmallows)
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Pixel Processing
+/////////////////////////////////////////////////////////////////////////
+/** @name  Pixel Processing */
 
 - (NSData *)getRawImageData
 {
@@ -107,5 +111,45 @@
 {
     return [self sampleNPixelColorsHorizontally:n onRowY:theY inXRange:NSMakeRange(0, self.size.width - 1)];
 }
+/// @}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Transformations
+/////////////////////////////////////////////////////////////////////////
+/** @name  Transformations */
+
+- (UIImage *)imageRotatedByRadians:(CGFloat)radians
+{
+    // Get the bounds for the destination images
+    CGRect imgRect = CGRectMake(0, 0, self.size.width, self.size.height);
+    CGRect rotatedRect = CGRectApplyAffineTransform(imgRect, CGAffineTransformMakeRotation(-radians));
+    
+    // Create the contedt with the correct scale
+    UIGraphicsBeginImageContextWithOptions(rotatedRect.size, NO, 0.0);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    // Rotate the context around the centre and draw in he image
+    CGContextTranslateCTM(ctx, rotatedRect.size.width/2, rotatedRect.size.height/2);
+    CGContextRotateCTM(ctx, -radians);
+    [self drawAtPoint:CGPointMake(-imgRect.size.width/2, -imgRect.size.height/2)];
+    
+    // Get the image to return and cleanup
+    UIImage *rtnImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return rtnImg;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (UIImage *)imageRotatedByDegrees:(CGFloat)degrees
+{
+    return [self imageRotatedByRadians:degrees * (M_PI/180.0f)];
+}
+
+/// @}
+
 
 @end
+
+/// @}

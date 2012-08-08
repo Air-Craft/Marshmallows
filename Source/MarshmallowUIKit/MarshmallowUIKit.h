@@ -9,11 +9,12 @@
 #ifndef Marshmallows_MarshmallowUIKit_h
 #define Marshmallows_MarshmallowUIKit_h
 
-#import "UIImage+MMPixelData.h"
+#import "UIImage+Marshmallows.h"
 #import "UIColor+Marshmallows.h"
 #import "UIView+Marshmallows.h"
 #import "MUICrossfadeView.h"
 #import "MUIPushButton.h"
 #import "MUIMultiToggleButton.h"
+#import "MUIVerticalSlider.h"
 
 #endif

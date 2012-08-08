@@ -1,17 +1,22 @@
-//
-//  CEUIImage.h
-//  SoundWandGuiDev
-//
-//  Created by Hari Karam Singh on 01/01/2012.
-//  Copyright (c) 2012 Amritvela / Club 15CC.  MIT License.
-//
+/**
+ \addtogroup Marshmallows
+ \author     Created by Hari Karam Singh on 01/01/2012.
+ \copyright  Copyright (c) 2012 Club 15CC. All rights reserved.
+ @{
+ */
+/// \file UIImage+Marshmallows.h
 
 #import <UIKit/UIKit.h>
 
 #define MM_UIIMAGE_BYTES_PER_PIXEL 4u
 
-@interface UIImage (MMPixelData)
+@interface UIImage (Marshmallows)
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Pixel Processing
+/////////////////////////////////////////////////////////////////////////
+/** @name Pixel Processing */
+ 
 /**
  Return an NSData object with the raw RGBA pixel byte data.  Assumes CE_UIIMAGE_BYTES_PER_PIXEL bytes per pixel
  */
@@ -38,6 +43,20 @@
  */
 - (NSArray *)sampleNPixelColorsHorizontally:(NSUInteger)n onRowY:(NSUInteger)theY;
 
+///@}
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Transformations
+/////////////////////////////////////////////////////////////////////////
+/** @name  Transformations */
+
+/** Returns a new image which is this one rotated by the specified angle.  NOT THREAD SAFE: Call form the main thread only */
+- (UIImage *)imageRotatedByRadians:(CGFloat)radians;
+
+/** Convenience method for degree rotations.  See imageRotatedByRadians: */
+- (UIImage *)imageRotatedByDegrees:(CGFloat)degrees;
+/// @}
 
 
 @end
+/// @}
