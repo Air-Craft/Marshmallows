@@ -15,6 +15,5 @@
 #import "MUICrossfadeView.h"
 #import "MUIPushButton.h"
 #import "MUIMultiToggleButton.h"
-#import "MUIVerticalSlider.h"
 
 #endif
