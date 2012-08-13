@@ -47,6 +47,8 @@
 		A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */; };
 		A6CBD2B815D273F700A7933E /* MRUncaughtExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */; };
 		A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */; };
+		A6D69D3E15D52E44009828CF /* MUIDraggablePane.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */; };
+		A6D69D3F15D52E44009828CF /* MUIDraggablePane.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */; };
 		CE28679014B36EC5001E11D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28678F14B36EC5001E11D7 /* UIKit.framework */; };
 		CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
 		CE28679414B36EC5001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
@@ -156,6 +158,9 @@
 		A6CBD2B515D273F700A7933E /* MarshmallowRecovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowRecovery.h; sourceTree = "<group>"; };
 		A6CBD2B615D273F700A7933E /* MRUncaughtExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRUncaughtExceptions.h; sourceTree = "<group>"; };
 		A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRUncaughtExceptions.m; sourceTree = "<group>"; };
+		A6D69D3C15D52E44009828CF /* MUIDraggablePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIDraggablePane.h; sourceTree = "<group>"; };
+		A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIDraggablePane.m; sourceTree = "<group>"; };
+		A6D69D4115D531D3009828CF /* MUITypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUITypes.h; sourceTree = "<group>"; };
 		CE28678B14B36EC5001E11D7 /* Marshmallows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE28678F14B36EC5001E11D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CE28679114B36EC5001E11D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -508,11 +513,12 @@
 		CE84021D151DD86100BDC2D2 /* MarshmallowUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				CE84021E151DD86100BDC2D2 /* MarshmallowUIKit.h */,
+				A6D69D4115D531D3009828CF /* MUITypes.h */,
 				A61CB97A15CEE3850054DBCE /* MUIMultiToggleButton.h */,
 				A61CB97B15CEE3850054DBCE /* MUIMultiToggleButton.m */,
 				A61CB97C15CEE3850054DBCE /* MUIPushButton.h */,
 				A61CB97D15CEE3850054DBCE /* MUIPushButton.m */,
-				CE84021E151DD86100BDC2D2 /* MarshmallowUIKit.h */,
 				CE84021F151DD86100BDC2D2 /* MUICrossfadeView.h */,
 				CE840220151DD86100BDC2D2 /* MUICrossfadeView.m */,
 				CE840221151DD86100BDC2D2 /* UIColor+Marshmallows.h */,
@@ -521,6 +527,8 @@
 				A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */,
 				CE840223151DD86100BDC2D2 /* UIImage+Marshmallows.h */,
 				CE840224151DD86100BDC2D2 /* UIImage+Marshmallows.m */,
+				A6D69D3C15D52E44009828CF /* MUIDraggablePane.h */,
+				A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */,
 			);
 			path = MarshmallowUIKit;
 			sourceTree = "<group>";
@@ -687,6 +695,7 @@
 				A664EFBD15CEEB8900182FFD /* MarshmallowsStaticLib.m in Sources */,
 				A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 				A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
+				A6D69D3F15D52E44009828CF /* MUIDraggablePane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +733,7 @@
 				A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */,
 				A6BE0C6615D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 				A6CBD2B815D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
+				A6D69D3E15D52E44009828CF /* MUIDraggablePane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
