@@ -1,12 +1,23 @@
-#define DEBUG_LOG_CHANNEL_1     0       // General info about goings on...
-#define DEBUG_LOG_CHANNEL_2     0       // PluckDetector nitty-gritty
-#define DEBUG_LOG_CHANNEL_3     0       // AudioEngine nitty-gritty (high detail!)
-#define DEBUG_LOG_CHANNEL_4     0       // SamplerEngine Info
-#define DEBUG_LOG_CHANNEL_5     0       // InstrumentView
-#define DEBUG_LOG_CHANNEL_6     0       // SWInstrumentPlayController
+/*
+// Use these lines in your project to engage debug logging channels
+#define DEBUG_LOG_CHANNEL_1     0
+#define DEBUG_LOG_CHANNEL_2     0
+#define DEBUG_LOG_CHANNEL_3     0
+#define DEBUG_LOG_CHANNEL_4     0
+#define DEBUG_LOG_CHANNEL_5     0
+#define DEBUG_LOG_CHANNEL_6     0
 #define DEBUG_LOG_CHANNEL_7     1
 #define DEBUG_LOG_CHANNEL_8     1
 #define DEBUG_LOG_CHANNEL_9     1
+*/
+
+// Internal logging for Marshmallow code.  Use the following line in your project to turn on logging
+#if defined(MMDEBUG) && MMDEBUG != 0
+#	define MMLOG(fmt, ...) NSLog((@"[Marshmallows] " fmt), ##__VA_ARGS__);
+#else
+#	define MMLOG(...)
+#endif
+#define MMDEBUG 0
 
 
 // DLOG is almost a drop-in replacement for NSLog
