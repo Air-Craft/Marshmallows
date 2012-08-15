@@ -43,12 +43,24 @@
 		A664EFDC15CEEBB400182FFD /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840213151DD86100BDC2D2 /* MDTimeProfilerOC.mm */; };
 		A664EFDD15CEEBBB00182FFD /* MarshmallowMathFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */; };
 		A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFE515CEECB800182FFD /* MMAppDelegate.m */; };
+		A6B582B815DC125900D1CA05 /* AUMFilePlayerUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AC15DC125900D1CA05 /* AUMFilePlayerUnit.m */; };
+		A6B582B915DC125900D1CA05 /* AUMGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AE15DC125900D1CA05 /* AUMGraph.m */; };
+		A6B582BA15DC125900D1CA05 /* AUMMultichannelMixerUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B015DC125900D1CA05 /* AUMMultichannelMixerUnit.m */; };
+		A6B582BB15DC125900D1CA05 /* AUMRemoteIOUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B215DC125900D1CA05 /* AUMRemoteIOUnit.m */; };
+		A6B582BC15DC125900D1CA05 /* AUMTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B415DC125900D1CA05 /* AUMTypes.m */; };
+		A6B582BD15DC125900D1CA05 /* AUMUnitAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B615DC125900D1CA05 /* AUMUnitAbstract.m */; };
 		A6BE0C6615D017D000E0F43D /* UIView+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */; };
 		A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */; };
 		A6CBD2B815D273F700A7933E /* MRUncaughtExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */; };
 		A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */; };
 		A6D69D3E15D52E44009828CF /* MUIDraggablePane.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */; };
 		A6D69D3F15D52E44009828CF /* MUIDraggablePane.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */; };
+		A6D947AB15DAA02D002B42E0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D947A915DAA02D002B42E0 /* AudioToolbox.framework */; };
+		A6D947AC15DAA02D002B42E0 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D947AA15DAA02D002B42E0 /* CoreAudio.framework */; };
+		A6D947AD15DAA033002B42E0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D947A915DAA02D002B42E0 /* AudioToolbox.framework */; };
+		A6D947AE15DAA033002B42E0 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D947AA15DAA02D002B42E0 /* CoreAudio.framework */; };
+		A6D947C015DBEA52002B42E0 /* NSDictionary+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D947BF15DBEA52002B42E0 /* NSDictionary+Marshmallows.m */; };
+		A6D947C115DBEA52002B42E0 /* NSDictionary+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D947BF15DBEA52002B42E0 /* NSDictionary+Marshmallows.m */; };
 		CE28679014B36EC5001E11D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28678F14B36EC5001E11D7 /* UIKit.framework */; };
 		CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
 		CE28679414B36EC5001E11D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679314B36EC5001E11D7 /* CoreGraphics.framework */; };
@@ -153,6 +165,21 @@
 		A664EFBC15CEEB8900182FFD /* MarshmallowsStaticLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarshmallowsStaticLib.m; sourceTree = "<group>"; };
 		A664EFE415CEECB800182FFD /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		A664EFE515CEECB800182FFD /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
+		A6B582A915DC125900D1CA05 /* AudioMarshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMarshmallows.h; sourceTree = "<group>"; };
+		A6B582AA15DC125900D1CA05 /* AUMErrorChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMErrorChecking.h; sourceTree = "<group>"; };
+		A6B582AB15DC125900D1CA05 /* AUMFilePlayerUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlayerUnit.h; sourceTree = "<group>"; };
+		A6B582AC15DC125900D1CA05 /* AUMFilePlayerUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMFilePlayerUnit.m; sourceTree = "<group>"; };
+		A6B582AD15DC125900D1CA05 /* AUMGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMGraph.h; sourceTree = "<group>"; };
+		A6B582AE15DC125900D1CA05 /* AUMGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMGraph.m; sourceTree = "<group>"; };
+		A6B582AF15DC125900D1CA05 /* AUMMultichannelMixerUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMMultichannelMixerUnit.h; sourceTree = "<group>"; };
+		A6B582B015DC125900D1CA05 /* AUMMultichannelMixerUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMMultichannelMixerUnit.m; sourceTree = "<group>"; };
+		A6B582B115DC125900D1CA05 /* AUMRemoteIOUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMRemoteIOUnit.h; sourceTree = "<group>"; };
+		A6B582B215DC125900D1CA05 /* AUMRemoteIOUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMRemoteIOUnit.m; sourceTree = "<group>"; };
+		A6B582B315DC125900D1CA05 /* AUMTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMTypes.h; sourceTree = "<group>"; };
+		A6B582B415DC125900D1CA05 /* AUMTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMTypes.m; sourceTree = "<group>"; };
+		A6B582B515DC125900D1CA05 /* AUMUnitAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMUnitAbstract.h; sourceTree = "<group>"; };
+		A6B582B615DC125900D1CA05 /* AUMUnitAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMUnitAbstract.m; sourceTree = "<group>"; };
+		A6B582B715DC125900D1CA05 /* AUMUnitProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMUnitProtocol.h; sourceTree = "<group>"; };
 		A6BE0C6415D017D000E0F43D /* UIView+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Marshmallows.h"; sourceTree = "<group>"; };
 		A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Marshmallows.m"; sourceTree = "<group>"; };
 		A6CBD2B515D273F700A7933E /* MarshmallowRecovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowRecovery.h; sourceTree = "<group>"; };
@@ -161,6 +188,11 @@
 		A6D69D3C15D52E44009828CF /* MUIDraggablePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIDraggablePane.h; sourceTree = "<group>"; };
 		A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIDraggablePane.m; sourceTree = "<group>"; };
 		A6D69D4115D531D3009828CF /* MUITypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUITypes.h; sourceTree = "<group>"; };
+		A6D947A915DAA02D002B42E0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A6D947AA15DAA02D002B42E0 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		A6D947BD15DBE6D9002B42E0 /* NSArray+NSDictionary+Subscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NSDictionary+Subscripting.h"; sourceTree = "<group>"; };
+		A6D947BE15DBEA52002B42E0 /* NSDictionary+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Marshmallows.h"; sourceTree = "<group>"; };
+		A6D947BF15DBEA52002B42E0 /* NSDictionary+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Marshmallows.m"; sourceTree = "<group>"; };
 		CE28678B14B36EC5001E11D7 /* Marshmallows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marshmallows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE28678F14B36EC5001E11D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CE28679114B36EC5001E11D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -248,6 +280,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D947AD15DAA033002B42E0 /* AudioToolbox.framework in Frameworks */,
+				A6D947AE15DAA033002B42E0 /* CoreAudio.framework in Frameworks */,
 				A664EFC215CEEB9D00182FFD /* GLKit.framework in Frameworks */,
 				A664EFC315CEEB9D00182FFD /* OpenGLES.framework in Frameworks */,
 				A664EFC115CEEB9800182FFD /* QuartzCore.framework in Frameworks */,
@@ -259,6 +293,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6D947AB15DAA02D002B42E0 /* AudioToolbox.framework in Frameworks */,
+				A6D947AC15DAA02D002B42E0 /* CoreAudio.framework in Frameworks */,
 				CE42C29D14BDC20D0049319C /* QuartzCore.framework in Frameworks */,
 				CE28679214B36EC5001E11D7 /* Foundation.framework in Frameworks */,
 				CE2867ED14B378AD001E11D7 /* GLKit.framework in Frameworks */,
@@ -303,6 +339,28 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A6B582A815DC125900D1CA05 /* AudioMarshmallows */ = {
+			isa = PBXGroup;
+			children = (
+				A6B582A915DC125900D1CA05 /* AudioMarshmallows.h */,
+				A6B582AA15DC125900D1CA05 /* AUMErrorChecking.h */,
+				A6B582AB15DC125900D1CA05 /* AUMFilePlayerUnit.h */,
+				A6B582AC15DC125900D1CA05 /* AUMFilePlayerUnit.m */,
+				A6B582AD15DC125900D1CA05 /* AUMGraph.h */,
+				A6B582AE15DC125900D1CA05 /* AUMGraph.m */,
+				A6B582AF15DC125900D1CA05 /* AUMMultichannelMixerUnit.h */,
+				A6B582B015DC125900D1CA05 /* AUMMultichannelMixerUnit.m */,
+				A6B582B115DC125900D1CA05 /* AUMRemoteIOUnit.h */,
+				A6B582B215DC125900D1CA05 /* AUMRemoteIOUnit.m */,
+				A6B582B315DC125900D1CA05 /* AUMTypes.h */,
+				A6B582B415DC125900D1CA05 /* AUMTypes.m */,
+				A6B582B515DC125900D1CA05 /* AUMUnitAbstract.h */,
+				A6B582B615DC125900D1CA05 /* AUMUnitAbstract.m */,
+				A6B582B715DC125900D1CA05 /* AUMUnitProtocol.h */,
+			);
+			path = AudioMarshmallows;
+			sourceTree = "<group>";
+		};
 		A6CBD2B415D273F700A7933E /* MarshmallowRecovery */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +396,8 @@
 		CE28678E14B36EC5001E11D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A6D947A915DAA02D002B42E0 /* AudioToolbox.framework */,
+				A6D947AA15DAA02D002B42E0 /* CoreAudio.framework */,
 				CE42C29C14BDC20D0049319C /* QuartzCore.framework */,
 				CE2867C314B37156001E11D7 /* OpenGLES.framework */,
 				CE2867C214B37156001E11D7 /* GLKit.framework */,
@@ -365,6 +425,7 @@
 		CE28688814BA105B001E11D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				A6B582A815DC125900D1CA05 /* AudioMarshmallows */,
 				CE8401E4151DD86100BDC2D2 /* Animator */,
 				CE8401ED151DD86100BDC2D2 /* DebugLogging.h */,
 				CE8401EE151DD86100BDC2D2 /* GLKit */,
@@ -451,6 +512,9 @@
 				CE8401FA151DD86100BDC2D2 /* MarshmallowCocoa.h */,
 				CE8401FB151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.h */,
 				CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */,
+				A6D947BD15DBE6D9002B42E0 /* NSArray+NSDictionary+Subscripting.h */,
+				A6D947BE15DBEA52002B42E0 /* NSDictionary+Marshmallows.h */,
+				A6D947BF15DBEA52002B42E0 /* NSDictionary+Marshmallows.m */,
 				CE8401FD151DD86100BDC2D2 /* NSArray+Marshmallows.h */,
 				CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */,
 				CE8401FF151DD86100BDC2D2 /* NSError+Marshmallows.h */,
@@ -696,6 +760,7 @@
 				A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 				A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
 				A6D69D3F15D52E44009828CF /* MUIDraggablePane.m in Sources */,
+				A6D947C115DBEA52002B42E0 /* NSDictionary+Marshmallows.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,6 +799,13 @@
 				A6BE0C6615D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 				A6CBD2B815D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
 				A6D69D3E15D52E44009828CF /* MUIDraggablePane.m in Sources */,
+				A6D947C015DBEA52002B42E0 /* NSDictionary+Marshmallows.m in Sources */,
+				A6B582B815DC125900D1CA05 /* AUMFilePlayerUnit.m in Sources */,
+				A6B582B915DC125900D1CA05 /* AUMGraph.m in Sources */,
+				A6B582BA15DC125900D1CA05 /* AUMMultichannelMixerUnit.m in Sources */,
+				A6B582BB15DC125900D1CA05 /* AUMRemoteIOUnit.m in Sources */,
+				A6B582BC15DC125900D1CA05 /* AUMTypes.m in Sources */,
+				A6B582BD15DC125900D1CA05 /* AUMUnitAbstract.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

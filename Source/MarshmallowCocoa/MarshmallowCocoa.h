@@ -13,4 +13,6 @@
 #import "NSTimer+MMBlocks.h"
 #import "NSError+Marshmallows.h"
 #import "NSArray+Marshmallows.h"
+#import "NSDictionary+Marshmallows.h"
+#import "NSArray+NSDictionary+Subscripting.h"
 #endif
