@@ -6,12 +6,19 @@
  */
 /// \file AUMFilePlayerUnit.h
  
- 
+#import <Foundation/Foundation.h>
+#import "AUMProxyUnitAbstract.h"
+#import "AUMRemoteIOUnit.h"
+#import "MarshmallowConcurrency.h"
 
 /**
  \brief 
  */
-@interface AUMFilePlayerUnit : NSObject
+@interface AUMFilePlayerUnit : AUMProxyUnitAbstract
+{
+    AUMRemoteIOUnit *_remoteIOUnit;     ///< Typed reference to _proxiedUnit for autocomplete convenience
+    id <MCThreadProxyProtocol> _mcThread;
+}
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -23,7 +30,13 @@
 #pragma mark - Init
 /////////////////////////////////////////////////////////////////////////
 
+- (id)initWithSampleRate:(Float64)theSampleRate
+        ioBufferDuration:(NSTimeInterval)theIOBufferDuration
+        fileReaderThread:(id<MCThreadProxyProtocol>)aThread;
 
+/** Convenience method which creates it's own BG thread */
+- (id)initWithSampleRate:(Float64)theSampleRate
+        ioBufferDuration:(NSTimeInterval)theIOBufferDuration;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API

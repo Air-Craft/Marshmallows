@@ -16,9 +16,9 @@
 
 @required
 
-@property (atomic) AUGraph _graphRef;       ///< The containing graph
-@property (atomic) AUNode _nodeRef;         ///< The node in the graph
-@property (atomic) AudioUnit _audioUnitRef; ///< The audio unit opened from the graph
+@property (atomic, setter=_setGraphRef:) AUGraph _graphRef;       ///< The containing graph
+@property (atomic, setter=_setNodeRef:) AUNode _nodeRef;         ///< The node in the graph
+@property (atomic, setter=_setAudioUnitRef:) AudioUnit _audioUnitRef; ///< The audio unit opened from the graph
 
 //@property (atomic, readonly) NSUInteger _inputBusCount;
 //@property (atomic, readonly) NSUInteger _outputBusCount;
