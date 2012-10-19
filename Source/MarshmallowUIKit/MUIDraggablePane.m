@@ -8,7 +8,7 @@
 #import <tgmath.h>
 #import "UIView+Marshmallows.h"
 #import "MUIDraggablePane.h"
-#import "DebugLogging.h"
+#import "MarshmallowDebug.h"
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -196,7 +196,7 @@
         }
     }
     
-    MMLOG("%@ in %f", (newY == _positionWhenClosed ? @"Closing":@"Opening"), t);
+    MMLogInfo("%@ in %f", (newY == _positionWhenClosed ? @"Closing":@"Opening"), t);
     
     // Unlatch the touch
     _ignoreTouch = YES;
@@ -221,7 +221,7 @@
                          
                          // Restore touch handling
                          _ignoreTouch = NO;
-                         MMLOG(@"%@", _currentState == kMUIDraggablePaneViewStateOpen ? @"Open":@"Closed");
+                         MMLogInfo(@"%@", _currentState == kMUIDraggablePaneViewStateOpen ? @"Open":@"Closed");
                      }];
 }
 
@@ -292,7 +292,7 @@
                          
                          // Restore touch handling
                          _ignoreTouch = NO;
-                         MMLOG(@"%@", _currentState == kMUIDraggablePaneViewStateOpen ? @"Open":@"Closed");
+                         MMLogInfo(@"%@", _currentState == kMUIDraggablePaneViewStateOpen ? @"Open":@"Closed");
                      }];
     
 
