@@ -15,7 +15,7 @@ const AudioStreamBasicDescription kAUMUnitCanonicalStreamFormat = {
     .mSampleRate = 44100.0,
     .mChannelsPerFrame = 2,
     .mBitsPerChannel = 8 * sizeof(Float32),
-    .mFramesPerPacket = 10,
+    .mFramesPerPacket = 1,
     .mBytesPerFrame = sizeof(Float32) * 1,
     .mBytesPerPacket = sizeof(Float32) * 1
 };
