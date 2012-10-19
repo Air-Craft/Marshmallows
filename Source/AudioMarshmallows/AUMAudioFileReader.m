@@ -8,10 +8,10 @@
 
 #import "MarshmallowDebug.h"
 #import "Private/AUMErrorChecking.h"
-#import "AUMAudioFile.h"
+#import "AUMAudioFileReader.h"
 
 
-@implementation AUMAudioFile
+@implementation AUMAudioFileReader
 {
     ExtAudioFileRef _fileRef;
     UInt32 _readPosInFrames;    ///< Track read position to prevent unnecessary Seeks on Read

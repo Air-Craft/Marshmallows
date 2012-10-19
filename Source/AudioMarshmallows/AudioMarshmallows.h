@@ -10,7 +10,7 @@
 #define Marshmallows_AudioMarshmallows_h
 
 #import "AUMAudioSession.h"
-#import "AUMAudioFile.h"
+#import "AUMAudioFileReader.h"
 #import "AUMTypes.h"
 #import "AUMException.h"
 #import "AUMGraph.h"

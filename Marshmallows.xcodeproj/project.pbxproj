@@ -15,8 +15,8 @@
 		A6434F8F161F4E2D00496EAC /* MCAtomicType.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F8E161F4E2D00496EAC /* MCAtomicType.mm */; };
 		A6434F97161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F96161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.mm */; };
 		A6434F98161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F96161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.mm */; };
-		A6434F9B161F50B200496EAC /* AUMAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434F9A161F50B100496EAC /* AUMAudioFile.m */; };
-		A6434F9C161F50B200496EAC /* AUMAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434F9A161F50B100496EAC /* AUMAudioFile.m */; };
+		A6434F9B161F50B200496EAC /* AUMAudioFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434F9A161F50B100496EAC /* AUMAudioFileReader.m */; };
+		A6434F9C161F50B200496EAC /* AUMAudioFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434F9A161F50B100496EAC /* AUMAudioFileReader.m */; };
 		A6434FA3161F532D00496EAC /* AUMRendererAudioFileSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA2161F532D00496EAC /* AUMRendererAudioFileSource.mm */; };
 		A6434FA4161F532D00496EAC /* AUMRendererAudioFileSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA2161F532D00496EAC /* AUMRendererAudioFileSource.mm */; };
 		A6434FA71622EB5F00496EAC /* NSInvocation+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA61622EB5F00496EAC /* NSInvocation+MMBlocks.m */; };
@@ -190,8 +190,8 @@
 		A6434F8E161F4E2D00496EAC /* MCAtomicType.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MCAtomicType.mm; sourceTree = "<group>"; };
 		A6434F95161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlayerUnitRenderer.h; sourceTree = "<group>"; };
 		A6434F96161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFilePlayerUnitRenderer.mm; sourceTree = "<group>"; };
-		A6434F99161F50AF00496EAC /* AUMAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMAudioFile.h; sourceTree = "<group>"; };
-		A6434F9A161F50B100496EAC /* AUMAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMAudioFile.m; sourceTree = "<group>"; };
+		A6434F99161F50AF00496EAC /* AUMAudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMAudioFileReader.h; sourceTree = "<group>"; };
+		A6434F9A161F50B100496EAC /* AUMAudioFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMAudioFileReader.m; sourceTree = "<group>"; };
 		A6434FA1161F532C00496EAC /* AUMRendererAudioFileSource.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = AUMRendererAudioFileSource.h; sourceTree = "<group>"; };
 		A6434FA2161F532D00496EAC /* AUMRendererAudioFileSource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMRendererAudioFileSource.mm; sourceTree = "<group>"; };
 		A6434FA51622EB5F00496EAC /* NSInvocation+MMBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+MMBlocks.h"; sourceTree = "<group>"; };
@@ -413,8 +413,8 @@
 				A6B582A915DC125900D1CA05 /* AudioMarshmallows.h */,
 				A636EDBE163011AF0037F211 /* AUMAudioSession.h */,
 				A636EDBF163011AF0037F211 /* AUMAudioSession.m */,
-				A6434F99161F50AF00496EAC /* AUMAudioFile.h */,
-				A6434F9A161F50B100496EAC /* AUMAudioFile.m */,
+				A6434F99161F50AF00496EAC /* AUMAudioFileReader.h */,
+				A6434F9A161F50B100496EAC /* AUMAudioFileReader.m */,
 				A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */,
 				A6434FAA16230F5000496EAC /* AUMCircularBuffer.h */,
 				A6B582B315DC125900D1CA05 /* AUMTypes.h */,
@@ -852,7 +852,7 @@
 				A6D69D3F15D52E44009828CF /* MUIDraggablePane.m in Sources */,
 				A6D947C115DBEA52002B42E0 /* NSDictionary+Marshmallows.m in Sources */,
 				A6434F98161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.mm in Sources */,
-				A6434F9C161F50B200496EAC /* AUMAudioFile.m in Sources */,
+				A6434F9C161F50B200496EAC /* AUMAudioFileReader.m in Sources */,
 				A6434FA4161F532D00496EAC /* AUMRendererAudioFileSource.mm in Sources */,
 				A6434FA81622EB5F00496EAC /* NSInvocation+MMBlocks.m in Sources */,
 				A6434FAC16230F5100496EAC /* AUMCircularBuffer.c in Sources */,
@@ -907,7 +907,7 @@
 				A6B582BD15DC125900D1CA05 /* AUMUnitAbstract.m in Sources */,
 				A6434F8F161F4E2D00496EAC /* MCAtomicType.mm in Sources */,
 				A6434F97161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.mm in Sources */,
-				A6434F9B161F50B200496EAC /* AUMAudioFile.m in Sources */,
+				A6434F9B161F50B200496EAC /* AUMAudioFileReader.m in Sources */,
 				A6434FA3161F532D00496EAC /* AUMRendererAudioFileSource.mm in Sources */,
 				A6434FA71622EB5F00496EAC /* NSInvocation+MMBlocks.m in Sources */,
 				A6434FAB16230F5100496EAC /* AUMCircularBuffer.c in Sources */,

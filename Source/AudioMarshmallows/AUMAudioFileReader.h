@@ -12,7 +12,7 @@
 /**
  \brief     Wrapper around Ext Audio File Services to allow reading of arbitrary files into arbitrary output format.  outFormat defaults to Linear PCM/44.1/16bit/stereo/floating point/native endian/interleaved.  Set after init to change.
  */
-@interface AUMAudioFile : NSObject 
+@interface AUMAudioFileReader : NSObject 
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
