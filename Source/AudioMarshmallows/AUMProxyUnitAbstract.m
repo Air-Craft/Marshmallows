@@ -6,7 +6,7 @@
  */
 
 #import "AUMProxyUnitAbstract.h"
-
+#import "AUMTypes.h"
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -41,10 +41,20 @@
 - (void)_setNodeRef:(AUNode)_nodeRef { _proxiedUnit._nodeRef = _nodeRef; }
 - (void)_setAudioUnitRef:(AudioUnit)_audioUnitRef { _proxiedUnit._audioUnitRef = _audioUnitRef; }
 
-- (AudioComponentDescription)_audioComponentDescription
+/////////////////////////////////////////////////////////////////////////
+
+- (const AudioComponentDescription)_audioComponentDescription
 {
     return _proxiedUnit._audioComponentDescription;
 }
+
+- (const NSInteger)maxInputBusNum { return NSIntegerMax; }
+- (const NSInteger)maxOutputBusNum { return NSIntegerMax; }
+- (const AudioStreamBasicDescription)inputStreamFormat { return kAUMUnitCanonicalStreamFormat; }
+- (const AudioStreamBasicDescription)outputStreamFormat { return kAUMUnitCanonicalStreamFormat; }
+
+/////////////////////////////////////////////////////////////////////////
+
 
 - (void)_nodeWasAddedToGraph
 {

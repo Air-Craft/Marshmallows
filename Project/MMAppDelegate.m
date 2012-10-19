@@ -6,18 +6,97 @@
 //  Copyright (c) 2012 Amritvela / Club 15CC.  MIT License.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "MMAppDelegate.h"
+#import "MarshmallowDebug.h"
+#import "MarshmallowConcurrency.h"
+#import "AudioMarshmallows.h"
+#import "MarshmallowCocoa.h"
+
+static char *_FormatError(char *str, OSStatus error)
+{
+    // see if it appears to be a 4-char-code
+    *(UInt32 *)(str + 1) = CFSwapInt32HostToBig(error);
+    if (isprint(str[1]) && isprint(str[2]) && isprint(str[3]) && isprint(str[4])) {
+        str[0] = str[5] = '\'';
+        str[6] = '\0';
+    } else
+        // no, format it as an integer
+        sprintf(str, "%d", (int)error);
+    return str;
+    
+}
+
+
 
 @implementation MMAppDelegate
+{
+    AUMGraph *_aumGraph;
+    AUMFilePlayerUnit *_aumFPU;
+}
 
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    @try {
+        /////////////////////////////////////////
+        // AUDIO SESSION SETUP
+        /////////////////////////////////////////
+        
+        [AUMAudioSession setPreferredHardwareSampleRate: 44100.0];
+        [AUMAudioSession setCategory:AVAudioSessionCategoryPlayback];
+        [AUMAudioSession setPreferredIOBufferDuration:0.005];
+        [AUMAudioSession setMixWithOthers:YES];
+        NSTimeInterval sampleRate = AUMAudioSession.currentHardwareSampleRate;
+        NSTimeInterval ioBufferDuration = AUMAudioSession.IOBufferDuration;
+        DLOG("SR & IO Buffer: %f %f", sampleRate, ioBufferDuration);
+        
+
+        /////////////////////////////////////////
+        // CONTROL THREAD
+        /////////////////////////////////////////
+        
+        MCSimpleThreadProxy *thd = [[MCSimpleThreadProxy alloc] init];
+        
+        
+        /////////////////////////////////////////
+        // AU GRAPH SETUP
+        /////////////////////////////////////////
+        
+        _aumGraph = [[AUMGraph alloc] init];
+        _aumFPU = [[AUMFilePlayerUnit alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        
+        [thd start];
+        
+        // Load the file
+//        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"SWHarp-C3-Medium" withExtension:@"wav"];
+        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"OngKarNirankar" withExtension:@"m4a"];
+        
+        DLOGs(fileURL);
+        [_aumFPU loadAudioFileFromURL:fileURL];
+        
+        [_aumGraph addUnit:_aumFPU];
+        [_aumGraph initialize];
+        [AUMAudioSession setActive:YES];
+        [_aumGraph start];
+        
+        [_aumFPU play];
+        
+        
+    } @catch (AUMException *e) {
+        DLOGs(e);
+        DLOGs(e.OSStatusAsNSString);
+        
+        if (e.name == kAUMAudioSessionException) {
+            
+        } else if (e.name == kAUMAudioUnitException) {
+            
+        } else if (e.name == kAUMAudioFileException) {
+            
+        }
+    }    
+    
     return YES;
 }
 

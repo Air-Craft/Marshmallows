@@ -22,9 +22,9 @@
 /////////////////////////////////////////////////////////////////////////
 
 
-/** Convenience method for setting input bus 0 as it's the only one to that can be assigned */
+/** Convenience method for setting input bus 0 as it's the only one to that can be assigned
 -(void)setInputRenderCallback:(AURenderCallbackStruct)aRenderCallback withStreamFormat:(AudioStreamBasicDescription)aStreamFormat;
-
+*/
 
 
 @end

@@ -21,12 +21,13 @@
 
 /** Convenience method for setting input bus 0 as it's the only one to that can be assigned 
     \throws kAUMException
- */
+ 
 -(void)setInputRenderCallback:(AURenderCallbackStruct)aRenderCallback withStreamFormat:(AudioStreamBasicDescription)aStreamFormat
 {
     [self setRenderCallback:aRenderCallback forInputBus:0];
     [self setStreamFormat:aStreamFormat forInputBus:0];
 }
+ */
 
 
 /////////////////////////////////////////////////////////////////////////

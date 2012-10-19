@@ -14,9 +14,10 @@
 
 
 /**
- \brief Base class to cover the operations common to Audio Units.  
+ \brief Base class to cover the operations common to most Audio Units and custom AU requirements.
  
- Allows stream formats and redner callbacks to be set earlier, prior to adding to the graph.  These are then lazy set on the underlying AU when adde to the graph via the callback in AUMUnitProtocol.
+ \p FEATURE: ARBITRARY SETUP ORDER
+ Allows properties like stream formats and render callbacks to be set earlier, prior to adding to the graph.  These are then set on the underlying AU when added to the graph via the callback in AUMUnitProtocol.
  
  \todo Render Notify callbacks 
  */
@@ -50,10 +51,11 @@
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
-
+/*
 - (void)setStreamFormat:(AudioStreamBasicDescription)aStreamFormat forInputBus:(NSUInteger)aBusNum;
 
 - (void)setStreamFormat:(AudioStreamBasicDescription)aStreamFormat forOutputBus:(NSUInteger)aBusNum;
+*/
 
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forInputBus:(NSUInteger)aBusNum;
 

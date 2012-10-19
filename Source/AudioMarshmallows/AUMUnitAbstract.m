@@ -6,11 +6,9 @@
  */
 
 #import "AUMUnitAbstract.h"
-
 #import "MarshmallowCocoa.h"
-
 #import "AUMErrorChecking.h"
-
+#import "AUMTypes.h"
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -43,12 +41,12 @@
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
-
+/*
 - (void)setStreamFormat:(AudioStreamBasicDescription)aStreamFormat forInputBus:(NSUInteger)aBusNum
 {
     // If added to the graph already then set the AU property...
     if (_hasBeenAddedToGraph) {
-        _(AudioUnitSetProperty(_audioUnitRef,
+        _xAU(AudioUnitSetProperty(_audioUnitRef,
                                kAudioUnitProperty_StreamFormat,
                                kAudioUnitScope_Input,
                                aBusNum,
@@ -68,7 +66,7 @@
 {
     // If added to the graph already then set the AU property...
     if (_hasBeenAddedToGraph) {
-        _(AudioUnitSetProperty(_audioUnitRef,
+        _xAU(AudioUnitSetProperty(_audioUnitRef,
                                kAudioUnitProperty_StreamFormat,
                                kAudioUnitScope_Output,
                                aBusNum,
@@ -81,27 +79,47 @@
         NSValue *asValue = [NSValue value:&aStreamFormat withObjCType:@encode(AudioStreamBasicDescription)];
         [_outputStreamFormatsQueue setObject:asValue forIntegerKey:aBusNum];
     }
-}
+}*/
 
 /////////////////////////////////////////////////////////////////////////
 
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forInputBus:(NSUInteger)aBusNum
 {
+    // Get the input stream format
+    AudioStreamBasicDescription asbd = self.inputStreamFormat;
+    
     // If added to the graph already then set the AU property...
     if (_hasBeenAddedToGraph) {
+        
+        // Stream format
+        _(AudioUnitSetProperty(_audioUnitRef,
+                               kAudioUnitProperty_StreamFormat,
+                               kAudioUnitScope_Input,
+                               aBusNum,
+                               &asbd,
+                               sizeof(AudioStreamBasicDescription)),
+          kAUMAudioUnitException,
+          @"Failed to set stream format (for render callback) on input bus %i of %@", aBusNum, self);
+        
+        // RCB
         _(AudioUnitSetProperty(_audioUnitRef,
                                kAudioUnitProperty_SetRenderCallback,
                                kAudioUnitScope_Input,
                                aBusNum,
                                &aRenderCallback,
                                sizeof(aRenderCallback)),
-          
-          [NSString stringWithFormat:@"Failed to set render callback on input bus %i of %@", aBusNum, self]);
+          kAUMAudioUnitException,
+          @"Failed to set render callback on input bus %i of %@", aBusNum, self);
+        
     } else {
         
-        // Add it to our dictionary
-        NSValue *asValue = [NSValue value:&aRenderCallback withObjCType:@encode(AURenderCallbackStruct)];
-        [_renderCallbacksQueue setObject:asValue forIntegerKey:aBusNum];
+        // Add Stream Format to our dictionary
+        NSValue *asbdValue = [NSValue value:&asbd withObjCType:@encode(AudioStreamBasicDescription)];
+        [_inputStreamFormatsQueue setObject:asbdValue forIntegerKey:aBusNum];
+        
+        // Add RCB to our dictionary
+        NSValue *rcbValue = [NSValue value:&aRenderCallback withObjCType:@encode(AURenderCallbackStruct)];
+        [_renderCallbacksQueue setObject:rcbValue forIntegerKey:aBusNum];
     }
 }
 
@@ -119,12 +137,24 @@
 
 /** Subclasses must define this method to indicate the kind of AU component they are
     \abstract */
-- (AudioComponentDescription)_audioComponentDescription
+- (const AudioComponentDescription)_audioComponentDescription
 {
     AudioComponentDescription r;
     [NSException raise:NSInternalInconsistencyException format:@"Abstract method must be overridden by subclass."];
     return r;
 }
+
+/////////////////////////////////////////////////////////////////////////
+
+/** Defaults to infinity.  Set to -1 to specify no-input */
+- (const NSInteger)maxInputBusNum { return NSIntegerMax; }
+- (const NSInteger)maxOutputBusNum { return NSIntegerMax; }
+
+/////////////////////////////////////////////////////////////////////////
+
+/** Defaults to the AUM Unit Canonical */
+- (const AudioStreamBasicDescription)inputStreamFormat { return kAUMUnitCanonicalStreamFormat; }
+- (const AudioStreamBasicDescription)outputStreamFormat { return kAUMUnitCanonicalStreamFormat; }
 
 /////////////////////////////////////////////////////////////////////////
 
@@ -137,6 +167,7 @@
     // Loop through our queues and set the AU properties
     
     // INPUT STREAM FORMATS
+    
     for (NSNumber *key in _inputStreamFormatsQueue) {
         
         // Unwrap values
@@ -150,6 +181,7 @@
                                busNum,
                                &format,
                                sizeof(format)),
+          kAUMAudioUnitException,
           [NSString stringWithFormat:@"Failed to set stream format on input bus %i of %@", busNum, self]);
     }
     [_inputStreamFormatsQueue removeAllObjects];     // Clear the queue
@@ -168,6 +200,7 @@
                                busNum,
                                &format,
                                sizeof(format)),
+          kAUMAudioUnitException,
           [NSString stringWithFormat:@"Failed to set stream format on output bus %i of %@", busNum, self]);
     }
     [_outputStreamFormatsQueue removeAllObjects];     // Clear the queue
@@ -186,6 +219,7 @@
                                busNum,
                                &callback,
                                sizeof(callback)),
+          kAUMAudioUnitException,
           [NSString stringWithFormat:@"Failed to set render callback on input bus %i of %@", busNum, self]);
     }
     [_renderCallbacksQueue removeAllObjects];     // Clear the queue

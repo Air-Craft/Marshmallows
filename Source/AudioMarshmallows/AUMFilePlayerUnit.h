@@ -7,46 +7,50 @@
 /// \file AUMFilePlayerUnit.h
  
 #import <Foundation/Foundation.h>
+#import "MarshmallowConcurrency.h"
+#import "AUMTypes.h"
 #import "AUMProxyUnitAbstract.h"
 #import "AUMRemoteIOUnit.h"
-#import "MarshmallowConcurrency.h"
 
 /**
- \brief 
+ \brief Our very own hi-performance file player unit which boasts the ability to use your own update thread.  Does NOT use Apple's FilePlayer AU
+ 
+ \todo Init w/o thread details auto creates (shared) thread like the Apple AU version
  */
 @interface AUMFilePlayerUnit : AUMProxyUnitAbstract
-{
-    AUMRemoteIOUnit *_remoteIOUnit;     ///< Typed reference to _proxiedUnit for autocomplete convenience
-    id <MCThreadProxyProtocol> _mcThread;
-}
-
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
 /////////////////////////////////////////////////////////////////////////
 
+@property (nonatomic) BOOL loop;
+@property (nonatomic) AUMAudioControlParameter volume;
+@property (nonatomic) NSTimeInterval playheadTime;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init
 /////////////////////////////////////////////////////////////////////////
 
+/** Convenience method which will check AUMAudioSession to get the sample rate and IOBufferDuration and defaults to 64kB diskBuffer  size
+ \throws NSException::NSInternalInconsistencyException if AudioSession not initiliased with sample rate and IOBufferDuration */
+- (id)initWithDiskBufferSizeInFrame:(NSUInteger)aDiskBufferSizeInFrames
+                       updateThread:(id<MCThreadProxyProtocol>)anUpdateThread updateInterval:(NSTimeInterval)anUpdateInterval;
+/** Designated init */
 - (id)initWithSampleRate:(Float64)theSampleRate
+   diskBufferSizeInFrame:(NSUInteger)aDiskBufferSizeInFrames
         ioBufferDuration:(NSTimeInterval)theIOBufferDuration
-        fileReaderThread:(id<MCThreadProxyProtocol>)aThread;
+            updateThread:(id<MCThreadProxyProtocol>)anUpdateThread
+          updateInterval:(NSTimeInterval)anUpdateInterval;
 
-/** Convenience method which creates it's own BG thread */
-- (id)initWithSampleRate:(Float64)theSampleRate
-        ioBufferDuration:(NSTimeInterval)theIOBufferDuration;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
-
-/////////////////////////////////////////////////////////////////////////
-#pragma mark - Private API
-/////////////////////////////////////////////////////////////////////////
-
+-(void)play;
+-(void)pause;
+-(void)seekToFrame:(NSInteger)theFrame;
+-(void)loadAudioFileFromURL:(NSURL *)fileURL;
 
 
 @end

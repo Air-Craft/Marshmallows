@@ -7,18 +7,15 @@
 /// \file AumTypes.h
  
 #import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
+/** Audio control parameters like volume, etc.  Not wave data */
+typedef Float32 AUMAudioControlParameter;
 
-/// @name AUMarshmallows Exception names and UserInfo dict Keys
-
-FOUNDATION_EXTERN NSString *const kAUMException;
-
-/** Key to return the OSStatus (as an NSNumber) which generated the exception */
-FOUNDATION_EXTERN NSString *const kAUMOSStatusCodeKey;
-/// @}
-
-
-
+/**
+ Default ASBD's for AUMUnit I/O busses to use. Currently both are PCM/Non-Interleaved/Native/Packed/Float/stereo/16bit/44.1kHz
+ */
+FOUNDATION_EXTERN const AudioStreamBasicDescription kAUMUnitCanonicalStreamFormat;
 
 
 /// @}

@@ -63,16 +63,6 @@
               toInputBus:(NSUInteger)anInputBusNum
                   ofUnit:(id<AUMUnitProtocol>)anInputUnit;
 
-/** Convenience method to set a common stream format on both busses before connecting them 
-    \throws kAUMGraphException
- */
-- (void)connectOutputBus:(NSUInteger)anOutputBusNum
-                  ofUnit:(id<AUMUnitProtocol>)anOutputUnit
-              toInputBus:(NSUInteger)anInputBusNum
-                  ofUnit:(id<AUMUnitProtocol>)anInputUnit
-  withSharedStreamFormat:(AudioStreamBasicDescription)aSharedStreamFormat;
-
-
 /** Disconnect a node's input. If the graph has been init'ed you'll need to call 'update' too (when done changing connections).
  \throws kAUMGraphException
  */

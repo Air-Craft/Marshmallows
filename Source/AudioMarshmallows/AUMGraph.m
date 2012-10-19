@@ -8,8 +8,8 @@
 #import "AUMGraph.h"
 #import "AUMTypes.h"
 #import "AUMUnitProtocol.h"
-#import "AUMErrorChecking.h"
-
+#import "Private/AUMErrorChecking.h"
+#import "AUMException.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - AUMGraph
@@ -30,9 +30,9 @@
 - (id)init
 {
     if (self = [super init]) {
-        _(NewAUGraph(&_graphRef), @"NewAUGraph() failed.");
-        _(AUGraphOpen(_graphRef), @"AUGraphOpen() failed.");
-        _(AUGraphInitialize(_graphRef), @"AUGraphInitialize() failed.");
+        _(NewAUGraph(&_graphRef), kAUMAudioUnitException, @"NewAUGraph() failed.");
+        _(AUGraphOpen(_graphRef), kAUMAudioUnitException, @"AUGraphOpen() failed.");
+        _(AUGraphInitialize(_graphRef), kAUMAudioUnitException, @"AUGraphInitialize() failed.");
     }
     return self;
 }
@@ -51,7 +51,7 @@
 - (BOOL)isInitialized
 {
     Boolean result;
-    _(AUGraphIsInitialized(_graphRef, &result), @"AUGraphIsInitialized() failed");
+    _(AUGraphIsInitialized(_graphRef, &result), kAUMAudioUnitException, @"AUGraphIsInitialized() failed");
     return (BOOL)result;
 }
 
@@ -60,7 +60,7 @@
 - (BOOL)isRunning
 {
     Boolean result;
-    _(AUGraphIsRunning(_graphRef, &result), @"AUGraphIsRunning() failed");
+    _(AUGraphIsRunning(_graphRef, &result), kAUMAudioUnitException, @"AUGraphIsRunning() failed");
     return (BOOL)result;
 }
 
@@ -69,7 +69,7 @@
 - (Float32)cpuLoad
 {
     Float32 result;
-    _(AUGraphGetCPULoad(_graphRef, &result), @"AUGraphGetCPULoad() failed");
+    _(AUGraphGetCPULoad(_graphRef, &result), kAUMAudioUnitException, @"AUGraphGetCPULoad() failed");
     return result;
 }
 
@@ -85,7 +85,9 @@
     AudioUnit unit;
     AudioComponentDescription desc = anAUMUnit._audioComponentDescription;
     
-    _(AUGraphAddNode(_graphRef, &desc, &node), [NSString stringWithFormat:@"Failed to add node %@", anAUMUnit]);
+    _(AUGraphAddNode(_graphRef, &desc, &node),
+      kAUMAudioUnitException,
+      @"Failed to add node %@", anAUMUnit);
     anAUMUnit._nodeRef = node;
     
     // Set the graph ref too
@@ -93,7 +95,7 @@
     
     // Get the AudioUnit ref
     AudioComponentDescription desc2;
-    _(AUGraphNodeInfo(_graphRef, node, &desc2, &unit), @"AUGraphNodeInfo() failed.");
+    _(AUGraphNodeInfo(_graphRef, node, &desc2, &unit), kAUMAudioUnitException, @"AUGraphNodeInfo() failed.");
     anAUMUnit._audioUnitRef = unit;
     
     // Notify the Unit so it can do any additional setup required
@@ -107,13 +109,51 @@
 
 - (void)removeUnit:(id<AUMUnitProtocol>)anAUMUnit
 {
-    _(AUGraphRemoveNode(_graphRef, anAUMUnit._nodeRef), @"AUGraphRemoveNode() failed.");
+    _(AUGraphRemoveNode(_graphRef, anAUMUnit._nodeRef), kAUMAudioUnitException, @"AUGraphRemoveNode() failed.");
 }
+
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)connectOutputBus:(NSUInteger)anOutputBusNum ofUnit:(id<AUMUnitProtocol>)anOutputUnit toInputBus:(NSUInteger)anInputBusNum ofUnit:(id<AUMUnitProtocol>)anInputUnit
+- (void)connectOutputBus:(NSUInteger)anOutputBusNum
+                  ofUnit:(id<AUMUnitProtocol>)anOutputUnit
+              toInputBus:(NSUInteger)anInputBusNum
+                  ofUnit:(id<AUMUnitProtocol>)anInputUnit
 {
+    // Check the bus numbers are legit for the unit
+    if (anOutputBusNum > anOutputUnit.maxOutputBusNum) {
+        [NSException raise:NSRangeException format:@"Output bus %i exceeds range for AUMUnit %@", anOutputBusNum, anOutputUnit];
+    }
+    if (anInputBusNum > anInputUnit.maxOutputBusNum) {
+        [NSException raise:NSRangeException format:@"Input bus %i exceeds range for AUMUnit %@", anInputBusNum, anInputUnit];
+    }
+    
+    
+    // Set the input unit's bus's format
+    AudioStreamBasicDescription format;
+    format = anInputUnit.inputStreamFormat;
+    _(AudioUnitSetProperty(anInputUnit._audioUnitRef,
+                           kAudioUnitProperty_StreamFormat,
+                           kAudioUnitScope_Input,
+                           anInputBusNum,
+                           &format,
+                           sizeof(AudioStreamBasicDescription)),
+      kAUMAudioUnitException,
+      @"Failed to set stream format on input bus %i of %@", anInputBusNum, anInputUnit);
+
+    // Set the output unit's bus's format
+    format = anOutputUnit.outputStreamFormat;
+    _(AudioUnitSetProperty(anOutputUnit._audioUnitRef,
+                           kAudioUnitProperty_StreamFormat,
+                           kAudioUnitScope_Output,
+                           anOutputBusNum,
+                           &format,
+                           sizeof(AudioStreamBasicDescription)),
+      kAUMAudioUnitException,
+      @"Failed to set stream format on output bus %i of %@", anOutputBusNum, anOutputUnit);
+
+    
+    // Call the straight connect method
     _(AUGraphConnectNodeInput(
                               _graphRef,
                               anOutputUnit._nodeRef,
@@ -121,7 +161,9 @@
                               anInputUnit._nodeRef,
                               anInputBusNum
                               ),
-      [NSString stringWithFormat:@"Failed to connect output bus %i of %@ to input bus %i of %@", anOutputBusNum, anOutputUnit, anInputBusNum, anInputUnit]);
+      kAUMAudioUnitException,
+      @"Failed to connect output bus %i of %@ to input bus %i of %@", anOutputBusNum, anOutputUnit, anInputBusNum, anInputUnit);
+    
     
     // DONT UPDATE:  Let the user do it in case they wish to make multiple changes
     ///if (self.isInitialized) {
@@ -131,46 +173,18 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)connectOutputBus:(NSUInteger)anOutputBusNum
-                  ofUnit:(id<AUMUnitProtocol>)anOutputUnit
-              toInputBus:(NSUInteger)anInputBusNum
-                  ofUnit:(id<AUMUnitProtocol>)anInputUnit
-  withSharedStreamFormat:(AudioStreamBasicDescription)aSharedStreamFormat
-{
-    // Set the input unit's bus's format
-    _(AudioUnitSetProperty(anInputUnit._audioUnitRef,
-                           kAudioUnitProperty_StreamFormat,
-                           kAudioUnitScope_Input,
-                           anInputBusNum,
-                           &aSharedStreamFormat,
-                           sizeof(aSharedStreamFormat)),
-      [NSString stringWithFormat:@"Failed to set stream format on input bus %i of %@", anInputBusNum, anInputUnit]);
-
-    // Set the output unit's bus's format
-    _(AudioUnitSetProperty(anOutputUnit._audioUnitRef,
-                           kAudioUnitProperty_StreamFormat,
-                           kAudioUnitScope_Output,
-                           anOutputBusNum,
-                           &aSharedStreamFormat,
-                           sizeof(aSharedStreamFormat)),
-      [NSString stringWithFormat:@"Failed to set stream format on output bus %i of %@", anOutputBusNum, anOutputUnit]);
-
-    // Call the straight connect method
-    [self connectOutputBus:anOutputBusNum ofUnit:anOutputUnit toInputBus:anInputBusNum ofUnit:anInputUnit];
-}
-
-/////////////////////////////////////////////////////////////////////////
-
 - (void)disconnectInputBus:(NSUInteger)aBusNum ofUnit:(id<AUMUnitProtocol>)aUnit
 {
-    _(AUGraphDisconnectNodeInput(_graphRef, aUnit._nodeRef, aBusNum), [NSString stringWithFormat:@"Failed to disconnect bus %i from %@", aBusNum, aUnit]);
+    _(AUGraphDisconnectNodeInput(_graphRef, aUnit._nodeRef, aBusNum),
+      kAUMAudioUnitException,
+      @"Failed to disconnect bus %i from %@", aBusNum, aUnit);
 }
 
 /////////////////////////////////////////////////////////////////////////
 
 - (void)clearAllConnections
 {
-    _(AUGraphClearConnections(_graphRef), @"AUGraphClearConnections() failed.");
+    _(AUGraphClearConnections(_graphRef), kAUMAudioUnitException, @"AUGraphClearConnections() failed.");
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -178,7 +192,7 @@
 - (BOOL)update
 {
     Boolean result;
-    _(AUGraphUpdate(_graphRef, &result), @"AUGraphUpdate() failed");
+    _(AUGraphUpdate(_graphRef, &result), kAUMAudioUnitException, @"AUGraphUpdate() failed");
     
     return (BOOL)result;
 }
@@ -187,22 +201,22 @@
 
 - (void)initialize
 {
-    _(AUGraphInitialize(_graphRef), @"AUGraphInitialize() failed");
+    _(AUGraphInitialize(_graphRef), kAUMAudioUnitException, @"AUGraphInitialize() failed");
 }
 
 - (void)uninitialize
 {
-    _(AUGraphUninitialize(_graphRef), @"AUGraphUninitialize() failed");
+    _(AUGraphUninitialize(_graphRef), kAUMAudioUnitException, @"AUGraphUninitialize() failed");
 }
 
 - (void)start
 {
-    _(AUGraphStart(_graphRef), @"AUGraphStart() failed");
+    _(AUGraphStart(_graphRef), kAUMAudioUnitException, @"AUGraphStart() failed");
 }
 
 - (void)stop
 {
-    _(AUGraphStop(_graphRef), @"AUGraphStop() failed");
+    _(AUGraphStop(_graphRef), kAUMAudioUnitException, @"AUGraphStop() failed");
 }
 
 
