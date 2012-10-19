@@ -10,7 +10,7 @@
 #import <Foundation/Foundation.h>
 #import <AudioUnit/AudioUnit.h>
 #import "MarshmallowDebug.h"
-#import "MCAtomicType.h"
+#import "AUMAtomicType.h"
 #import "AUMRendererAudioFileSource.h"
 
 
