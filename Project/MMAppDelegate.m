@@ -13,21 +13,6 @@
 #import "AudioMarshmallows.h"
 #import "MarshmallowCocoa.h"
 
-static char *_FormatError(char *str, OSStatus error)
-{
-    // see if it appears to be a 4-char-code
-    *(UInt32 *)(str + 1) = CFSwapInt32HostToBig(error);
-    if (isprint(str[1]) && isprint(str[2]) && isprint(str[3]) && isprint(str[4])) {
-        str[0] = str[5] = '\'';
-        str[6] = '\0';
-    } else
-        // no, format it as an integer
-        sprintf(str, "%d", (int)error);
-    return str;
-    
-}
-
-
 
 @implementation MMAppDelegate
 {
@@ -39,6 +24,8 @@ static char *_FormatError(char *str, OSStatus error)
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    MarshmallowDebugLogLevel = kMarshmallowDebugLogLevelAll;
+    
     @try {
         /////////////////////////////////////////
         // AUDIO SESSION SETUP
@@ -48,8 +35,19 @@ static char *_FormatError(char *str, OSStatus error)
         [AUMAudioSession setCategory:AVAudioSessionCategoryPlayback];
         [AUMAudioSession setPreferredIOBufferDuration:0.005];
         [AUMAudioSession setMixWithOthers:YES];
-        NSTimeInterval sampleRate = AUMAudioSession.currentHardwareSampleRate;
-        NSTimeInterval ioBufferDuration = AUMAudioSession.IOBufferDuration;
+        NSTimeInterval sampleRate = 0;;
+        @try {
+            sampleRate = AUMAudioSession.currentHardwareSampleRate;
+        } @catch (NSException *e) {
+            ;
+        }
+        NSTimeInterval ioBufferDuration = 0;
+        @try {
+            ioBufferDuration = AUMAudioSession.IOBufferDuration;
+        } @catch (NSException *e) {
+            ;
+        }
+        
         DLOG("SR & IO Buffer: %f %f", sampleRate, ioBufferDuration);
         
 

@@ -47,7 +47,8 @@
     // Validations and supers
     if (!(self = [super init])) return nil;
     
-    _readPosInFrames = 0;   // Init to start of file
+    _readHeadPosInFrames = 0;   // Init to start of file
+    _eof = NO;
     
     _fileURL = [aFileURL copy];
     UInt32 s;   // for property variable sizes
@@ -55,7 +56,7 @@
     // Open the file
     _(ExtAudioFileOpenURL((__bridge CFURLRef)aFileURL, &_fileRef),
       kAUMAudioFileException,
-      @"Failed to open file %@", _fileURL.absoluteString);
+      @"Failed to open file %@", _fileURL.lastPathComponent);
     
     
     // Get the length in frames
@@ -66,7 +67,7 @@
                               &s,
                               &lengthInFrames),
       kAUMAudioFileException,
-      @"Error reading frame length from file %@", _fileURL.absoluteString);
+      @"Error reading frame length from file %@", _fileURL.lastPathComponent);
     
     _lengthInFrames = lengthInFrames;
     
@@ -78,7 +79,7 @@
                               &s,
                               &_inFormat),
       kAUMAudioFileException,
-      @"Error reading ASBD from file %@", _fileURL.absoluteString);
+      @"Error reading ASBD from file %@", _fileURL.lastPathComponent);
     
     
     // Set the default output format
@@ -99,7 +100,7 @@
     UInt32 s = sizeof(AudioStreamBasicDescription);
     _(ExtAudioFileSetProperty(_fileRef, kExtAudioFileProperty_ClientDataFormat, s, &_outFormat),
       kAUMAudioFileException,
-      @"Couldn't set client format on file %@", _fileURL.absoluteString);
+      @"Couldn't set client format on file %@", _fileURL.lastPathComponent);
 }
 
 
@@ -108,25 +109,28 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
-- (NSUInteger)readFrames:(NSUInteger)theFrameCount fromFrame:(NSUInteger)theStartFrame intoAudioBufferList:(AudioBufferList *)theAudioBufferList
+- (void)seekToFrame:(NSUInteger)theFrame
 {
-    UInt32 framesToReadAndRead = theFrameCount;
-    
-    // Seek if required
-    if (theStartFrame != _readPosInFrames) {
-        _(ExtAudioFileSeek(_fileRef, theStartFrame),
-          kAUMAudioFileException,
-          @"Error seeking to frame %i in file %@", theStartFrame, _fileURL.absoluteString);
+    if (theFrame >= _lengthInFrames) {
+        [NSException raise:NSRangeException format:@"Frame %u out of bounds for file %@ of length %u frames)", theFrame, _fileURL.lastPathComponent, _lengthInFrames];
     }
-    
-    _(ExtAudioFileRead(_fileRef, &framesToReadAndRead, theAudioBufferList),
-      kAUMAudioFileException,
-      @"Error reading %i - %i frames from file %@", theStartFrame, theStartFrame+theFrameCount, _fileURL.absoluteString);
-    
-    // update read head
-    _readPosInFrames = theStartFrame + framesToReadAndRead;
-    
-    return framesToReadAndRead;
+    _readHeadPosInFrames = theFrame;
+    _eof = NO;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)reset
+{
+    _readHeadPosInFrames = 0;
+    _eof = NO;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (NSUInteger)readFrames:(NSUInteger)theFrameCount intoBufferL:(void *)aBufferL bufferR:(void *)aBufferR
+{
+    return [self readFrames:theFrameCount fromFrame:_readHeadPosInFrames intoBufferL:aBufferL bufferR:aBufferR];
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -164,6 +168,42 @@
     free(abl);
     
     return framesRead;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (NSUInteger)readFrames:(NSUInteger)theFrameCount fromFrame:(NSUInteger)theStartFrame intoAudioBufferList:(AudioBufferList *)theAudioBufferList
+{
+    // Check bounds
+    if (theFrameCount + theStartFrame > _lengthInFrames) {
+        [NSException raise:NSRangeException format:@"Cannot read %u frames from frame %u in file %@ of length %u", theFrameCount, theStartFrame, _fileURL.lastPathComponent, _lengthInFrames];
+    }
+    
+    UInt32 framesToReadAndRead = theFrameCount;
+    
+    // Seek if required
+    if (theStartFrame != _readHeadPosInFrames) {
+        _(ExtAudioFileSeek(_fileRef, theStartFrame),
+          kAUMAudioFileException,
+          @"Error seeking to frame %i in file %@", theStartFrame, _fileURL.lastPathComponent);
+    }
+    
+    _(ExtAudioFileRead(_fileRef, &framesToReadAndRead, theAudioBufferList),
+      kAUMAudioFileException,
+      @"Error reading %i - %i frames from file %@", theStartFrame, theStartFrame+theFrameCount, _fileURL.lastPathComponent);
+    
+    // update read head
+    _readHeadPosInFrames = theStartFrame + framesToReadAndRead;
+    
+    // EOF?
+    if (_readHeadPosInFrames >= _lengthInFrames) {
+        _eof = YES;
+        MMLogRealTime(@"EOF reached for file %@", _fileURL.lastPathComponent);
+    } else {
+        _eof = NO;  // Reset eof if we're back on track
+    }
+    
+    return framesToReadAndRead;
 }
 
 

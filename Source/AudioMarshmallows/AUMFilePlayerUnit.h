@@ -16,6 +16,9 @@
  \brief Our very own hi-performance file player unit which boasts the ability to use your own update thread.  Does NOT use Apple's FilePlayer AU
  
  \todo Init w/o thread details auto creates (shared) thread like the Apple AU version
+ 
+ \section Concurrency Considerations
+ Any public method which acts on _audioSource and/or _audioFile must be syncro'ed with the thread's update methods.  Otherwise file change and seek operations could lead to collisions
  */
 @interface AUMFilePlayerUnit : AUMProxyUnitAbstract
 
@@ -25,7 +28,8 @@
 
 @property (nonatomic) BOOL loop;
 @property (nonatomic) AUMAudioControlParameter volume;
-@property (nonatomic) NSTimeInterval playheadTime;
+@property (nonatomic, readonly) NSTimeInterval playheadPosTime;
+@property (nonatomic, readonly) NSUInteger playheadPosFrames;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init
@@ -49,7 +53,7 @@
 
 -(void)play;
 -(void)pause;
--(void)seekToFrame:(NSInteger)theFrame;
+-(void)seekToFrame:(NSInteger)toFrame;
 -(void)loadAudioFileFromURL:(NSURL *)fileURL;
 
 

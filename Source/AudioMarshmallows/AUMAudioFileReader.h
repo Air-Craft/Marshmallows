@@ -11,6 +11,9 @@
 
 /**
  \brief     Wrapper around Ext Audio File Services to allow reading of arbitrary files into arbitrary output format.  outFormat defaults to Linear PCM/44.1/16bit/stereo/floating point/native endian/interleaved.  Set after init to change.
+ 
+ \par   Usage styles
+        This will work as a sequential linear reader via [readFrames:intoBufferL:bufferR] or via the random access methods.  Both update the readHeadPosInFrames property. eof is set when th
  */
 @interface AUMAudioFileReader : NSObject 
 
@@ -30,6 +33,9 @@
     \throws kAUMAudioFileException on error when setting */
 @property (nonatomic) AudioStreamBasicDescription outFormat;
 
+@property (nonatomic, readonly) BOOL eof;
+
+@property (nonatomic, readonly) NSUInteger readHeadPosInFrames;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Class Methods
@@ -52,18 +58,30 @@
 - (id)initForURL:(NSURL *)aFileURL;
 
 
+/** Set the next read position for readFrame:intoBufferL:bufferB.  Essentially a setter for readHeadPosInFrames */
+- (void)seekToFrame:(NSUInteger)theFrame;
+
+/** Sets readHead back to 0 and clears eof */
+- (void)reset;
+
 /**
- Read frames from a specified starting position and return the number actually read.
- \property theBufferList    MUST BE properly malloc'ed prior!
- \throws kAUMAudioFileException
- \return the Number of frames actually read (0 for error, less than requested for EOF)
+ \brief Read specified frames from the current readHeadPosInFrames, updating accordingly.  Use for linear streaming reads (as opposed to random access)
  */
-- (NSUInteger)readFrames:(NSUInteger)theFrameCount fromFrame:(NSUInteger)theStartFrame intoAudioBufferList:(AudioBufferList *)theAudioBufferList;
+- (NSUInteger)readFrames:(NSUInteger)theFrameCount intoBufferL:(void *)aBufferL bufferR:(void *)aBufferR;
+
 
 /**
  \brief Convenience method for reading stereo data directly in void * buffers.  If mono then the channel will be copied to both
  */
 - (NSUInteger)readFrames:(NSUInteger)theFrameCount fromFrame:(NSUInteger)theStartFrame intoBufferL:(void *)aBufferL bufferR:(void *)aBufferR;
+
+/**
+ The designated read method.  All others call this. Reads frames from a specified starting position and return the number actually read.
+ \property theBufferList    MUST BE properly malloc'ed prior!
+ \throws kAUMAudioFileException
+ \return the Number of frames actually read (0 for error, less than requested for EOF)
+ */
+- (NSUInteger)readFrames:(NSUInteger)theFrameCount fromFrame:(NSUInteger)theStartFrame intoAudioBufferList:(AudioBufferList *)theAudioBufferList;
 
 @end
 

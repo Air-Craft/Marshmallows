@@ -21,32 +21,29 @@ OSStatus AUMFilePlayerUnitRenderer::renderCallback(void                        *
     // Failsafe to prevent glitches when latency (and correlated output buffer chunk) is higher than anticipated when renderer was init'ed
     renderer->_ensureMinimumBufferSize(inNumberFrames);
     
-    // If no source then return silence
-    if (!renderer->_sourceIsSet) {
-        *ioActionFlags |= kAudioUnitRenderAction_OutputIsSilence;
-        return noErr;
-    }
-    
-    
     /////////////////////////////////////////
     // GRAB SOURCE PARAMETERS
     /////////////////////////////////////////
     
-    AUMRendererAudioFileSource *source = renderer->_playbackSource;
+    AUMRendererAudioSource *source = &renderer->_audioSource;
     
     //  Init previous volume if required
     if (source->_previousVolume == -1) {
         source->_previousVolume = source->_volume;
     }
-    AUMRendererAudioFileSource::State sourceState = source->state();
+    AUMRendererAudioSource::State sourceState = source->state();
     AUMAudioControlParameter volume = source->_volume;
     AUMAudioControlParameter prevVolume = source->_previousVolume;
     
     
-    // Additional bailout conditions: Not playing or volume 0
-    if ( (sourceState != AUMRendererAudioFileSource::Playing and
-          sourceState != AUMRendererAudioFileSource::QueuedToPause) or
-         (volume == 0 && prevVolume == 0) ) {
+    /////////////////////////////////////////
+    // BAILOUT CONDITIONS
+    /////////////////////////////////////////
+    
+    // Not playing or volume 0
+    if ( sourceState == AUMRendererAudioSource::Paused or
+         sourceState == AUMRendererAudioSource::Finished or
+         (volume == 0 and prevVolume == 0) ) {
         
         *ioActionFlags |= kAudioUnitRenderAction_OutputIsSilence;
         return noErr;
@@ -76,6 +73,11 @@ OSStatus AUMFilePlayerUnitRenderer::renderCallback(void                        *
     
     Float32 sourceFramesRead = source->_readFramesFromBuffer((void *)outputBufferL, (void *)outputBufferR, outputFrames);
     
+    // Nothing read? Buffer underrun. Return silence
+    if (not sourceFramesRead) {
+        *ioActionFlags |= kAudioUnitRenderAction_OutputIsSilence;
+        return noErr;
+    }
     
     /////////////////////////////////////////
     // VOLUME RAMP
@@ -88,16 +90,15 @@ OSStatus AUMFilePlayerUnitRenderer::renderCallback(void                        *
     // else scalar mult
 
     
-    
     // If vol has changed or we're stopping then generate a volume ramp and vector multiply
     // Otherwise do a scalar multiply for the current (& prev) volume
-    // Also don't do the fade if we're ended in a few frames anyway (rare)
-    if ((sourceState == AUMRendererAudioFileSource::QueuedToPause &&
+    // Also don't do the fade if we're ending in a few frames anyway (rare)
+    if ((sourceState == AUMRendererAudioSource::QueuedToPause and
             sourceFramesRead >= AUMFilePlayerUnitRenderer::_FADE_FRAMES_ON_PAUSE) ||
         volume != prevVolume) {
         
         // Fade out if finished and set flag to clear
-        if (sourceState == AUMRendererAudioFileSource::QueuedToPause) {
+        if (sourceState == AUMRendererAudioSource::QueuedToPause) {
 
             // Make the fade out ramp
             float vInit = prevVolume;   // current volume if different doesnt matter as we're stopping
@@ -110,7 +111,7 @@ OSStatus AUMFilePlayerUnitRenderer::renderCallback(void                        *
                         1,
                         AUMFilePlayerUnitRenderer::_FADE_FRAMES_ON_PAUSE);
             
-            source->state(AUMRendererAudioFileSource::Finished);
+            source->_setPausedState();
             
         } else if (volume != prevVolume) {
             
@@ -134,17 +135,8 @@ OSStatus AUMFilePlayerUnitRenderer::renderCallback(void                        *
         ::vDSP_vsmul(outputBufferR, 1, &volume, outputBufferR, 1, sourceFramesRead);
     }
     
-    
-    /////////////////////////////////////////
-    // EOF CHECK
-    /////////////////////////////////////////
-    
-    if (sourceFramesRead != outputFrames && source->_isEOF) {
-        source->state(AUMRendererAudioFileSource::Finished);
-    }
-    
+    // All done!
     return noErr;
- 
 }
     
 /////////////////////////////////////////////////////////////////////////
@@ -154,33 +146,6 @@ const AudioStreamBasicDescription AUMFilePlayerUnitRenderer::requiredAudioFormat
     return kAUMUnitCanonicalStreamFormat;
 }
 
-/////////////////////////////////////////////////////////////////////////
-
-void AUMFilePlayerUnitRenderer::playbackSource(AUMRendererAudioFileSource *source)
-{
-    // Only allow is source is not set, or if it is, only if its not playing
-    if (_sourceIsSet and
-        (_playbackSource->state() == AUMRendererAudioFileSource::Playing or
-        _playbackSource->state() == AUMRendererAudioFileSource::QueuedToPause)) {
-        
-        [NSException raise:NSInternalInconsistencyException format:@"Current source must be stopped before changing."];
-    }
-    
-    _sourceIsSet = false;   // a simple atomic latch to prevent dirty states
-    _playbackSource = source;
-    
-    // If non-NULL re-enable latch
-    if (source) {
-        _sourceIsSet = true;
-    }
-}
-
-/////////////////////////////////////////////////////////////////////////
-
-AUMRendererAudioFileSource* AUMFilePlayerUnitRenderer::playbackSource()
-{
-    return _playbackSource;
-}
 
 
 

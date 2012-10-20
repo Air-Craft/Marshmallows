@@ -11,15 +11,13 @@
 #import <AudioUnit/AudioUnit.h>
 #import "MarshmallowDebug.h"
 #import "AUMAtomicType.h"
-#import "AUMRendererAudioFileSource.h"
+#import "AUMRendererAudioSource.h"
 
-
-using namespace std;
 
 /** \brief Container for sources and rendering buffers for the RCB (also contained as a static)
  
  \section Usage & Threading Notes
- playbackSource may only be set if the source is not playing (=Playing, QueuedToPause). It's not entirely thread safe to set this attribute on a different thread that controls it's play/pause/etc methods.
+ audioSource may only be set if the source is not playing (=Playing, QueuedToPause). It's not entirely thread safe to set this attribute on a different thread that controls it's play/pause/etc methods.
  */
 class AUMFilePlayerUnitRenderer
 {
@@ -30,7 +28,7 @@ public:
 #pragma mark - Static
 /////////////////////////////////////////////////////////////////////////
     
-    /** The RCB for the FilePlayerUnit . Friend of AUMRendererAudioFileSource 
+    /** The RCB for the FilePlayerUnit . Friend of AUMRendererAudioSource 
      \param inRefCon    An instance of this class as set in the AUMFilePlayerUnit
      */
     static OSStatus renderCallback(void                        *inRefCon,
@@ -49,16 +47,17 @@ public:
      \param callbackOutputSizeInFrames  Used to preinitialise the working buffers to the proper size.  The RCB checks and adjusts at the beginning just in case but this is bad form so ensure its big enough
      */
     AUMFilePlayerUnitRenderer(NSUInteger callbackOutputSizeInFrames, NSTimeInterval theSampleRate) :
-        _sourceIsSet(false),
-        _playbackSource(NULL),
         _sampleRate(theSampleRate)
     {
-        _volumeRampBuffer = vector<float>(callbackOutputSizeInFrames, 0);
+        _volumeRampBuffer = std::vector<float>(callbackOutputSizeInFrames, 0);
+        
+        // Create the single audio source.
+//        _audioSource = new AUMRendererAudioSource();
     }
     
     /////////////////////////////////////////////////////////////////////////
 
-    ~AUMFilePlayerUnitRenderer() { _playbackSource = NULL; }
+    ~AUMFilePlayerUnitRenderer() {}
     
     
 /////////////////////////////////////////////////////////////////////////
@@ -68,8 +67,8 @@ public:
     /** R/O Input/output format used by the RCB (their the same here) */
     const AudioStreamBasicDescription requiredAudioFormat();
     
-    void playbackSource(AUMRendererAudioFileSource *);
-    AUMRendererAudioFileSource* playbackSource();
+    /** R/O.  Created at init.  Its buffer must be initialised by the client */
+    AUMRendererAudioSource* audioSource() { return &_audioSource; };
     
     
 /////////////////////////////////////////////////////////////////////////
@@ -81,12 +80,10 @@ private:
     
     NSTimeInterval _sampleRate;
     
-    /** Flag to ensure no fuzzy states with setting/getting _playbackSounce */
-    AUM::AtomicBool _sourceIsSet;
-    AUMRendererAudioFileSource *_playbackSource;
+    AUMRendererAudioSource _audioSource;
     
     /** Used to hold values which are multiplied against samples set to stop to do a smooth fade out */
-    vector<float> _volumeRampBuffer;
+    std::vector<float> _volumeRampBuffer;
 
     /**
      Called via RCB in case the buffer size is larger than expected (ie the latency was increased by the hardware)
