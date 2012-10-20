@@ -9,7 +9,7 @@
 
 
 /// Default to none
-const MarshmallowDebugLogLevelType MarshmallowDebugLogLevel = kMarshmallowDebugLogLevelNone;
+MarshmallowDebugLogLevelType MarshmallowDebugLogLevel = kMarshmallowDebugLogLevelNone;
 
 
 /// @}

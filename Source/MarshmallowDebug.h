@@ -142,7 +142,7 @@ typedef enum {
                                    kMarshmallowDebugLogLevelRealTime
 } MarshmallowDebugLogLevelType;
 
-extern const MarshmallowDebugLogLevelType MarshmallowDebugLogLevel;
+extern MarshmallowDebugLogLevelType MarshmallowDebugLogLevel;
 
 
 
@@ -167,7 +167,7 @@ extern const MarshmallowDebugLogLevelType MarshmallowDebugLogLevel;
     } \
 }
 
-#define MMLogRT(fmt, ...) { \
+#define MMLogRealTime(fmt, ...) { \
     if (MarshmallowDebugLogLevel & kMarshmallowDebugLogLevelRealTime) { \
         DLOG(@"[MM_REALTIME] " fmt, ##__VA_ARGS__);    \
     } \
