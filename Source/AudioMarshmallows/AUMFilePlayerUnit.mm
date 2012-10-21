@@ -40,7 +40,7 @@
     /** @name Seek state vars. Cache settings to process after source is paused */
     /// @{
     BOOL _seekIsPending;
-    BOOL _seekToFrame;
+    NSUInteger _seekToFrame;
     /// @}
     
     /** @name Seek state vars. Cache settings to process after source is paused */
@@ -164,6 +164,11 @@
     return self.playheadPosFrames / _sampleRate;
 }
 
+- (NSUInteger)audioFileLengthInFrames
+{
+    if (!_audioFile) return 0;
+    return _audioFile.lengthInFrames;
+}
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
@@ -219,14 +224,14 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)seekToFrame:(NSInteger)toFrame
+- (void)seekToFrame:(NSUInteger)toFrame
 {
     @synchronized(self) {
         if (!_audioFile) [NSException raise:NSInternalInconsistencyException format:@"File must be loaded first"];
         
         // Sanity check for file length
         if (toFrame >= _audioFile.lengthInFrames) {
-            [NSException raise:NSRangeException format:@"Frame %i exceeds file's max length of %i", toFrame, _audioFile.lengthInFrames];
+            [NSException raise:NSRangeException format:@"Frame %u exceeds file's max length of %i", toFrame, _audioFile.lengthInFrames];
         }
 
         // If stopped then do it straight away
@@ -359,7 +364,7 @@
 {
     _audioSource->clearBuffer();
     _sourcePosOffsetInFrames = theFrame;
-    [_audioFile seekToFrame:_seekToFrame];
+    [_audioFile seekToFrame:theFrame];
     [self _replenishSourceBuffer];
 }
 

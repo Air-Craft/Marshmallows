@@ -58,6 +58,7 @@
 		A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFE515CEECB800182FFD /* MMAppDelegate.m */; };
 		A66E7CD5163164A400565D93 /* OngKarNirankar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */; };
 		A66E7CD9163167F400565D93 /* AUMAtomicType.mm in Sources */ = {isa = PBXBuildFile; fileRef = A66E7CD8163167F400565D93 /* AUMAtomicType.mm */; };
+		A6ADEBE416330E7E00420769 /* AUMFilePlayerUnitTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADEBE316330E7E00420769 /* AUMFilePlayerUnitTestViewController.m */; };
 		A6B582B815DC125900D1CA05 /* AUMFilePlayerUnit.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AC15DC125900D1CA05 /* AUMFilePlayerUnit.mm */; };
 		A6B582B915DC125900D1CA05 /* AUMGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AE15DC125900D1CA05 /* AUMGraph.m */; };
 		A6B582BA15DC125900D1CA05 /* AUMMultichannelMixerUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B015DC125900D1CA05 /* AUMMultichannelMixerUnit.m */; };
@@ -207,6 +208,8 @@
 		A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = OngKarNirankar.m4a; sourceTree = "<group>"; };
 		A66E7CD7163167F400565D93 /* AUMAtomicType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMAtomicType.h; sourceTree = "<group>"; };
 		A66E7CD8163167F400565D93 /* AUMAtomicType.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMAtomicType.mm; sourceTree = "<group>"; };
+		A6ADEBE216330E7E00420769 /* AUMFilePlayerUnitTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlayerUnitTestViewController.h; sourceTree = "<group>"; };
+		A6ADEBE316330E7E00420769 /* AUMFilePlayerUnitTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMFilePlayerUnitTestViewController.m; sourceTree = "<group>"; };
 		A6B582A915DC125900D1CA05 /* AudioMarshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMarshmallows.h; sourceTree = "<group>"; };
 		A6B582AB15DC125900D1CA05 /* AUMFilePlayerUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlayerUnit.h; sourceTree = "<group>"; };
 		A6B582AC15DC125900D1CA05 /* AUMFilePlayerUnit.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFilePlayerUnit.mm; sourceTree = "<group>"; };
@@ -500,6 +503,8 @@
 				CE28687D14BA0D6C001E11D7 /* Marshmallows-Prefix.pch */,
 				A61CB97815CEE0D00054DBCE /* main.m */,
 				A6D88166163039DB00D11296 /* Main.storyboard */,
+				A6ADEBE216330E7E00420769 /* AUMFilePlayerUnitTestViewController.h */,
+				A6ADEBE316330E7E00420769 /* AUMFilePlayerUnitTestViewController.m */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -916,6 +921,7 @@
 				A636EDC0163011B00037F211 /* AUMAudioSession.m in Sources */,
 				A6D88162163036AB00D11296 /* AUMProxyUnitAbstract.m in Sources */,
 				A66E7CD9163167F400565D93 /* AUMAtomicType.mm in Sources */,
+				A6ADEBE416330E7E00420769 /* AUMFilePlayerUnitTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

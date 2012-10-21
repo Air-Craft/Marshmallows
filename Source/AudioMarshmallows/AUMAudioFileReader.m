@@ -115,6 +115,10 @@
         [NSException raise:NSRangeException format:@"Frame %u out of bounds for file %@ of length %u frames)", theFrame, _fileURL.lastPathComponent, _lengthInFrames];
     }
     _readHeadPosInFrames = theFrame;
+    _(ExtAudioFileSeek(_fileRef, theFrame),
+      kAUMAudioFileException,
+      @"Error seeking to frame %i in file %@", theFrame, _fileURL.lastPathComponent);
+
     _eof = NO;
 }
 
@@ -174,10 +178,7 @@
 
 - (NSUInteger)readFrames:(NSUInteger)theFrameCount fromFrame:(NSUInteger)theStartFrame intoAudioBufferList:(AudioBufferList *)theAudioBufferList
 {
-    // Check bounds
-    if (theFrameCount + theStartFrame > _lengthInFrames) {
-        [NSException raise:NSRangeException format:@"Cannot read %u frames from frame %u in file %@ of length %u", theFrameCount, theStartFrame, _fileURL.lastPathComponent, _lengthInFrames];
-    }
+    // Don't check bounds.  Will return the number of frames read if less than requested.  This is how you determine EOF
     
     UInt32 framesToReadAndRead = theFrameCount;
     

@@ -31,6 +31,9 @@
 @property (nonatomic, readonly) NSTimeInterval playheadPosTime;
 @property (nonatomic, readonly) NSUInteger playheadPosFrames;
 
+///
+@property (nonatomic, readonly) NSUInteger audioFileLengthInFrames;
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init
 /////////////////////////////////////////////////////////////////////////
@@ -53,7 +56,7 @@
 
 -(void)play;
 -(void)pause;
--(void)seekToFrame:(NSInteger)toFrame;
+-(void)seekToFrame:(NSUInteger)toFrame;
 -(void)loadAudioFileFromURL:(NSURL *)fileURL;
 
 

@@ -37,7 +37,7 @@ void AUMRendererAudioSource::play()
 
 void AUMRendererAudioSource::pause()
 {
-    if (_state != AUMRendererAudioSource::Playing or
+    if (_state != AUMRendererAudioSource::Playing and
         _state != AUMRendererAudioSource::QueuedToPause) {
         [NSException raise:NSInternalInconsistencyException format:@"Source must be in 'Playing' state (or even 'QueuedToPause' we'll allow) in order to 'pause'"];
     }
