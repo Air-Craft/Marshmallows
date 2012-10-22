@@ -44,6 +44,9 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
+/** Calls CAShow on the underlying graph to get some info */
+- (void)printInfo;
+
 /** Add the AUMUnit to the graph. Sets the AUMUnit's _nodeRef and _audioUnitRef properties and cals the _nodeWasAddedToGraph method if defined
  
     \throws kAUMException
@@ -56,7 +59,11 @@
 /////////////////////////////////////////////////////////////////////////
 
 /** Connect two arbitrary busses of two AUMUnits.  If the graph has been init'ed you'll need to call 'update' too (when done changing connections).
- \throws kAUMException
+ 
+    \p STREAM FORMATS
+    If default[In/Out]putFormat property is set to kAUMNoStreamFormat then the stream formats are not set on the busses and they'll use whatever defaults CoreAudio provides.  If they are set, then they'll be used to connect the busses.  If they are different, CA will automagically put in a converter unit.
+ 
+ \throws AUMException::kAUMAudioUnitException on any errors
  */
 - (void)connectOutputBus:(NSUInteger)anOutputBusNum
                   ofUnit:(id<AUMUnitProtocol>)anOutputUnit

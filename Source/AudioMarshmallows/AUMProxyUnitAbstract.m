@@ -48,13 +48,16 @@
     return _proxiedUnit._audioComponentDescription;
 }
 
-- (const NSInteger)maxInputBusNum { return NSIntegerMax; }
-- (const NSInteger)maxOutputBusNum { return NSIntegerMax; }
-- (const AudioStreamBasicDescription)inputStreamFormat { return kAUMUnitCanonicalStreamFormat; }
-- (const AudioStreamBasicDescription)outputStreamFormat { return kAUMUnitCanonicalStreamFormat; }
+- (const NSInteger)maxInputBusNum { return _proxiedUnit.maxInputBusNum; }
+- (const NSInteger)maxOutputBusNum { return _proxiedUnit.maxOutputBusNum; }
+
+- (AudioStreamBasicDescription)defaultInputStreamFormat { return _proxiedUnit.defaultInputStreamFormat; }
+- (AudioStreamBasicDescription)defaultOutputStreamFormat { return _proxiedUnit.defaultOutputStreamFormat; }
+- (void)setDefaultInputStreamFormat:(AudioStreamBasicDescription)aFormat { _proxiedUnit.defaultInputStreamFormat = aFormat; }
+- (void)setDefaultOutputStreamFormat:(AudioStreamBasicDescription)aFormat { _proxiedUnit.defaultOutputStreamFormat = aFormat; }
+
 
 /////////////////////////////////////////////////////////////////////////
-
 
 - (void)_nodeWasAddedToGraph
 {

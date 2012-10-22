@@ -27,6 +27,8 @@
     AUMFilePlayerUnitRenderer *_renderer;
     AUMRendererAudioSource *_audioSource;
     AUMAudioFileReader *_audioFile;
+    AudioStreamBasicDescription _internalStreamFormat;    ///< Interval ASBD for the RCB and audio source streams
+    
     
     NSTimeInterval _sampleRate;
     NSUInteger _diskBufferSizeInFrames;
@@ -97,7 +99,7 @@
     _playheadPosTime = 0.0;
     _playheadPosFrames = 0.0;
     _seekIsPending = NO;
-    _remoteIOUnit = _proxiedUnit = [[AUMRemoteIOUnit alloc] init]; // strong type for convenience
+    _remoteIOUnit = _proxiedUnit = [[AUMRemoteIOUnit alloc] initWithSampleRate:theSampleRate]; // strong type for convenience
     _sampleRate = theSampleRate;
  
     AURenderCallbackStruct rcb;
@@ -105,11 +107,17 @@
     _renderer = new AUMFilePlayerUnitRenderer(theSampleRate, ioBufferInFrames);
     rcb.inputProc = &AUMFilePlayerUnitRenderer::renderCallback;
     rcb.inputProcRefCon = (void *)_renderer;
+    
+    _internalStreamFormat = _renderer->requiredAudioFormat();
+    
+    // Set the remote IO's format to match ours and 
+    _remoteIOUnit.defaultInputStreamFormat = _internalStreamFormat;
     [_remoteIOUnit setRenderCallback:rcb forInputBus:0];
     
     // Grab the audioSource from the renderer and initialise its buffer
     _audioSource = _renderer->audioSource();
-    _audioSource->initializeBuffer(_diskBufferSizeInFrames, self.outputStreamFormat.mBytesPerFrame);
+    _audioSource->initializeBuffer(_diskBufferSizeInFrames, _internalStreamFormat.mBytesPerFrame);
+    
     
     
     /////////////////////////////////////////
@@ -136,6 +144,19 @@
     if (_renderer)
         delete _renderer;
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - AUMUnitProtocol Overrides
+/////////////////////////////////////////////////////////////////////////
+
+/** Disable input bus as this is output only */
+- (const NSInteger)maxInputBusNum { return -1; }
+
+/** Only one output at this time too */
+- (const NSInteger)maxOutputBusNum { return 0; }
+
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -178,7 +199,7 @@
 {
     // Load the file
     AUMAudioFileReader *newFile = [AUMAudioFileReader audioFileForURL:fileURL];
-    newFile.outFormat = self.outputStreamFormat;
+    newFile.outFormat = _internalStreamFormat;
 
     @synchronized(self) {
         _seekIsPending = NO; // just in case its possible
@@ -367,27 +388,6 @@
     [_audioFile seekToFrame:theFrame];
     [self _replenishSourceBuffer];
 }
-
-
-
-/////////////////////////////////////////////////////////////////////////
-#pragma mark - AUMUnitProtocol Overrides
-/////////////////////////////////////////////////////////////////////////
-
-/** Disable input bus as this is output only */
-- (const NSInteger)maxInputBusNum { return -1; }
-
-/** Only one output at this time too */
-- (const NSInteger)maxOutputBusNum { return 0; }
-
-/** There are no inputs */
-- (const AudioStreamBasicDescription)inputStreamFormat
-{
-    return kAUMUnitCanonicalStreamFormat;
-}
-
-/** Defined by the RCB in AUMFilePlayerUnitRenderer */
-- (const AudioStreamBasicDescription)outputStreamFormat { return _renderer->requiredAudioFormat(); }
 
 
 @end

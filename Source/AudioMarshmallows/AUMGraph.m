@@ -78,6 +78,13 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
+- (void)printInfo
+{
+    CAShow(_graphRef);
+}
+
+/////////////////////////////////////////////////////////////////////////
+
 - (void)addUnit:(id<AUMUnitProtocol>)anAUMUnit
 {
     
@@ -127,31 +134,41 @@
     if (anInputBusNum > anInputUnit.maxOutputBusNum) {
         [NSException raise:NSRangeException format:@"Input bus %i exceeds range for AUMUnit %@", anInputBusNum, anInputUnit];
     }
+    if (anInputUnit._graphRef != _graphRef) {
+        [NSException raise:NSInvalidArgumentException format:@"Input AUMUnit is not part of this graph.  Add it before making connections"];
+    }
+    if (anOutputUnit._graphRef != _graphRef) {
+        [NSException raise:NSInvalidArgumentException format:@"Output AUMUnit is not part of this graph.  Add it before making connections"];
+    }
     
     
-    // Set the input unit's bus's format
+    // Set the input unit's bus's format if specified
     AudioStreamBasicDescription format;
-    format = anInputUnit.inputStreamFormat;
-    _(AudioUnitSetProperty(anInputUnit._audioUnitRef,
-                           kAudioUnitProperty_StreamFormat,
-                           kAudioUnitScope_Input,
-                           anInputBusNum,
-                           &format,
-                           sizeof(AudioStreamBasicDescription)),
-      kAUMAudioUnitException,
-      @"Failed to set stream format on input bus %i of %@", anInputBusNum, anInputUnit);
-
+    
+    format = anInputUnit.defaultInputStreamFormat;
+    if (!AUM_isNoStreamFormat(&format)) {
+        _(AudioUnitSetProperty(anInputUnit._audioUnitRef,
+                               kAudioUnitProperty_StreamFormat,
+                               kAudioUnitScope_Input,
+                               anInputBusNum,
+                               &format,
+                               sizeof(AudioStreamBasicDescription)),
+          kAUMAudioUnitException,
+          @"Failed to set stream format on input bus %i of %@", anInputBusNum, anInputUnit);
+    }
+    
     // Set the output unit's bus's format
-    format = anOutputUnit.outputStreamFormat;
-    _(AudioUnitSetProperty(anOutputUnit._audioUnitRef,
-                           kAudioUnitProperty_StreamFormat,
-                           kAudioUnitScope_Output,
-                           anOutputBusNum,
-                           &format,
-                           sizeof(AudioStreamBasicDescription)),
-      kAUMAudioUnitException,
-      @"Failed to set stream format on output bus %i of %@", anOutputBusNum, anOutputUnit);
-
+    format = anOutputUnit.defaultOutputStreamFormat;
+    if (!AUM_isNoStreamFormat(&format)) {
+        _(AudioUnitSetProperty(anOutputUnit._audioUnitRef,
+                               kAudioUnitProperty_StreamFormat,
+                               kAudioUnitScope_Output,
+                               anOutputBusNum,
+                               &format,
+                               sizeof(AudioStreamBasicDescription)),
+          kAUMAudioUnitException,
+          @"Failed to set stream format on output bus %i of %@", anOutputBusNum, anOutputUnit);
+    }
     
     // Call the straight connect method
     _(AUGraphConnectNodeInput(

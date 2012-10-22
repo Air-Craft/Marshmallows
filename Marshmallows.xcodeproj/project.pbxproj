@@ -81,8 +81,6 @@
 		A6D947AC15DAA02D002B42E0 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D947AA15DAA02D002B42E0 /* CoreAudio.framework */; };
 		A6D947AD15DAA033002B42E0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D947A915DAA02D002B42E0 /* AudioToolbox.framework */; };
 		A6D947AE15DAA033002B42E0 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D947AA15DAA02D002B42E0 /* CoreAudio.framework */; };
-		A6D947C015DBEA52002B42E0 /* NSDictionary+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D947BF15DBEA52002B42E0 /* NSDictionary+Marshmallows.m */; };
-		A6D947C115DBEA52002B42E0 /* NSDictionary+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D947BF15DBEA52002B42E0 /* NSDictionary+Marshmallows.m */; };
 		A6FA09EA162D67D00094C279 /* MarshmallowDebug.c in Sources */ = {isa = PBXBuildFile; fileRef = A6FA09E9162D67D00094C279 /* MarshmallowDebug.c */; };
 		A6FA09EB162D67D00094C279 /* MarshmallowDebug.c in Sources */ = {isa = PBXBuildFile; fileRef = A6FA09E9162D67D00094C279 /* MarshmallowDebug.c */; };
 		A6FA09F2162DA5850094C279 /* AUMException.m in Sources */ = {isa = PBXBuildFile; fileRef = A6FA09F1162DA5850094C279 /* AUMException.m */; };
@@ -241,8 +239,6 @@
 		A6D947A915DAA02D002B42E0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A6D947AA15DAA02D002B42E0 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		A6D947BD15DBE6D9002B42E0 /* NSArray+NSDictionary+Subscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+NSDictionary+Subscripting.h"; sourceTree = "<group>"; };
-		A6D947BE15DBEA52002B42E0 /* NSDictionary+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Marshmallows.h"; sourceTree = "<group>"; };
-		A6D947BF15DBEA52002B42E0 /* NSDictionary+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Marshmallows.m"; sourceTree = "<group>"; };
 		A6FA09E7162D678D0094C279 /* MarshmallowDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowDebug.h; sourceTree = "<group>"; };
 		A6FA09E9162D67D00094C279 /* MarshmallowDebug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MarshmallowDebug.c; sourceTree = "<group>"; };
 		A6FA09F0162DA5840094C279 /* AUMException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMException.h; sourceTree = "<group>"; };
@@ -411,6 +407,8 @@
 			isa = PBXGroup;
 			children = (
 				A6434F94161F4E5B00496EAC /* Private */,
+				A6B582B315DC125900D1CA05 /* AUMTypes.h */,
+				A6B582B415DC125900D1CA05 /* AUMTypes.m */,
 				A66E7CD7163167F400565D93 /* AUMAtomicType.h */,
 				A66E7CD8163167F400565D93 /* AUMAtomicType.mm */,
 				A6B582A915DC125900D1CA05 /* AudioMarshmallows.h */,
@@ -420,8 +418,6 @@
 				A6434F9A161F50B100496EAC /* AUMAudioFileReader.m */,
 				A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */,
 				A6434FAA16230F5000496EAC /* AUMCircularBuffer.h */,
-				A6B582B315DC125900D1CA05 /* AUMTypes.h */,
-				A6B582B415DC125900D1CA05 /* AUMTypes.m */,
 				A6FA09F0162DA5840094C279 /* AUMException.h */,
 				A6FA09F1162DA5850094C279 /* AUMException.m */,
 				A6B582AD15DC125900D1CA05 /* AUMGraph.h */,
@@ -429,14 +425,14 @@
 				A6B582B715DC125900D1CA05 /* AUMUnitProtocol.h */,
 				A6B582B515DC125900D1CA05 /* AUMUnitAbstract.h */,
 				A6B582B615DC125900D1CA05 /* AUMUnitAbstract.m */,
-				A6D88160163036AB00D11296 /* AUMProxyUnitAbstract.h */,
-				A6D88161163036AB00D11296 /* AUMProxyUnitAbstract.m */,
 				A6B582B115DC125900D1CA05 /* AUMRemoteIOUnit.h */,
 				A6B582B215DC125900D1CA05 /* AUMRemoteIOUnit.m */,
-				A6B582AB15DC125900D1CA05 /* AUMFilePlayerUnit.h */,
-				A6B582AC15DC125900D1CA05 /* AUMFilePlayerUnit.mm */,
 				A6B582AF15DC125900D1CA05 /* AUMMultichannelMixerUnit.h */,
 				A6B582B015DC125900D1CA05 /* AUMMultichannelMixerUnit.m */,
+				A6D88160163036AB00D11296 /* AUMProxyUnitAbstract.h */,
+				A6D88161163036AB00D11296 /* AUMProxyUnitAbstract.m */,
+				A6B582AB15DC125900D1CA05 /* AUMFilePlayerUnit.h */,
+				A6B582AC15DC125900D1CA05 /* AUMFilePlayerUnit.mm */,
 			);
 			path = AudioMarshmallows;
 			sourceTree = "<group>";
@@ -601,8 +597,6 @@
 				CE8401FB151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.h */,
 				CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */,
 				A6D947BD15DBE6D9002B42E0 /* NSArray+NSDictionary+Subscripting.h */,
-				A6D947BE15DBEA52002B42E0 /* NSDictionary+Marshmallows.h */,
-				A6D947BF15DBEA52002B42E0 /* NSDictionary+Marshmallows.m */,
 				CE8401FD151DD86100BDC2D2 /* NSArray+Marshmallows.h */,
 				CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */,
 				CE8401FF151DD86100BDC2D2 /* NSError+Marshmallows.h */,
@@ -855,7 +849,6 @@
 				A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 				A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
 				A6D69D3F15D52E44009828CF /* MUIDraggablePane.m in Sources */,
-				A6D947C115DBEA52002B42E0 /* NSDictionary+Marshmallows.m in Sources */,
 				A6434F98161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.mm in Sources */,
 				A6434F9C161F50B200496EAC /* AUMAudioFileReader.m in Sources */,
 				A6434FA4161F532D00496EAC /* AUMRendererAudioSource.mm in Sources */,
@@ -903,7 +896,6 @@
 				A6BE0C6615D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 				A6CBD2B815D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
 				A6D69D3E15D52E44009828CF /* MUIDraggablePane.m in Sources */,
-				A6D947C015DBEA52002B42E0 /* NSDictionary+Marshmallows.m in Sources */,
 				A6B582B815DC125900D1CA05 /* AUMFilePlayerUnit.mm in Sources */,
 				A6B582B915DC125900D1CA05 /* AUMGraph.m in Sources */,
 				A6B582BA15DC125900D1CA05 /* AUMMultichannelMixerUnit.m in Sources */,

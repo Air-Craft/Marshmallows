@@ -12,7 +12,7 @@
 
 
 /**
- \brief A work in progress to encapsulate Remote I/O functionality in a readable & OO fashion 
+ \brief A work in progress to encapsulate Remote I/O functionality in a readable & OO fashion.  Defaults to kAUMUnitCanonicalStream format which you should use in your RCBs
  */
 @interface AUMRemoteIOUnit : AUMUnitAbstract
 
@@ -21,10 +21,6 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
-
-/** Convenience method for setting input bus 0 as it's the only one to that can be assigned
--(void)setInputRenderCallback:(AURenderCallbackStruct)aRenderCallback withStreamFormat:(AudioStreamBasicDescription)aStreamFormat;
-*/
 
 
 @end

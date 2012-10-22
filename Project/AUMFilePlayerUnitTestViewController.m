@@ -15,7 +15,10 @@
 @implementation AUMFilePlayerUnitTestViewController
 {
     AUMGraph *_aumGraph;
-    AUMFilePlayerUnit *_aumFPU;
+    AUMFilePlayerUnit *_aumFPU1;
+    AUMFilePlayerUnit *_aumFPU2;
+    AUMMultichannelMixerUnit *_aumMixer;
+    
     __weak IBOutlet UISlider *playhead1Slider;
 }
 
@@ -33,7 +36,7 @@
         /////////////////////////////////////////
         
         [AUMAudioSession setPreferredHardwareSampleRate: 44100.0];
-        [AUMAudioSession setCategory:AVAudioSessionCategoryPlayback];
+        [AUMAudioSession setCategory:AVAudioSessionCategoryPlayAndRecord];
         [AUMAudioSession setPreferredIOBufferDuration:0.005];
         [AUMAudioSession setMixWithOthers:YES];
         NSTimeInterval sampleRate = 0;;
@@ -56,25 +59,49 @@
         /////////////////////////////////////////
         
         _aumGraph = [[AUMGraph alloc] init];
-        _aumFPU = [[AUMFilePlayerUnit alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        _aumFPU1 = [[AUMFilePlayerUnit alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        _aumFPU2 = [[AUMFilePlayerUnit alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        _aumMixer = [[AUMMultichannelMixerUnit alloc] init];
+        _aumMixer.busCount = 2;
         
+        [_aumGraph addUnit:_aumMixer];
+        
+        [_aumGraph addUnit:_aumFPU1];
+        [_aumGraph connectOutputBus:1 ofUnit:_aumFPU1 toInputBus:0 ofUnit:_aumMixer];
+        
+        [_aumGraph addUnit:_aumFPU2];
+        [_aumGraph connectOutputBus:1 ofUnit:_aumFPU2 toInputBus:1 ofUnit:_aumMixer];
+        kAUGraphErr_OutputNodeErr
+        
+        // Stereo pan
+        [_aumMixer setPan:-0.5 onBus:0];
+        [_aumMixer setPan:0.5 onBus:1];
+        
+        [_aumGraph initialize];
+        
+        
+        /////////////////////////////////////////
+        // PREPARE AUDIO FILES
+        /////////////////////////////////////////
+
         // Load the file
         //        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"SWHarp-C3-Medium" withExtension:@"wav"];
         NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"OngKarNirankar" withExtension:@"m4a"];
         
         DLOGs(fileURL);
-        [_aumFPU loadAudioFileFromURL:fileURL];
-        [_aumGraph addUnit:_aumFPU];
-        [_aumGraph initialize];
+        [_aumFPU1 loadAudioFileFromURL:fileURL];
+        [_aumFPU2 loadAudioFileFromURL:fileURL];
+        
+        
         
         
         /////////////////////////////////////////
         // UI SETUP
         /////////////////////////////////////////
         playhead1Slider.minimumValue = 0;
-        playhead1Slider.maximumValue = _aumFPU.audioFileLengthInFrames-10;
+        playhead1Slider.maximumValue = _aumFPU1.audioFileLengthInFrames-10;
         playhead1Slider.value = 0;
-        MMLogInfo(@"FILE LENGTH %u", _aumFPU.audioFileLengthInFrames);
+        MMLogInfo(@"FILE LENGTH %u", _aumFPU1.audioFileLengthInFrames);
         
         /////////////////////////////////////////
         // PLAY!
@@ -84,11 +111,18 @@
         [thd start];
         [_aumGraph start];
         
-        [_aumFPU play];
+        [_aumFPU1 play];
+        // Delay fpu2
+        [NSTimer timerWithTimeInterval:0.25
+                                 block:^() {
+                                     [_aumFPU2 play];
+                                 }
+                               repeats:NO];
         
         
     } @catch (AUMException *e) {
         DLOGs(e);
+        DLOGi(e.OSStatus);
         DLOGs(e.OSStatusAsNSString);
         
         if (e.name == kAUMAudioSessionException) {
@@ -105,13 +139,13 @@
 
 - (IBAction)volume1Changed:(UISlider *)sender
 {
-    _aumFPU.volume = sender.value;
+    _aumFPU1.volume = sender.value;
 }
 
 - (IBAction)playhead1Changed:(UISlider *)sender
 {
     MMLogInfo(@"Updating playhead #1 to frame %u", (NSUInteger)sender.value);
-    [_aumFPU seekToFrame:(NSUInteger)sender.value];
+    [_aumFPU1 seekToFrame:(NSUInteger)sender.value];
 }
 
 

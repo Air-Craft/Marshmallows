@@ -21,4 +21,8 @@ const AudioStreamBasicDescription kAUMUnitCanonicalStreamFormat = {
 };
 
 
+/////////////////////////////////////////////////////////////////////////
+
+const AudioStreamBasicDescription kAUMNoStreamFormat = {0};
+
 /// @}

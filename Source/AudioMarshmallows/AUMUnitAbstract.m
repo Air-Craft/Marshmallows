@@ -8,8 +8,9 @@
 #import "AUMUnitAbstract.h"
 #import "MarshmallowCocoa.h"
 #import "AUMErrorChecking.h"
+#import "AUMException.h"
 #import "AUMTypes.h"
-
+#import "AUMAudioSession.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - AUMUnitAbstract
@@ -21,20 +22,73 @@
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init
 /////////////////////////////////////////////////////////////////////////
-- (id)init
+
+- (id)initWithSampleRate:(NSTimeInterval)aSampleRate
 {
+    if (self.class == AUMUnitAbstract.class) {
+        [NSException raise:NSInternalInconsistencyException format:@"Abstract class cannot be instantiated directly."];
+    }
+    
     self = [super init];
     if (self) {
+        _sampleRate = aSampleRate;
         _inputStreamFormatsQueue = [NSMutableDictionary new];
         _outputStreamFormatsQueue = [NSMutableDictionary new];
         _renderCallbacksQueue = [NSMutableDictionary new];
+        
+        // Default to no stream format so the AUGraph uses its defaults
+        _defaultInputStreamFormat = kAUMNoStreamFormat;
+        _defaultOutputStreamFormat = kAUMNoStreamFormat;
+        _maxInputBusNum = NSIntegerMax;
+        _maxOutputBusNum = NSIntegerMax;
     }
     return self;
 }
 
 /////////////////////////////////////////////////////////////////////////
-#pragma mark - Property Accessors
+
+- (id)init
+{
+    NSTimeInterval sr = AUMAudioSession.currentHardwareSampleRate;
+    if (!sr) {
+        [AUMException raise:kAUMAudioUnitException format:@"Sample rate could not be retrieved from the audio session.  Set via AUMAudioSession first or use initWithSampleRate:"];
+    }
+    
+    return [self initWithSampleRate:sr];
+}
+
+
+
 /////////////////////////////////////////////////////////////////////////
+#pragma mark - Properties
+/////////////////////////////////////////////////////////////////////////
+
+@synthesize maxInputBusNum=_maxInputBusNum;
+@synthesize maxOutputBusNum=_maxOutputBusNum;
+
+/////////////////////////////////////////////////////////////////////////
+
+@synthesize defaultInputStreamFormat=_defaultInputStreamFormat;
+- (AudioStreamBasicDescription)defaultInputStreamFormat
+{
+    // Set the sample rate if this isn't the empty stream format
+    if (!AUM_isNoStreamFormat(&_defaultInputStreamFormat)) {
+        _defaultInputStreamFormat.mSampleRate = _sampleRate;
+    }
+    return _defaultInputStreamFormat;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+@synthesize defaultOutputStreamFormat=_defaultOutputStreamFormat;
+- (AudioStreamBasicDescription)defaultOutputStreamFormat
+{
+    // Set the sample rate if this isn't the empty stream format
+    if (!AUM_isNoStreamFormat(&_defaultOutputStreamFormat)) {
+        _defaultOutputStreamFormat.mSampleRate = _sampleRate;
+    }
+    return _defaultOutputStreamFormat;
+}
 
 
 
@@ -42,6 +96,8 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 /*
+REMOVED.  For simplicity, its better to set these when connecting busses or render callbacks. 
+ 
 - (void)setStreamFormat:(AudioStreamBasicDescription)aStreamFormat forInputBus:(NSUInteger)aBusNum
 {
     // If added to the graph already then set the AU property...
@@ -56,7 +112,7 @@
     } else {
         // Add it to our dictionary
         NSValue *asValue = [NSValue value:&aStreamFormat withObjCType:@encode(AudioStreamBasicDescription)];
-        [_inputStreamFormatsQueue setObject:asValue forIntegerKey:aBusNum];
+        _inputStreamFormatsQueue[@(aBusNum)] = asValue;
     }
 }
 
@@ -77,7 +133,7 @@
         
         // Add it to our dictionary
         NSValue *asValue = [NSValue value:&aStreamFormat withObjCType:@encode(AudioStreamBasicDescription)];
-        [_outputStreamFormatsQueue setObject:asValue forIntegerKey:aBusNum];
+        _outputStreamFormatsQueue[@(aBusNum)] = asValue;
     }
 }*/
 
@@ -86,20 +142,22 @@
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forInputBus:(NSUInteger)aBusNum
 {
     // Get the input stream format
-    AudioStreamBasicDescription asbd = self.inputStreamFormat;
+    AudioStreamBasicDescription asbd = self.defaultInputStreamFormat;
     
     // If added to the graph already then set the AU property...
     if (_hasBeenAddedToGraph) {
         
-        // Stream format
-        _(AudioUnitSetProperty(_audioUnitRef,
-                               kAudioUnitProperty_StreamFormat,
-                               kAudioUnitScope_Input,
-                               aBusNum,
-                               &asbd,
-                               sizeof(AudioStreamBasicDescription)),
-          kAUMAudioUnitException,
-          @"Failed to set stream format (for render callback) on input bus %i of %@", aBusNum, self);
+        // Stream format if set
+        if (!AUM_isNoStreamFormat(&asbd)) {
+            _(AudioUnitSetProperty(_audioUnitRef,
+                                   kAudioUnitProperty_StreamFormat,
+                                   kAudioUnitScope_Input,
+                                   aBusNum,
+                                   &asbd,
+                                   sizeof(AudioStreamBasicDescription)),
+              kAUMAudioUnitException,
+              @"Failed to set stream format (for render callback) on input bus %i of %@", aBusNum, self);
+        }
         
         // RCB
         _(AudioUnitSetProperty(_audioUnitRef,
@@ -114,12 +172,14 @@
     } else {
         
         // Add Stream Format to our dictionary
-        NSValue *asbdValue = [NSValue value:&asbd withObjCType:@encode(AudioStreamBasicDescription)];
-        [_inputStreamFormatsQueue setObject:asbdValue forIntegerKey:aBusNum];
+        if (!AUM_isNoStreamFormat(&asbd)) {
+            NSValue *asbdValue = [NSValue value:&asbd withObjCType:@encode(AudioStreamBasicDescription)];
+            _inputStreamFormatsQueue[@(aBusNum)] = asbdValue;
+        }
         
         // Add RCB to our dictionary
         NSValue *rcbValue = [NSValue value:&aRenderCallback withObjCType:@encode(AURenderCallbackStruct)];
-        [_renderCallbacksQueue setObject:rcbValue forIntegerKey:aBusNum];
+        _renderCallbacksQueue[@(aBusNum)] = rcbValue;
     }
 }
 
@@ -146,18 +206,6 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-/** Defaults to infinity.  Set to -1 to specify no-input */
-- (const NSInteger)maxInputBusNum { return NSIntegerMax; }
-- (const NSInteger)maxOutputBusNum { return NSIntegerMax; }
-
-/////////////////////////////////////////////////////////////////////////
-
-/** Defaults to the AUM Unit Canonical */
-- (const AudioStreamBasicDescription)inputStreamFormat { return kAUMUnitCanonicalStreamFormat; }
-- (const AudioStreamBasicDescription)outputStreamFormat { return kAUMUnitCanonicalStreamFormat; }
-
-/////////////////////////////////////////////////////////////////////////
-
 /** Handles late binding of stream formats and callbacks.  Subclasses should call super */
 - (void)_nodeWasAddedToGraph
 {
@@ -173,7 +221,7 @@
         // Unwrap values
         NSInteger busNum = [key integerValue];
         AudioStreamBasicDescription format;
-        [(NSValue *)[_inputStreamFormatsQueue objectForKey:key] getValue:&format];
+        [(NSValue *)_inputStreamFormatsQueue[key] getValue:&format];
         
         _(AudioUnitSetProperty(_audioUnitRef,
                                kAudioUnitProperty_StreamFormat,
@@ -192,7 +240,7 @@
         // Unwrap values
         NSUInteger busNum = [key unsignedIntegerValue];
         AudioStreamBasicDescription format;
-        [(NSValue *)[_outputStreamFormatsQueue objectForKey:key] getValue:&format];
+        [(NSValue *)_outputStreamFormatsQueue[key] getValue:&format];
         
         _(AudioUnitSetProperty(_audioUnitRef,
                                kAudioUnitProperty_StreamFormat,
@@ -211,7 +259,7 @@
         // Unwrap values
         NSUInteger busNum = [key unsignedIntegerValue];
         AURenderCallbackStruct callback;
-        [(NSValue *)[_renderCallbacksQueue objectForKey:key] getValue:&callback];
+        [(NSValue *)_renderCallbacksQueue[key] getValue:&callback];
         
         _(AudioUnitSetProperty(_audioUnitRef,
                                kAudioUnitProperty_SetRenderCallback,

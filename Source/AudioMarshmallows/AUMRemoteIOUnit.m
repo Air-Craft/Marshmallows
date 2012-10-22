@@ -6,7 +6,7 @@
  */
 
 #import "AUMRemoteIOUnit.h"
-
+#import "AUMTypes.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - AUMRemoteIOUnit
@@ -19,16 +19,16 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
-/** Convenience method for setting input bus 0 as it's the only one to that can be assigned 
-    \throws kAUMException
- 
--(void)setInputRenderCallback:(AURenderCallbackStruct)aRenderCallback withStreamFormat:(AudioStreamBasicDescription)aStreamFormat
+- (id)init
 {
-    [self setRenderCallback:aRenderCallback forInputBus:0];
-    [self setStreamFormat:aStreamFormat forInputBus:0];
+    if (self = [super init]) {
+        // Default our i/o formats to canonical for easy user setup
+        _defaultInputStreamFormat = kAUMUnitCanonicalStreamFormat;
+        _defaultOutputStreamFormat = kAUMUnitCanonicalStreamFormat;
+        
+    }
+    return self;
 }
- */
-
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - AUMUnitAbstract Fulfillment

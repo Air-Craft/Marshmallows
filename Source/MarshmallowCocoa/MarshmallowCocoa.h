@@ -12,7 +12,6 @@
 #import "MNSMutableObjectKeyDictionary.h"
 #import "NSError+Marshmallows.h"
 #import "NSArray+Marshmallows.h"
-#import "NSDictionary+Marshmallows.h"
 #import "NSArray+NSDictionary+Subscripting.h"
 #import "NSTimer+MMBlocks.h"
 #import "NSInvocation+MMBlocks.h"
