@@ -53,9 +53,6 @@
 
 }
 
-@synthesize playheadPosTime=_playheadPosTime;
-@synthesize playheadPosFrames=_playheadPosFrames;
-
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init
@@ -96,10 +93,8 @@
     _audioSource = NULL;
     _loop = NO;
     _sourcePosOffsetInFrames = 0;
-    _playheadPosTime = 0.0;
-    _playheadPosFrames = 0.0;
     _seekIsPending = NO;
-    _remoteIOUnit = _proxiedUnit = [[AUMRemoteIOUnit alloc] initWithSampleRate:theSampleRate]; // strong type for convenience
+    _remoteIOUnit = _proxiedUnit = [[AUMRemoteIOUnit alloc] init]; // strong type for convenience
     _sampleRate = theSampleRate;
  
     AURenderCallbackStruct rcb;

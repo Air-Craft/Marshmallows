@@ -127,65 +127,7 @@
               toInputBus:(NSUInteger)anInputBusNum
                   ofUnit:(id<AUMUnitProtocol>)anInputUnit
 {
-    // Check the bus numbers are legit for the unit
-    if (anOutputBusNum > anOutputUnit.maxOutputBusNum) {
-        [NSException raise:NSRangeException format:@"Output bus %i exceeds range for AUMUnit %@", anOutputBusNum, anOutputUnit];
-    }
-    if (anInputBusNum > anInputUnit.maxOutputBusNum) {
-        [NSException raise:NSRangeException format:@"Input bus %i exceeds range for AUMUnit %@", anInputBusNum, anInputUnit];
-    }
-    if (anInputUnit._graphRef != _graphRef) {
-        [NSException raise:NSInvalidArgumentException format:@"Input AUMUnit is not part of this graph.  Add it before making connections"];
-    }
-    if (anOutputUnit._graphRef != _graphRef) {
-        [NSException raise:NSInvalidArgumentException format:@"Output AUMUnit is not part of this graph.  Add it before making connections"];
-    }
-    
-    
-    // Set the input unit's bus's format if specified
-    AudioStreamBasicDescription format;
-    
-    format = anInputUnit.defaultInputStreamFormat;
-    if (!AUM_isNoStreamFormat(&format)) {
-        _(AudioUnitSetProperty(anInputUnit._audioUnitRef,
-                               kAudioUnitProperty_StreamFormat,
-                               kAudioUnitScope_Input,
-                               anInputBusNum,
-                               &format,
-                               sizeof(AudioStreamBasicDescription)),
-          kAUMAudioUnitException,
-          @"Failed to set stream format on input bus %i of %@", anInputBusNum, anInputUnit);
-    }
-    
-    // Set the output unit's bus's format
-    format = anOutputUnit.defaultOutputStreamFormat;
-    if (!AUM_isNoStreamFormat(&format)) {
-        _(AudioUnitSetProperty(anOutputUnit._audioUnitRef,
-                               kAudioUnitProperty_StreamFormat,
-                               kAudioUnitScope_Output,
-                               anOutputBusNum,
-                               &format,
-                               sizeof(AudioStreamBasicDescription)),
-          kAUMAudioUnitException,
-          @"Failed to set stream format on output bus %i of %@", anOutputBusNum, anOutputUnit);
-    }
-    
-    // Call the straight connect method
-    _(AUGraphConnectNodeInput(
-                              _graphRef,
-                              anOutputUnit._nodeRef,
-                              anOutputBusNum,
-                              anInputUnit._nodeRef,
-                              anInputBusNum
-                              ),
-      kAUMAudioUnitException,
-      @"Failed to connect output bus %i of %@ to input bus %i of %@", anOutputBusNum, anOutputUnit, anInputBusNum, anInputUnit);
-    
-    
-    // DONT UPDATE:  Let the user do it in case they wish to make multiple changes
-    ///if (self.isInitialized) {
-    //    [self update];
-    //}
+    [anInputUnit connectToInputBus:anInputBusNum AUMUnit:anOutputUnit outputBus:anOutputBusNum];
 }
 
 /////////////////////////////////////////////////////////////////////////

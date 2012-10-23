@@ -33,14 +33,17 @@
 @property (nonatomic, readonly) const AudioComponentDescription _audioComponentDescription;
 
 /** Number of the max bus. ie 0 for 1 bus, 9 for 10 busses.  -1 for none (eg an AU with external no input) */
-@property (nonatomic, readonly) const NSInteger maxInputBusNum;
-@property (nonatomic, readonly) const NSInteger maxOutputBusNum;
-
-/** Stream formats used when connecting input and output busses of two units.  Set to empty ASBD ({0}) to not have the format explicitly set */
-@property (nonatomic) AudioStreamBasicDescription defaultInputStreamFormat;
-@property (nonatomic) AudioStreamBasicDescription defaultOutputStreamFormat;
+@property (nonatomic, readonly) NSInteger inputBusCount;
+@property (nonatomic, readonly) NSInteger outputBusCount;
 
 /// @}
+
+/** Make a connection between two units on a graph 
+ Allow the unit to define this even though it's graph dependent. This allows them to do things like redirect bus requests to another number, or assign stream formats
+ \throws NSRangeException on bus number exceeds possible range
+ \throws NSInternalInconsistencyException if both units are not added to the same graph prior to call
+ */
+- (void)connectToInputBus:(NSUInteger)anInputBusNum AUMUnit:(id<AUMUnitProtocol>)anAUMUnit outputBus:(NSUInteger)anOutputBusBum;
 
 
 @optional

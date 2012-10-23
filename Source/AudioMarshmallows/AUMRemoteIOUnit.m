@@ -23,9 +23,8 @@
 {
     if (self = [super init]) {
         // Default our i/o formats to canonical for easy user setup
-        _defaultInputStreamFormat = kAUMUnitCanonicalStreamFormat;
-        _defaultOutputStreamFormat = kAUMUnitCanonicalStreamFormat;
-        
+        _inputBusCount = 2;
+        _outputBusCount = 2;
     }
     return self;
 }

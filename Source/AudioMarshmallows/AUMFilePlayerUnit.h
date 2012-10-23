@@ -34,10 +34,6 @@
 ///
 @property (nonatomic, readonly) NSUInteger audioFileLengthInFrames;
 
-/// Make stream formats readonly.  Actually input stream format is undefined as there are no inputs
-@property (nonatomic, readonly) AudioStreamBasicDescription defaultInputStreamFormat;
-@property (nonatomic, readonly) AudioStreamBasicDescription defaultOutputStreamFormat;
-
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init
 /////////////////////////////////////////////////////////////////////////

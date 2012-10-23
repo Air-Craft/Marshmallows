@@ -23,7 +23,7 @@
 #pragma mark - Init
 /////////////////////////////////////////////////////////////////////////
 
-- (id)initWithSampleRate:(NSTimeInterval)aSampleRate
+- (id)init
 {
     if (self.class == AUMUnitAbstract.class) {
         [NSException raise:NSInternalInconsistencyException format:@"Abstract class cannot be instantiated directly."];
@@ -31,157 +31,127 @@
     
     self = [super init];
     if (self) {
-        _sampleRate = aSampleRate;
-        _inputStreamFormatsQueue = [NSMutableDictionary new];
-        _outputStreamFormatsQueue = [NSMutableDictionary new];
-        _renderCallbacksQueue = [NSMutableDictionary new];
+        _graphRef = NULL;           // Used to test whether graph was used
+        _nodeRef = 0;
+        _audioUnitRef = NULL;       // Used to test whether setup
         
         // Default to no stream format so the AUGraph uses its defaults
-        _defaultInputStreamFormat = kAUMNoStreamFormat;
-        _defaultOutputStreamFormat = kAUMNoStreamFormat;
-        _maxInputBusNum = NSIntegerMax;
-        _maxOutputBusNum = NSIntegerMax;
+        _inputBusCount = NSIntegerMax;
+        _outputBusCount = NSIntegerMax;
     }
     return self;
 }
 
 /////////////////////////////////////////////////////////////////////////
 
-- (id)init
+- (void)dealloc
 {
-    NSTimeInterval sr = AUMAudioSession.currentHardwareSampleRate;
-    if (!sr) {
-        [AUMException raise:kAUMAudioUnitException format:@"Sample rate could not be retrieved from the audio session.  Set via AUMAudioSession first or use initWithSampleRate:"];
+    // Destroy manually if not in the graph
+    if (!_graphRef) {
+        AudioComponentInstanceDispose(_audioUnitRef);
     }
-    
-    return [self initWithSampleRate:sr];
 }
-
-
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
 /////////////////////////////////////////////////////////////////////////
 
-@synthesize maxInputBusNum=_maxInputBusNum;
-@synthesize maxOutputBusNum=_maxOutputBusNum;
-
-/////////////////////////////////////////////////////////////////////////
-
-@synthesize defaultInputStreamFormat=_defaultInputStreamFormat;
-- (AudioStreamBasicDescription)defaultInputStreamFormat
-{
-    // Set the sample rate if this isn't the empty stream format
-    if (!AUM_isNoStreamFormat(&_defaultInputStreamFormat)) {
-        _defaultInputStreamFormat.mSampleRate = _sampleRate;
-    }
-    return _defaultInputStreamFormat;
-}
-
-/////////////////////////////////////////////////////////////////////////
-
-@synthesize defaultOutputStreamFormat=_defaultOutputStreamFormat;
-- (AudioStreamBasicDescription)defaultOutputStreamFormat
-{
-    // Set the sample rate if this isn't the empty stream format
-    if (!AUM_isNoStreamFormat(&_defaultOutputStreamFormat)) {
-        _defaultOutputStreamFormat.mSampleRate = _sampleRate;
-    }
-    return _defaultOutputStreamFormat;
-}
+@synthesize inputBusCount=_inputBusCount;
+@synthesize outputBusCount=_outputBusCount;
 
 
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
-/*
-REMOVED.  For simplicity, its better to set these when connecting busses or render callbacks. 
+
+- (void)instantiateWithoutGraph
+{
+    AudioComponentDescription desc = self._audioComponentDescription;
+    AudioComponent comp = AudioComponentFindNext(NULL, &desc);
+    _(AudioComponentInstanceNew(comp,
+                                &_audioUnitRef),
+      kAUMAudioUnitException,
+      @"Error creating new instance (no graph)");
+
+    _(AudioUnitInitialize(_audioUnitRef),
+      kAUMAudioUnitException,
+      @"Error initialising new unit instance (no graph)");
+}
+
+/////////////////////////////////////////////////////////////////////////
  
 - (void)setStreamFormat:(AudioStreamBasicDescription)aStreamFormat forInputBus:(NSUInteger)aBusNum
 {
-    // If added to the graph already then set the AU property...
-    if (_hasBeenAddedToGraph) {
-        _xAU(AudioUnitSetProperty(_audioUnitRef,
-                               kAudioUnitProperty_StreamFormat,
-                               kAudioUnitScope_Input,
-                               aBusNum,
-                               &aStreamFormat,
-                               sizeof(aStreamFormat)),
-          [NSString stringWithFormat:@"Failed to set stream format on input bus %i of %@", aBusNum, self]);
-    } else {
-        // Add it to our dictionary
-        NSValue *asValue = [NSValue value:&aStreamFormat withObjCType:@encode(AudioStreamBasicDescription)];
-        _inputStreamFormatsQueue[@(aBusNum)] = asValue;
+    if (!_audioUnitRef) {
+        [NSException raise:NSInternalInconsistencyException format:@"AUMUnit must be added to graph or instantiateWithoutGraph called prior to this method"];
     }
+    _(AudioUnitSetProperty(_audioUnitRef,
+                           kAudioUnitProperty_StreamFormat,
+                           kAudioUnitScope_Input,
+                           aBusNum,
+                           &aStreamFormat,
+                           sizeof(aStreamFormat)),
+      kAUMAudioUnitException,
+      @"Failed to set stream format on input bus %i of %@", aBusNum, self);
 }
 
 /////////////////////////////////////////////////////////////////////////
 
 - (void)setStreamFormat:(AudioStreamBasicDescription)aStreamFormat forOutputBus:(NSUInteger)aBusNum
 {
-    // If added to the graph already then set the AU property...
-    if (_hasBeenAddedToGraph) {
-        _xAU(AudioUnitSetProperty(_audioUnitRef,
-                               kAudioUnitProperty_StreamFormat,
-                               kAudioUnitScope_Output,
-                               aBusNum,
-                               &aStreamFormat,
-                               sizeof(aStreamFormat)),
-          [NSString stringWithFormat:@"Failed to set stream format on output bus %i of %@", aBusNum, self]);
-    } else {
-        
-        // Add it to our dictionary
-        NSValue *asValue = [NSValue value:&aStreamFormat withObjCType:@encode(AudioStreamBasicDescription)];
-        _outputStreamFormatsQueue[@(aBusNum)] = asValue;
+    if (!_audioUnitRef) {
+        [NSException raise:NSInternalInconsistencyException format:@"AUMUnit must be added to graph or instantiateWithoutGraph called prior to this method"];
     }
-}*/
+    // If added to the graph already then set the AU property...
+    _(AudioUnitSetProperty(_audioUnitRef,
+                           kAudioUnitProperty_StreamFormat,
+                           kAudioUnitScope_Output,
+                           aBusNum,
+                           &aStreamFormat,
+                           sizeof(aStreamFormat)),
+      kAUMAudioUnitException,
+      @"Failed to set stream format on output bus %i of %@", aBusNum, self);
+}
 
 /////////////////////////////////////////////////////////////////////////
 
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forInputBus:(NSUInteger)aBusNum
 {
-    // Get the input stream format
-    AudioStreamBasicDescription asbd = self.defaultInputStreamFormat;
-    
-    // If added to the graph already then set the AU property...
-    if (_hasBeenAddedToGraph) {
-        
-        // Stream format if set
-        if (!AUM_isNoStreamFormat(&asbd)) {
-            _(AudioUnitSetProperty(_audioUnitRef,
-                                   kAudioUnitProperty_StreamFormat,
-                                   kAudioUnitScope_Input,
-                                   aBusNum,
-                                   &asbd,
-                                   sizeof(AudioStreamBasicDescription)),
-              kAUMAudioUnitException,
-              @"Failed to set stream format (for render callback) on input bus %i of %@", aBusNum, self);
-        }
-        
-        // RCB
-        _(AudioUnitSetProperty(_audioUnitRef,
-                               kAudioUnitProperty_SetRenderCallback,
-                               kAudioUnitScope_Input,
-                               aBusNum,
-                               &aRenderCallback,
-                               sizeof(aRenderCallback)),
-          kAUMAudioUnitException,
-          @"Failed to set render callback on input bus %i of %@", aBusNum, self);
-        
-    } else {
-        
-        // Add Stream Format to our dictionary
-        if (!AUM_isNoStreamFormat(&asbd)) {
-            NSValue *asbdValue = [NSValue value:&asbd withObjCType:@encode(AudioStreamBasicDescription)];
-            _inputStreamFormatsQueue[@(aBusNum)] = asbdValue;
-        }
-        
-        // Add RCB to our dictionary
-        NSValue *rcbValue = [NSValue value:&aRenderCallback withObjCType:@encode(AURenderCallbackStruct)];
-        _renderCallbacksQueue[@(aBusNum)] = rcbValue;
+    if (!_audioUnitRef) {
+        [NSException raise:NSInternalInconsistencyException format:@"AUMUnit must be added to graph or instantiateWithoutGraph called prior to this method"];
     }
+    
+    // RCB
+    _(AudioUnitSetProperty(_audioUnitRef,
+                           kAudioUnitProperty_SetRenderCallback,
+                           kAudioUnitScope_Input,
+                           aBusNum,
+                           &aRenderCallback,
+                           sizeof(aRenderCallback)),
+      kAUMAudioUnitException,
+      @"Failed to set render callback on input bus %i of %@", aBusNum, self);
 }
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forOutputBus:(NSUInteger)aBusNum
+{
+    if (!_audioUnitRef) {
+        [NSException raise:NSInternalInconsistencyException format:@"AUMUnit must be added to graph or instantiateWithoutGraph called prior to this method"];
+    }
+    
+    // RCB
+    _(AudioUnitSetProperty(_audioUnitRef,
+                           kAudioUnitProperty_SetRenderCallback,
+                           kAudioUnitScope_Output,
+                           aBusNum,
+                           &aRenderCallback,
+                           sizeof(aRenderCallback)),
+      kAUMAudioUnitException,
+      @"Failed to set render callback on input bus %i of %@", aBusNum, self);
+}
+
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -204,75 +174,42 @@ REMOVED.  For simplicity, its better to set these when connecting busses or rend
     return r;
 }
 
+    
 /////////////////////////////////////////////////////////////////////////
 
-/** Handles late binding of stream formats and callbacks.  Subclasses should call super */
-- (void)_nodeWasAddedToGraph
+- (void)connectToInputBus:(NSUInteger)anInputBusNum AUMUnit:(id<AUMUnitProtocol>)anAUMUnit outputBus:(NSUInteger)anOutputBusNum
 {
-    // Indicate
-    _hasBeenAddedToGraph = YES;
-    
-    // Loop through our queues and set the AU properties
-    
-    // INPUT STREAM FORMATS
-    
-    for (NSNumber *key in _inputStreamFormatsQueue) {
-        
-        // Unwrap values
-        NSInteger busNum = [key integerValue];
-        AudioStreamBasicDescription format;
-        [(NSValue *)_inputStreamFormatsQueue[key] getValue:&format];
-        
-        _(AudioUnitSetProperty(_audioUnitRef,
-                               kAudioUnitProperty_StreamFormat,
-                               kAudioUnitScope_Input,
-                               busNum,
-                               &format,
-                               sizeof(format)),
-          kAUMAudioUnitException,
-          [NSString stringWithFormat:@"Failed to set stream format on input bus %i of %@", busNum, self]);
+    // Check the bus numbers are legit for the units
+    if (anInputBusNum >= self.inputBusCount) {
+        [NSException raise:NSRangeException format:@"Output bus %i exceeds range for AUMUnit %@", anOutputBusNum, self];
     }
-    [_inputStreamFormatsQueue removeAllObjects];     // Clear the queue
-    
-    // OUTPUT STREAM FORMATS
-    for (NSNumber *key in _outputStreamFormatsQueue) {
-        
-        // Unwrap values
-        NSUInteger busNum = [key unsignedIntegerValue];
-        AudioStreamBasicDescription format;
-        [(NSValue *)_outputStreamFormatsQueue[key] getValue:&format];
-        
-        _(AudioUnitSetProperty(_audioUnitRef,
-                               kAudioUnitProperty_StreamFormat,
-                               kAudioUnitScope_Output,
-                               busNum,
-                               &format,
-                               sizeof(format)),
-          kAUMAudioUnitException,
-          [NSString stringWithFormat:@"Failed to set stream format on output bus %i of %@", busNum, self]);
+    if (anOutputBusNum >= anAUMUnit.outputBusCount) {
+        [NSException raise:NSRangeException format:@"Input bus %i exceeds range for AUMUnit %@", anInputBusNum, anAUMUnit];
     }
-    [_outputStreamFormatsQueue removeAllObjects];     // Clear the queue
+    
+    // Check both self and the input unit are part of the graph
+    if (!_graphRef) {
+        [NSException raise:NSInternalInconsistencyException format:@"Must be added to a graph before calling this method"];
+    }
+    if (anAUMUnit._graphRef != _graphRef) {
+        [NSException raise:NSInvalidArgumentException format:@"Input AUMUnit is not part of this graph.  Add it before making connections"];
+    }
+    
+    // Do the connection...
+    _(AUGraphConnectNodeInput(_graphRef,
+                              anAUMUnit._nodeRef,
+                              anOutputBusNum,
+                              self._nodeRef,
+                              anInputBusNum
+                              ),
+      kAUMAudioUnitException,
+      @"Failed to connect output bus %i of %@ to input bus %i of %@", anOutputBusNum, anAUMUnit, anInputBusNum, self);
+    
+    // DONT UPDATE:  Let the user do it in case they wish to make multiple changes
+    // [self update];
 
-    // INPUT RENDER CALLBACKS
-    for (NSNumber *key in _renderCallbacksQueue) {
-        
-        // Unwrap values
-        NSUInteger busNum = [key unsignedIntegerValue];
-        AURenderCallbackStruct callback;
-        [(NSValue *)_renderCallbacksQueue[key] getValue:&callback];
-        
-        _(AudioUnitSetProperty(_audioUnitRef,
-                               kAudioUnitProperty_SetRenderCallback,
-                               kAudioUnitScope_Input,
-                               busNum,
-                               &callback,
-                               sizeof(callback)),
-          kAUMAudioUnitException,
-          [NSString stringWithFormat:@"Failed to set render callback on input bus %i of %@", busNum, self]);
-    }
-    [_renderCallbacksQueue removeAllObjects];     // Clear the queue
 }
-
+    
 /// @}
 
 

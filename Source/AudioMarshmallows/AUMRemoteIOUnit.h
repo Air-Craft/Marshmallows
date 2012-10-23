@@ -12,7 +12,7 @@
 
 
 /**
- \brief A work in progress to encapsulate Remote I/O functionality in a readable & OO fashion.  Defaults to kAUMUnitCanonicalStream format which you should use in your RCBs
+ \brief Encapsulates Remote I/O functionality in a readable & OO fashion.  
  */
 @interface AUMRemoteIOUnit : AUMUnitAbstract
 

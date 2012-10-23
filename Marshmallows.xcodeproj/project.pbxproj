@@ -23,6 +23,8 @@
 		A6434FA81622EB5F00496EAC /* NSInvocation+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA61622EB5F00496EAC /* NSInvocation+MMBlocks.m */; };
 		A6434FAB16230F5100496EAC /* AUMCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */; };
 		A6434FAC16230F5100496EAC /* AUMCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */; };
+		A644CD261636ACA400C34512 /* AUMUnitRendererAbstract.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD241636ACA400C34512 /* AUMUnitRendererAbstract.mm */; };
+		A644CD271636ACA400C34512 /* AUMUnitRendererAbstract.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD241636ACA400C34512 /* AUMUnitRendererAbstract.mm */; };
 		A664EFB615CEEB8900182FFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
 		A664EFBB15CEEB8900182FFD /* MarshmallowsStaticLib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A664EFBA15CEEB8900182FFD /* MarshmallowsStaticLib.h */; };
 		A664EFBD15CEEB8900182FFD /* MarshmallowsStaticLib.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFBC15CEEB8900182FFD /* MarshmallowsStaticLib.m */; };
@@ -197,6 +199,8 @@
 		A6434FA61622EB5F00496EAC /* NSInvocation+MMBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+MMBlocks.m"; sourceTree = "<group>"; };
 		A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AUMCircularBuffer.c; sourceTree = "<group>"; };
 		A6434FAA16230F5000496EAC /* AUMCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMCircularBuffer.h; sourceTree = "<group>"; };
+		A644CD241636ACA400C34512 /* AUMUnitRendererAbstract.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMUnitRendererAbstract.mm; sourceTree = "<group>"; };
+		A644CD251636ACA400C34512 /* AUMUnitRendererAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMUnitRendererAbstract.h; sourceTree = "<group>"; };
 		A664EFB515CEEB8900182FFD /* libMarshmallowsStaticLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMarshmallowsStaticLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A664EFB915CEEB8900182FFD /* MarshmallowsStaticLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarshmallowsStaticLib-Prefix.pch"; sourceTree = "<group>"; };
 		A664EFBA15CEEB8900182FFD /* MarshmallowsStaticLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarshmallowsStaticLib.h; sourceTree = "<group>"; };
@@ -377,6 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				A6FA09F4162DAB160094C279 /* AUMErrorChecking.h */,
+				A644CD251636ACA400C34512 /* AUMUnitRendererAbstract.h */,
+				A644CD241636ACA400C34512 /* AUMUnitRendererAbstract.mm */,
 				A6434F95161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.h */,
 				A6434F96161F4E5B00496EAC /* AUMFilePlayerUnitRenderer.mm */,
 				A6434FA1161F532C00496EAC /* AUMRendererAudioSource.h */,
@@ -858,6 +864,7 @@
 				A6FA09F3162DA5850094C279 /* AUMException.m in Sources */,
 				A636EDC1163011B00037F211 /* AUMAudioSession.m in Sources */,
 				A6D88163163036AB00D11296 /* AUMProxyUnitAbstract.m in Sources */,
+				A644CD271636ACA400C34512 /* AUMUnitRendererAbstract.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -914,6 +921,7 @@
 				A6D88162163036AB00D11296 /* AUMProxyUnitAbstract.m in Sources */,
 				A66E7CD9163167F400565D93 /* AUMAtomicType.mm in Sources */,
 				A6ADEBE416330E7E00420769 /* AUMFilePlayerUnitTestViewController.m in Sources */,
+				A644CD261636ACA400C34512 /* AUMUnitRendererAbstract.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

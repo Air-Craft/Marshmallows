@@ -64,6 +64,8 @@
         _aumMixer = [[AUMMultichannelMixerUnit alloc] init];
         _aumMixer.busCount = 2;
         
+        
+        
         [_aumGraph addUnit:_aumMixer];
         
         [_aumGraph addUnit:_aumFPU1];

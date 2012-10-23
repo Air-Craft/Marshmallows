@@ -23,15 +23,18 @@
 #pragma mark - Properties
 /////////////////////////////////////////////////////////////////////////
 
-/** Get/set the input bus count.  Set anytime after init.  Defaults to 2. = maxInputBusNum + 1
+/** Override to allow user setting.  Defaults to 0 and must be set after instantiation.
  \throws kAUMAudioUnitException on set if error */
-@property (nonatomic) NSUInteger busCount;
+@property (nonatomic, readwrite) NSInteger inputBusCount;
 
 @property (nonatomic) AUMAudioControlParameter volume;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init
 /////////////////////////////////////////////////////////////////////////
+
+/** Sample rate needed by the AU */
+- (id)initWithSampleRate:(NSTimeInterval)aSampleRate;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
