@@ -155,34 +155,26 @@ public:
     NSUInteger bufferSizeInFrames() { return _bufferSizeInFrames; }
     void pointersToBufferHeads(void **bufferPtrL, void **bufferPtrR);
     void indicateFramesWrittenToBuffer(NSUInteger framesWritten);
-
-/////////////////////////////////////////////////////////////////////////
+    
+    /////////////////////////////////////////////////////////////////////////
 #pragma mark - Render Callback Publics
-/////////////////////////////////////////////////////////////////////////
-
-private:
-
+    /////////////////////////////////////////////////////////////////////////
+    
+public:
+    
     /// @name Render Callback Publics
-    /// These privates are meant to be accessed by the RCB
-    friend AUMFilePlayerUnitRenderer;
-    /*    friend OSStatus AUMFilePlayerUnitRenderer::renderCallback( void                        *inRefCon,
-     AudioUnitRenderActionFlags  *ioActionFlags,
-     const AudioTimeStamp        *inTimeStamp,
-     UInt32                      inBusNumber,
-     UInt32                      inNumberFrames,
-     AudioBufferList             *ioData
-     );*/
+    /// These are meant for RCB functions only.  
     
     AUM::AtomicUInt32 _state;
     AUM::AtomicFloat32 _volume;
     AUMAudioControlParameter _previousVolume;   ///< Used by RCB only for smooth volume x-sitions.  No need for atomic
     AUM::AtomicFloat32 _pitch;
-
+    
     Float32 _bufferReadPosInFrames;         ///< The current read head in frames + fraction
     
     // Used in the RCB after QueueToPause has been processed
     inline void _setPausedState() { _state = AUMRendererAudioSource::Paused; }
-
+    
     /**
      Read a quantity of frames and update the internal buffer read pointer.
      
@@ -191,11 +183,13 @@ private:
     inline const Float32 _readFramesFromBuffer(void *destBufferL, void *destBufferR, Float32 framesToRead);
     
     /// @}
+    
 
     
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Private API
 /////////////////////////////////////////////////////////////////////////
+private:
     
     AUMCircularBuffer _ringBufferL;
     AUMCircularBuffer _ringBufferR;

@@ -83,7 +83,7 @@
     
     
     // Set the default output format
-    self.outFormat = kAUMUnitCanonicalStreamFormat;     // Sets the property on the ExtAudioFile as well
+    self.outFormat = kAUMStreamFormatAUMUnitCanonical;     // Sets the property on the ExtAudioFile as well
     
     return self;
 }

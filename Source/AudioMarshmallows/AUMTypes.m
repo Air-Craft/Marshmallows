@@ -9,10 +9,23 @@
 #import <CoreAudio/CoreAudioTypes.h>
 
 
-const AudioStreamBasicDescription kAUMUnitCanonicalStreamFormat = {
+const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_IM4_Stereo_SoftwareCodec = {
+    .fileTypeId = kAudioFileAIFFType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatAppleIMA4,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+/////////////////////////////////////////////////////////////////////////
+
+
+const AudioStreamBasicDescription kAUMStreamFormatAUMUnitCanonical = {
     .mFormatID = kAudioFormatLinearPCM,
     .mFormatFlags = kAudioFormatFlagsNativeFloatPacked |kAudioFormatFlagIsNonInterleaved,
-    .mSampleRate = 44100.0,
+    .mSampleRate = kAudioStreamAnyRate,
     .mChannelsPerFrame = 2,
     .mBitsPerChannel = 8 * sizeof(Float32),
     .mFramesPerPacket = 1,

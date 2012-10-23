@@ -11,6 +11,7 @@
 #import <AudioUnit/AudioUnit.h>
 #import <CoreAudio/CoreAudioTypes.h>
 #import "AUMUnitProtocol.h"
+#import "AUMRendererProtocol.h"
 
 
 /**
@@ -65,6 +66,13 @@
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forInputBus:(NSUInteger)aBusNum;
 
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forOutputBus:(NSUInteger)aBusNum;
+
+/** Convenience methods to connect an AUMRenderer.
+ Sets the stream format and connects the RCB
+ */
+- (void)connectRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum;
+
+- (void)connectRenderer:(id<AUMRendererProtocol>)anAUMRenderer toOutputBus:(NSUInteger)aBusNum;
 
 @end
 

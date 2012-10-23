@@ -20,6 +20,7 @@
     AUMMultichannelMixerUnit *_aumMixer;
     AUMRemoteIOUnit *_aumOutputUnit;
     
+    
     __weak IBOutlet UISlider *playhead1Slider;
 }
 
@@ -63,24 +64,20 @@
         
         _aumMixer = [[AUMMultichannelMixerUnit alloc] init];
         [_aumGraph addUnit:_aumMixer];
-        _aumMixer.inputBusCount = 2;
         
         _aumOutputUnit = [[AUMRemoteIOUnit alloc] init];
         [_aumGraph addUnit:_aumOutputUnit];
-        
+
         _aumFPU1 = [[AUMFilePlaybackRenderer alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
         _aumFPU2 = [[AUMFilePlaybackRenderer alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
         
         
         // Link up...
-        [_aumMixer setStreamFormat:_aumFPU1.renderCallbackStreamFormat forInputBus:0];
-        [_aumMixer setRenderCallback:_aumFPU1.renderCallbackStruct forInputBus:0];
-        
-        [_aumMixer setStreamFormat:_aumFPU2.renderCallbackStreamFormat forInputBus:1];
-        [_aumMixer setRenderCallback:_aumFPU2.renderCallbackStruct forInputBus:1];
-        
-        [_aumOutputUnit connectToInputBus:0 AUMUnit:_aumMixer outputBus:0];
-        
+        [_aumGraph connectOutputBus:0 ofUnit:_aumMixer toInputBus:0 ofUnit:_aumOutputUnit];
+        _aumMixer.inputBusCount = 2;
+        [_aumMixer connectRenderer:_aumFPU1 toInputBus:0];
+        [_aumMixer connectRenderer:_aumFPU2 toInputBus:1];
+                
         //kAUGraphErr_OutputNodeErr
         
         // Stereo pan

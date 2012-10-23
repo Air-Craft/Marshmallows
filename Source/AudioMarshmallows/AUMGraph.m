@@ -127,7 +127,35 @@
               toInputBus:(NSUInteger)anInputBusNum
                   ofUnit:(id<AUMUnitProtocol>)anInputUnit
 {
-    [anInputUnit connectToInputBus:anInputBusNum AUMUnit:anOutputUnit outputBus:anOutputBusNum];
+    // Check the bus numbers are legit for the units
+    if (anInputBusNum >= anInputUnit.inputBusCount) {
+        [NSException raise:NSRangeException format:@"Output bus %i exceeds range for AUMUnit %@", anOutputBusNum, anInputUnit];
+    }
+    if (anOutputBusNum >= anOutputUnit.outputBusCount) {
+        [NSException raise:NSRangeException format:@"Input bus %i exceeds range for AUMUnit %@", anInputBusNum, anOutputUnit];
+    }
+    
+    // Check both self and the input unit are part of the graph
+    if (!anInputUnit._graphRef) {
+        [NSException raise:NSInternalInconsistencyException format:@"Must be added to a graph before calling this method"];
+    }
+    if (anOutputUnit._graphRef != anInputUnit._graphRef) {
+        [NSException raise:NSInvalidArgumentException format:@"Input AUMUnit is not part of this graph.  Add it before making connections"];
+    }
+    
+    // Do the connection...
+    _(AUGraphConnectNodeInput(_graphRef,
+                              anOutputUnit._nodeRef,
+                              anOutputBusNum,
+                              anInputUnit._nodeRef,
+                              anInputBusNum
+                              ),
+      kAUMAudioUnitException,
+      @"Failed to connect output bus %i of %@ to input bus %i of %@", anOutputBusNum, anOutputUnit, anInputBusNum, anInputUnit);
+    
+    // DONT UPDATE:  Let the user do it in case they wish to make multiple changes
+    // [self update];
+
 }
 
 /////////////////////////////////////////////////////////////////////////

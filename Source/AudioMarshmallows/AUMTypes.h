@@ -16,10 +16,33 @@
  */
 typedef AudioUnitParameterValue AUMAudioControlParameter;
 
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Audio File Format Types & Constants
+/////////////////////////////////////////////////////////////////////////
+
 /**
- Default ASBD's for AUMUnit I/O busses to use. Currently both are PCM/Non-Interleaved/Native/Packed/Float/stereo/16bit/44.1kHz
+ A way of encapsulating the various enums required to define an output file format.
  */
-FOUNDATION_EXTERN const AudioStreamBasicDescription kAUMUnitCanonicalStreamFormat;
+typedef struct {
+    AudioFileTypeID fileTypeId;
+    AudioStreamBasicDescription streamFormat;
+    UInt32 codecManufacturer;  
+} AUMAudioFileFormatDescription;
+
+
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_IM4_Stereo_SoftwareCodec;
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Audio Stream Formats
+/////////////////////////////////////////////////////////////////////////
+
+/**
+ Useful default for the cleanest Render callback code.  non-interleaved, stereo, Float32. Need to explicitly set the mSampleRate as it defaults to kAudioStreamAnyRate (0)
+ */
+FOUNDATION_EXTERN const AudioStreamBasicDescription kAUMStreamFormatAUMUnitCanonical;
 
 /////////////////////////////////////////////////////////////////////////
 

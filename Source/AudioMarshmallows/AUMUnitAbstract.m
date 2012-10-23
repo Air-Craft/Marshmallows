@@ -152,6 +152,21 @@
       @"Failed to set render callback on input bus %i of %@", aBusNum, self);
 }
 
+/////////////////////////////////////////////////////////////////////////
+
+- (void)connectRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum
+{
+    [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forInputBus:aBusNum];
+    [self setRenderCallback:anAUMRenderer.renderCallbackStruct forInputBus:aBusNum];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)connectRenderer:(id<AUMRendererProtocol>)anAUMRenderer toOutputBus:(NSUInteger)aBusNum
+{
+    [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forOutputBus:aBusNum];
+    [self setRenderCallback:anAUMRenderer.renderCallbackStruct forOutputBus:aBusNum];
+}
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -174,41 +189,6 @@
     return r;
 }
 
-    
-/////////////////////////////////////////////////////////////////////////
-
-- (void)connectToInputBus:(NSUInteger)anInputBusNum AUMUnit:(id<AUMUnitProtocol>)anAUMUnit outputBus:(NSUInteger)anOutputBusNum
-{
-    // Check the bus numbers are legit for the units
-    if (anInputBusNum >= self.inputBusCount) {
-        [NSException raise:NSRangeException format:@"Output bus %i exceeds range for AUMUnit %@", anOutputBusNum, self];
-    }
-    if (anOutputBusNum >= anAUMUnit.outputBusCount) {
-        [NSException raise:NSRangeException format:@"Input bus %i exceeds range for AUMUnit %@", anInputBusNum, anAUMUnit];
-    }
-    
-    // Check both self and the input unit are part of the graph
-    if (!_graphRef) {
-        [NSException raise:NSInternalInconsistencyException format:@"Must be added to a graph before calling this method"];
-    }
-    if (anAUMUnit._graphRef != _graphRef) {
-        [NSException raise:NSInvalidArgumentException format:@"Input AUMUnit is not part of this graph.  Add it before making connections"];
-    }
-    
-    // Do the connection...
-    _(AUGraphConnectNodeInput(_graphRef,
-                              anAUMUnit._nodeRef,
-                              anOutputBusNum,
-                              self._nodeRef,
-                              anInputBusNum
-                              ),
-      kAUMAudioUnitException,
-      @"Failed to connect output bus %i of %@ to input bus %i of %@", anOutputBusNum, anAUMUnit, anInputBusNum, self);
-    
-    // DONT UPDATE:  Let the user do it in case they wish to make multiple changes
-    // [self update];
-
-}
     
 /// @}
 

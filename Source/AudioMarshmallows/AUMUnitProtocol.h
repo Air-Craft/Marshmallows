@@ -38,13 +38,6 @@
 
 /// @}
 
-/** Make a connection between two units on a graph 
- Allow the unit to define this even though it's graph dependent. This allows them to do things like redirect bus requests to another number, or assign stream formats
- \throws NSRangeException on bus number exceeds possible range
- \throws NSInternalInconsistencyException if both units are not added to the same graph prior to call
- */
-- (void)connectToInputBus:(NSUInteger)anInputBusNum AUMUnit:(id<AUMUnitProtocol>)anAUMUnit outputBus:(NSUInteger)anOutputBusBum;
-
 
 @optional
 
