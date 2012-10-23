@@ -71,7 +71,7 @@
         
         [_aumGraph addUnit:_aumFPU2];
         [_aumGraph connectOutputBus:1 ofUnit:_aumFPU2 toInputBus:1 ofUnit:_aumMixer];
-        kAUGraphErr_OutputNodeErr
+        //kAUGraphErr_OutputNodeErr
         
         // Stereo pan
         [_aumMixer setPan:-0.5 onBus:0];

@@ -155,7 +155,7 @@
 - (const NSInteger)maxInputBusNum { return -1; }
 
 /** Only one output at this time too */
-- (const NSInteger)maxOutputBusNum { return 0; }
+- (const NSInteger)maxOutputBusNum { return 1; }
 
 
 

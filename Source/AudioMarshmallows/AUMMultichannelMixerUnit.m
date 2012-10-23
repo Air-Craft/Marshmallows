@@ -101,7 +101,7 @@
 - (AudioComponentDescription)_audioComponentDescription
 {
     AudioComponentDescription desc;
-    desc.componentType          = kAudioUnitType_Output;
+    desc.componentType          = kAudioUnitType_Mixer;
     desc.componentSubType       = kAudioUnitSubType_MultiChannelMixer;
     desc.componentManufacturer  = kAudioUnitManufacturer_Apple;
     desc.componentFlags         = 0;
