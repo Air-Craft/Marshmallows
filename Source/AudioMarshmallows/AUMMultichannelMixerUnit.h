@@ -33,8 +33,12 @@
 #pragma mark - Init
 /////////////////////////////////////////////////////////////////////////
 
-/** Sample rate needed by the AU */
+/** Designated Init. Sample rate needed by the AU */
 - (id)initWithSampleRate:(NSTimeInterval)aSampleRate;
+
+/** Tries to get the sample rate from the AUMAudioSession 
+ \throws NSInteralInconsistencyException if SR == 0 (ie not set) */
+- (id)init;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API

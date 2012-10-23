@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MarshmallowConcurrency.h"
 #import "AUMTypes.h"
-#import "AUMProxyUnitAbstract.h"
+#import "AUMRendererProtocol.h"
 #import "AUMRemoteIOUnit.h"
 
 /**
@@ -20,7 +20,7 @@
  \section Concurrency Considerations
  Any public method which acts on _audioSource and/or _audioFile must be syncro'ed with the thread's update methods.  Otherwise file change and seek operations could lead to collisions
  */
-@interface AUMFilePlayerUnit : AUMProxyUnitAbstract
+@interface AUMFilePlaybackRenderer : NSObject <AUMRendererProtocol>
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
@@ -31,7 +31,6 @@
 @property (nonatomic, readonly) NSTimeInterval playheadPosTime;
 @property (nonatomic, readonly) NSUInteger playheadPosFrames;
 
-///
 @property (nonatomic, readonly) NSUInteger audioFileLengthInFrames;
 
 /////////////////////////////////////////////////////////////////////////

@@ -15,9 +15,10 @@
 @implementation AUMFilePlayerUnitTestViewController
 {
     AUMGraph *_aumGraph;
-    AUMFilePlayerUnit *_aumFPU1;
-    AUMFilePlayerUnit *_aumFPU2;
+    AUMFilePlaybackRenderer *_aumFPU1;
+    AUMFilePlaybackRenderer *_aumFPU2;
     AUMMultichannelMixerUnit *_aumMixer;
+    AUMRemoteIOUnit *_aumOutputUnit;
     
     __weak IBOutlet UISlider *playhead1Slider;
 }
@@ -59,25 +60,32 @@
         /////////////////////////////////////////
         
         _aumGraph = [[AUMGraph alloc] init];
-        _aumFPU1 = [[AUMFilePlayerUnit alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
-        _aumFPU2 = [[AUMFilePlayerUnit alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        
         _aumMixer = [[AUMMultichannelMixerUnit alloc] init];
-        _aumMixer.busCount = 2;
-        
-        
-        
         [_aumGraph addUnit:_aumMixer];
+        _aumMixer.inputBusCount = 2;
         
-        [_aumGraph addUnit:_aumFPU1];
-        [_aumGraph connectOutputBus:1 ofUnit:_aumFPU1 toInputBus:0 ofUnit:_aumMixer];
+        _aumOutputUnit = [[AUMRemoteIOUnit alloc] init];
+        [_aumGraph addUnit:_aumOutputUnit];
         
-        [_aumGraph addUnit:_aumFPU2];
-        [_aumGraph connectOutputBus:1 ofUnit:_aumFPU2 toInputBus:1 ofUnit:_aumMixer];
+        _aumFPU1 = [[AUMFilePlaybackRenderer alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        _aumFPU2 = [[AUMFilePlaybackRenderer alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        
+        
+        // Link up...
+        [_aumMixer setStreamFormat:_aumFPU1.renderCallbackStreamFormat forInputBus:0];
+        [_aumMixer setRenderCallback:_aumFPU1.renderCallbackStruct forInputBus:0];
+        
+        [_aumMixer setStreamFormat:_aumFPU2.renderCallbackStreamFormat forInputBus:1];
+        [_aumMixer setRenderCallback:_aumFPU2.renderCallbackStruct forInputBus:1];
+        
+        [_aumOutputUnit connectToInputBus:0 AUMUnit:_aumMixer outputBus:0];
+        
         //kAUGraphErr_OutputNodeErr
         
         // Stereo pan
-        [_aumMixer setPan:-0.5 onBus:0];
-        [_aumMixer setPan:0.5 onBus:1];
+        [_aumMixer setPan:-1 onBus:0];
+        [_aumMixer setPan:1 onBus:1];
         
         [_aumGraph initialize];
         
@@ -115,8 +123,9 @@
         
         [_aumFPU1 play];
         // Delay fpu2
-        [NSTimer timerWithTimeInterval:0.25
+        [NSTimer scheduledTimerWithTimeInterval:0.25
                                  block:^() {
+                                     DLOG("Play 2...");
                                      [_aumFPU2 play];
                                  }
                                repeats:NO];

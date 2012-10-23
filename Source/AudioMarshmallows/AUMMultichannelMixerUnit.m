@@ -9,6 +9,7 @@
 
 #import <AudioUnit/AudioUnit.h>
 #import "Private/AUMErrorChecking.h"
+#import "AUMAudioSession.h"
 #import "AUMException.h"
 
 
@@ -18,6 +19,7 @@
 
 @implementation AUMMultichannelMixerUnit
 {
+    NSTimeInterval _sampleRate;
 }
 
 
@@ -31,6 +33,7 @@
         _inputBusCount = 0;    // Set to 0 to enforce setting after instantiation
         _outputBusCount = 1;   // Fixed. One output bus only
         _volume = 1.0;
+        _sampleRate = aSampleRate;
     }
     return self;
 }
@@ -39,8 +42,14 @@
 
 - (id)init
 {
-    [NSException raise:NSInternalInconsistencyException format:@"Use designated initWithSampleRate: instead"];
-    return nil;
+    NSTimeInterval sr = AUMAudioSession.currentHardwareSampleRate;
+    
+    // Does this indicate not currently set??
+    if (sr == 0) {
+        [NSException raise:NSInternalInconsistencyException format:@"Sample rate must be set on Audio Session prior to using this initialiser"];
+    }
+
+    return [self initWithSampleRate:sr];
 }
 
 
@@ -57,18 +66,16 @@
     _inputBusCount = newBusCount;
     
     // Set property if ready...
-    if (_audioUnitRef) {
-        UInt32 busCnt = newBusCount;
-        _(AudioUnitSetProperty(_audioUnitRef,
-                               kAudioUnitProperty_ElementCount,
-                               kAudioUnitScope_Input,
-                               0,
-                               &busCnt,
-                               sizeof(busCnt)
-                               ),
-          kAUMAudioUnitException,
-          @"Error setting input bus count to %u on AUMMultiChannelMixerUnit %@", busCnt, self);
-    }
+    UInt32 busCnt = newBusCount;
+    _(AudioUnitSetProperty(_audioUnitRef,
+                           kAudioUnitProperty_ElementCount,
+                           kAudioUnitScope_Input,
+                           0,
+                           &busCnt,
+                           sizeof(busCnt)
+                           ),
+      kAUMAudioUnitException,
+      @"Error setting input bus count to %u on AUMMultiChannelMixerUnit %@", busCnt, self);
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -112,6 +119,19 @@
     desc.componentFlagsMask     = 0;
     
     return desc;
+}
+
+/** Set the required output sample rate for the mixer */
+- (void)_nodeWasAddedToGraph
+{
+    _(AudioUnitSetProperty(_audioUnitRef,
+                           kAudioUnitProperty_SampleRate,
+                           kAudioUnitScope_Output,
+                           0,
+                           &_sampleRate,
+                           sizeof(_sampleRate)),
+      kAUMAudioUnitException,
+      @"Couldn't set sample rate on Mixer Unit %@", self);
 }
 
 /// @}

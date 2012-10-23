@@ -6,29 +6,26 @@
  */
 
 #import <tgmath.h>
-#import "AUMFilePlayerUnit.h"
+#import "AUMFilePlaybackRenderer.h"
 
 #import "MarshmallowCocoa.h"
 #import "AUMAudioFileReader.h"
 #import "AUMAudioSession.h"
 #import "AUMAudioFileReader.h"
-#import "Private/AUMFilePlayerUnitRenderer.h"
+#import "Private/AUMFilePlaybackRendererRCB.h"
 #import "Private/AUMRendererAudioSource.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - AUMFilePlayerUnit
 /////////////////////////////////////////////////////////////////////////
 
-@implementation AUMFilePlayerUnit
+@implementation AUMFilePlaybackRenderer
 {
-    AUMRemoteIOUnit *_remoteIOUnit;     ///< Typed reference to _proxiedUnit for autocomplete convenience
     id <MCThreadProxyProtocol> _updateThread;
     
-    AUMFilePlayerUnitRenderer *_renderer;
+    AUMFilePlaybackRendererRCB *_renderer;
     AUMRendererAudioSource *_audioSource;
     AUMAudioFileReader *_audioFile;
-    AudioStreamBasicDescription _internalStreamFormat;    ///< Interval ASBD for the RCB and audio source streams
-    
     
     NSTimeInterval _sampleRate;
     NSUInteger _diskBufferSizeInFrames;
@@ -53,6 +50,8 @@
 
 }
 
+@synthesize renderCallbackStruct=_renderCallbackStruct;
+@synthesize renderCallbackStreamFormat=_renderCallbackStreamFormat;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init
@@ -94,25 +93,19 @@
     _loop = NO;
     _sourcePosOffsetInFrames = 0;
     _seekIsPending = NO;
-    _remoteIOUnit = _proxiedUnit = [[AUMRemoteIOUnit alloc] init]; // strong type for convenience
     _sampleRate = theSampleRate;
- 
-    AURenderCallbackStruct rcb;
+
+    // Set up the C++ renderhelper and our properties to fulfill the protocol
     NSUInteger ioBufferInFrames = ceil(theSampleRate * theIOBufferDuration);
-    _renderer = new AUMFilePlayerUnitRenderer(theSampleRate, ioBufferInFrames);
-    rcb.inputProc = &AUMFilePlayerUnitRenderer::renderCallback;
-    rcb.inputProcRefCon = (void *)_renderer;
+    _renderer = new AUMFilePlaybackRendererRCB(ioBufferInFrames, theSampleRate);
+    _renderCallbackStruct.inputProc = &AUMFilePlaybackRendererRCB::renderCallback;
+    _renderCallbackStruct.inputProcRefCon = (void *)_renderer;
+    _renderCallbackStreamFormat = _renderer->requiredAudioFormat();
     
-    _internalStreamFormat = _renderer->requiredAudioFormat();
-    
-    // Set the remote IO's format to match ours and 
-    _remoteIOUnit.defaultInputStreamFormat = _internalStreamFormat;
-    [_remoteIOUnit setRenderCallback:rcb forInputBus:0];
     
     // Grab the audioSource from the renderer and initialise its buffer
     _audioSource = _renderer->audioSource();
-    _audioSource->initializeBuffer(_diskBufferSizeInFrames, _internalStreamFormat.mBytesPerFrame);
-    
+    _audioSource->initializeBuffer(_diskBufferSizeInFrames, _renderCallbackStreamFormat.mBytesPerFrame);
     
     
     /////////////////////////////////////////
@@ -139,20 +132,6 @@
     if (_renderer)
         delete _renderer;
 }
-
-
-
-/////////////////////////////////////////////////////////////////////////
-#pragma mark - AUMUnitProtocol Overrides
-/////////////////////////////////////////////////////////////////////////
-
-/** Disable input bus as this is output only */
-- (const NSInteger)maxInputBusNum { return -1; }
-
-/** Only one output at this time too */
-- (const NSInteger)maxOutputBusNum { return 1; }
-
-
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Property Accessors
@@ -194,7 +173,7 @@
 {
     // Load the file
     AUMAudioFileReader *newFile = [AUMAudioFileReader audioFileForURL:fileURL];
-    newFile.outFormat = _internalStreamFormat;
+    newFile.outFormat = _renderCallbackStreamFormat;
 
     @synchronized(self) {
         _seekIsPending = NO; // just in case its possible

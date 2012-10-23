@@ -13,10 +13,15 @@
 #import "AUMAudioFileReader.h"
 #import "AUMTypes.h"
 #import "AUMException.h"
+
 #import "AUMGraph.h"
-#import "AUMFilePlayerUnit.h"
+
+#import "AUMUnitProtocol.h"
 #import "AUMMultichannelMixerUnit.h"
 #import "AUMRemoteIOUnit.h"
+
+#import "AUMRendererProtocol.h"
+#import "AUMFilePlaybackRenderer.h"
 
 
 #endif
