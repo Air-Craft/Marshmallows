@@ -39,12 +39,14 @@
     /** @name Seek state vars. Cache settings to process after source is paused */
     /// @{
     BOOL _seekIsPending;
+    AUMRendererAudioSource::State _sourceStateToResumeAfterSeek;
     NSUInteger _seekToFrame;
     /// @}
     
     /** @name Seek state vars. Cache settings to process after source is paused */
     /// @{
     BOOL _audioFileChangeIsPending;
+    AUMRendererAudioSource::State _sourceStatetoResumeAfterFileChange;
     AUMAudioFileReader *_audioFileToChangeTo;
     /// @}
 
@@ -188,7 +190,18 @@
             return;
         }
         
+        
         // Otherwise indicate to our control loop to handle it once the source is paused...
+        
+        // Get the state to resume if we havent set it already in a very recent prior call (in which case it will always be QueuedToPause)
+        // If its QueuedToPause then this took place immediately after a [pause] message.  Otherwise we were Playing and should resume as such
+        if (!_audioFileChangeIsPending) {
+            _sourceStatetoResumeAfterFileChange =
+                (_audioSource->state() == AUMRendererAudioSource::QueuedToPause)
+                    ? AUMRendererAudioSource::Paused
+                    : AUMRendererAudioSource::Playing;
+        }
+        
         _audioSource->pause();  // WARNING: Doesn't happen straight away! Hence all this...
         _audioFileToChangeTo = newFile;
         _audioFileChangeIsPending = YES;
@@ -219,6 +232,14 @@
 
 /////////////////////////////////////////////////////////////////////////
 
+- (void)stop
+{
+    [self pause];
+    [self seekToFrame:0];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
 - (void)seekToFrame:(NSUInteger)toFrame
 {
     @synchronized(self) {
@@ -238,6 +259,16 @@
         }
         
         // Otherwise indicate to our control loop to handle it once the source is paused...
+        
+        // Get the state to resume if we havent set it already in a very recent prior call (in which case it will always be QueuedToPause)
+        // If its QueuedToPause then this took place immediately after a [pause] message.  Otherwise we were Playing and should resume as such
+        if (!_seekIsPending) {
+            _sourceStateToResumeAfterSeek =
+            (_audioSource->state() == AUMRendererAudioSource::QueuedToPause)
+            ? AUMRendererAudioSource::Paused
+            : AUMRendererAudioSource::Playing;
+        }
+
         _audioSource->pause();  // WARNING: Doesn't happen straight away! Hence all this...
         _seekToFrame = toFrame;
         _seekIsPending = YES;
@@ -276,9 +307,10 @@
     if (_audioSource->state() == AUMRendererAudioSource::QueuedToPause) return;
     
     // Otherwise (Paused or Finished) do the deed...
-    // Rebuffer and play (If we weren't playing before, we wouldn't be here)
+    // Rebuffer and play if we were before the call
     [self _rebufferAudioFileFromFrame:0];
-    _audioSource->play();
+    if (_sourceStatetoResumeAfterFileChange == AUMRendererAudioSource::Playing)
+        _audioSource->play();
     _audioFileChangeIsPending = NO;
 }
 
@@ -301,9 +333,10 @@
     
     // Otherwise (Paused or Finished) do the deed.  Update the frame positions and re-queue the buffer from disk
 
-    // Rebuffer from the seek frame and play
+    // Rebuffer from the seek frame and play if required
     [self _rebufferAudioFileFromFrame:_seekToFrame];
-    _audioSource->play();
+    if (_sourceStateToResumeAfterSeek == AUMRendererAudioSource::Playing)
+        _audioSource->play();
     _seekIsPending = NO;
 }
 

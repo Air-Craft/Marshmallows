@@ -16,6 +16,7 @@
  \brief Our very own hi-performance file player unit which boasts the ability to use your own update thread.  Does NOT use Apple's FilePlayer AU
  
  \todo Init w/o thread details auto creates (shared) thread like the Apple AU version
+ \todo Spin locks for pause method and also perhaps file change method to simplify in these less realtime events? (keep on-the-fly for seek though)
  
  \section Concurrency Considerations
  Any public method which acts on _audioSource and/or _audioFile must be syncro'ed with the thread's update methods.  Otherwise file change and seek operations could lead to collisions
@@ -55,6 +56,7 @@
 
 -(void)play;
 -(void)pause;
+-(void)stop;
 -(void)seekToFrame:(NSUInteger)toFrame;
 -(void)loadAudioFileFromURL:(NSURL *)fileURL;
 
