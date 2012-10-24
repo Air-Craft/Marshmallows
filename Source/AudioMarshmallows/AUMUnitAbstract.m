@@ -154,7 +154,7 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)connectRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum
+- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum
 {
     [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forInputBus:aBusNum];
     [self setRenderCallback:anAUMRenderer.renderCallbackStruct forInputBus:aBusNum];
@@ -162,7 +162,7 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)connectRenderer:(id<AUMRendererProtocol>)anAUMRenderer toOutputBus:(NSUInteger)aBusNum
+- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toOutputBus:(NSUInteger)aBusNum
 {
     [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forOutputBus:aBusNum];
     [self setRenderCallback:anAUMRenderer.renderCallbackStruct forOutputBus:aBusNum];

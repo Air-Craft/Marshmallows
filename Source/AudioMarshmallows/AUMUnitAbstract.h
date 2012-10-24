@@ -70,9 +70,9 @@
 /** Convenience methods to connect an AUMRenderer.
  Sets the stream format and connects the RCB
  */
-- (void)connectRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum;
+- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum;
 
-- (void)connectRenderer:(id<AUMRendererProtocol>)anAUMRenderer toOutputBus:(NSUInteger)aBusNum;
+- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toOutputBus:(NSUInteger)aBusNum;
 
 @end
 
