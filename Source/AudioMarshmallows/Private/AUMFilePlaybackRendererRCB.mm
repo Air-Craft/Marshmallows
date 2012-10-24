@@ -144,7 +144,7 @@ OSStatus AUMFilePlaybackRendererRCB::renderCallback(void                        
 const AudioStreamBasicDescription AUMFilePlaybackRendererRCB::requiredAudioFormat()
 {
     // Set the sample rate to the actual one
-    AudioStreamBasicDescription asbd = kAUMUnitCanonicalStreamFormat;
+    AudioStreamBasicDescription asbd = kAUMStreamFormatAUMUnitCanonical;
     asbd.mSampleRate = _sampleRate;
     return asbd;
 }
