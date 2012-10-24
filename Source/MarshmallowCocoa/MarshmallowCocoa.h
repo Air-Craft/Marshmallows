@@ -15,4 +15,5 @@
 #import "NSArray+NSDictionary+Subscripting.h"
 #import "NSTimer+MMBlocks.h"
 #import "NSInvocation+MMBlocks.h"
+#import "NSString+Marshmallows.h"
 #endif
