@@ -13,8 +13,8 @@
 		A636EDC0163011B00037F211 /* AUMAudioSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A636EDBF163011AF0037F211 /* AUMAudioSession.m */; };
 		A636EDC1163011B00037F211 /* AUMAudioSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A636EDBF163011AF0037F211 /* AUMAudioSession.m */; };
 		A6434F8F161F4E2D00496EAC /* MCAtomicType.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F8E161F4E2D00496EAC /* MCAtomicType.mm */; };
-		A6434F97161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F96161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.mm */; };
-		A6434F98161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F96161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.mm */; };
+		A6434F97161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F96161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm */; };
+		A6434F98161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F96161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm */; };
 		A6434F9B161F50B200496EAC /* AUMAudioFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434F9A161F50B100496EAC /* AUMAudioFileReader.m */; };
 		A6434F9C161F50B200496EAC /* AUMAudioFileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434F9A161F50B100496EAC /* AUMAudioFileReader.m */; };
 		A6434FA3161F532D00496EAC /* AUMRendererAudioSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA2161F532D00496EAC /* AUMRendererAudioSource.mm */; };
@@ -23,8 +23,8 @@
 		A6434FA81622EB5F00496EAC /* NSInvocation+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA61622EB5F00496EAC /* NSInvocation+MMBlocks.m */; };
 		A6434FAB16230F5100496EAC /* AUMCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */; };
 		A6434FAC16230F5100496EAC /* AUMCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */; };
-		A644CD2C1636D68900C34512 /* AUMFileRecordingRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.mm */; };
-		A644CD2D1636D68900C34512 /* AUMFileRecordingRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.mm */; };
+		A644CD2C1636D68900C34512 /* AUMFileRecordingProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2B1636D68700C34512 /* AUMFileRecordingProcessor.mm */; };
+		A644CD2D1636D68900C34512 /* AUMFileRecordingProcessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2B1636D68700C34512 /* AUMFileRecordingProcessor.mm */; };
 		A644CD301637DAA700C34512 /* AUMAtomicType.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2F1637DAA700C34512 /* AUMAtomicType.mm */; };
 		A644CD311637DAA700C34512 /* AUMAtomicType.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2F1637DAA700C34512 /* AUMAtomicType.mm */; };
 		A664EFB615CEEB8900182FFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
@@ -63,7 +63,7 @@
 		A66E7CD5163164A400565D93 /* OngKarNirankar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */; };
 		A6ADEBE416330E7E00420769 /* AUMTesterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6ADEBE316330E7E00420769 /* AUMTesterViewController.mm */; };
 		A6AE6EA11637FFA400EC70AC /* SWHarp-Eb4-Medium.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6AE6EA01637FFA400EC70AC /* SWHarp-Eb4-Medium.wav */; };
-		A6B582B815DC125900D1CA05 /* AUMFilePlaybackRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AC15DC125900D1CA05 /* AUMFilePlaybackRenderer.mm */; };
+		A6B582B815DC125900D1CA05 /* AUMFilePlaybackGenerator.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AC15DC125900D1CA05 /* AUMFilePlaybackGenerator.mm */; };
 		A6B582B915DC125900D1CA05 /* AUMGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AE15DC125900D1CA05 /* AUMGraph.m */; };
 		A6B582BA15DC125900D1CA05 /* AUMMultichannelMixerUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B015DC125900D1CA05 /* AUMMultichannelMixerUnit.m */; };
 		A6B582BB15DC125900D1CA05 /* AUMRemoteIOUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B215DC125900D1CA05 /* AUMRemoteIOUnit.m */; };
@@ -191,8 +191,8 @@
 		A636EDBF163011AF0037F211 /* AUMAudioSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMAudioSession.m; sourceTree = "<group>"; };
 		A6434F8D161F4E2D00496EAC /* MCAtomicType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCAtomicType.h; sourceTree = "<group>"; };
 		A6434F8E161F4E2D00496EAC /* MCAtomicType.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MCAtomicType.mm; sourceTree = "<group>"; };
-		A6434F95161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlaybackRendererRCB.h; sourceTree = "<group>"; };
-		A6434F96161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFilePlaybackRendererRCB.mm; sourceTree = "<group>"; };
+		A6434F95161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlaybackGeneratorRCB.h; sourceTree = "<group>"; };
+		A6434F96161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFilePlaybackGeneratorRCB.mm; sourceTree = "<group>"; };
 		A6434F99161F50AF00496EAC /* AUMAudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMAudioFileReader.h; sourceTree = "<group>"; };
 		A6434F9A161F50B100496EAC /* AUMAudioFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMAudioFileReader.m; sourceTree = "<group>"; };
 		A6434FA1161F532C00496EAC /* AUMRendererAudioSource.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = AUMRendererAudioSource.h; sourceTree = "<group>"; };
@@ -201,9 +201,9 @@
 		A6434FA61622EB5F00496EAC /* NSInvocation+MMBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+MMBlocks.m"; sourceTree = "<group>"; };
 		A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AUMCircularBuffer.c; sourceTree = "<group>"; };
 		A6434FAA16230F5000496EAC /* AUMCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMCircularBuffer.h; sourceTree = "<group>"; };
-		A644CD291636CA3D00C34512 /* AUMRendererProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMRendererProtocol.h; sourceTree = "<group>"; };
-		A644CD2A1636D68600C34512 /* AUMFileRecordingRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFileRecordingRenderer.h; sourceTree = "<group>"; };
-		A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFileRecordingRenderer.mm; sourceTree = "<group>"; };
+		A644CD291636CA3D00C34512 /* AUMRendererProtocolAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMRendererProtocolAbstract.h; sourceTree = "<group>"; };
+		A644CD2A1636D68600C34512 /* AUMFileRecordingProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFileRecordingProcessor.h; sourceTree = "<group>"; };
+		A644CD2B1636D68700C34512 /* AUMFileRecordingProcessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFileRecordingProcessor.mm; sourceTree = "<group>"; };
 		A644CD2E1637DAA700C34512 /* AUMAtomicType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMAtomicType.h; sourceTree = "<group>"; };
 		A644CD2F1637DAA700C34512 /* AUMAtomicType.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMAtomicType.mm; sourceTree = "<group>"; };
 		A664EFB515CEEB8900182FFD /* libMarshmallowsStaticLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMarshmallowsStaticLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,9 +215,12 @@
 		A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = OngKarNirankar.m4a; sourceTree = "<group>"; };
 		A6ADEBE316330E7E00420769 /* AUMTesterViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMTesterViewController.mm; sourceTree = "<group>"; };
 		A6AE6EA01637FFA400EC70AC /* SWHarp-Eb4-Medium.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "SWHarp-Eb4-Medium.wav"; sourceTree = "<group>"; };
+		A6AE6EA316385ED200EC70AC /* AUMGeneratorRendererProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMGeneratorRendererProtocol.h; sourceTree = "<group>"; };
+		A6AE6EA416385F9100EC70AC /* AUMCapturerRendererProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMCapturerRendererProtocol.h; sourceTree = "<group>"; };
+		A6AE6EA516385FF900EC70AC /* AUMProcessorRendererProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMProcessorRendererProtocol.h; sourceTree = "<group>"; };
 		A6B582A915DC125900D1CA05 /* AudioMarshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMarshmallows.h; sourceTree = "<group>"; };
-		A6B582AB15DC125900D1CA05 /* AUMFilePlaybackRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlaybackRenderer.h; sourceTree = "<group>"; };
-		A6B582AC15DC125900D1CA05 /* AUMFilePlaybackRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFilePlaybackRenderer.mm; sourceTree = "<group>"; };
+		A6B582AB15DC125900D1CA05 /* AUMFilePlaybackGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlaybackGenerator.h; sourceTree = "<group>"; };
+		A6B582AC15DC125900D1CA05 /* AUMFilePlaybackGenerator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFilePlaybackGenerator.mm; sourceTree = "<group>"; };
 		A6B582AD15DC125900D1CA05 /* AUMGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMGraph.h; sourceTree = "<group>"; };
 		A6B582AE15DC125900D1CA05 /* AUMGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMGraph.m; sourceTree = "<group>"; };
 		A6B582AF15DC125900D1CA05 /* AUMMultichannelMixerUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMMultichannelMixerUnit.h; sourceTree = "<group>"; };
@@ -387,8 +390,8 @@
 				A644CD2E1637DAA700C34512 /* AUMAtomicType.h */,
 				A644CD2F1637DAA700C34512 /* AUMAtomicType.mm */,
 				A6FA09F4162DAB160094C279 /* AUMErrorChecking.h */,
-				A6434F95161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.h */,
-				A6434F96161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.mm */,
+				A6434F95161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.h */,
+				A6434F96161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm */,
 				A6434FA1161F532C00496EAC /* AUMRendererAudioSource.h */,
 				A6434FA2161F532D00496EAC /* AUMRendererAudioSource.mm */,
 			);
@@ -437,11 +440,14 @@
 				A6B582B215DC125900D1CA05 /* AUMRemoteIOUnit.m */,
 				A6B582AF15DC125900D1CA05 /* AUMMultichannelMixerUnit.h */,
 				A6B582B015DC125900D1CA05 /* AUMMultichannelMixerUnit.m */,
-				A644CD291636CA3D00C34512 /* AUMRendererProtocol.h */,
-				A6B582AB15DC125900D1CA05 /* AUMFilePlaybackRenderer.h */,
-				A6B582AC15DC125900D1CA05 /* AUMFilePlaybackRenderer.mm */,
-				A644CD2A1636D68600C34512 /* AUMFileRecordingRenderer.h */,
-				A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.mm */,
+				A644CD291636CA3D00C34512 /* AUMRendererProtocolAbstract.h */,
+				A6AE6EA316385ED200EC70AC /* AUMGeneratorRendererProtocol.h */,
+				A6AE6EA416385F9100EC70AC /* AUMCapturerRendererProtocol.h */,
+				A6AE6EA516385FF900EC70AC /* AUMProcessorRendererProtocol.h */,
+				A6B582AB15DC125900D1CA05 /* AUMFilePlaybackGenerator.h */,
+				A6B582AC15DC125900D1CA05 /* AUMFilePlaybackGenerator.mm */,
+				A644CD2A1636D68600C34512 /* AUMFileRecordingProcessor.h */,
+				A644CD2B1636D68700C34512 /* AUMFileRecordingProcessor.mm */,
 			);
 			path = AudioMarshmallows;
 			sourceTree = "<group>";
@@ -862,7 +868,7 @@
 				A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 				A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
 				A6D69D3F15D52E44009828CF /* MUIDraggablePane.m in Sources */,
-				A6434F98161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.mm in Sources */,
+				A6434F98161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm in Sources */,
 				A6434F9C161F50B200496EAC /* AUMAudioFileReader.m in Sources */,
 				A6434FA4161F532D00496EAC /* AUMRendererAudioSource.mm in Sources */,
 				A6434FA81622EB5F00496EAC /* NSInvocation+MMBlocks.m in Sources */,
@@ -870,7 +876,7 @@
 				A6FA09EB162D67D00094C279 /* MarshmallowDebug.c in Sources */,
 				A6FA09F3162DA5850094C279 /* AUMException.m in Sources */,
 				A636EDC1163011B00037F211 /* AUMAudioSession.m in Sources */,
-				A644CD2D1636D68900C34512 /* AUMFileRecordingRenderer.mm in Sources */,
+				A644CD2D1636D68900C34512 /* AUMFileRecordingProcessor.mm in Sources */,
 				A644CD311637DAA700C34512 /* AUMAtomicType.mm in Sources */,
 				A6D7D1281637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */,
 			);
@@ -911,14 +917,14 @@
 				A6BE0C6615D017D000E0F43D /* UIView+Marshmallows.m in Sources */,
 				A6CBD2B815D273F700A7933E /* MRUncaughtExceptions.m in Sources */,
 				A6D69D3E15D52E44009828CF /* MUIDraggablePane.m in Sources */,
-				A6B582B815DC125900D1CA05 /* AUMFilePlaybackRenderer.mm in Sources */,
+				A6B582B815DC125900D1CA05 /* AUMFilePlaybackGenerator.mm in Sources */,
 				A6B582B915DC125900D1CA05 /* AUMGraph.m in Sources */,
 				A6B582BA15DC125900D1CA05 /* AUMMultichannelMixerUnit.m in Sources */,
 				A6B582BB15DC125900D1CA05 /* AUMRemoteIOUnit.m in Sources */,
 				A6B582BC15DC125900D1CA05 /* AUMTypes.m in Sources */,
 				A6B582BD15DC125900D1CA05 /* AUMUnitAbstract.m in Sources */,
 				A6434F8F161F4E2D00496EAC /* MCAtomicType.mm in Sources */,
-				A6434F97161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.mm in Sources */,
+				A6434F97161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm in Sources */,
 				A6434F9B161F50B200496EAC /* AUMAudioFileReader.m in Sources */,
 				A6434FA3161F532D00496EAC /* AUMRendererAudioSource.mm in Sources */,
 				A6434FA71622EB5F00496EAC /* NSInvocation+MMBlocks.m in Sources */,
@@ -927,7 +933,7 @@
 				A6FA09F2162DA5850094C279 /* AUMException.m in Sources */,
 				A636EDC0163011B00037F211 /* AUMAudioSession.m in Sources */,
 				A6ADEBE416330E7E00420769 /* AUMTesterViewController.mm in Sources */,
-				A644CD2C1636D68900C34512 /* AUMFileRecordingRenderer.mm in Sources */,
+				A644CD2C1636D68900C34512 /* AUMFileRecordingProcessor.mm in Sources */,
 				A644CD301637DAA700C34512 /* AUMAtomicType.mm in Sources */,
 				A6D7D1271637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */,
 			);

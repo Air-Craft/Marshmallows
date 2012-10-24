@@ -20,9 +20,12 @@
 #import "AUMMultichannelMixerUnit.h"
 #import "AUMRemoteIOUnit.h"
 
-#import "AUMRendererProtocol.h"
-#import "AUMFilePlaybackRenderer.h"
-#import "AUMFileRecordingRenderer.h"
+#import "AUMGeneratorRendererProtocol.h"
+#import "AUMProcessorRendererProtocol.h"
+#import "AUMCapturerRendererProtocol.h"
+
+#import "AUMFilePlaybackGenerator.h"
+#import "AUMFileRecordingProcessor.h"
 
 #endif
 

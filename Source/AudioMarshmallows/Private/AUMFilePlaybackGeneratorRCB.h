@@ -19,7 +19,7 @@
  \section Usage & Threading Notes
  audioSource may only be set if the source is not playing (=Playing, QueuedToPause). It's not entirely thread safe to set this attribute on a different thread that controls it's play/pause/etc methods.
  */
-class AUMFilePlaybackRendererRCB
+class AUMFilePlaybackGeneratorRCB
 {
 
 public:
@@ -46,7 +46,7 @@ public:
     /**
      \param callbackOutputSizeInFrames  Used to preinitialise the working buffers to the proper size.  The RCB checks and adjusts at the beginning just in case but this is bad form so ensure its big enough
      */
-    AUMFilePlaybackRendererRCB(NSUInteger callbackOutputSizeInFrames, NSTimeInterval theSampleRate) :
+    AUMFilePlaybackGeneratorRCB(NSUInteger callbackOutputSizeInFrames, NSTimeInterval theSampleRate) :
         _sampleRate(theSampleRate)
     {
         _volumeRampBuffer = std::vector<float>(callbackOutputSizeInFrames, 0);
@@ -58,7 +58,7 @@ public:
     
     /////////////////////////////////////////////////////////////////////////
 
-    ~AUMFilePlaybackRendererRCB() {}
+    ~AUMFilePlaybackGeneratorRCB() {}
     
     
 /////////////////////////////////////////////////////////////////////////

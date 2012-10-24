@@ -5,10 +5,10 @@
  @{ 
  */
 
-#import "AUMFilePlaybackRendererRCB.h"
+#import "AUMFilePlaybackGeneratorRCB.h"
 #import <Accelerate/Accelerate.h>
 
-OSStatus AUMFilePlaybackRendererRCB::renderCallback(void                        *inRefCon,
+OSStatus AUMFilePlaybackGeneratorRCB::renderCallback(void                        *inRefCon,
                                                    AudioUnitRenderActionFlags  *ioActionFlags,
                                                    const AudioTimeStamp        *inTimeStamp,
                                                    UInt32                      inBusNumber,
@@ -16,7 +16,7 @@ OSStatus AUMFilePlaybackRendererRCB::renderCallback(void                        
                                                    AudioBufferList             *ioData
                                                    )
 {
-    AUMFilePlaybackRendererRCB *renderer = (AUMFilePlaybackRendererRCB *)inRefCon;
+    AUMFilePlaybackGeneratorRCB *renderer = (AUMFilePlaybackGeneratorRCB *)inRefCon;
     
     // Failsafe to prevent glitches when latency (and correlated output buffer chunk) is higher than anticipated when renderer was init'ed
     renderer->_ensureMinimumBufferSize(inNumberFrames);
@@ -94,7 +94,7 @@ OSStatus AUMFilePlaybackRendererRCB::renderCallback(void                        
     // Otherwise do a scalar multiply for the current (& prev) volume
     // Also don't do the fade if we're ending in a few frames anyway (rare)
     if ((sourceState == AUMRendererAudioSource::QueuedToPause and
-            sourceFramesRead >= AUMFilePlaybackRendererRCB::_FADE_FRAMES_ON_PAUSE) ||
+            sourceFramesRead >= AUMFilePlaybackGeneratorRCB::_FADE_FRAMES_ON_PAUSE) ||
         volume != prevVolume) {
         
         // Fade out if finished and set flag to clear
@@ -109,7 +109,7 @@ OSStatus AUMFilePlaybackRendererRCB::renderCallback(void                        
                         &zero,
                         volumeRampBuffer,
                         1,
-                        AUMFilePlaybackRendererRCB::_FADE_FRAMES_ON_PAUSE);
+                        AUMFilePlaybackGeneratorRCB::_FADE_FRAMES_ON_PAUSE);
             
             source->_setPausedState();
             
@@ -141,7 +141,7 @@ OSStatus AUMFilePlaybackRendererRCB::renderCallback(void                        
     
 /////////////////////////////////////////////////////////////////////////
 
-const AudioStreamBasicDescription AUMFilePlaybackRendererRCB::requiredAudioFormat()
+const AudioStreamBasicDescription AUMFilePlaybackGeneratorRCB::requiredAudioFormat()
 {
     // Set the sample rate to the actual one
     AudioStreamBasicDescription asbd = kAUMStreamFormatAUMUnitCanonical;

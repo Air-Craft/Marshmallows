@@ -6,24 +6,25 @@
  */
 
 #import <tgmath.h>
-#import "AUMFilePlaybackRenderer.h"
+#import "AUMFilePlaybackGenerator.h"
 
 #import "MarshmallowCocoa.h"
 #import "AUMAudioFileReader.h"
 #import "AUMAudioSession.h"
 #import "AUMAudioFileReader.h"
-#import "Private/AUMFilePlaybackRendererRCB.h"
+#import "AUMUnitAbstract.h"
+#import "Private/AUMFilePlaybackGeneratorRCB.h"
 #import "Private/AUMRendererAudioSource.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - AUMFilePlayerUnit
 /////////////////////////////////////////////////////////////////////////
 
-@implementation AUMFilePlaybackRenderer
+@implementation AUMFilePlaybackGenerator
 {
     id <MCThreadProxyProtocol> _updateThread;
     
-    AUMFilePlaybackRendererRCB *_renderer;
+    AUMFilePlaybackGeneratorRCB *_renderer;
     AUMRendererAudioSource *_audioSource;
     AUMAudioFileReader *_audioFile;
     
@@ -55,7 +56,6 @@
 }
 
 @synthesize renderCallbackStruct=_renderCallbackStruct;
-@synthesize renderCallbackStreamFormat=_renderCallbackStreamFormat;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Init
@@ -103,15 +103,13 @@
     
     // Set up the C++ renderhelper and our properties to fulfill the protocol
     NSUInteger ioBufferInFrames = ceil(theSampleRate * theIOBufferDuration);
-    _renderer = new AUMFilePlaybackRendererRCB(ioBufferInFrames, theSampleRate);
-    _renderCallbackStruct.inputProc = &AUMFilePlaybackRendererRCB::renderCallback;
-    _renderCallbackStruct.inputProcRefCon = (void *)_renderer;
-    _renderCallbackStreamFormat = _renderer->requiredAudioFormat();
-    
+    _renderer = new AUMFilePlaybackGeneratorRCB(ioBufferInFrames, theSampleRate);
+    _renderCallbackStruct.inputProc = &AUMFilePlaybackGeneratorRCB::renderCallback;
+    _renderCallbackStruct.inputProcRefCon = (void *)_renderer;    
     
     // Grab the audioSource from the renderer and initialise its buffer
     _audioSource = _renderer->audioSource();
-    _audioSource->initializeBuffer(_diskBufferSizeInFrames, _renderCallbackStreamFormat.mBytesPerFrame);
+    _audioSource->initializeBuffer(_diskBufferSizeInFrames, _renderer->requiredAudioFormat().mBytesPerFrame);
     
     
     /////////////////////////////////////////
@@ -182,14 +180,14 @@
 
 @synthesize cbPlaybackDidOccur=_cbPlaybackDidOccur;
 
-- (void (^)(AUMFilePlaybackRenderer *, NSUInteger, NSTimeInterval))cbPlaybackDidOccur
+- (void (^)(AUMFilePlaybackGenerator *, NSUInteger, NSTimeInterval))cbPlaybackDidOccur
 {
     @synchronized(self) {
         return _cbPlaybackDidOccur;
     }
 }
 
-- (void)setCbPlaybackDidOccur:(void (^)(AUMFilePlaybackRenderer *, NSUInteger, NSTimeInterval))aBlock
+- (void)setCbPlaybackDidOccur:(void (^)(AUMFilePlaybackGenerator *, NSUInteger, NSTimeInterval))aBlock
 {
     // Remove the old invocation
     if (_cbPlaybackDidOccurInvoc) {
@@ -220,8 +218,8 @@
 {
     // Load the file
     AUMAudioFileReader *newFile = [AUMAudioFileReader audioFileForURL:fileURL];
-    newFile.outFormat = _renderCallbackStreamFormat
-;
+    newFile.outFormat = _renderer->requiredAudioFormat();
+    
     @synchronized(self) {
         _seekIsPending = NO; // just in case its possible
 
@@ -345,6 +343,17 @@
         _seekIsPending = YES;
     }
 
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - AUMGeneratorRendererProtocol
+/////////////////////////////////////////////////////////////////////////
+
+/// Set the stream format for the input bus
+- (void)willAttachToInputBus:(NSUInteger)anInputBusNum ofAUMUnit:(AUMUnitAbstract *)anAUMUnit
+{
+    [anAUMUnit setStreamFormat:_renderer->requiredAudioFormat() forInputBus:anInputBusNum];
 }
 
 

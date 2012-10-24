@@ -15,12 +15,12 @@
 @implementation AUMTesterViewController
 {
     AUMGraph *_aumGraph;
-    AUMFilePlaybackRenderer *_aumFPU1;
-    AUMFilePlaybackRenderer *_aumFPU2;
+    AUMFilePlaybackGenerator *_aumFPU1;
+    AUMFilePlaybackGenerator *_aumFPU2;
     AUMMultichannelMixerUnit *_aumMixer;
     AUMRemoteIOUnit *_aumOutputUnit;
     
-    AUMFileRecordingRenderer *_aumRecorder;
+    AUMFileRecordingProcessor *_aumRecorder;
     
 
     __weak IBOutlet UISlider *_track1SeekSlider;
@@ -73,20 +73,18 @@
         _aumOutputUnit = [[AUMRemoteIOUnit alloc] init];
         [_aumGraph addUnit:_aumOutputUnit];
 
-        _aumFPU1 = [[AUMFilePlaybackRenderer alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
-        _aumFPU2 = [[AUMFilePlaybackRenderer alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        _aumFPU1 = [[AUMFilePlaybackGenerator alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        _aumFPU2 = [[AUMFilePlaybackGenerator alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
         
-        _aumRecorder = [[AUMFileRecordingRenderer alloc] init];
-        _aumRecorder.inputStreamFormat = [_aumMixer streamFormatForOutputBus:0];
+        _aumRecorder = [[AUMFileRecordingProcessor alloc] init];
         
         // Link up...
         [_aumGraph connectOutputBus:0 ofUnit:_aumMixer toInputBus:0 ofUnit:_aumOutputUnit];
         _aumMixer.inputBusCount = 2;
-        [_aumMixer attachRenderer:_aumFPU1 toInputBus:0];
-        [_aumMixer attachRenderer:_aumFPU2 toInputBus:1];
+        [_aumMixer attachGenerator:_aumFPU1 toInputBus:0];
+        [_aumMixer attachGenerator:_aumFPU2 toInputBus:1];
         
-        _aumRecorder.inputStreamFormat = [_aumOutputUnit streamFormatForOutputBus:0];
-        [_aumOutputUnit attachRenderer:_aumRecorder];
+        [_aumOutputUnit addProcessor:_aumRecorder];
         
         //kAUGraphErr_OutputNodeErr
         
@@ -111,7 +109,7 @@
             DLOG(@"Playing frame %u at time %.2f", frame, time);
         };
         
-        _aumFPU2.cbPlaybackFinished = ^(AUMFilePlaybackRenderer *sender){
+        _aumFPU2.cbPlaybackFinished = ^(AUMFilePlaybackGenerator *sender){
 //            __weak id wSelf = self;
             if (!sender.loop) {
                 [_track2PlaySwitch setOn:NO animated:YES];

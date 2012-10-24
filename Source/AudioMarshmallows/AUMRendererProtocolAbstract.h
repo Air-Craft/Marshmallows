@@ -11,13 +11,12 @@
 
 
 /**
- Protocol to define "Renderer" which can be attached to an AUMUnit's busses via its render callback struct. 
+ Abstract protocol to define "Renderer" which can be attached to an AUMUnit's busses via its render callback struct. 
+ \abstract
  */
-@protocol AUMRendererProtocol <NSObject>
+@protocol AUMRendererProtocolAbstract <NSObject>
 
-@property (nonatomic, readonly) AudioStreamBasicDescription renderCallbackStreamFormat;
 @property (nonatomic, readonly) AURenderCallbackStruct renderCallbackStruct;
-
 
 @end
 

@@ -4,23 +4,24 @@
  \copyright  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
  @{ 
  */
-/// \file AUMFileRecordingRenderer.h
+/// \file AUMFileRecordingProcessor.h
  
  
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "AUMRendererProtocol.h"
 #import "AUMTypes.h"
 #import "Private/AUMAtomicType.h"
-
+#import "AUMProcessorRendererProtocol.h"
 
 /**
  \brief Records audio from an AUMUnit bus to disk
  
  \section DEV NOTES
  - Only use _stopRequestFlag in the RCB and in [stop].  [stop] is a synchronous command and waits for the RCB to finish so no need to check it outside of these locations.  Also use [stop] interally to stop recording as it handles the whole delay thing invisibly.
+ 
+ \todo User settable bus and pre/post render?
  */
-@interface AUMFileRecordingRenderer : NSObject <AUMRendererProtocol>
+@interface AUMFileRecordingProcessor : NSObject <AUMProcessorRendererProtocol>
 {
     /// Naughty publics to allow RCB access without expensive ObjC messaging
 @public
@@ -36,8 +37,10 @@
  */
 @property (nonatomic, strong, readonly) NSURL *outputFileURL;
 
-/** \throws NSInteralInconsistencyException if mSampleRate is not set and it can't be retrieved from the AUMAudioSession */
+/** Will be obtained automatically when connected to a unit if not set explicitly before. Ie, set to override.
+ \throws NSInvalidArgumentException On set if mSampleRate is not set */
 @property (nonatomic) AudioStreamBasicDescription inputStreamFormat;
+
 @property (nonatomic, readonly) AUMAudioFileFormatDescription outputFileFormat;
 
 - (void)newOutputFileWithURL:(NSURL *)aURL withFileFormat:(AUMAudioFileFormatDescription)aFileFormat;

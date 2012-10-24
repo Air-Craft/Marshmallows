@@ -11,7 +11,9 @@
 #import <AudioUnit/AudioUnit.h>
 #import <CoreAudio/CoreAudioTypes.h>
 #import "AUMUnitProtocol.h"
-#import "AUMRendererProtocol.h"
+#import "AUMGeneratorRendererProtocol.h"
+#import "AUMProcessorRendererProtocol.h"
+#import "AUMCapturerRendererProtocol.h"
 
 
 /**
@@ -22,6 +24,7 @@
  - _graphRed, _nodeRef, and, _audioUnitRef are set after the AUMUnit is added to the AUMGraph.  
  
  \todo Render Notify callbacks 
+ \abstract
  */
 @interface AUMUnitAbstract : NSObject <AUMUnitProtocol>
 {
@@ -76,14 +79,25 @@
 /** \throws kAUMAudioUnitException on error */
 - (void)addRenderNotifyWithCallback:(AURenderCallback)theCallback userDataPtr:(void *)inProcUserData;
 
-/** Attach a Renderer as a RenderNotify callback.  Be sure to manually set he stream format on the input or output bus(ses) depending on which (Pre or PostRender) side your RCB will operate. */
-- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer;
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Renderer Attachment Methods
+/// @name  Renderer Attachment Methods
+/////////////////////////////////////////////////////////////////////////
 
-/** Convenience methods to connect an AUMRenderer to a bus.  Sets the stream format on the AUMUnit bus automatically
+
+/** Add an AUMProcessor to via the AU's RenderNotify.  Can have more than one. */
+- (void)addProcessor:(id<AUMProcessorRendererProtocol>)anAUMProcessor;
+
+/** Convenience methods to connect an AUMRenderer to a bus.
+ Use protocol callbacks in your implementing Renderer class to set the stream formats
  */
-- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum;
+- (void)attachGenerator:(id<AUMGeneratorRendererProtocol>)anAUMGenerator toInputBus:(NSUInteger)aBusNum;
 
-- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toOutputBus:(NSUInteger)aBusNum;
+/** */
+- (void)attachCapturer:(id<AUMCapturerRendererProtocol>)anAUMCapturer toOutputBus:(NSUInteger)aBusNum;
+
+/// @}
+
 
 @end
 

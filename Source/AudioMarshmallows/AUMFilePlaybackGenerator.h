@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MarshmallowConcurrency.h"
 #import "AUMTypes.h"
-#import "AUMRendererProtocol.h"
+#import "AUMGeneratorRendererProtocol.h"
 #import "AUMRemoteIOUnit.h"
 
 /**
@@ -24,7 +24,7 @@
 
  
 
-@interface AUMFilePlaybackRenderer : NSObject <AUMRendererProtocol>
+@interface AUMFilePlaybackGenerator : NSObject <AUMGeneratorRendererProtocol>
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Properties
@@ -36,8 +36,8 @@
 /** Disable to prevent the source from auto-rewinding (and re-buffering) when finished. Default=YES*/
 @property (nonatomic) BOOL autoRewindOnFinished;
 
-@property (atomic, copy) void (^cbPlaybackFinished)(AUMFilePlaybackRenderer *sender);
-@property (atomic, copy) void (^cbPlaybackDidOccur)(AUMFilePlaybackRenderer *sender, NSUInteger frame, NSTimeInterval time);
+@property (atomic, copy) void (^cbPlaybackFinished)(AUMFilePlaybackGenerator *sender);
+@property (atomic, copy) void (^cbPlaybackDidOccur)(AUMFilePlaybackGenerator *sender, NSUInteger frame, NSTimeInterval time);
 
 /** Defaults to 0.5 seconds */
 @property (nonatomic) NSTimeInterval playbackDidOccurUpdateInterval;

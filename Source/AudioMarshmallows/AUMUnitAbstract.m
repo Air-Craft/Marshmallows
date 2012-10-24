@@ -214,31 +214,48 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer
+- (void)addProcessor:(id<AUMProcessorRendererProtocol>)anAUMProcessor
 {
-    [self addRenderNotifyWithCallback:anAUMRenderer.renderCallbackStruct.inputProc userDataPtr:anAUMRenderer.renderCallbackStruct.inputProcRefCon];
+    if ([anAUMProcessor respondsToSelector:@selector(willAddToAUMUnit:)]) {
+        [anAUMProcessor willAddToAUMUnit:self];
+    }
+    
+    [self addRenderNotifyWithCallback:anAUMProcessor.renderCallbackStruct.inputProc userDataPtr:anAUMProcessor.renderCallbackStruct.inputProcRefCon];
+    
+    if ([anAUMProcessor respondsToSelector:@selector(didAddToAUMUnit:)]) {
+        [anAUMProcessor didAddToAUMUnit:self];
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum
+- (void)attachGenerator:(id<AUMGeneratorRendererProtocol>)anAUMGenerator toInputBus:(NSUInteger)aBusNum
 {
-    // Set the stream format if requested by the renderer
-    if (!AUM_isNoStreamFormat(anAUMRenderer.renderCallbackStreamFormat)) {
-        [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forInputBus:aBusNum];
+    if ([anAUMGenerator respondsToSelector:@selector(willAttachToInputBus:ofAUMUnit:)]) {
+        [anAUMGenerator willAttachToInputBus:aBusNum ofAUMUnit:self];
     }
-    [self setRenderCallback:anAUMRenderer.renderCallbackStruct forInputBus:aBusNum];
+    
+    [self setRenderCallback:anAUMGenerator.renderCallbackStruct forInputBus:aBusNum];
+    
+    if ([anAUMGenerator respondsToSelector:@selector(didAttachToInputBus:ofAUMUnit:)]) {
+        [anAUMGenerator didAttachToInputBus:aBusNum ofAUMUnit:self];
+    }
+
 }
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toOutputBus:(NSUInteger)aBusNum
+- (void)attachCapturer:(id<AUMCapturerRendererProtocol>)anAUMCapturer toOutputBus:(NSUInteger)aBusNum
 {
-    // Set the stream format if requested by the renderer
-    if (!AUM_isNoStreamFormat(anAUMRenderer.renderCallbackStreamFormat)) {
-        [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forOutputBus:aBusNum];
+    if ([anAUMCapturer respondsToSelector:@selector(willAttachToOutputBus:ofAUMUnit:)]) {
+        [anAUMCapturer willAttachToOutputBus:aBusNum ofAUMUnit:self];
     }
-    [self setRenderCallback:anAUMRenderer.renderCallbackStruct forOutputBus:aBusNum];
+    
+    [self setRenderCallback:anAUMCapturer.renderCallbackStruct forOutputBus:aBusNum];
+    
+    if ([anAUMCapturer respondsToSelector:@selector(didAttachToOutputBus:ofAUMUnit:)]) {
+        [anAUMCapturer didAttachToOutputBus:aBusNum ofAUMUnit:self];
+    }
 }
 
 

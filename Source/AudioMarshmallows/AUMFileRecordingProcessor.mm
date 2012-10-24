@@ -6,16 +6,17 @@
  */
 
 #import <unistd.h>
-#import "AUMFileRecordingRenderer.h"
+#import "AUMFileRecordingProcessor.h"
 #import "Private/AUMErrorChecking.h"
 #import "MarshmallowCocoa.h"
 #import "MarshmallowDebug.h"
 #import "AUMAudioSession.h"
+#import "AUMUnitAbstract.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - RCB
 /////////////////////////////////////////////////////////////////////////
-static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
+static OSStatus AUMFileRecordingProcessorRCB(void *							inRefCon,
                                              AudioUnitRenderActionFlags *	ioActionFlags,
                                              const AudioTimeStamp *			inTimeStamp,
                                              UInt32							inBusNumber,
@@ -27,7 +28,7 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
         return noErr;
     }
     
-    AUMFileRecordingRenderer *THIS = (__bridge AUMFileRecordingRenderer *)inRefCon;
+    AUMFileRecordingProcessor *THIS = (__bridge AUMFileRecordingProcessor *)inRefCon;
     
     if (not THIS->_isRecording)
         return noErr;
@@ -49,10 +50,10 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
 
 
 /////////////////////////////////////////////////////////////////////////
-#pragma mark - AUMFileRecordingRenderer
+#pragma mark - AUMFileRecordingProcessor
 /////////////////////////////////////////////////////////////////////////
 
-@implementation AUMFileRecordingRenderer
+@implementation AUMFileRecordingProcessor
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Life Cycle
@@ -63,8 +64,7 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
     self = [super init];
     if (self) {
         _fileRef = NULL;    // Init just to be sure
-        _inputStreamFormat = kAUMStreamFormatAUMUnitCanonical;  // Just a handy default
-        _inputStreamFormat.mSampleRate = 44100; // Needs to be explicit for write function
+        _inputStreamFormat = kAUMNoStreamFormat;
         _stopRequestFlag = false;
         _isRecording = false;
     }
@@ -87,34 +87,44 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
 
 - (void)setInputStreamFormat:(AudioStreamBasicDescription)aFormat
 {
-    // Recorder needs the sample rate so grab it if not set
     if (aFormat.mSampleRate == kAudioStreamAnyRate) {
-        aFormat.mSampleRate = AUMAudioSession.currentHardwareSampleRate;
-        if (aFormat.mSampleRate == 0) {
-            [NSException raise:NSInternalInconsistencyException format:@"Sample rate could not be retrieved from the Audio Session.  Set explicitly or initialise the session first"];
-        }
+        [NSException raise:NSInvalidArgumentException format:@"Format must have the sample rate explicitly set."];
     }
     _inputStreamFormat = aFormat;
-    
 }
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - AUMRendererProcotol
 /////////////////////////////////////////////////////////////////////////
 
-- (AudioStreamBasicDescription)renderCallbackStreamFormat
-{
-    // Return whatever our user selected inputStreamFormat is
-    return _inputStreamFormat;
-}
-
 - (AURenderCallbackStruct)renderCallbackStruct
 {
     AURenderCallbackStruct rcbStruct = {
-        .inputProc = &AUMFileRecordingRendererRCB,
+        .inputProc = &AUMFileRecordingProcessorRCB,
         .inputProcRefCon = (__bridge void *)(self)     // We'll use naughty public ivars :)
     };
     return rcbStruct;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+/// Grab the format from output bus 0 as this is the one our RCB will capture from
+- (void)willAddToAUMUnit:(AUMUnitAbstract *)anAUMUnit
+{
+    // Grab the format for output bus 0 if not overriden
+    if (AUM_isNoStreamFormat(_inputStreamFormat)) {
+        AudioStreamBasicDescription aFormat = [anAUMUnit streamFormatForOutputBus:0];
+        
+        // Recorder needs the sample rate so grab it if not set
+        if (aFormat.mSampleRate == kAudioStreamAnyRate) {
+            aFormat.mSampleRate = AUMAudioSession.currentHardwareSampleRate;
+            if (aFormat.mSampleRate == 0) {
+                [NSException raise:NSInternalInconsistencyException format:@"Sample rate could not be retrieved from the Audio Session.  Set explicitly or initialise the session first"];
+            }
+        }
+        
+        _inputStreamFormat = aFormat;
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -218,6 +228,10 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
     
     _fileRef = NULL;
 }
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - <#statements#>
+/////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////
