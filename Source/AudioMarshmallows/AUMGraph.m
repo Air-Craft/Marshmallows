@@ -18,6 +18,9 @@
 
 
 @implementation AUMGraph
+{
+    NSMutableArray *_aumUnitRetainerArr;
+}
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -32,7 +35,7 @@
     if (self = [super init]) {
         _(NewAUGraph(&_graphRef), kAUMAudioUnitException, @"NewAUGraph() failed.");
         _(AUGraphOpen(_graphRef), kAUMAudioUnitException, @"AUGraphOpen() failed.");
-        _(AUGraphInitialize(_graphRef), kAUMAudioUnitException, @"AUGraphInitialize() failed.");
+        _aumUnitRetainerArr = [NSMutableArray array];
     }
     return self;
 }
@@ -41,6 +44,7 @@
 - (void)dealloc
 {
     // Skip error checking here (?)
+    AUGraphClose(_graphRef);
     DisposeAUGraph(_graphRef);
 }
 
@@ -110,6 +114,9 @@
     if ([anAUMUnit respondsToSelector:call]) {
         [anAUMUnit _nodeWasAddedToGraph];
     }
+    
+    // Retain the Objc obect
+    [_aumUnitRetainerArr addObject:anAUMUnit];
 }
 
 /////////////////////////////////////////////////////////////////////////

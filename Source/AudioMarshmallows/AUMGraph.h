@@ -47,9 +47,9 @@
 /** Calls CAShow on the underlying graph to get some info */
 - (void)printInfo;
 
-/** Add the AUMUnit to the graph. Sets the AUMUnit's _nodeRef and _audioUnitRef properties and cals the _nodeWasAddedToGraph method if defined
+/** Add the AUMUnit to the graph. Sets the AUMUnit's _nodeRef and _audioUnitRef properties and cals the _nodeWasAddedToGraph method if defined.  Retains the AUMUnit so no need to keep a ref if you dont want to.
  
-    \throws kAUMException
+    \throws kAUMAudioUnitException
  */
 - (void)addUnit:(id<AUMUnitProtocol>)anAUMUnit;
 
