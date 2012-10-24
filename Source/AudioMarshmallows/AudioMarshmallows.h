@@ -22,7 +22,7 @@
 
 #import "AUMRendererProtocol.h"
 #import "AUMFilePlaybackRenderer.h"
-
+#import "AUMFileRecordingRenderer.h"
 
 #endif
 
