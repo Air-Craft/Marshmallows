@@ -10,6 +10,7 @@
 #import "Private/AUMErrorChecking.h"
 #import "MarshmallowCocoa.h"
 #import "MarshmallowDebug.h"
+#import "AUMAudioSession.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - RCB
@@ -21,12 +22,17 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
                                              UInt32							inNumberFrames,
                                              AudioBufferList *				ioData)
 {
+    // Only do post render
+    if (*ioActionFlags & kAudioUnitRenderAction_PreRender or inBusNumber != 0) {
+        return noErr;
+    }
+    
     AUMFileRecordingRenderer *THIS = (__bridge AUMFileRecordingRenderer *)inRefCon;
     
     if (not THIS->_isRecording)
         return noErr;
-    
-    OSStatus res = ExtAudioFileWriteAsync(THIS->_fileRef, inNumberFrames, ioData);
+
+    OSStatus res = ExtAudioFileWrite(THIS->_fileRef, inNumberFrames, ioData);
     
     if (res != noErr) {
         MMLogRealTime(@"%@", [NSString mm_ErrorCodeStringFromOSStatus:res]);
@@ -47,10 +53,6 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
 /////////////////////////////////////////////////////////////////////////
 
 @implementation AUMFileRecordingRenderer
-{
-    
-
-}
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Life Cycle
@@ -62,6 +64,7 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
     if (self) {
         _fileRef = NULL;    // Init just to be sure
         _inputStreamFormat = kAUMStreamFormatAUMUnitCanonical;  // Just a handy default
+        _inputStreamFormat.mSampleRate = 44100; // Needs to be explicit for write function
         _stopRequestFlag = false;
         _isRecording = false;
     }
@@ -81,6 +84,19 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
 
 @synthesize inputStreamFormat=_inputStreamFormat;
 @synthesize outputFileURL=_outputFileURL;
+
+- (void)setInputStreamFormat:(AudioStreamBasicDescription)aFormat
+{
+    // Recorder needs the sample rate so grab it if not set
+    if (aFormat.mSampleRate == kAudioStreamAnyRate) {
+        aFormat.mSampleRate = AUMAudioSession.currentHardwareSampleRate;
+        if (aFormat.mSampleRate == 0) {
+            [NSException raise:NSInternalInconsistencyException format:@"Sample rate could not be retrieved from the Audio Session.  Set explicitly or initialise the session first"];
+        }
+    }
+    _inputStreamFormat = aFormat;
+    
+}
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - AUMRendererProcotol
@@ -115,6 +131,7 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
         _(ExtAudioFileDispose(_fileRef),
           kAUMAudioFileException,
           @"Error disposing of previous file %@", _outputFileURL.lastPathComponent);
+        _fileRef = NULL;
     }
     
     // Store the parameters for opening on queue...
@@ -126,16 +143,17 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
 
 - (void)queue
 {
+    if ([self _isQueued]) {
+        MMLogWarn(@"'queue' called when already queued!")
+        return;
+    }
+    
     if (!_outputFileURL) {
         [NSException raise:NSInternalInconsistencyException format:@"Output file must be loaded first"];
     }
     
     // Open the new one
-    AudioStreamBasicDescription asbd = {0};
-    asbd.mSampleRate = kAudioStreamAnyRate;
-    asbd.mFormatID = kAudioFormatAppleIMA4;
-    asbd.mChannelsPerFrame = 2;
-    
+
     _(ExtAudioFileCreateWithURL((__bridge CFURLRef)_outputFileURL,
                                 _outputFileFormat.fileTypeId,
                                 &_outputFileFormat.streamFormat,
@@ -144,8 +162,16 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
                                 &_fileRef),
       kAUMAudioFileException,
       @"Error creating audio file %@", _outputFileURL.absoluteString);
-  
-    // Explicitly set the encoding method to prevent various issues
+
+    // Set the client data format to our input format
+    _(ExtAudioFileSetProperty(_fileRef,
+                              kExtAudioFileProperty_ClientDataFormat,
+                              sizeof(_inputStreamFormat),
+                              &_inputStreamFormat),
+      kAUMAudioFileException,
+      @"Error setting client format on audio file %@", _outputFileURL.absoluteString);
+    
+    // Explicitly set the codec (hardware/software) to prevent various issues
     // See http://michaelchinen.com/2012/04/30/ios-encoding-to-aac-with-the-extended-audio-file-services-gotchas/
     
     _(ExtAudioFileSetProperty(_fileRef,
@@ -161,7 +187,8 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
 - (void)record
 {
     if (_isRecording) {
-        [NSException raise:NSInternalInconsistencyException format:@"Recording is already on!"];
+        MMLogWarn(@"'record' called when already recording!")
+        return;
     }
     if (!self._isQueued)
         [self queue];
@@ -174,17 +201,21 @@ static OSStatus AUMFileRecordingRendererRCB(void *							inRefCon,
 - (void)stop
 {
     if (not _isRecording) {
-        [NSException raise:NSInternalInconsistencyException format:@"Recording is already stopped!"];
+        MMLogWarn(@"'stop' called when already stopped!")
+        return;
     }
     
     // Request stop and then spin lock until the RCB confirms
     _stopRequestFlag = true;
-    while (_isRecording) sleep(5);
+    while (_isRecording) sleep(1);
     
     // Reset the request flag
     _stopRequestFlag = false;
     
-    ExtAudioFileDispose(_fileRef);
+    _(ExtAudioFileDispose(_fileRef),
+      kAUMAudioFileException,
+      @"Error closing the the file %@", _outputFileURL.absoluteString);
+    
     _fileRef = NULL;
 }
 

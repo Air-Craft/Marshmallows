@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AUMFilePlayerUnitTestViewController : UIViewController
+@interface AUMTesterViewController : UIViewController
 
 @end
 

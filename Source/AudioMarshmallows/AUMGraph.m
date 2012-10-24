@@ -91,7 +91,6 @@
 
 - (void)addUnit:(id<AUMUnitProtocol>)anAUMUnit
 {
-    
     AUNode node;
     AudioUnit unit;
     AudioComponentDescription desc = anAUMUnit._audioComponentDescription;

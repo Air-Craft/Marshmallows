@@ -21,6 +21,9 @@
  \section Concurrency Considerations
  Any public method which acts on _audioSource and/or _audioFile must be syncro'ed with the thread's update methods.  Otherwise file change and seek operations could lead to collisions
  */
+
+ 
+
 @interface AUMFilePlaybackRenderer : NSObject <AUMRendererProtocol>
 
 /////////////////////////////////////////////////////////////////////////
@@ -29,6 +32,18 @@
 
 @property (nonatomic) BOOL loop;
 @property (nonatomic) AUMAudioControlParameter volume;
+
+/** Disable to prevent the source from auto-rewinding (and re-buffering) when finished. Default=YES*/
+@property (nonatomic) BOOL autoRewindOnFinished;
+
+@property (atomic, copy) void (^cbPlaybackFinished)(AUMFilePlaybackRenderer *sender);
+@property (atomic, copy) void (^cbPlaybackDidOccur)(AUMFilePlaybackRenderer *sender, NSUInteger frame, NSTimeInterval time);
+
+/** Defaults to 0.5 seconds */
+@property (nonatomic) NSTimeInterval playbackDidOccurUpdateInterval;
+
+/** Whether the file is currently playing.  Note, a call to [pause] will immediately be reflected in this property but the audio won't actually stop for another moment while the RCB finishes its rendering round */ 
+@property (nonatomic, readonly) BOOL isPlaying;
 @property (nonatomic, readonly) NSTimeInterval playheadPosTime;
 @property (nonatomic, readonly) NSUInteger playheadPosFrames;
 
@@ -54,11 +69,18 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
+-(void)loadAudioFileFromURL:(NSURL *)fileURL;
+
 -(void)play;
 -(void)pause;
+
+/** Stops and rewinds */
 -(void)stop;
+
+/** Seeks to frame 0.  Playing files will continue to play from 0.  Finished files are reset to Paused state */
+-(void)rewind;
+
 -(void)seekToFrame:(NSUInteger)toFrame;
--(void)loadAudioFileFromURL:(NSURL *)fileURL;
 
 
 @end

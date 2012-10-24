@@ -63,12 +63,23 @@
 
 - (void)setStreamFormat:(AudioStreamBasicDescription)aStreamFormat forOutputBus:(NSUInteger)aBusNum;
 
+- (AudioStreamBasicDescription)streamFormatForInputBus:(NSUInteger)aBusNum;
+- (AudioStreamBasicDescription)streamFormatForOutputBus:(NSUInteger)aBusNum;
+
+
+- (void)setStreamFormat:(AudioStreamBasicDescription)aStreamFormat forOutputBus:(NSUInteger)aBusNum;
+
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forInputBus:(NSUInteger)aBusNum;
 
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forOutputBus:(NSUInteger)aBusNum;
 
-/** Convenience methods to connect an AUMRenderer.
- Sets the stream format and connects the RCB
+/** \throws kAUMAudioUnitException on error */
+- (void)addRenderNotifyWithCallback:(AURenderCallback)theCallback userDataPtr:(void *)inProcUserData;
+
+/** Attach a Renderer as a RenderNotify callback.  Be sure to manually set he stream format on the input or output bus(ses) depending on which (Pre or PostRender) side your RCB will operate. */
+- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer;
+
+/** Convenience methods to connect an AUMRenderer to a bus.  Sets the stream format on the AUMUnit bus automatically
  */
 - (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum;
 

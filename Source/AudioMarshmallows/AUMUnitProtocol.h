@@ -10,14 +10,9 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 
-/** \brief Semi-private protocol for AUMUnits.  Used internally and for those wishing to make custom AUMUnits.
+/** \brief Minimum requirement for AUMUnits which wishes to use the AUMGraph.  AUMUnitAbstract fulfills this and adds additional features.
  
  Underscore props are considered AUM Lib package scope, which includes if you subclass but doesnt include client public access.
- 
- \section Stream Formats
- These are specified by the units for two reason: first, to simplify implementation by the client, and second because some of the AUM units which use their own RCB's need to mandate the I/O formats as we don't want to mimick Apple's auto-conversion (which we still leverage to get from/to the hardware I/O).  
- 
- Clients can simply read the property and enforce their related streams (eg from a file) to match.
  */
 @protocol AUMUnitProtocol <NSObject>
 

@@ -8,19 +8,9 @@
 #import "AUMTypes.h"
 #import <CoreAudio/CoreAudioTypes.h>
 
-
-const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_IM4_Stereo_SoftwareCodec = {
-    .fileTypeId = kAudioFileAIFFType,
-    .streamFormat = {
-        .mSampleRate = kAudioStreamAnyRate,
-        .mFormatID = kAudioFormatAppleIMA4,
-        .mChannelsPerFrame = 2
-    },
-    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
-};
-
 /////////////////////////////////////////////////////////////////////////
-
+#pragma mark - Stream Formats (ASBDs)
+/////////////////////////////////////////////////////////////////////////
 
 const AudioStreamBasicDescription kAUMStreamFormatAUMUnitCanonical = {
     .mFormatID = kAudioFormatLinearPCM,
@@ -37,5 +27,33 @@ const AudioStreamBasicDescription kAUMStreamFormatAUMUnitCanonical = {
 /////////////////////////////////////////////////////////////////////////
 
 const AudioStreamBasicDescription kAUMNoStreamFormat = {0};
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - File Formats
+/////////////////////////////////////////////////////////////////////////
+
+const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_IM4_Stereo_SoftwareCodec = {
+    .fileTypeId = kAudioFileAIFFType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatAppleIMA4,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+/////////////////////////////////////////////////////////////////////////
+
+const AUMAudioFileFormatDescription kAUMFileFormat_M4A_MPEG4AAC_Stereo_SoftwareCodec = {
+    .fileTypeId = kAudioFileM4AType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatMPEG4AAC,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
 
 /// @}

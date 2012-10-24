@@ -7,6 +7,7 @@
 //
 
 #import "MMAppDelegate.h"
+#import "AUMTesterViewController.h"
 
 @implementation MMAppDelegate
 
@@ -14,6 +15,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    self.window.rootViewController = [[AUMTesterViewController alloc] initWithNibName:@"AUMTesterView" bundle:nil];
+    
+    [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
 

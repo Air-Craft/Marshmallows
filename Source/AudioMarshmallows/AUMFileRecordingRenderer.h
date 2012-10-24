@@ -13,6 +13,7 @@
 #import "AUMTypes.h"
 #import "Private/AUMAtomicType.h"
 
+
 /**
  \brief Records audio from an AUMUnit bus to disk
  
@@ -34,25 +35,26 @@
  \throws kAUMAudioFileException on error closing any previous file or creating the new one
  */
 @property (nonatomic, strong, readonly) NSURL *outputFileURL;
+
+/** \throws NSInteralInconsistencyException if mSampleRate is not set and it can't be retrieved from the AUMAudioSession */
 @property (nonatomic) AudioStreamBasicDescription inputStreamFormat;
 @property (nonatomic, readonly) AUMAudioFileFormatDescription outputFileFormat;
 
 - (void)newOutputFileWithURL:(NSURL *)aURL withFileFormat:(AUMAudioFileFormatDescription)aFileFormat;
 
 
-/** Open the requested file and prepare for recording.  Called automatically by record if not alreayd queued but can be called manually to have record kick in faster 
+/** Open the requested file and prepare for recording.  Called automatically by record if not alreayd queued but can be called manually to have record kick in faster.  If already queued then it issues an MMLogWarn but then quietly returns.
  \throws NSInternalInconsistencyException If no file specified
  */
 - (void)queue;
 
-/** Begin recording to the file.  If file has not ben "queued" then queueFile will be called
- \throws NSInternalInconsistencyException If already recording
+/** Begin recording to the file.  If file has not ben "queued" then queueFile will be called. If already recording it issues an MMLogWarn but then quietly returns.
  \throws NSInternalInconsistencyException If no file has been set
  */
 - (void)record;
 
-/** Stops the recording. Also closes the audio file to ensure all async writes have completed and that the file can be used elsewhere
- \throws NSInternalInconsistencyException if already stopped
+/** Stops the recording. Also closes the audio file to ensure all async writes have completed and that the file can be used elsewhere. If already stopped then it issues an MMLogWarn but then quietly returns.
+ \throws kAUMAudioFileException if error while closing (disposing) of the audio file
  */
 - (void)stop;
 

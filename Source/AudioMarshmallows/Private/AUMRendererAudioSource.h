@@ -58,6 +58,8 @@ class AUMFilePlayerUnitRenderer;
  
  \p Volume changes & previousVolume:
  To ensure smooth glitch-free transitions, we need to keep track of the previous volume.  previousVolume should only be R/W by the callback to prevent the need for thread safety measures.  prevVol begin life as -1 which signals to the callback to init it to volume on first run.  This prevents an unintended ramp occuring for sources that begin playing at a volume other than the default of 1.
+ 
+ \todo Spinlock on pause? (if so then remove one from play)
  */
 class AUMRendererAudioSource
 {
@@ -70,7 +72,7 @@ public:
         Paused,         ///< Paused.  Set when file is first queued up.
         Playing,        ///< Playing
         QueuedToPause,  ///< Still playing but will be paused by RCB on next iteration
-        Finished        ///< EOF and buffer empty.  Set via RCB some time after EOF
+        Finished        ///< EOF and buffer empty.  Set externally usually when feeding file EOFs
     };
 
 /////////////////////////////////////////////////////////////////////////

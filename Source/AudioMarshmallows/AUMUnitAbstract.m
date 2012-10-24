@@ -116,6 +116,53 @@
 
 /////////////////////////////////////////////////////////////////////////
 
+- (AudioStreamBasicDescription)streamFormatForInputBus:(NSUInteger)aBusNum
+{
+    if (!_audioUnitRef) {
+        [NSException raise:NSInternalInconsistencyException format:@"AUMUnit must be added to graph or instantiateWithoutGraph called prior to this method"];
+    }
+    // If added to the graph already then set the AU property...
+    AudioStreamBasicDescription asbd;
+    UInt32 s = sizeof(asbd);
+    _(AudioUnitGetProperty(_audioUnitRef,
+                           kAudioUnitProperty_StreamFormat,
+                           kAudioUnitScope_Input,
+                           aBusNum,
+                           &asbd,
+                           &s),
+      kAUMAudioUnitException,
+      @"Failed to get stream format on input bus %i of %@", aBusNum, self);
+    
+    return asbd;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (AudioStreamBasicDescription)streamFormatForOutputBus:(NSUInteger)aBusNum
+{
+    if (!_audioUnitRef) {
+        [NSException raise:NSInternalInconsistencyException format:@"AUMUnit must be added to graph or instantiateWithoutGraph called prior to this method"];
+    }
+    // If added to the graph already then set the AU property...
+    AudioStreamBasicDescription asbd;
+    UInt32 s = sizeof(asbd);
+    _(AudioUnitGetProperty(_audioUnitRef,
+                           kAudioUnitProperty_StreamFormat,
+                           kAudioUnitScope_Output,
+                           aBusNum,
+                           &asbd,
+                           &s),
+      kAUMAudioUnitException,
+      @"Failed to get stream format on output bus %i of %@", aBusNum, self);
+    
+    return asbd;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////
+
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forInputBus:(NSUInteger)aBusNum
 {
     if (!_audioUnitRef) {
@@ -154,9 +201,32 @@
 
 /////////////////////////////////////////////////////////////////////////
 
+- (void)addRenderNotifyWithCallback:(AURenderCallback)theCallback userDataPtr:(void *)userDataPtr
+{
+    if (!_audioUnitRef) {
+        [NSException raise:NSInternalInconsistencyException format:@"AUMUnit must be added to graph or instantiateWithoutGraph called prior to this method"];
+    }
+    
+    _(AudioUnitAddRenderNotify(_audioUnitRef, theCallback, userDataPtr),
+      kAUMAudioUnitException,
+      @"Error adding render notify to AUMUnit %@", self);
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer
+{
+    [self addRenderNotifyWithCallback:anAUMRenderer.renderCallbackStruct.inputProc userDataPtr:anAUMRenderer.renderCallbackStruct.inputProcRefCon];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
 - (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toInputBus:(NSUInteger)aBusNum
 {
-    [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forInputBus:aBusNum];
+    // Set the stream format if requested by the renderer
+    if (!AUM_isNoStreamFormat(anAUMRenderer.renderCallbackStreamFormat)) {
+        [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forInputBus:aBusNum];
+    }
     [self setRenderCallback:anAUMRenderer.renderCallbackStruct forInputBus:aBusNum];
 }
 
@@ -164,7 +234,10 @@
 
 - (void)attachRenderer:(id<AUMRendererProtocol>)anAUMRenderer toOutputBus:(NSUInteger)aBusNum
 {
-    [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forOutputBus:aBusNum];
+    // Set the stream format if requested by the renderer
+    if (!AUM_isNoStreamFormat(anAUMRenderer.renderCallbackStreamFormat)) {
+        [self setStreamFormat:anAUMRenderer.renderCallbackStreamFormat forOutputBus:aBusNum];
+    }
     [self setRenderCallback:anAUMRenderer.renderCallbackStruct forOutputBus:aBusNum];
 }
 

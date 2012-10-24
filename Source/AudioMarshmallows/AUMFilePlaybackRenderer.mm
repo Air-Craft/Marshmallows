@@ -27,6 +27,8 @@
     AUMRendererAudioSource *_audioSource;
     AUMAudioFileReader *_audioFile;
     
+    NSInvocation *_cbPlaybackDidOccurInvoc;     // used to cancel on change or nil
+    
     NSTimeInterval _sampleRate;
     NSUInteger _diskBufferSizeInFrames;
     
@@ -96,7 +98,9 @@
     _sourcePosOffsetInFrames = 0;
     _seekIsPending = NO;
     _sampleRate = theSampleRate;
-
+    _playbackDidOccurUpdateInterval = 0.5; // 1/2 second default
+    _autoRewindOnFinished = YES;
+    
     // Set up the C++ renderhelper and our properties to fulfill the protocol
     NSUInteger ioBufferInFrames = ceil(theSampleRate * theIOBufferDuration);
     _renderer = new AUMFilePlaybackRendererRCB(ioBufferInFrames, theSampleRate);
@@ -149,11 +153,18 @@
     return _audioSource->volume();
 }
 
+- (BOOL)isPlaying
+{
+    // QueuedToPause will be considered not isPlaying to the client end.  This could have some implications...
+    return (_audioSource->state() == AUMRendererAudioSource::Playing);
+}
+
 /////////////////////////////////////////////////////////////////////////
 
 - (NSUInteger)playheadPosFrames
 {
-    return round(_sourcePosOffsetInFrames + _audioSource->playheadPosInFrames());
+    // modulus to take into account looping
+    return (NSUInteger)round(_sourcePosOffsetInFrames + _audioSource->playheadPosInFrames()) % _audioFile.lengthInFrames;
 }
 
 - (NSTimeInterval)playheadPosTime
@@ -168,6 +179,40 @@
 }
 
 /////////////////////////////////////////////////////////////////////////
+
+@synthesize cbPlaybackDidOccur=_cbPlaybackDidOccur;
+
+- (void (^)(AUMFilePlaybackRenderer *, NSUInteger, NSTimeInterval))cbPlaybackDidOccur
+{
+    @synchronized(self) {
+        return _cbPlaybackDidOccur;
+    }
+}
+
+- (void)setCbPlaybackDidOccur:(void (^)(AUMFilePlaybackRenderer *, NSUInteger, NSTimeInterval))aBlock
+{
+    // Remove the old invocation
+    if (_cbPlaybackDidOccurInvoc) {
+        [_updateThread removeInvocation:_cbPlaybackDidOccurInvoc];
+        _cbPlaybackDidOccurInvoc = nil;
+    }
+ 
+    if (aBlock) {
+        // The @synchros here and on the getter ensure any partially executed blocks finish before the property gets reassigned
+        @synchronized(self) {
+            _cbPlaybackDidOccur = aBlock;
+            __weak id weakSelf = self;
+            _cbPlaybackDidOccurInvoc = [NSInvocation mm_invocationWithTarget:weakSelf block:^(id target) {
+                [target _callPlaybackDidOccurCallback];
+            }];
+            [_updateThread addInvocation:_cbPlaybackDidOccurInvoc desiredInterval:_playbackDidOccurUpdateInterval];
+        }
+    }
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
@@ -175,8 +220,8 @@
 {
     // Load the file
     AUMAudioFileReader *newFile = [AUMAudioFileReader audioFileForURL:fileURL];
-    newFile.outFormat = _renderCallbackStreamFormat;
-
+    newFile.outFormat = _renderCallbackStreamFormat
+;
     @synchronized(self) {
         _seekIsPending = NO; // just in case its possible
 
@@ -214,6 +259,11 @@
 {
     @synchronized(self) {
         if (!_audioFile) [NSException raise:NSInternalInconsistencyException format:@"File must be loaded first"];
+
+        // If finished, rewind first
+        if (_audioSource->state() == AUMRendererAudioSource::Finished) {
+            [self seekToFrame:0];
+        }
         
         _audioSource->play();
     }
@@ -226,7 +276,11 @@
     @synchronized(self) {
         if (!_audioFile) [NSException raise:NSInternalInconsistencyException format:@"File must be loaded first"];
         
-        _audioSource->pause();
+        if (self.isPlaying) {
+            _audioSource->pause();
+        } else {
+            MMLogWarn(@"Pause called when already paused/stopped on %@", self);
+        }
     }
 }
 
@@ -234,8 +288,25 @@
 
 - (void)stop
 {
-    [self pause];
-    [self seekToFrame:0];
+    @synchronized(self) {
+        if (!_audioFile) [NSException raise:NSInternalInconsistencyException format:@"File must be loaded first"];
+
+        if (self.isPlaying) {
+            [self pause];
+            [self seekToFrame:0];
+        } else {
+            MMLogWarn(@"Stop called when already paused/stopped on %@", self);
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)rewind
+{
+    @synchronized(self) {
+        [self seekToFrame:0];
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -355,17 +426,41 @@
     
     // File EOF AND buffer empty?  Set finished and return
     if (_audioFile.eof && _audioSource->framesRemainingInBuffer() == 0) {
-        _audioSource->setFinished();
-        MMLogRealTime("Source %p: Finished playback.", _audioSource);
+        MMLogRealTime("Source %p: Finished playback.%@", _audioSource, _autoRewindOnFinished?@" Rewinding.":@" Not rewinding.");
+        
+        if (_autoRewindOnFinished) {
+            [self rewind];
+        } else {
+            _audioSource->setFinished();
+        }
+        
+        // Call the callback block
+        if (_cbPlaybackFinished) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.cbPlaybackFinished(self);
+            });
+        }
         return;
     }
     
+    // Exit if EOF and not looping
+    if (_audioFile.eof && !_loop) {
+        return;
+    }
+    
+    /////////////////////////////////////////
+    // CHECK FOR DEPLETED
+    /////////////////////////////////////////
     
     // See if we have enough frames in the ring buffer already...
     NSUInteger framesRemainingInBuffer = _audioSource->framesRemainingInBuffer();
     // 1/2 for now...
     if (framesRemainingInBuffer > _audioSource->bufferSizeInFrames() / 2) { return; }
     
+    
+    /////////////////////////////////////////
+    // READ FROM FILE
+    /////////////////////////////////////////
     
     // Otherwise fill 'er up
     int32_t framesToLoad = _audioSource->bufferSizeInFrames() - framesRemainingInBuffer;
@@ -375,10 +470,33 @@
     void *bufferHeadR;
     _audioSource->pointersToBufferHeads(&bufferHeadL, &bufferHeadR);
     
-    NSUInteger framesLoaded = [_audioFile readFrames:framesToLoad intoBufferL:bufferHeadL bufferR:bufferHeadR];
-    
+    NSUInteger framesLoaded = [_audioFile readFrames:framesToLoad
+                                         intoBufferL:bufferHeadL
+                                             bufferR:bufferHeadR];
+
     // Update streamFile read position and consume the bytes
     _audioSource->indicateFramesWrittenToBuffer(framesLoaded);
+    
+    // If less than requested and looping, the rewind and read some more
+    if (_loop) {
+        
+        // Do this in a loop in case the sample is very small
+        while (framesLoaded < framesToLoad) {
+        
+            NSUInteger addtFramesToLoad = framesToLoad - framesLoaded;
+            [_audioFile seekToFrame:0];
+            
+            _audioSource->pointersToBufferHeads(&bufferHeadL, &bufferHeadR);
+            
+            NSUInteger addtFramesLoaded = [_audioFile readFrames:addtFramesToLoad
+                                                     intoBufferL:bufferHeadL
+                                                         bufferR:bufferHeadR];
+            
+            // Update streamFile read position and consume the bytes
+            _audioSource->indicateFramesWrittenToBuffer(addtFramesLoaded);
+            framesLoaded += addtFramesLoaded;
+        }
+    }
     
     // Are we at EOF?
     if (_audioFile.eof) {
@@ -396,6 +514,16 @@
     [self _replenishSourceBuffer];
 }
 
+/////////////////////////////////////////////////////////////////////////
+
+- (void)_callPlaybackDidOccurCallback
+{
+    if ([self isPlaying]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.cbPlaybackDidOccur(self, self.playheadPosFrames, self.playheadPosTime);
+        });
+    }
+}
 
 @end
 

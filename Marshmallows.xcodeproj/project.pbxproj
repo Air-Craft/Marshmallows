@@ -23,8 +23,10 @@
 		A6434FA81622EB5F00496EAC /* NSInvocation+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA61622EB5F00496EAC /* NSInvocation+MMBlocks.m */; };
 		A6434FAB16230F5100496EAC /* AUMCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */; };
 		A6434FAC16230F5100496EAC /* AUMCircularBuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = A6434FA916230F4F00496EAC /* AUMCircularBuffer.c */; };
-		A644CD2C1636D68900C34512 /* AUMFileRecordingRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.m */; };
-		A644CD2D1636D68900C34512 /* AUMFileRecordingRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.m */; };
+		A644CD2C1636D68900C34512 /* AUMFileRecordingRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.mm */; };
+		A644CD2D1636D68900C34512 /* AUMFileRecordingRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.mm */; };
+		A644CD301637DAA700C34512 /* AUMAtomicType.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2F1637DAA700C34512 /* AUMAtomicType.mm */; };
+		A644CD311637DAA700C34512 /* AUMAtomicType.mm in Sources */ = {isa = PBXBuildFile; fileRef = A644CD2F1637DAA700C34512 /* AUMAtomicType.mm */; };
 		A664EFB615CEEB8900182FFD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE28679114B36EC5001E11D7 /* Foundation.framework */; };
 		A664EFBB15CEEB8900182FFD /* MarshmallowsStaticLib.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = A664EFBA15CEEB8900182FFD /* MarshmallowsStaticLib.h */; };
 		A664EFBD15CEEB8900182FFD /* MarshmallowsStaticLib.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFBC15CEEB8900182FFD /* MarshmallowsStaticLib.m */; };
@@ -59,8 +61,8 @@
 		A664EFDD15CEEBBB00182FFD /* MarshmallowMathFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */; };
 		A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFE515CEECB800182FFD /* MMAppDelegate.m */; };
 		A66E7CD5163164A400565D93 /* OngKarNirankar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */; };
-		A66E7CD9163167F400565D93 /* AUMAtomicType.mm in Sources */ = {isa = PBXBuildFile; fileRef = A66E7CD8163167F400565D93 /* AUMAtomicType.mm */; };
-		A6ADEBE416330E7E00420769 /* AUMFilePlayerUnitTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADEBE316330E7E00420769 /* AUMFilePlayerUnitTestViewController.m */; };
+		A6ADEBE416330E7E00420769 /* AUMTesterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6ADEBE316330E7E00420769 /* AUMTesterViewController.mm */; };
+		A6AE6EA11637FFA400EC70AC /* SWHarp-Eb4-Medium.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6AE6EA01637FFA400EC70AC /* SWHarp-Eb4-Medium.wav */; };
 		A6B582B815DC125900D1CA05 /* AUMFilePlaybackRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AC15DC125900D1CA05 /* AUMFilePlaybackRenderer.mm */; };
 		A6B582B915DC125900D1CA05 /* AUMGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AE15DC125900D1CA05 /* AUMGraph.m */; };
 		A6B582BA15DC125900D1CA05 /* AUMMultichannelMixerUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B015DC125900D1CA05 /* AUMMultichannelMixerUnit.m */; };
@@ -73,8 +75,10 @@
 		A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */; };
 		A6D69D3E15D52E44009828CF /* MUIDraggablePane.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */; };
 		A6D69D3F15D52E44009828CF /* MUIDraggablePane.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */; };
+		A6D7D1271637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7D1261637DF6F0097BE06 /* NSString+Marshmallows.m */; };
+		A6D7D1281637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7D1261637DF6F0097BE06 /* NSString+Marshmallows.m */; };
+		A6D7D12B1637F04D0097BE06 /* AUMTesterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6D7D12A1637F04D0097BE06 /* AUMTesterView.xib */; };
 		A6D881651630373500D11296 /* SWHarp-C3-Medium.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6D881641630373500D11296 /* SWHarp-C3-Medium.wav */; };
-		A6D88167163039DB00D11296 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6D88166163039DB00D11296 /* Main.storyboard */; };
 		A6D8816916303BE300D11296 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D8816816303BE300D11296 /* AVFoundation.framework */; };
 		A6D8816B16303BEE00D11296 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D8816A16303BEE00D11296 /* Accelerate.framework */; };
 		A6D947AB15DAA02D002B42E0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D947A915DAA02D002B42E0 /* AudioToolbox.framework */; };
@@ -199,7 +203,9 @@
 		A6434FAA16230F5000496EAC /* AUMCircularBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMCircularBuffer.h; sourceTree = "<group>"; };
 		A644CD291636CA3D00C34512 /* AUMRendererProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMRendererProtocol.h; sourceTree = "<group>"; };
 		A644CD2A1636D68600C34512 /* AUMFileRecordingRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFileRecordingRenderer.h; sourceTree = "<group>"; };
-		A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMFileRecordingRenderer.m; sourceTree = "<group>"; };
+		A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFileRecordingRenderer.mm; sourceTree = "<group>"; };
+		A644CD2E1637DAA700C34512 /* AUMAtomicType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMAtomicType.h; sourceTree = "<group>"; };
+		A644CD2F1637DAA700C34512 /* AUMAtomicType.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMAtomicType.mm; sourceTree = "<group>"; };
 		A664EFB515CEEB8900182FFD /* libMarshmallowsStaticLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMarshmallowsStaticLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A664EFB915CEEB8900182FFD /* MarshmallowsStaticLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarshmallowsStaticLib-Prefix.pch"; sourceTree = "<group>"; };
 		A664EFBA15CEEB8900182FFD /* MarshmallowsStaticLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarshmallowsStaticLib.h; sourceTree = "<group>"; };
@@ -207,10 +213,8 @@
 		A664EFE415CEECB800182FFD /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		A664EFE515CEECB800182FFD /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
 		A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = OngKarNirankar.m4a; sourceTree = "<group>"; };
-		A66E7CD7163167F400565D93 /* AUMAtomicType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMAtomicType.h; sourceTree = "<group>"; };
-		A66E7CD8163167F400565D93 /* AUMAtomicType.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMAtomicType.mm; sourceTree = "<group>"; };
-		A6ADEBE216330E7E00420769 /* AUMFilePlayerUnitTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlayerUnitTestViewController.h; sourceTree = "<group>"; };
-		A6ADEBE316330E7E00420769 /* AUMFilePlayerUnitTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMFilePlayerUnitTestViewController.m; sourceTree = "<group>"; };
+		A6ADEBE316330E7E00420769 /* AUMTesterViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMTesterViewController.mm; sourceTree = "<group>"; };
+		A6AE6EA01637FFA400EC70AC /* SWHarp-Eb4-Medium.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "SWHarp-Eb4-Medium.wav"; sourceTree = "<group>"; };
 		A6B582A915DC125900D1CA05 /* AudioMarshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMarshmallows.h; sourceTree = "<group>"; };
 		A6B582AB15DC125900D1CA05 /* AUMFilePlaybackRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMFilePlaybackRenderer.h; sourceTree = "<group>"; };
 		A6B582AC15DC125900D1CA05 /* AUMFilePlaybackRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AUMFilePlaybackRenderer.mm; sourceTree = "<group>"; };
@@ -233,8 +237,11 @@
 		A6D69D3C15D52E44009828CF /* MUIDraggablePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIDraggablePane.h; sourceTree = "<group>"; };
 		A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIDraggablePane.m; sourceTree = "<group>"; };
 		A6D69D4115D531D3009828CF /* MUITypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUITypes.h; sourceTree = "<group>"; };
+		A6D7D1251637DF6F0097BE06 /* NSString+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Marshmallows.h"; sourceTree = "<group>"; };
+		A6D7D1261637DF6F0097BE06 /* NSString+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Marshmallows.m"; sourceTree = "<group>"; };
+		A6D7D12A1637F04D0097BE06 /* AUMTesterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AUMTesterView.xib; sourceTree = "<group>"; };
+		A6D7D12C1637F0EE0097BE06 /* AUMTesterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMTesterViewController.h; sourceTree = "<group>"; };
 		A6D881641630373500D11296 /* SWHarp-C3-Medium.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "SWHarp-C3-Medium.wav"; sourceTree = "<group>"; };
-		A6D88166163039DB00D11296 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A6D8816816303BE300D11296 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A6D8816A16303BEE00D11296 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		A6D947A915DAA02D002B42E0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -377,6 +384,8 @@
 		A6434F94161F4E5B00496EAC /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				A644CD2E1637DAA700C34512 /* AUMAtomicType.h */,
+				A644CD2F1637DAA700C34512 /* AUMAtomicType.mm */,
 				A6FA09F4162DAB160094C279 /* AUMErrorChecking.h */,
 				A6434F95161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.h */,
 				A6434F96161F4E5B00496EAC /* AUMFilePlaybackRendererRCB.mm */,
@@ -411,8 +420,6 @@
 				A6B582A915DC125900D1CA05 /* AudioMarshmallows.h */,
 				A6B582B315DC125900D1CA05 /* AUMTypes.h */,
 				A6B582B415DC125900D1CA05 /* AUMTypes.m */,
-				A66E7CD7163167F400565D93 /* AUMAtomicType.h */,
-				A66E7CD8163167F400565D93 /* AUMAtomicType.mm */,
 				A636EDBE163011AF0037F211 /* AUMAudioSession.h */,
 				A636EDBF163011AF0037F211 /* AUMAudioSession.m */,
 				A6434F99161F50AF00496EAC /* AUMAudioFileReader.h */,
@@ -434,7 +441,7 @@
 				A6B582AB15DC125900D1CA05 /* AUMFilePlaybackRenderer.h */,
 				A6B582AC15DC125900D1CA05 /* AUMFilePlaybackRenderer.mm */,
 				A644CD2A1636D68600C34512 /* AUMFileRecordingRenderer.h */,
-				A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.m */,
+				A644CD2B1636D68700C34512 /* AUMFileRecordingRenderer.mm */,
 			);
 			path = AudioMarshmallows;
 			sourceTree = "<group>";
@@ -492,6 +499,7 @@
 		CE28687814BA0D6C001E11D7 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				A6AE6EA01637FFA400EC70AC /* SWHarp-Eb4-Medium.wav */,
 				A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */,
 				A6D881641630373500D11296 /* SWHarp-C3-Medium.wav */,
 				A664EFE415CEECB800182FFD /* MMAppDelegate.h */,
@@ -500,9 +508,9 @@
 				CE28687C14BA0D6C001E11D7 /* Marshmallows-Info.plist */,
 				CE28687D14BA0D6C001E11D7 /* Marshmallows-Prefix.pch */,
 				A61CB97815CEE0D00054DBCE /* main.m */,
-				A6D88166163039DB00D11296 /* Main.storyboard */,
-				A6ADEBE216330E7E00420769 /* AUMFilePlayerUnitTestViewController.h */,
-				A6ADEBE316330E7E00420769 /* AUMFilePlayerUnitTestViewController.m */,
+				A6D7D12C1637F0EE0097BE06 /* AUMTesterViewController.h */,
+				A6ADEBE316330E7E00420769 /* AUMTesterViewController.mm */,
+				A6D7D12A1637F04D0097BE06 /* AUMTesterView.xib */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -607,6 +615,8 @@
 				CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */,
 				A6434FA51622EB5F00496EAC /* NSInvocation+MMBlocks.h */,
 				A6434FA61622EB5F00496EAC /* NSInvocation+MMBlocks.m */,
+				A6D7D1251637DF6F0097BE06 /* NSString+Marshmallows.h */,
+				A6D7D1261637DF6F0097BE06 /* NSString+Marshmallows.m */,
 			);
 			path = MarshmallowCocoa;
 			sourceTree = "<group>";
@@ -784,8 +794,9 @@
 			files = (
 				CE28688014BA0D6C001E11D7 /* InfoPlist.strings in Resources */,
 				A6D881651630373500D11296 /* SWHarp-C3-Medium.wav in Resources */,
-				A6D88167163039DB00D11296 /* Main.storyboard in Resources */,
 				A66E7CD5163164A400565D93 /* OngKarNirankar.m4a in Resources */,
+				A6D7D12B1637F04D0097BE06 /* AUMTesterView.xib in Resources */,
+				A6AE6EA11637FFA400EC70AC /* SWHarp-Eb4-Medium.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,7 +870,9 @@
 				A6FA09EB162D67D00094C279 /* MarshmallowDebug.c in Sources */,
 				A6FA09F3162DA5850094C279 /* AUMException.m in Sources */,
 				A636EDC1163011B00037F211 /* AUMAudioSession.m in Sources */,
-				A644CD2D1636D68900C34512 /* AUMFileRecordingRenderer.m in Sources */,
+				A644CD2D1636D68900C34512 /* AUMFileRecordingRenderer.mm in Sources */,
+				A644CD311637DAA700C34512 /* AUMAtomicType.mm in Sources */,
+				A6D7D1281637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -913,9 +926,10 @@
 				A6FA09EA162D67D00094C279 /* MarshmallowDebug.c in Sources */,
 				A6FA09F2162DA5850094C279 /* AUMException.m in Sources */,
 				A636EDC0163011B00037F211 /* AUMAudioSession.m in Sources */,
-				A66E7CD9163167F400565D93 /* AUMAtomicType.mm in Sources */,
-				A6ADEBE416330E7E00420769 /* AUMFilePlayerUnitTestViewController.m in Sources */,
-				A644CD2C1636D68900C34512 /* AUMFileRecordingRenderer.m in Sources */,
+				A6ADEBE416330E7E00420769 /* AUMTesterViewController.mm in Sources */,
+				A644CD2C1636D68900C34512 /* AUMFileRecordingRenderer.mm in Sources */,
+				A644CD301637DAA700C34512 /* AUMAtomicType.mm in Sources */,
+				A6D7D1271637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

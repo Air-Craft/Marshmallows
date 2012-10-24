@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Basic Types
+/////////////////////////////////////////////////////////////////////////
+
 /** 
  Audio control parameters like volume, etc.  Not wave data
  
@@ -16,9 +21,6 @@
  */
 typedef AudioUnitParameterValue AUMAudioControlParameter;
 
-
-/////////////////////////////////////////////////////////////////////////
-#pragma mark - Audio File Format Types & Constants
 /////////////////////////////////////////////////////////////////////////
 
 /**
@@ -27,11 +29,8 @@ typedef AudioUnitParameterValue AUMAudioControlParameter;
 typedef struct {
     AudioFileTypeID fileTypeId;
     AudioStreamBasicDescription streamFormat;
-    UInt32 codecManufacturer;  
+    UInt32 codecManufacturer;
 } AUMAudioFileFormatDescription;
-
-
-FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_IM4_Stereo_SoftwareCodec;
 
 
 
@@ -49,15 +48,27 @@ FOUNDATION_EXTERN const AudioStreamBasicDescription kAUMStreamFormatAUMUnitCanon
 /** Use to specify no explicit stream format in the AUMUnitProtocol implementations */
 FOUNDATION_EXTERN const AudioStreamBasicDescription kAUMNoStreamFormat;
 
+/////////////////////////////////////////////////////////////////////////
+
 /** Used to test a stream format for being equal to kAUMNoStreamFormat; */
-static inline const BOOL AUM_isNoStreamFormat(AudioStreamBasicDescription *testASBD)
+static inline const BOOL AUM_isNoStreamFormat(AudioStreamBasicDescription testASBD)
 {
     AudioStreamBasicDescription emptyASBD = {0};
     
-    if (memcmp(testASBD, &emptyASBD, sizeof(AudioStreamBasicDescription)) == 0) return YES;
+    if (memcmp(&testASBD, &emptyASBD, sizeof(AudioStreamBasicDescription)) == 0) return YES;
     
     return NO;
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Audio File Formats
+/////////////////////////////////////////////////////////////////////////
+
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_IM4_Stereo_SoftwareCodec;
+
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_M4A_MPEG4AAC_Stereo_SoftwareCodec;
 
 /////////////////////////////////////////////////////////////////////////
 

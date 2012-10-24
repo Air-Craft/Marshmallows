@@ -26,10 +26,15 @@ void AUMRendererAudioSource::initializeBuffer(NSInteger bufferSizeInFrames, NSIn
 
 void AUMRendererAudioSource::play()
 {
-    if (_state != AUMRendererAudioSource::Paused) {
-        [NSException raise:NSInternalInconsistencyException format:@"Source must be in 'Paused' state in order to play"];
+    if (_state == AUMRendererAudioSource::Finished) {
+        [NSException raise:NSInternalInconsistencyException format:@"Source can't be played once in Finished state."];
     }
     
+    // If QueuedToPause, spin lock until the RCB finishes
+    while (_state == AUMRendererAudioSource::QueuedToPause)
+        sleep(1);   // 1ms
+    
+    // Now its safe to set playing state
     _state = AUMRendererAudioSource::Playing;
 }
 
@@ -37,9 +42,17 @@ void AUMRendererAudioSource::play()
 
 void AUMRendererAudioSource::pause()
 {
-    if (_state != AUMRendererAudioSource::Playing and
-        _state != AUMRendererAudioSource::QueuedToPause) {
-        [NSException raise:NSInternalInconsistencyException format:@"Source must be in 'Playing' state (or even 'QueuedToPause' we'll allow) in order to 'pause'"];
+    if (_state == AUMRendererAudioSource::Finished) {
+        [NSException raise:NSInternalInconsistencyException format:@"Source can't be paused once in Finished state."];
+    }
+    
+    if (_state == AUMRendererAudioSource::Paused) {
+        MMLogWarn(@"Source paused when already in Paused state");
+        return;
+    }
+    
+    if (_state == AUMRendererAudioSource::QueuedToPause) {
+        MMLogWarn(@"Source paused when already in QueuedToPause state");
     }
     
     _state = AUMRendererAudioSource::QueuedToPause;
