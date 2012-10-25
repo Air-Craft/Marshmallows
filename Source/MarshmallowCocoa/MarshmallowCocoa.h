@@ -16,4 +16,5 @@
 #import "NSTimer+MMBlocks.h"
 #import "NSInvocation+MMBlocks.h"
 #import "NSString+Marshmallows.h"
+#import "NSURL+Marshmallows.h"
 #endif
