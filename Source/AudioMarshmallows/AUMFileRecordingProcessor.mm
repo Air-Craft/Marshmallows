@@ -12,6 +12,8 @@
 #import "MarshmallowDebug.h"
 #import "AUMAudioSession.h"
 #import "AUMUnitAbstract.h"
+#import "AUMUtilityFunctions.h"
+#import "Private/AUMAtomicType.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - RCB

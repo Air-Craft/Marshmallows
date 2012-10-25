@@ -48,28 +48,45 @@ FOUNDATION_EXTERN const AudioStreamBasicDescription kAUMStreamFormatAUMUnitCanon
 /** Use to specify no explicit stream format in the AUMUnitProtocol implementations */
 FOUNDATION_EXTERN const AudioStreamBasicDescription kAUMNoStreamFormat;
 
-/////////////////////////////////////////////////////////////////////////
-
-/** Used to test a stream format for being equal to kAUMNoStreamFormat; */
-static inline const BOOL AUM_isNoStreamFormat(AudioStreamBasicDescription testASBD)
-{
-    AudioStreamBasicDescription emptyASBD = {0};
-    
-    if (memcmp(&testASBD, &emptyASBD, sizeof(AudioStreamBasicDescription)) == 0) return YES;
-    
-    return NO;
-}
-
 
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Audio File Formats
 /////////////////////////////////////////////////////////////////////////
 
-FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_IM4_Stereo_SoftwareCodec;
+/** @name File Formats
+    \b Don't forget LPCM ones need a sample rate set
+ */
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_16bit_Packed_SignedInt_BigEndian;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_24bit_Packed_SignedInt_BigEndian;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_32bit_Packed_SignedInt_BigEndian;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_16bit_Packed_SignedInt;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_24bit_Packed_SignedInt;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_32bit_Packed_SignedInt;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_32bit_Packed_Float;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_64bit_Packed_Float;
 
+
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_MPEG4AAC_Stereo_HardwareCodec;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_MPEG4AAC_Stereo_SoftwareCodec;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_IMA4_Stereo_SoftwareCodec;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_CAF_ALAC_Stereo_SoftwareCodec;
+
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AAC_MPEG4AAC_Stereo_HardwareCodec;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AAC_MPEG4AAC_Stereo_SoftwareCodec;
+
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_M4A_MPEG4AAC_Stereo_HardwareCodec;
 FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_M4A_MPEG4AAC_Stereo_SoftwareCodec;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_M4A_ALAC_Stereo_SoftwareCodec;
 
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_LPCM_Stereo_44_1_16bit_Packed_SignedInt_BigEndian;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_LPCM_Stereo_44_1_24bit_Packed_SignedInt_BigEndian;
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_LPCM_Stereo_44_1_32bit_Packed_SignedInt_BigEndian;
+
+/** AIFF plus compression.  You can still used the .aiff extension */
+FOUNDATION_EXTERN const AUMAudioFileFormatDescription kAUMFileFormat_AIFC_IM4_Stereo_SoftwareCodec;
+
+/// @}
 /////////////////////////////////////////////////////////////////////////
 
 

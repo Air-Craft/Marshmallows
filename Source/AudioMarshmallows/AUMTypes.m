@@ -29,19 +29,220 @@ const AudioStreamBasicDescription kAUMStreamFormatAUMUnitCanonical = {
 const AudioStreamBasicDescription kAUMNoStreamFormat = {0};
 
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - File Formats - CAF
+/////////////////////////////////////////////////////////////////////////
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_16bit_Packed_SignedInt_BigEndian = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsBigEndian,
+        .mBitsPerChannel = 16,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 16/8 * 2,
+        .mBytesPerPacket = 16/8 * 2 * 1
+        
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_24bit_Packed_SignedInt_BigEndian = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsBigEndian,
+        .mBitsPerChannel = 24,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 24/8 * 2,
+        .mBytesPerPacket = 24/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_32bit_Packed_SignedInt_BigEndian = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsBigEndian,
+        .mBitsPerChannel = 32,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 32/8 * 2,
+        .mBytesPerPacket = 32/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_16bit_Packed_SignedInt = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger,
+        .mBitsPerChannel = 16,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 16/8 * 2,
+        .mBytesPerPacket = 16/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_24bit_Packed_SignedInt = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger,
+        .mBitsPerChannel = 24,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 24/8 * 2,
+        .mBytesPerPacket = 24/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_32bit_Packed_SignedInt = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger,
+        .mBitsPerChannel = 32,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 32/8 * 2,
+        .mBytesPerPacket = 32/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_32bit_Packed_Float = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsFloat,
+        .mBitsPerChannel = 32,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 32/8 * 2,
+        .mBytesPerPacket = 32/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_LPCM_Stereo_44_1_64bit_Packed_Float = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsFloat,
+        .mBitsPerChannel = 64,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 64/8 * 2,
+        .mBytesPerPacket = 64/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
 
 /////////////////////////////////////////////////////////////////////////
-#pragma mark - File Formats
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_MPEG4AAC_Stereo_HardwareCodec = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatMPEG4AAC,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleHardwareAudioCodecManufacturer
+};
+
 /////////////////////////////////////////////////////////////////////////
 
-const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_IM4_Stereo_SoftwareCodec = {
-    .fileTypeId = kAudioFileAIFFType,
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_MPEG4AAC_Stereo_SoftwareCodec = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatMPEG4AAC,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+/////////////////////////////////////////////////////////////////////////
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_IMA4_Stereo_SoftwareCodec = {
+    .fileTypeId = kAudioFileCAFType,
     .streamFormat = {
         .mSampleRate = kAudioStreamAnyRate,
         .mFormatID = kAudioFormatAppleIMA4,
         .mChannelsPerFrame = 2
     },
     .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+/////////////////////////////////////////////////////////////////////////
+
+const AUMAudioFileFormatDescription kAUMFileFormat_CAF_ALAC_Stereo_SoftwareCodec = {
+    .fileTypeId = kAudioFileCAFType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatAppleLossless,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - File Formats - AAC
+/////////////////////////////////////////////////////////////////////////
+
+const AUMAudioFileFormatDescription kAUMFileFormat_AAC_MPEG4AAC_Stereo_HardwareCodec = {
+    .fileTypeId = kAudioFileAAC_ADTSType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatMPEG4AAC,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleHardwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_AAC_MPEG4AAC_Stereo_SoftwareCodec = {
+    .fileTypeId = kAudioFileAAC_ADTSType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatMPEG4AAC,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - File Formats - M4A
+/////////////////////////////////////////////////////////////////////////
+
+const AUMAudioFileFormatDescription kAUMFileFormat_M4A_MPEG4AAC_Stereo_HardwareCodec = {
+    .fileTypeId = kAudioFileM4AType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatMPEG4AAC,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleHardwareAudioCodecManufacturer
 };
 
 /////////////////////////////////////////////////////////////////////////
@@ -55,5 +256,88 @@ const AUMAudioFileFormatDescription kAUMFileFormat_M4A_MPEG4AAC_Stereo_SoftwareC
     },
     .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
 };
+
+/////////////////////////////////////////////////////////////////////////
+
+const AUMAudioFileFormatDescription kAUMFileFormat_M4A_ALAC_Stereo_SoftwareCodec = {
+    .fileTypeId = kAudioFileM4AType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatAppleLossless,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - AIFF
+/////////////////////////////////////////////////////////////////////////
+
+const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_LPCM_Stereo_44_1_16bit_Packed_SignedInt_BigEndian = {
+    .fileTypeId = kAudioFileAIFFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsBigEndian,
+        .mBitsPerChannel = 16,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 16/8 * 2,
+        .mBytesPerPacket = 16/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_LPCM_Stereo_44_1_24bit_Packed_SignedInt_BigEndian = {
+    .fileTypeId = kAudioFileAIFFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsBigEndian,
+        .mBitsPerChannel = 24,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 24/8 * 2,
+        .mBytesPerPacket = 24/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+const AUMAudioFileFormatDescription kAUMFileFormat_AIFF_LPCM_Stereo_44_1_32bit_Packed_SignedInt_BigEndian = {
+    .fileTypeId = kAudioFileAIFFType,
+    .streamFormat = {
+        .mSampleRate = 44100,
+        .mFormatID = kAudioFormatLinearPCM,
+        .mChannelsPerFrame = 2,
+        .mFormatFlags = kAudioFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger | kAudioFormatFlagIsBigEndian,
+        .mBitsPerChannel = 32,
+        .mFramesPerPacket = 1,
+        .mBytesPerFrame = 32/8 * 2,
+        .mBytesPerPacket = 32/8 * 2 * 1
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - File Formats - AIFC (AIFF compressed)
+/////////////////////////////////////////////////////////////////////////
+
+/** AIFF plus compression.  You can still used the .aiff extension */
+const AUMAudioFileFormatDescription kAUMFileFormat_AIFC_IM4_Stereo_SoftwareCodec = {
+    .fileTypeId = kAudioFileAIFCType,
+    .streamFormat = {
+        .mSampleRate = kAudioStreamAnyRate,
+        .mFormatID = kAudioFormatAppleIMA4,
+        .mChannelsPerFrame = 2
+    },
+    .codecManufacturer = kAppleSoftwareAudioCodecManufacturer
+};
+
+
+/////////////////////////////////////////////////////////////////////////
+
+
 
 /// @}

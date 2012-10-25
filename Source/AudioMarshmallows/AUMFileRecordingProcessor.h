@@ -10,7 +10,9 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "AUMTypes.h"
+#ifdef __cplusplus
 #import "Private/AUMAtomicType.h"
+#endif
 #import "AUMProcessorRendererProtocol.h"
 
 /**
@@ -25,11 +27,16 @@
 {
     /// Naughty publics to allow RCB access without expensive ObjC messaging
 @public
+    
+    // Make this C friendly.  They are only here because we need public access to them in the RCB
+#ifdef __cplusplus
     /// Set to true to request that the RCB stop the recording and set isRecording=false after next iteration.
     AUM::AtomicBool _stopRequestFlag;
     // Confirm
     AUM::AtomicBool _isRecording;
     ExtAudioFileRef _fileRef;
+#endif
+
 }
 
 /** Setting opens a new file for output

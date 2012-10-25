@@ -100,7 +100,8 @@
         //        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"SWHarp-C3-Medium" withExtension:@"wav"];
         NSURL *file1URL = [[NSBundle mainBundle] URLForResource:@"OngKarNirankar" withExtension:@"m4a"];
         NSURL *file2URL = [[NSBundle mainBundle] URLForResource:@"SWHarp-Eb4-Medium" withExtension:@"wav"];
-        NSURL *outFileURL = [NSURL fileURLWithPath:@"/Users/Club15CC/iOS/Projects/SoundWand/SoundWand-Original/Frameworks/SamplerEngine/Frameworks/Marshmallows/Recording.m4a"];
+        NSURL *outFileURL = [NSURL URLForDocumentDirectoryWithAppendedPath:@"caf"];
+        DLOGs(outFileURL);
         
         [_aumFPU1 loadAudioFileFromURL:file1URL];
         [_aumFPU2 loadAudioFileFromURL:file2URL];
@@ -109,14 +110,14 @@
             DLOG(@"Playing frame %u at time %.2f", frame, time);
         };
         
+//        __weak id wSelf = self;
         _aumFPU2.cbPlaybackFinished = ^(AUMFilePlaybackGenerator *sender){
-//            __weak id wSelf = self;
-            if (!sender.loop) {
+          if (!sender.loop) {
                 [_track2PlaySwitch setOn:NO animated:YES];
             }
         };
         
-        [_aumRecorder newOutputFileWithURL:outFileURL withFileFormat:kAUMFileFormat_M4A_MPEG4AAC_Stereo_SoftwareCodec];
+        [_aumRecorder newOutputFileWithURL:outFileURL withFileFormat:kAUMFileFormat_CAF_IMA4_Stereo_SoftwareCodec];
         [_aumRecorder queue];
         
         /////////////////////////////////////////
@@ -126,6 +127,7 @@
         [AUMAudioSession setActive:YES];
         [thd start];
         [_aumGraph start];
+
         
         [_aumFPU1 play];
         

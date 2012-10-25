@@ -8,6 +8,7 @@
 
 #import "MMAppDelegate.h"
 #import "AUMTesterViewController.h"
+#import "AudioMarshmallows.h"
 
 @implementation MMAppDelegate
 
@@ -15,6 +16,42 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"********* CAF ***********");
+    AUM_printAvailableStreamFormatsForId(kAudioFileCAFType, kAudioFormatLinearPCM);
+    AUM_printAvailableStreamFormatsForId(kAudioFileCAFType, kAudioFormatAppleIMA4);
+    AUM_printAvailableStreamFormatsForId(kAudioFileCAFType, kAudioFormatAC3);
+    AUM_printAvailableStreamFormatsForId(kAudioFileCAFType, kAudioFormatMPEG4AAC);
+    AUM_printAvailableStreamFormatsForId(kAudioFileCAFType, kAudioFormatAppleLossless);
+    
+    NSLog(@"********* AIFF ***********");
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFFType, kAudioFormatLinearPCM);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFFType, kAudioFormatAppleIMA4);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFFType, kAudioFormatAC3);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFFType, kAudioFormatMPEG4AAC);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFFType, kAudioFormatAppleLossless);
+    
+    NSLog(@"********* M4A ***********");
+    AUM_printAvailableStreamFormatsForId(kAudioFileM4AType, kAudioFormatLinearPCM);
+    AUM_printAvailableStreamFormatsForId(kAudioFileM4AType, kAudioFormatAppleIMA4);
+    AUM_printAvailableStreamFormatsForId(kAudioFileM4AType, kAudioFormatAC3);
+    AUM_printAvailableStreamFormatsForId(kAudioFileM4AType, kAudioFormatMPEG4AAC);
+    AUM_printAvailableStreamFormatsForId(kAudioFileM4AType, kAudioFormatAppleLossless);
+    
+    NSLog(@"********* AAC_ADTS ***********");
+    AUM_printAvailableStreamFormatsForId(kAudioFileAAC_ADTSType, kAudioFormatLinearPCM);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAAC_ADTSType, kAudioFormatAppleIMA4);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAAC_ADTSType, kAudioFormatAC3);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAAC_ADTSType, kAudioFormatMPEG4AAC);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAAC_ADTSType, kAudioFormatAppleLossless);
+    
+    NSLog(@"********* AIFC ***********");
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFCType, kAudioFormatLinearPCM);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFCType, kAudioFormatAppleIMA4);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFCType, kAudioFormatAC3);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFCType, kAudioFormatMPEG4AAC);
+    AUM_printAvailableStreamFormatsForId(kAudioFileAIFCType, kAudioFormatAppleLossless);
+
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
