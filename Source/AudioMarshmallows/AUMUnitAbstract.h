@@ -69,15 +69,13 @@
 - (AudioStreamBasicDescription)streamFormatForInputBus:(NSUInteger)aBusNum;
 - (AudioStreamBasicDescription)streamFormatForOutputBus:(NSUInteger)aBusNum;
 
-
-- (void)setStreamFormat:(AudioStreamBasicDescription)aStreamFormat forOutputBus:(NSUInteger)aBusNum;
-
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forInputBus:(NSUInteger)aBusNum;
 
 - (void)setRenderCallback:(AURenderCallbackStruct)aRenderCallback forOutputBus:(NSUInteger)aBusNum;
 
 /** \throws kAUMAudioUnitException on error */
 - (void)addRenderNotifyWithCallback:(AURenderCallback)theCallback userDataPtr:(void *)inProcUserData;
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Renderer Attachment Methods
