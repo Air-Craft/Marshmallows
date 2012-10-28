@@ -12,12 +12,13 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
-void AUMRendererAudioSource::initializeBuffer(NSInteger bufferSizeInFrames, NSInteger bytesPerFrame)
+void AUMRendererAudioSource::initializeBuffer(NSInteger bufferSizeInBytes, NSInteger bytesPerFrame)
 {
-    _bufferSizeInFrames = bufferSizeInFrames;
+    // bufferSizeInBytes should represent the entire buffer size so divide by 2 first as we have 2 non-interleaved channels.  This aspect is independent of the any feeding files interleaved state as this source class assumes you'll feed it stereo non-interleaved.
+    _bufferSizeInFrames = bufferSizeInBytes / (bytesPerFrame * 2);
     _bytesPerFrame = bytesPerFrame;
     
-    // Init our ring buffers
+    // Init our ring buffers.  Use the potentially truncated _bufferSizeInFrames to calculate the numbers
     AUMCircularBufferInit(&_ringBufferL, _bufferSizeInFrames * _bytesPerFrame);
     AUMCircularBufferInit(&_ringBufferR, _bufferSizeInFrames * _bytesPerFrame);
 }

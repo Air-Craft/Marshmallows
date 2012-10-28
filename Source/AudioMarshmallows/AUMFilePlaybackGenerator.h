@@ -54,12 +54,13 @@
 /////////////////////////////////////////////////////////////////////////
 
 /** Convenience method which will check AUMAudioSession to get the sample rate and IOBufferDuration and defaults to 64kB diskBuffer  size
+ \param aDiskBufferSizeInFrames - Will be effectively rounded down
  \throws NSException::NSInternalInconsistencyException if AudioSession not initiliased with sample rate and IOBufferDuration */
-- (id)initWithDiskBufferSizeInFrame:(NSUInteger)aDiskBufferSizeInFrames
+- (id)initWithDiskBufferSizeInBytes:(NSUInteger)aDiskBufferSizeInBytes
                        updateThread:(id<MCThreadProxyProtocol>)anUpdateThread updateInterval:(NSTimeInterval)anUpdateInterval;
 /** Designated init */
 - (id)initWithSampleRate:(Float64)theSampleRate
-   diskBufferSizeInFrame:(NSUInteger)aDiskBufferSizeInFrames
+   diskBufferSizeInBytes:(NSUInteger)aDiskBufferSizeInBytes
         ioBufferDuration:(NSTimeInterval)theIOBufferDuration
             updateThread:(id<MCThreadProxyProtocol>)anUpdateThread
           updateInterval:(NSTimeInterval)anUpdateInterval;

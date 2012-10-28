@@ -25,11 +25,11 @@ class AUMFilePlayerUnitRenderer;
 
 /**
  \ingroup   Marshmallows
- \brief     Goals:  Hide implementation of CircularBuffer, disk reading, atomic ops.  Maintain refs for the RCB to neccessary objects related to a source. And to bridge between audio file format and format required by RCB
+ \brief     Goals:  Hide implementation of CircularBuffer, atomic ops and provide mechanism for client to feed from an external source such as a file.  Also to maintain refs for the RCB to neccessary objects related to a source. And to bridge between audio file format and format required by RCB
  
  \section Audio File Format
- Current supports non-interleaved, native/float/packed, <=2 channels.  Set your AudioFile output format accordingly or you'll get an exception
-
+ Source must be fed non-interleaved, stereo.  Float v Int and bit depth are configurable via initializeBuffer()'s bytesPerFrame param.  For mono, just feed the same data to both L & R channels.
+ 
  \section Mono/Stereo
  There is a L and R audio buffer. Mono files will simply read the same data into both L & R channels.
  
@@ -109,7 +109,12 @@ public:
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
-    void initializeBuffer(NSInteger bufferSizeInFrames, NSInteger bytesPerFrame);
+    /** Init the internal buffer. bytesPerFrames is *per channel*!
+     
+        \param bufferSizeInFrames   The total size for BOTH L & R channels.  Thus, bufferSizeInFrames = bufferSizeInBytes/2/bytesPerFrame.  The actual bytes allocated will be rounded down to the nearest multiple of bytesPerFrame * 2
+        \param bytesPerFrame    Used to effectively set the bit depth your RCB will expect (eg Float32 = 4)
+     */
+    void initializeBuffer(NSInteger bufferSizeInBytes, NSInteger bytesPerFrame);
     
     /////////////////////////////////////////////////////////////////////////
     
@@ -154,6 +159,8 @@ public:
     void reset();
 
     NSUInteger framesRemainingInBuffer();
+    
+    /** Keep in mind there are 2 channels so sizeInBytes = BytesPerFrame * bufferSizeInFrames * 2 */
     NSUInteger bufferSizeInFrames() { return _bufferSizeInFrames; }
     void pointersToBufferHeads(void **bufferPtrL, void **bufferPtrR);
     void indicateFramesWrittenToBuffer(NSUInteger framesWritten);

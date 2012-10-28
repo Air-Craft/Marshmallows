@@ -31,7 +31,6 @@
     NSInvocation *_cbPlaybackDidOccurInvoc;     // used to cancel on change or nil
     
     NSTimeInterval _sampleRate;
-    NSUInteger _diskBufferSizeInFrames;
     
     /** The amount to add to the value reported by the source to determine the actual play position.  Set on seek when the source is reset to a non-zero starting point 
      
@@ -61,7 +60,7 @@
 #pragma mark - Init
 /////////////////////////////////////////////////////////////////////////
 
-- (id)initWithDiskBufferSizeInFrame:(NSUInteger)aDiskBufferSizeInFrames
+- (id)initWithDiskBufferSizeInBytes:(NSUInteger)aDiskBufferSizeInBytes
                        updateThread:(id<MCThreadProxyProtocol>)anUpdateThread updateInterval:(NSTimeInterval)anUpdateInterval
 {
     // Get the params from AUMAudioSession
@@ -74,7 +73,7 @@
     }
     
     return [self initWithSampleRate:sr
-              diskBufferSizeInFrame:aDiskBufferSizeInFrames
+              diskBufferSizeInBytes:aDiskBufferSizeInBytes
                    ioBufferDuration:ioBuff
                        updateThread:anUpdateThread
                      updateInterval:anUpdateInterval];
@@ -84,7 +83,7 @@
 
 /** Create an underlying RemoteIO unit and set our callback to it */
 - (id)initWithSampleRate:(Float64)theSampleRate
-   diskBufferSizeInFrame:(NSUInteger)aDiskBufferSizeInFrames
+   diskBufferSizeInBytes:(NSUInteger)aDiskBufferSizeInBytes
         ioBufferDuration:(NSTimeInterval)theIOBufferDuration
             updateThread:(id<MCThreadProxyProtocol>)anUpdateThread
           updateInterval:(NSTimeInterval)anUpdateInterval
@@ -92,7 +91,6 @@
     /////////////////////////////////////////
     // SETUP REMOTEIO UNIT
     /////////////////////////////////////////
-    _diskBufferSizeInFrames = aDiskBufferSizeInFrames;
     _audioSource = NULL;
     _loop = NO;
     _sourcePosOffsetInFrames = 0;
@@ -101,15 +99,15 @@
     _playbackDidOccurUpdateInterval = 0.5; // 1/2 second default
     _autoRewindOnFinished = YES;
     
-    // Set up the C++ renderhelper and our properties to fulfill the protocol
+    // Set up the C++ renderer and set our properties to fulfill the AUMGeneratorRenderer protocol
     NSUInteger ioBufferInFrames = ceil(theSampleRate * theIOBufferDuration);
     _renderer = new AUMFilePlaybackGeneratorRCB(ioBufferInFrames, theSampleRate);
     _renderCallbackStruct.inputProc = &AUMFilePlaybackGeneratorRCB::renderCallback;
     _renderCallbackStruct.inputProcRefCon = (void *)_renderer;    
-    
+
     // Grab the audioSource from the renderer and initialise its buffer
     _audioSource = _renderer->audioSource();
-    _audioSource->initializeBuffer(_diskBufferSizeInFrames, _renderer->requiredAudioFormat().mBytesPerFrame);
+    _audioSource->initializeBuffer(aDiskBufferSizeInBytes, _renderer->requiredAudioFormat().mBytesPerFrame);
     
     
     /////////////////////////////////////////
