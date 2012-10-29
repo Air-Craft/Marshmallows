@@ -135,8 +135,17 @@
         delete _renderer;
 }
 
+
+
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Property Accessors
+/////////////////////////////////////////////////////////////////////////
+
+- (NSURL *)fileURL
+{
+    return _audioFile.fileURL;
+}
+
 /////////////////////////////////////////////////////////////////////////
 
 - (void)setVolume:(AUMAudioControlParameter)volume
@@ -144,10 +153,14 @@
     _audioSource->volume(volume);
 }
 
+/////////////////////////////////////////////////////////////////////////
+
 - (AUMAudioControlParameter)volume
 {
     return _audioSource->volume();
 }
+
+/////////////////////////////////////////////////////////////////////////
 
 - (BOOL)isPlaying
 {
@@ -270,8 +283,9 @@
 - (void)pause
 {
     @synchronized(self) {
-        if (!_audioFile) [NSException raise:NSInternalInconsistencyException format:@"File must be loaded first"];
-        
+        if (!_audioFile) {
+            MMLogWarn(@"Pause called when no file was loaded");
+        }
         if (self.isPlaying) {
             _audioSource->pause();
         } else {

@@ -32,6 +32,7 @@
 
 @property (nonatomic) BOOL loop;
 @property (nonatomic) AUMAudioControlParameter volume;
+@property (nonatomic, copy, readonly) NSURL *fileURL;
 
 /** Disable to prevent the source from auto-rewinding (and re-buffering) when finished. Default=YES*/
 @property (nonatomic) BOOL autoRewindOnFinished;

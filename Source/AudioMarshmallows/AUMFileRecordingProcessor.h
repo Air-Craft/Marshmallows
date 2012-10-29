@@ -39,6 +39,10 @@
 
 }
 
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Properties
+/////////////////////////////////////////////////////////////////////////
+
 /** Setting opens a new file for output
  \throws kAUMAudioFileException on error closing any previous file or creating the new one
  */
@@ -48,7 +52,14 @@
  \throws NSInvalidArgumentException On set if mSampleRate is not set */
 @property (nonatomic) AudioStreamBasicDescription inputStreamFormat;
 
+/** The file format set via newOutputFileWithURL:withFileFormat */
 @property (nonatomic, readonly) AUMAudioFileFormatDescription outputFileFormat;
+
+@property (nonatomic, readonly) BOOL isRecording;
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Public API
+/////////////////////////////////////////////////////////////////////////
 
 - (void)newOutputFileWithURL:(NSURL *)aURL withFileFormat:(AUMAudioFileFormatDescription)aFileFormat;
 
