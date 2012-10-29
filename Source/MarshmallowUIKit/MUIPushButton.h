@@ -56,7 +56,9 @@ typedef enum {
 /// Read or set the button state
 @property (nonatomic) BOOL on;
 
-/** Add a listener for our custom MUIPushButtonEvent */
+/** Add a listener for our custom MUIPushButtonEvent 
+ Can have 0 or 1 parameter (ie MUIPushButton *sender)
+ */
 - (void)addTarget:(id)target action:(SEL)action forPushButtonEvents:(MUIPushButtonEvent)eventMask;
 
 @end

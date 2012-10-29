@@ -16,7 +16,7 @@
 @interface MUIPushButtonTargetAction : NSObject
 {
 @public
-    id target;
+    __weak id target;
     SEL action;
     int eventMask;
 }
@@ -219,12 +219,15 @@
             NSMethodSignature *sig = [targetAction->target methodSignatureForSelector:targetAction->action];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            if ([sig numberOfArguments] > 1) {
+            // 2 = 0 (2 arguments are hidden)
+            if ([sig numberOfArguments] > 3) {
                 [NSException raise:NSDestinationInvalidException format:@"Target's action method must take 0 or 1 parameter"];
             }
-            else if ([sig numberOfArguments] == 1) {
+            // No sender
+            else if ([sig numberOfArguments] == 2) {
                 [targetAction->target performSelector:targetAction->action withObject:self];
             } else {
+                // With sender
                 [targetAction->target performSelector:targetAction->action];
             }
 #pragma clang diagnostic pop
