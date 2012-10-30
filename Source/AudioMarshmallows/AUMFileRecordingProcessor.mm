@@ -227,7 +227,7 @@ static OSStatus AUMFileRecordingProcessorRCB(void *							inRefCon,
     
     // Request stop and then spin lock until the RCB confirms
     _stopRequestFlag = true;
-    while (_isRecording) sleep(1);
+    while (_isRecording) usleep(100);
     
     // Reset the request flag
     _stopRequestFlag = false;
