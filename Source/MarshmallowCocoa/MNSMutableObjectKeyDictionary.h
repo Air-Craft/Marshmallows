@@ -1,8 +1,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- An incomplete implementation which casts UITouch objects used as keys using NSValue:valueFromPointer to allow
- them to be safely used as MutableDictionary keys.
+ An incomplete implementation which does NOT copy the key objects but instead, behind the scenes, creates an NSValue pointer to them to use as the key. This allows you to use them for things like UITouch objects
  */
 @interface MNSMutableObjectKeyDictionary : NSObject <NSFastEnumeration>
 {

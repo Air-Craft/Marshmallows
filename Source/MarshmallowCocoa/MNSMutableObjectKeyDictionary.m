@@ -44,9 +44,16 @@
 
 - (id)objectForKey:(id)aKey
 {
-    // Get an NSValue for the pointer address
-    NSValue *ptrVal = [NSValue valueWithPointer:(__bridge const void *)aKey];
-    return [dict objectForKey:ptrVal];    
+    // Loop through manually as to not have to create an NSValue (expensive)
+    for (NSValue *key in [dict allKeys]) {
+        if (key.pointerValue == (__bridge const void *)aKey) {
+            return [dict objectForKey:key];
+        }
+    }
+    return nil;
+    
+//    NSValue *ptrVal = [NSValue valueWithPointer:(__bridge const void *)aKey];
+//    return [dict objectForKey:ptrVal];
 }
 
 /////////////////////////////////////////////////////////////////////////
