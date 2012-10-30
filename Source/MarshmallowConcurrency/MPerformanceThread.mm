@@ -6,23 +6,34 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "MCSimpleThreadProxy.h"
-
+#import "MPerformanceThread.h"
+#include <hash_map.h>
 
 /////////////////////////////////////////////////////////////////////////
-#pragma mark - MCSimpleThreadProxy
+#pragma mark - MPerformanceThread
 /////////////////////////////////////////////////////////////////////////
 
-@implementation MCSimpleThreadProxy
+@implementation MPerformanceThread
+{
+    MNSMutableObjectKeyDictionary *invocationIntervalDict;
+    MNSMutableObjectKeyDictionary *invocationCallCountDict;
+    NSMutableArray *invocationsToRemove;    ///< Temp hold invokes sent to removeInvocation to remove when run loop is finished
 
-@synthesize paused, running;
+    MNSMutableObjectKeyDictionary *invocationsToAddIntervalDict;    ///< Expedites the ease of delayed adding via the run loop
+    MNSMutableObjectKeyDictionary *invocationsToAddCallCountDict;
+
+    BOOL runLoopCoreIsExecuting;     ///< Internal flag to determine whether pause stats have come into affect
+    
+    NSTimeInterval startTime;
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Class Methods
 /////////////////////////////////////////////////////////////////////////
 
 
-+ (id<MCThreadProxyProtocol>)thread
++ (id<MThreadProtocol>)thread
 {
     return [[self alloc] init];
 }
@@ -52,8 +63,8 @@
 - (void)addInvocation:(NSInvocation *)invocation desiredInterval:(NSTimeInterval)timeInterval
 {
     // Prevent mutation errors with delayed adding
-    // Note just because it's benn recently paused doesn't mean the loop has finished its final iteration!
-    if (self.isExecuting && (!self.paused || runLoopCoreIsExecuting)) {
+    // Note just because it's benn recently _paused doesn't mean the loop has finished its final iteration!
+    if (self.isExecuting && (!self._paused || runLoopCoreIsExecuting)) {
         @synchronized(invocationsToAddIntervalDict) {
             [invocationsToAddIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
             [invocationsToAddCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
@@ -73,9 +84,9 @@
 
 - (void)removeInvocation:(NSInvocation *)invocation
 {
-    // Remove directly if thread isn't running.
+    // Remove directly if thread isn't _running.
     // Otherwise store to have the run loop handle it
-    if (self.isExecuting && (!self.paused || runLoopCoreIsExecuting)) {
+    if (self.isExecuting && (!self._paused || runLoopCoreIsExecuting)) {
         @synchronized(invocationsToRemove) {
             [invocationsToRemove addObject:invocation];
         }
@@ -98,7 +109,7 @@
 
     while (!self.isCancelled) {
         // Paused?
-        if (self.paused) {
+        if (self._paused) {
             [[self class] sleepForTimeInterval:0.05];
             continue;
         }
@@ -153,8 +164,8 @@
                         
                         // Check that another thread hasn't added it for removal in the meantime as it may no longer exist as a method
                         @synchronized(invocationsToRemove) {
-                            // Additional paused check in case thread has been paused during run loop
-                            if (!self.paused && invoc && ![invocationsToRemove containsObject:invoc]) {
+                            // Additional _paused check in case thread has been _paused during run loop
+                            if (!self._paused && invoc && ![invocationsToRemove containsObject:invoc]) {
                                 [invoc invoke];
                             }
                         }
@@ -163,7 +174,7 @@
                 
             } // synchro
             
-            runLoopCoreIsExecuting = NO;        // mark end of the active (unpaused) run loop
+            runLoopCoreIsExecuting = NO;        // mark end of the active (un_paused) run loop
             
         } // @autorelease
     } // while (run loop)
@@ -174,24 +185,24 @@
 /// Resume if pause, otherwise call NSThread's start
 - (void)start
 {
-    if (!paused && running) {
-        [NSException raise:NSInternalInconsistencyException format:@"Start not allow on running unpaused thread proxy."];
+    if (!_paused && _running) {
+        [NSException raise:NSInternalInconsistencyException format:@"Start not allow on _running un_paused thread proxy."];
     }
     
     // Resume
-    if (paused) {
-        self.paused = NO;       // property accessor to ensure thread safety
+    if (_paused) {
+        self._paused = NO;       // property accessor to ensure thread safety
         return;
     }
     [super start];
     
-    running = YES;
+    _running = YES;
 }
 /////////////////////////////////////////////////////////////////////////
 
 - (void)pause
 {
-    self.paused = YES;              
+    self._paused = YES;              
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -199,7 +210,7 @@
 - (void)cancel
 {
     [super cancel];
-    running = NO;
+    _running = NO;
 }
 
 @end

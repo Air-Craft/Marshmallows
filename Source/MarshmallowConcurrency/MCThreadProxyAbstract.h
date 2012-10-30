@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MCThreadProxyProtocol.h"
+#import "MThreadProtocol.h"
 #import "MNSMutableObjectKeyDictionary.h"
 
-@interface MCThreadProxyAbstract : NSObject <MCThreadProxyProtocol> 
+@interface MCThreadProxyAbstract : NSObject <MThreadProtocol> 
 {
     MNSMutableObjectKeyDictionary *invocationIntervalDict;
 }

@@ -14,7 +14,7 @@
 #pragma mark -
 #pragma mark Init
 
-+ (id<MCThreadProxyProtocol>)thread
++ (id<MThreadProtocol>)thread
 {
     return [[self alloc] init];
 }

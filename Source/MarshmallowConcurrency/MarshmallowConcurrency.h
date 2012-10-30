@@ -7,10 +7,10 @@
 /// \file MarshmallowConcurrency.h
 /// Doesn't include C++ classes.
 
-#import "MCThreadProxyProtocol.h"
+#import "MThreadProtocol.h"
 #import "MCThreadProxyAbstract.h"
 #import "MCMainThreadProxy.h"
-#import "MCSimpleThreadProxy.h"
+#import "MPerformanceThread.h"
 
 
 /// @}

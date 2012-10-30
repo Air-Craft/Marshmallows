@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MCThreadProxyProtocol <NSObject>
+@protocol MThreadProtocol <NSObject>
 
-+ (id<MCThreadProxyProtocol>)thread;
++ (id<MThreadProtocol>)thread;
 
 - (void)addInvocation:(NSInvocation *)invocation desiredInterval:(NSTimeInterval)timeInterval;
 

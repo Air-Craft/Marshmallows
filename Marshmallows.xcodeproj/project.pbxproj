@@ -56,7 +56,7 @@
 		A664EFCE15CEEBA800182FFD /* NSError+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */; };
 		A664EFCF15CEEBA800182FFD /* NSTimer+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */; };
 		A664EFD015CEEBA800182FFD /* MCMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */; };
-		A664EFD115CEEBA800182FFD /* MCSimpleThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MCSimpleThreadProxy.m */; };
+		A664EFD115CEEBA800182FFD /* MPerformanceThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MPerformanceThread.mm */; };
 		A664EFD215CEEBA800182FFD /* MCThreadProxyAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */; };
 		A664EFD315CEEBA800182FFD /* MDBulkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020F151DD86100BDC2D2 /* MDBulkLogger.m */; };
 		A664EFD415CEEBA800182FFD /* MPStopwatch.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84021B151DD86100BDC2D2 /* MPStopwatch.m */; };
@@ -143,8 +143,8 @@
 		CE84023F151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */; };
 		CE840240151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */; };
 		CE840241151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */; };
-		CE840242151DD86100BDC2D2 /* MCSimpleThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MCSimpleThreadProxy.m */; };
-		CE840243151DD86100BDC2D2 /* MCSimpleThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MCSimpleThreadProxy.m */; };
+		CE840242151DD86100BDC2D2 /* MPerformanceThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MPerformanceThread.mm */; };
+		CE840243151DD86100BDC2D2 /* MPerformanceThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MPerformanceThread.mm */; };
 		CE840244151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */; };
 		CE840245151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */; };
 		CE840246151DD86100BDC2D2 /* MDBulkLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020F151DD86100BDC2D2 /* MDBulkLogger.m */; };
@@ -318,11 +318,11 @@
 		CE840204151DD86100BDC2D2 /* MarshmallowConcurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowConcurrency.h; sourceTree = "<group>"; };
 		CE840205151DD86100BDC2D2 /* MCMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMainThreadProxy.h; sourceTree = "<group>"; };
 		CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMainThreadProxy.m; sourceTree = "<group>"; };
-		CE840207151DD86100BDC2D2 /* MCSimpleThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCSimpleThreadProxy.h; sourceTree = "<group>"; };
-		CE840208151DD86100BDC2D2 /* MCSimpleThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCSimpleThreadProxy.m; sourceTree = "<group>"; };
+		CE840207151DD86100BDC2D2 /* MPerformanceThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPerformanceThread.h; sourceTree = "<group>"; };
+		CE840208151DD86100BDC2D2 /* MPerformanceThread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MPerformanceThread.mm; sourceTree = "<group>"; };
 		CE840209151DD86100BDC2D2 /* MCThreadProxyAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCThreadProxyAbstract.h; sourceTree = "<group>"; };
 		CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCThreadProxyAbstract.m; sourceTree = "<group>"; };
-		CE84020B151DD86100BDC2D2 /* MCThreadProxyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCThreadProxyProtocol.h; sourceTree = "<group>"; };
+		CE84020B151DD86100BDC2D2 /* MThreadProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MThreadProtocol.h; sourceTree = "<group>"; };
 		CE84020D151DD86100BDC2D2 /* MarshmallowDiagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowDiagnostics.h; sourceTree = "<group>"; };
 		CE84020E151DD86100BDC2D2 /* MDBulkLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDBulkLogger.h; sourceTree = "<group>"; };
 		CE84020F151DD86100BDC2D2 /* MDBulkLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDBulkLogger.m; sourceTree = "<group>"; };
@@ -653,11 +653,11 @@
 				CE840204151DD86100BDC2D2 /* MarshmallowConcurrency.h */,
 				CE840205151DD86100BDC2D2 /* MCMainThreadProxy.h */,
 				CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */,
-				CE840207151DD86100BDC2D2 /* MCSimpleThreadProxy.h */,
-				CE840208151DD86100BDC2D2 /* MCSimpleThreadProxy.m */,
+				CE840207151DD86100BDC2D2 /* MPerformanceThread.h */,
+				CE840208151DD86100BDC2D2 /* MPerformanceThread.mm */,
 				CE840209151DD86100BDC2D2 /* MCThreadProxyAbstract.h */,
 				CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */,
-				CE84020B151DD86100BDC2D2 /* MCThreadProxyProtocol.h */,
+				CE84020B151DD86100BDC2D2 /* MThreadProtocol.h */,
 			);
 			path = MarshmallowConcurrency;
 			sourceTree = "<group>";
@@ -878,7 +878,7 @@
 				A664EFCE15CEEBA800182FFD /* NSError+Marshmallows.m in Sources */,
 				A664EFCF15CEEBA800182FFD /* NSTimer+MMBlocks.m in Sources */,
 				A664EFD015CEEBA800182FFD /* MCMainThreadProxy.m in Sources */,
-				A664EFD115CEEBA800182FFD /* MCSimpleThreadProxy.m in Sources */,
+				A664EFD115CEEBA800182FFD /* MPerformanceThread.mm in Sources */,
 				A664EFD215CEEBA800182FFD /* MCThreadProxyAbstract.m in Sources */,
 				A664EFD315CEEBA800182FFD /* MDBulkLogger.m in Sources */,
 				A664EFD415CEEBA800182FFD /* MPStopwatch.m in Sources */,
@@ -925,7 +925,7 @@
 				CE84023C151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */,
 				CE84023E151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */,
 				CE840240151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */,
-				CE840242151DD86100BDC2D2 /* MCSimpleThreadProxy.m in Sources */,
+				CE840242151DD86100BDC2D2 /* MPerformanceThread.mm in Sources */,
 				CE840244151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */,
 				CE840246151DD86100BDC2D2 /* MDBulkLogger.m in Sources */,
 				CE840248151DD86100BDC2D2 /* MDTimeProfiler.mm in Sources */,
@@ -986,7 +986,7 @@
 				CE84023D151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */,
 				CE84023F151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */,
 				CE840241151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */,
-				CE840243151DD86100BDC2D2 /* MCSimpleThreadProxy.m in Sources */,
+				CE840243151DD86100BDC2D2 /* MPerformanceThread.mm in Sources */,
 				CE840245151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */,
 				CE840247151DD86100BDC2D2 /* MDBulkLogger.m in Sources */,
 				CE840249151DD86100BDC2D2 /* MDTimeProfiler.mm in Sources */,

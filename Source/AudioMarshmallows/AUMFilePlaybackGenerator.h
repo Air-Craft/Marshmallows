@@ -58,12 +58,12 @@
  \param aDiskBufferSizeInFrames - Will be effectively rounded down
  \throws NSException::NSInternalInconsistencyException if AudioSession not initiliased with sample rate and IOBufferDuration */
 - (id)initWithDiskBufferSizeInBytes:(NSUInteger)aDiskBufferSizeInBytes
-                       updateThread:(id<MCThreadProxyProtocol>)anUpdateThread updateInterval:(NSTimeInterval)anUpdateInterval;
+                       updateThread:(id<MThreadProtocol>)anUpdateThread updateInterval:(NSTimeInterval)anUpdateInterval;
 /** Designated init */
 - (id)initWithSampleRate:(Float64)theSampleRate
    diskBufferSizeInBytes:(NSUInteger)aDiskBufferSizeInBytes
         ioBufferDuration:(NSTimeInterval)theIOBufferDuration
-            updateThread:(id<MCThreadProxyProtocol>)anUpdateThread
+            updateThread:(id<MThreadProtocol>)anUpdateThread
           updateInterval:(NSTimeInterval)anUpdateInterval;
 
 

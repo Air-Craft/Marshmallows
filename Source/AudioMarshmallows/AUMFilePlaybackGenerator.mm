@@ -22,7 +22,7 @@
 
 @implementation AUMFilePlaybackGenerator
 {
-    id <MCThreadProxyProtocol> _updateThread;
+    id <MThreadProtocol> _updateThread;
     
     AUMFilePlaybackGeneratorRCB *_renderer;
     AUMRendererAudioSource *_audioSource;
@@ -61,7 +61,7 @@
 /////////////////////////////////////////////////////////////////////////
 
 - (id)initWithDiskBufferSizeInBytes:(NSUInteger)aDiskBufferSizeInBytes
-                       updateThread:(id<MCThreadProxyProtocol>)anUpdateThread updateInterval:(NSTimeInterval)anUpdateInterval
+                       updateThread:(id<MThreadProtocol>)anUpdateThread updateInterval:(NSTimeInterval)anUpdateInterval
 {
     // Get the params from AUMAudioSession
     NSTimeInterval sr = AUMAudioSession.currentHardwareSampleRate;
@@ -85,7 +85,7 @@
 - (id)initWithSampleRate:(Float64)theSampleRate
    diskBufferSizeInBytes:(NSUInteger)aDiskBufferSizeInBytes
         ioBufferDuration:(NSTimeInterval)theIOBufferDuration
-            updateThread:(id<MCThreadProxyProtocol>)anUpdateThread
+            updateThread:(id<MThreadProtocol>)anUpdateThread
           updateInterval:(NSTimeInterval)anUpdateInterval
 {
     /////////////////////////////////////////

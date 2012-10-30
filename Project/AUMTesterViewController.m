@@ -58,7 +58,7 @@
         // CONTROL THREAD
         /////////////////////////////////////////
         
-        MCSimpleThreadProxy *thd = [[MCSimpleThreadProxy alloc] init];
+        MPerformanceThread *thd = [[MPerformanceThread alloc] init];
         
         
         /////////////////////////////////////////
