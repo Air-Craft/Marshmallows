@@ -1,27 +1,37 @@
-//
-//  MCSimpleThread.m
-//  InstrumentMotion
-//
-//  Created by Hari Karam Singh on 29/01/2012.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
+/**
+ \addtogroup Marshmallows
+ \author     Created by Hari Karam Singh on 29/01/2012.
+ \copyright  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+ @{
+ */
+
 
 #import "MPerformanceThread.h"
-#include <hash_map.h>
+#include <tr1/unordered_map>        // same as hash_map
+#include <tr1/unordered_set>
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - MPerformanceThread
 /////////////////////////////////////////////////////////////////////////
+typedef struct {
+    NSTimeInterval interval;
+    NSUInteger callCount;
+} MPerformanceThreadInvocParams;
 
 @implementation MPerformanceThread
 {
-    MNSMutableObjectKeyDictionary *invocationIntervalDict;
-    MNSMutableObjectKeyDictionary *invocationCallCountDict;
-    NSMutableArray *invocationsToRemove;    ///< Temp hold invokes sent to removeInvocation to remove when run loop is finished
+    std::tr1::unordered_map<__strong id, MPerformanceThreadInvocParams>_invocationsDict; ///< The time repeat interval which to call the methods.  One of these needs to be retains to why not this one
+    
+    std::tr1::unordered_map<__strong id, NSTimeInterval>_invocationsToAddDict;
+    
+    std::tr1::unordered_set<__strong id> _invocationsToRemoveSet; ///< Temp hold invokes sent to removeInvocation to remove when run loop is finished
 
-    MNSMutableObjectKeyDictionary *invocationsToAddIntervalDict;    ///< Expedites the ease of delayed adding via the run loop
-    MNSMutableObjectKeyDictionary *invocationsToAddCallCountDict;
+    /// ObjC mutex locks for @synchro
+    id _invocationsDictMutex;
+    id _invocationsToAddDictMutex;
+    id _invocationsToRemoveSetMutex;
 
+    
     BOOL runLoopCoreIsExecuting;     ///< Internal flag to determine whether pause stats have come into affect
     
     NSTimeInterval startTime;
@@ -32,29 +42,15 @@
 #pragma mark - Class Methods
 /////////////////////////////////////////////////////////////////////////
 
-
 + (id<MThreadProtocol>)thread
 {
     return [[self alloc] init];
 }
 
-
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Life Cycle
 /////////////////////////////////////////////////////////////////////////
 
-
-- (id)init 
-{
-    if (self = [super init]) {
-        invocationIntervalDict = [MNSMutableObjectKeyDictionary dictionary];
-        invocationCallCountDict = [MNSMutableObjectKeyDictionary dictionary];
-        invocationsToAddIntervalDict = [MNSMutableObjectKeyDictionary dictionary];
-        invocationsToAddCallCountDict = [MNSMutableObjectKeyDictionary dictionary];
-        invocationsToRemove = [NSMutableArray array];
-    }
-    return self;
-}
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - MCThreadProtocol API
@@ -64,18 +60,20 @@
 {
     // Prevent mutation errors with delayed adding
     // Note just because it's benn recently _paused doesn't mean the loop has finished its final iteration!
-    if (self.isExecuting && (!self._paused || runLoopCoreIsExecuting)) {
-        @synchronized(invocationsToAddIntervalDict) {
-            [invocationsToAddIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
-            [invocationsToAddCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
+    
+    if (self.isExecuting && (!self.paused || runLoopCoreIsExecuting)) {
+        // If running then queue to add via the run loop
+        @synchronized(_invocationsToAddDictMutex) {
             
-        } 
+            _invocationsToAddDict[invocation] = timeInterval;
+            
+        }
+        
     } else {
-        @synchronized(invocationIntervalDict) {
-            [invocationIntervalDict setObject:[NSValue value:(void *)&timeInterval withObjCType:@encode(NSTimeInterval)] forKey:invocation];
-            
-            // Init the call count to 0
-            [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:0u] forKey:invocation];
+        
+        // Else add now...
+        @synchronized(_invocationsDictMutex) {
+            _invocationsDict[invocation] = { .interval = timeInterval, .callCount = 0 };
         }
     }
 }
@@ -86,14 +84,13 @@
 {
     // Remove directly if thread isn't _running.
     // Otherwise store to have the run loop handle it
-    if (self.isExecuting && (!self._paused || runLoopCoreIsExecuting)) {
-        @synchronized(invocationsToRemove) {
-            [invocationsToRemove addObject:invocation];
+    if (self.isExecuting && (!self.paused || runLoopCoreIsExecuting)) {
+        @synchronized(_invocationsToRemoveSetMutex) {
+            _invocationsToRemoveSet.insert(invocation);
         }
     } else {
-        @synchronized(invocationIntervalDict) {
-            [invocationIntervalDict removeObjectForKey:invocation];
-            [invocationCallCountDict removeObjectForKey:invocation];
+        @synchronized(_invocationsDictMutex) {
+            _invocationsDict.erase(invocation);
         }
     }
 }
@@ -109,37 +106,37 @@
 
     while (!self.isCancelled) {
         // Paused?
-        if (self._paused) {
+        if (self.paused) {
             [[self class] sleepForTimeInterval:0.05];
             continue;
         }
         
         @autoreleasepool {
-        
             runLoopCoreIsExecuting = YES;   // mark beginning of active run loop
             
-            @synchronized(invocationIntervalDict) {
+            @synchronized(_invocationsDictMutex) {
                 
                 /////////////////////////////////////////
                 // LAZY ADD/REMOVE INVOCATIONS
                 /////////////////////////////////////////
 
                 // Remove any invocations which have been removed while in the run loop
-                @synchronized(invocationsToRemove) {
-                    if ([invocationsToRemove count]) {
-                        [invocationCallCountDict removeObjectsForKeys:invocationsToRemove];
-                        [invocationIntervalDict removeObjectsForKeys:invocationsToRemove];
-                        [invocationsToRemove removeAllObjects];
+                @synchronized(_invocationsToRemoveSetMutex) {
+                    if (not _invocationsToRemoveSet.empty()) {
+                        for (const auto& invoc :_invocationsToRemoveSet) {
+                            _invocationsDict.erase(invoc);
+                        }
                     }
                 }            
                 
                 // Add any additional
-                @synchronized(invocationsToAddIntervalDict) {
-                    if ([invocationsToAddIntervalDict count]) {
-                        [invocationIntervalDict addEntriesFromObjectKeyDictionary:invocationsToAddIntervalDict];
-                        [invocationCallCountDict addEntriesFromObjectKeyDictionary:invocationsToAddCallCountDict];
-                        [invocationsToAddIntervalDict removeAllObjects];
-                        [invocationsToAddCallCountDict removeAllObjects];
+                @synchronized(_invocationsToAddDictMutex) {
+                    if (not _invocationsToAddDict.empty()) {
+                        for (const auto& entry: _invocationsToAddDict) {
+                            _invocationsDict[entry.first] = { .interval = entry.second, .callCount = 0 };
+                        }
+                        
+                        _invocationsToAddDict.clear();
                     }
                 }
                 
@@ -147,11 +144,10 @@
                 // PROCESSING
                 /////////////////////////////////////////
 
-                for (NSInvocation *invoc in invocationIntervalDict) {
-                    
-                    NSUInteger prevCallCount = [[invocationCallCountDict objectForKey:invoc] unsignedIntegerValue];
-                    NSTimeInterval interval;
-                    [[invocationIntervalDict objectForKey:invoc] getValue:&interval];
+                for (auto& entry: _invocationsDict) {
+                    NSInvocation *invoc = entry.first;
+                    NSUInteger prevCallCount = entry.second.callCount;
+                    NSTimeInterval interval = entry.second.interval;
                     
                     NSTimeInterval nowTime = CACurrentMediaTime();
                     NSUInteger currInterval = floor((nowTime - startTime) / interval);
@@ -160,12 +156,12 @@
                         // Update the call count dict.
                         // Currently skips any dropped intervals.  Change to prevCallCount++ 
                         // to have a "catch up" paradigm
-                        [invocationCallCountDict setObject:[NSNumber numberWithUnsignedInteger:currInterval] forKey:invoc];
+                        entry.second.callCount = currInterval;
                         
                         // Check that another thread hasn't added it for removal in the meantime as it may no longer exist as a method
-                        @synchronized(invocationsToRemove) {
+                        @synchronized(_invocationsToRemoveSetMutex) {
                             // Additional _paused check in case thread has been _paused during run loop
-                            if (!self._paused && invoc && ![invocationsToRemove containsObject:invoc]) {
+                            if (not self.paused and invoc and not _invocationsToRemoveSet.count(invoc)) {
                                 [invoc invoke];
                             }
                         }
@@ -176,6 +172,9 @@
             
             runLoopCoreIsExecuting = NO;        // mark end of the active (un_paused) run loop
             
+            if (_timingResolution) {
+                [[self class] sleepForTimeInterval:_timingResolution];
+            }
         } // @autorelease
     } // while (run loop)
 }
@@ -191,7 +190,7 @@
     
     // Resume
     if (_paused) {
-        self._paused = NO;       // property accessor to ensure thread safety
+        self.paused = NO;       // property accessor to ensure thread safety
         return;
     }
     [super start];
@@ -202,7 +201,7 @@
 
 - (void)pause
 {
-    self._paused = YES;              
+    self.paused = YES;              
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -214,3 +213,5 @@
 }
 
 @end
+
+/// @}

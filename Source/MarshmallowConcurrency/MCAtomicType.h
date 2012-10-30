@@ -4,7 +4,7 @@
  \copyright  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
  @{
  */
-/// \file AUMErrorChecking.h
+/// \file MCAtomicType.h
 
 #ifndef MM_ATOMIC_TYPE
 #define MM_ATOMIC_TYPE 1
