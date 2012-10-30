@@ -14,10 +14,8 @@
 #import "AUMTypes.h"
 #import "AUMException.h"
 #import "AUMAudioFileReader.h"
-//#import "AUMFilePlayerUnitRenderer.h"
 #import "AUMCircularBuffer.h"
 
-class AUMFilePlayerUnitRenderer;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - AUMRendererAudioSource
@@ -26,6 +24,8 @@ class AUMFilePlayerUnitRenderer;
 /**
  \ingroup   Marshmallows
  \brief     Goals:  Hide implementation of CircularBuffer, atomic ops and provide mechanism for client to feed from an external source such as a file.  Also to maintain refs for the RCB to neccessary objects related to a source. And to bridge between audio file format and format required by RCB
+ 
+ \todo Resolve fact that public methods like ->pause() confuse the use of ->state().  Clients should only have to deal with one or the other.
  
  \section Audio File Format
  Source must be fed non-interleaved, stereo.  Float v Int and bit depth are configurable via initializeBuffer()'s bytesPerFrame param.  For mono, just feed the same data to both L & R channels.

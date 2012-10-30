@@ -24,9 +24,9 @@
 {
     id <MThreadProtocol> _updateThread;
     
-    AUMFilePlaybackGeneratorRCB *_renderer;
-    AUMRendererAudioSource *_audioSource;
-    AUMAudioFileReader *_audioFile;
+    AUMFilePlaybackGeneratorRCB *_renderer;     ///< C++
+    AUMRendererAudioSource *_audioSource;       ///< Holds the buffer for the RCB to read from (C++)
+    AUMAudioFileReader *_audioFile;             ///< File reader to feed the _audioSource (ObjC)
     
     NSInvocation *_cbPlaybackDidOccurInvoc;     // used to cancel on change or nil
     
@@ -143,7 +143,9 @@
 
 - (NSURL *)fileURL
 {
-    return _audioFile.fileURL;
+    if (_audioFile)
+        return _audioFile.fileURL;
+    return nil;
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -259,6 +261,30 @@
         _audioSource->pause();  // WARNING: Doesn't happen straight away! Hence all this...
         _audioFileToChangeTo = newFile;
         _audioFileChangeIsPending = YES;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)unloadAudioFile
+{
+    @synchronized(self) {
+        _seekIsPending = NO; // just in case its possible
+        _audioFileChangeIsPending = NO;
+        
+        // Pause and wait...
+        if (_audioSource->state() != AUMRendererAudioSource::Paused &&
+            _audioSource->state() != AUMRendererAudioSource::Finished) {
+            
+            _audioSource->pause();
+            while (_audioSource->state() == AUMRendererAudioSource::QueuedToPause) {
+                usleep(100);
+            }
+        }
+        
+        _audioFile = nil;
+        _audioSource->reset();      // Reset volume etc too
+        _sourcePosOffsetInFrames = 0;
     }
 }
 
@@ -400,9 +426,15 @@
     
     // Otherwise (Paused or Finished) do the deed...
     // Rebuffer and play if we were before the call
-    [self _rebufferAudioFileFromFrame:0];
-    if (_sourceStatetoResumeAfterFileChange == AUMRendererAudioSource::Playing)
-        _audioSource->play();
+    _audioFile = _audioFileToChangeTo;
+    
+    // Could be nil...
+    if (_audioFile) {
+        [self _rebufferAudioFileFromFrame:0];
+    
+        if (_sourceStatetoResumeAfterFileChange == AUMRendererAudioSource::Playing)
+            _audioSource->play();
+    }
     _audioFileChangeIsPending = NO;
 }
 

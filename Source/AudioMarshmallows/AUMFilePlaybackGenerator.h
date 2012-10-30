@@ -32,6 +32,8 @@
 
 @property (nonatomic) BOOL loop;
 @property (nonatomic) AUMAudioControlParameter volume;
+
+/// Or nil if none loaded
 @property (nonatomic, copy, readonly) NSURL *fileURL;
 
 /** Disable to prevent the source from auto-rewinding (and re-buffering) when finished. Default=YES*/
@@ -71,18 +73,22 @@
 #pragma mark - Public API
 /////////////////////////////////////////////////////////////////////////
 
--(void)loadAudioFileFromURL:(NSURL *)fileURL;
+/// May be called ot change file while playing back but changes wont be reflected internally until the next audio thread round so be careful.
+- (void)loadAudioFileFromURL:(NSURL *)fileURL;
 
--(void)play;
--(void)pause;
+/// Synchronous even if playing.  Waits until paused and unloads the file on the spot unlike loadAudioFileFromURL:.  Resets the volume too.
+- (void)unloadAudioFile;
+
+- (void)play;
+- (void)pause;
 
 /** Stops and rewinds */
--(void)stop;
+- (void)stop;
 
 /** Seeks to frame 0.  Playing files will continue to play from 0.  Finished files are reset to Paused state */
--(void)rewind;
+- (void)rewind;
 
--(void)seekToFrame:(NSUInteger)toFrame;
+- (void)seekToFrame:(NSUInteger)toFrame;
 
 
 @end
