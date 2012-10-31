@@ -35,7 +35,7 @@ static OSStatus AUMFileRecordingProcessorRCB(void *							inRefCon,
     if (not THIS->_isRecording)
         return noErr;
 
-    OSStatus res = ExtAudioFileWrite(THIS->_fileRef, inNumberFrames, ioData);
+    OSStatus res = ExtAudioFileWriteAsync(THIS->_fileRef, inNumberFrames, ioData);
     
     if (res != noErr) {
         MMLogRealTime(@"%@", [NSString mm_ErrorCodeStringFromOSStatus:res]);
