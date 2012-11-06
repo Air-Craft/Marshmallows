@@ -73,7 +73,10 @@ typedef struct {
         
         // Else add now...
         @synchronized(_invocationsDictMutex) {
-            _invocationsDict[invocation] = { .interval = timeInterval, .callCount = 0 };
+            MPerformanceThreadInvocParams tmp = {0};
+            tmp.interval = timeInterval;
+            tmp.callCount = 0;
+            _invocationsDict[invocation] = tmp;
         }
     }
 }
@@ -133,7 +136,10 @@ typedef struct {
                 @synchronized(_invocationsToAddDictMutex) {
                     if (not _invocationsToAddDict.empty()) {
                         for (const auto& entry: _invocationsToAddDict) {
-                            _invocationsDict[entry.first] = { .interval = entry.second, .callCount = 0 };
+                            MPerformanceThreadInvocParams tmp = {0};
+                            tmp.interval = entry.second;
+                            tmp.callCount = 0;
+                            _invocationsDict[entry.first] = tmp;
                         }
                         
                         _invocationsToAddDict.clear();

@@ -1034,11 +1034,13 @@
 		A664EFBF15CEEB8900182FFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DSTROOT = /tmp/MarshmallowsStaticLib.dst;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarshmallowsStaticLib/MarshmallowsStaticLib-Prefix.pch";
+				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
@@ -1053,11 +1055,13 @@
 		A664EFC015CEEB8900182FFD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DSTROOT = /tmp/MarshmallowsStaticLib.dst;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarshmallowsStaticLib/MarshmallowsStaticLib-Prefix.pch";
+				GCC_VERSION = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = (
@@ -1077,7 +1081,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1106,7 +1110,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1125,11 +1129,16 @@
 		CE2867B914B36EC5001E11D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Project/Marshmallows-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "Project/Marshmallows-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1138,11 +1147,16 @@
 		CE2867BA14B36EC5001E11D7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Project/Marshmallows-Prefix.pch";
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "Project/Marshmallows-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

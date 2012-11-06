@@ -58,7 +58,7 @@
         // CONTROL THREAD
         /////////////////////////////////////////
         
-        MPerformanceThread *thd = [[MPerformanceThread alloc] init];
+        MPerformanceThread *thd = [MPerformanceThread thread];
         
         
         /////////////////////////////////////////
@@ -73,8 +73,8 @@
         _aumOutputUnit = [[AUMRemoteIOUnit alloc] init];
         [_aumGraph addUnit:_aumOutputUnit];
 
-        _aumFPU1 = [[AUMFilePlaybackGenerator alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
-        _aumFPU2 = [[AUMFilePlaybackGenerator alloc] initWithDiskBufferSizeInFrame:32*1024 updateThread:thd updateInterval:0.25];
+        _aumFPU1 = [[AUMFilePlaybackGenerator alloc] initWithDiskBufferSizeInBytes:128*1024 updateThread:thd updateInterval:0.25];
+        _aumFPU2 = [[AUMFilePlaybackGenerator alloc] initWithDiskBufferSizeInBytes:128*1024 updateThread:thd updateInterval:0.25];
         
         _aumRecorder = [[AUMFileRecordingProcessor alloc] init];
         
