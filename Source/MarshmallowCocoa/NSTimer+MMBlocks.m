@@ -14,6 +14,14 @@
     return [self scheduledTimerWithTimeInterval:ti target:self selector:@selector(_executeBlock:) userInfo:[aBlock copy] repeats:doesRepeat];
 }
 
++ (void)performBlockOnMainThreadAfterTimeInterval:(NSTimeInterval)ti block:(void (^)(void))aBlock
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self scheduledTimerWithTimeInterval:ti block:aBlock repeats:NO];
+    });
+}
+
+
 + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)ti block:(void (^)(void))aBlock repeats:(BOOL)doesRepeat
 {
     return [self timerWithTimeInterval:ti target:self selector:@selector(_executeBlock:) userInfo:[aBlock copy] repeats:doesRepeat];

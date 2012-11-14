@@ -11,6 +11,9 @@
 
 + (NSTimer *)scheduledTimerWithTimeInterval:(NSTimeInterval)ti block:(void (^)(void))aBlock repeats:(BOOL)doesRepeat;
 
++ (void)performBlockOnMainThreadAfterTimeInterval:(NSTimeInterval)ti block:(void (^)(void))aBlock;
+
+
 + (NSTimer *)timerWithTimeInterval:(NSTimeInterval)ti block:(void (^)(void))aBlock repeats:(BOOL)doesRepeat;
 
 @end
