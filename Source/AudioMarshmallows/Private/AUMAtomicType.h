@@ -4,7 +4,7 @@
  \copyright  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
  @{
  */
-/// \file AUMErrorChecking.h
+/// \file AUMAtomicType.h
 
 #ifndef AUM_ATOMIC_TYPE
 #define AUM_ATOMIC_TYPE 1

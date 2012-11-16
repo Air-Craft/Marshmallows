@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A611574A165643E40042C85D /* RunningAverageAggregator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6115748165643E40042C85D /* RunningAverageAggregator.cpp */; };
+		A611574B165643E40042C85D /* RunningAverageAggregator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6115748165643E40042C85D /* RunningAverageAggregator.cpp */; };
+		A611574C165643E40042C85D /* RunningAverageAggregator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6115748165643E40042C85D /* RunningAverageAggregator.cpp */; };
+		A611575016565CD20042C85D /* MarshmallowMathTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = A611574F16565CD20042C85D /* MarshmallowMathTests.mm */; };
 		A61CB97915CEE0D00054DBCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A61CB97815CEE0D00054DBCE /* main.m */; };
 		A61CB97E15CEE3850054DBCE /* MUIMultiToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A61CB97B15CEE3850054DBCE /* MUIMultiToggleButton.m */; };
 		A61CB97F15CEE3850054DBCE /* MUIPushButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A61CB97D15CEE3850054DBCE /* MUIPushButton.m */; };
@@ -192,6 +196,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A6115748165643E40042C85D /* RunningAverageAggregator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RunningAverageAggregator.cpp; sourceTree = "<group>"; };
+		A6115749165643E40042C85D /* RunningAverageAggregator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunningAverageAggregator.h; sourceTree = "<group>"; };
+		A611574E16565CD20042C85D /* MarshmallowMathTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowMathTests.h; sourceTree = "<group>"; };
+		A611574F16565CD20042C85D /* MarshmallowMathTests.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarshmallowMathTests.mm; sourceTree = "<group>"; };
 		A61CB97815CEE0D00054DBCE /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A61CB97A15CEE3850054DBCE /* MUIMultiToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIMultiToggleButton.h; sourceTree = "<group>"; };
 		A61CB97B15CEE3850054DBCE /* MUIMultiToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIMultiToggleButton.m; sourceTree = "<group>"; };
@@ -572,6 +580,8 @@
 				CE2868A514BA1063001E11D7 /* UIImageMMPixelDataTests.m */,
 				CE840258151DDDE900BDC2D2 /* MPStopwatchTests.h */,
 				CE840259151DDDE900BDC2D2 /* MPStopwatchTests.m */,
+				A611574E16565CD20042C85D /* MarshmallowMathTests.h */,
+				A611574F16565CD20042C85D /* MarshmallowMathTests.mm */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -682,6 +692,8 @@
 				CE840215151DD86100BDC2D2 /* MarshmallowMath.h */,
 				CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */,
 				CE840217151DD86100BDC2D2 /* MarshmallowMathFunctions.h */,
+				A6115748165643E40042C85D /* RunningAverageAggregator.cpp */,
+				A6115749165643E40042C85D /* RunningAverageAggregator.h */,
 			);
 			path = MarshmallowMath;
 			sourceTree = "<group>";
@@ -905,6 +917,7 @@
 				A6D7D1281637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */,
 				A6447577163947D000E15871 /* NSURL+Marshmallows.m in Sources */,
 				A644757C1639563C00E15871 /* AUMUtilityFunctions.m in Sources */,
+				A611574C165643E40042C85D /* RunningAverageAggregator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -964,6 +977,7 @@
 				A6D7D1271637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */,
 				A6447576163947D000E15871 /* NSURL+Marshmallows.m in Sources */,
 				A644757B1639563C00E15871 /* AUMUtilityFunctions.m in Sources */,
+				A611574A165643E40042C85D /* RunningAverageAggregator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,6 +1012,8 @@
 				CE840255151DD86100BDC2D2 /* UIImage+Marshmallows.m in Sources */,
 				CE840257151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */,
 				CE84025A151DDDE900BDC2D2 /* MPStopwatchTests.m in Sources */,
+				A611574B165643E40042C85D /* RunningAverageAggregator.cpp in Sources */,
+				A611575016565CD20042C85D /* MarshmallowMathTests.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

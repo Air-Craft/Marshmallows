@@ -7,3 +7,10 @@
 //
 
 #import "MarshmallowMathFunctions.h"
+
+
+#ifdef __cplusplus
+
+#import "RunningAverageAggregator.h"
+
+#endif

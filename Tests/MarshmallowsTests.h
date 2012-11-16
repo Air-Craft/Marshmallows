@@ -8,4 +8,5 @@
 
 #define DO_UIImageMMPixelDataTests 0
 #define DO_MMAnimatorTests 0
-#define DO_MPStopwatchTests 1
+#define DO_MPStopwatchTests 0
+#define DO_MarshmallowMathsTests 1
