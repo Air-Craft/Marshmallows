@@ -6,66 +6,66 @@
  */
 typedef CFTimeInterval (^MMAnimatorTimingBlock)(CFTimeInterval);
 
-
-
 /** ********************************************************************************************************************/
 #pragma mark -
-#pragma mark Function constants
+#pragma mark Function extern const ants
 
-const MMAnimatorTimingBlock MMAnimatorTimingLinear;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingLinear;
 
 /** ********************************************************************************************************************/
 #pragma mark -
 #pragma mark Quadratic
 
-const MMAnimatorTimingBlock MMAnimatorTimingQuadraticEaseOut;
-const MMAnimatorTimingBlock MMAnimatorTimingQuadraticEaseIn;
-const MMAnimatorTimingBlock MMAnimatorTimingQuadraticEaseInOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingQuadraticEaseOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingQuadraticEaseIn;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingQuadraticEaseInOut;
 
 /** ********************************************************************************************************************/
 #pragma mark -
 #pragma mark Cubic 
 
-const MMAnimatorTimingBlock MMAnimatorTimingCubicEaseOut ;
-const MMAnimatorTimingBlock MMAnimatorTimingCubicEaseIn;
-const MMAnimatorTimingBlock MMAnimatorTimingCubicEaseInOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingCubicEaseOut ;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingCubicEaseIn;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingCubicEaseInOut;
 
 /** ********************************************************************************************************************/
 #pragma mark -
 #pragma mark Quartic
 
-const MMAnimatorTimingBlock MMAnimatorTimingQuarticEaseOut;
-const MMAnimatorTimingBlock MMAnimatorTimingQuarticEaseIn;
-const MMAnimatorTimingBlock MMAnimatorTimingQuarticEaseInOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingQuarticEaseOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingQuarticEaseIn;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingQuarticEaseInOut;
 
 /** ********************************************************************************************************************/
 #pragma mark -
 #pragma mark Quintic
 
-const MMAnimatorTimingBlock MMAnimatorTimingQuinticEaseOut;
-const MMAnimatorTimingBlock MMAnimatorTimingQuinticEaseIn ;
-const MMAnimatorTimingBlock MMAnimatorTimingQuinticEaseInOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingQuinticEaseOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingQuinticEaseIn ;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingQuinticEaseInOut;
 
 /** ********************************************************************************************************************/
 #pragma mark -
 #pragma mark Sinusoidal
 
-const MMAnimatorTimingBlock MMAnimatorTimingSinusoidalEaseOut;
-const MMAnimatorTimingBlock MMAnimatorTimingSinusoidalEaseIn;
-const MMAnimatorTimingBlock MMAnimatorTimingSinusoidalEaseInOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingSinusoidalEaseOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingSinusoidalEaseIn;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingSinusoidalEaseInOut;
 
 /** ********************************************************************************************************************/
 #pragma mark -
 #pragma mark Exponential
 
-const MMAnimatorTimingBlock MMAnimatorTimingExponentialEaseOut;
-const MMAnimatorTimingBlock MMAnimatorTimingExponentialEaseIn;
-const MMAnimatorTimingBlock MMAnimatorTimingExponentialEaseInOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingExponentialEaseOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingExponentialEaseIn;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingExponentialEaseInOut;
 
 /** ********************************************************************************************************************/
 #pragma mark -
 #pragma mark Circular
 
-const MMAnimatorTimingBlock MMAnimatorTimingCircularEaseOut;
-const MMAnimatorTimingBlock MMAnimatorTimingCircularEaseIn;
-const MMAnimatorTimingBlock MMAnimatorTimingCircularEaseInOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingCircularEaseOut;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingCircularEaseIn;
+extern const  MMAnimatorTimingBlock MMAnimatorTimingCircularEaseInOut;
+
+
