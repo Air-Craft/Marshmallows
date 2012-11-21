@@ -11,6 +11,5 @@
 
 #ifdef __cplusplus
 
-#import "RunningAverageAggregator.h"
 
 #endif
