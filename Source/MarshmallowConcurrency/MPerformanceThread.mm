@@ -7,24 +7,40 @@
 
 
 #import "MPerformanceThread.h"
-#include <tr1/unordered_map>        // same as hash_map
-#include <tr1/unordered_set>
+#include <unordered_map>        // same as hash_map
+#include <unordered_set>
+
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - Types
+/////////////////////////////////////////////////////////////////////////
+
+typedef struct {
+    NSTimeInterval interval;
+    NSUInteger callCount;
+} _MPerformanceThreadInvocParams;
+
+
+/// Custom hasher & equals for NSInvocation
+struct _MPerformanceThreadMapHash {
+    size_t operator()(const NSInvocation *s1) const { return (size_t)s1; }
+};
+struct _MPerformanceThreadMapEqual {
+    size_t operator()(const NSInvocation *a, const NSInvocation *b) const { return a==b; }
+};
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - MPerformanceThread
 /////////////////////////////////////////////////////////////////////////
-typedef struct {
-    NSTimeInterval interval;
-    NSUInteger callCount;
-} MPerformanceThreadInvocParams;
 
 @implementation MPerformanceThread
 {
-    std::tr1::unordered_map<__strong id, MPerformanceThreadInvocParams>_invocationsDict; ///< The time repeat interval which to call the methods.  One of these needs to be retains to why not this one
+    std::unordered_map<NSInvocation *, _MPerformanceThreadInvocParams, _MPerformanceThreadMapHash, _MPerformanceThreadMapEqual>_invocationsDict; ///< The time repeat interval which to call the methods.  One of these needs to be retains to why not this one
     
-    std::tr1::unordered_map<__strong id, NSTimeInterval>_invocationsToAddDict;
+    std::unordered_map<NSInvocation *, NSTimeInterval, _MPerformanceThreadMapHash, _MPerformanceThreadMapEqual>_invocationsToAddDict;
     
-    std::tr1::unordered_set<__strong id> _invocationsToRemoveSet; ///< Temp hold invokes sent to removeInvocation to remove when run loop is finished
+    std::unordered_set<NSInvocation *, _MPerformanceThreadMapHash> _invocationsToRemoveSet; ///< Temp hold invokes sent to removeInvocation to remove when run loop is finished
 
     /// ObjC mutex locks for @synchro
     id _invocationsDictMutex;
@@ -73,7 +89,7 @@ typedef struct {
         
         // Else add now...
         @synchronized(_invocationsDictMutex) {
-            MPerformanceThreadInvocParams tmp = {0};
+            _MPerformanceThreadInvocParams tmp = {0};
             tmp.interval = timeInterval;
             tmp.callCount = 0;
             _invocationsDict[invocation] = tmp;
@@ -136,7 +152,7 @@ typedef struct {
                 @synchronized(_invocationsToAddDictMutex) {
                     if (not _invocationsToAddDict.empty()) {
                         for (const auto& entry: _invocationsToAddDict) {
-                            MPerformanceThreadInvocParams tmp = {0};
+                            _MPerformanceThreadInvocParams tmp = {0};
                             tmp.interval = entry.second;
                             tmp.callCount = 0;
                             _invocationsDict[entry.first] = tmp;
