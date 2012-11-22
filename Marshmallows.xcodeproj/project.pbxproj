@@ -72,6 +72,9 @@
 		A664EFDD15CEEBBB00182FFD /* MarshmallowMathFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */; };
 		A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFE515CEECB800182FFD /* MMAppDelegate.m */; };
 		A66E7CD5163164A400565D93 /* OngKarNirankar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */; };
+		A69F3A95165E2D2000116B0D /* MCachedModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = A69F3A94165E2D2000116B0D /* MCachedModalStoryboardSegue.m */; };
+		A69F3A96165E2D2000116B0D /* MCachedModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = A69F3A94165E2D2000116B0D /* MCachedModalStoryboardSegue.m */; };
+		A69F3A97165E2D2000116B0D /* MCachedModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = A69F3A94165E2D2000116B0D /* MCachedModalStoryboardSegue.m */; };
 		A6ADEBE416330E7E00420769 /* AUMTesterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6ADEBE316330E7E00420769 /* AUMTesterViewController.m */; };
 		A6AE6EA11637FFA400EC70AC /* SWHarp-Eb4-Medium.wav in Resources */ = {isa = PBXBuildFile; fileRef = A6AE6EA01637FFA400EC70AC /* SWHarp-Eb4-Medium.wav */; };
 		A6B582B815DC125900D1CA05 /* AUMFilePlaybackGenerator.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AC15DC125900D1CA05 /* AUMFilePlaybackGenerator.mm */; };
@@ -230,6 +233,8 @@
 		A664EFE415CEECB800182FFD /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		A664EFE515CEECB800182FFD /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
 		A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = OngKarNirankar.m4a; sourceTree = "<group>"; };
+		A69F3A93165E2D2000116B0D /* MCachedModalStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCachedModalStoryboardSegue.h; sourceTree = "<group>"; };
+		A69F3A94165E2D2000116B0D /* MCachedModalStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCachedModalStoryboardSegue.m; sourceTree = "<group>"; };
 		A6ADEBE316330E7E00420769 /* AUMTesterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMTesterViewController.m; sourceTree = "<group>"; };
 		A6AE6EA01637FFA400EC70AC /* SWHarp-Eb4-Medium.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "SWHarp-Eb4-Medium.wav"; sourceTree = "<group>"; };
 		A6AE6EA316385ED200EC70AC /* AUMGeneratorRendererProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUMGeneratorRendererProtocol.h; sourceTree = "<group>"; };
@@ -720,6 +725,8 @@
 				CE840224151DD86100BDC2D2 /* UIImage+Marshmallows.m */,
 				A6D69D3C15D52E44009828CF /* MUIDraggablePane.h */,
 				A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */,
+				A69F3A93165E2D2000116B0D /* MCachedModalStoryboardSegue.h */,
+				A69F3A94165E2D2000116B0D /* MCachedModalStoryboardSegue.m */,
 			);
 			path = MarshmallowUIKit;
 			sourceTree = "<group>";
@@ -910,6 +917,7 @@
 				A6D7D1281637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */,
 				A6447577163947D000E15871 /* NSURL+Marshmallows.m in Sources */,
 				A644757C1639563C00E15871 /* AUMUtilityFunctions.m in Sources */,
+				A69F3A97165E2D2000116B0D /* MCachedModalStoryboardSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -969,6 +977,7 @@
 				A6D7D1271637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */,
 				A6447576163947D000E15871 /* NSURL+Marshmallows.m in Sources */,
 				A644757B1639563C00E15871 /* AUMUtilityFunctions.m in Sources */,
+				A69F3A95165E2D2000116B0D /* MCachedModalStoryboardSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,6 +1013,7 @@
 				CE840257151DD86100BDC2D2 /* CEObjectiveCRuntime.m in Sources */,
 				CE84025A151DDDE900BDC2D2 /* MPStopwatchTests.m in Sources */,
 				A611575016565CD20042C85D /* MarshmallowMathTests.mm in Sources */,
+				A69F3A96165E2D2000116B0D /* MCachedModalStoryboardSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
