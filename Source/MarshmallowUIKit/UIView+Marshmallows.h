@@ -20,6 +20,16 @@
 - (void)moveOriginToX:(CGFloat)theX y:(CGFloat)theY;
 /// *}
 
+/** @name Resizing convenience methods */
+- (void)resizeByWidth:(CGFloat)deltaW height:(CGFloat)deltaH;
+- (void)resizeToWidth:(CGFloat)aWidth height:(CGFloat)aHeight;
+- (void)resizeToWidth:(CGFloat)aWidth;
+- (void)resizeToHeight:(CGFloat)aHeight;
+
+/// *}
+
+
+
 
 //- (void)dumpViewHierarchy;
 

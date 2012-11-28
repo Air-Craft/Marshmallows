@@ -60,7 +60,49 @@
                             );
 }
 
+
+
 /////////////////////////////////////////////////////////////////////////
+#pragma mark - Resizing Methods
+/////////////////////////////////////////////////////////////////////////
+
+- (void)resizeByWidth:(CGFloat)deltaW height:(CGFloat)deltaH
+{
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            self.frame.size.width + deltaW,
+                            self.frame.size.height + deltaH);
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)resizeToWidth:(CGFloat)aWidth height:(CGFloat)aHeight
+{
+    self.frame = CGRectMake(self.frame.origin.x,
+                            self.frame.origin.y,
+                            aWidth,
+                            aHeight);
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)resizeToWidth:(CGFloat)aWidth
+{
+    [self resizeByWidth:aWidth height:self.frame.size.height];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+- (void)resizeToHeight:(CGFloat)aHeight
+{
+    [self resizeByWidth:self.frame.size.width height:aHeight];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 /*- (void)dumpViewHierarchy
 {

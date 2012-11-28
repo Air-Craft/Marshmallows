@@ -37,6 +37,7 @@
 #import "MarshmallowRecovery/MarshmallowRecovery.h"
 #import "MarshmallowUIKit/MarshmallowUIKit.h"
 #import "AudioMarshmallows/AudioMarshmallows.h"
+#import "MarshmallowMisc/MarshmallowMisc.h"
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Macros
