@@ -88,14 +88,14 @@
 
 - (void)resizeToWidth:(CGFloat)aWidth
 {
-    [self resizeByWidth:aWidth height:self.frame.size.height];
+    [self resizeToWidth:aWidth height:self.frame.size.height];
 }
 
 /////////////////////////////////////////////////////////////////////////
 
 - (void)resizeToHeight:(CGFloat)aHeight
 {
-    [self resizeByWidth:self.frame.size.width height:aHeight];
+    [self resizeToWidth:self.frame.size.width height:aHeight];
 }
 
 /////////////////////////////////////////////////////////////////////////
