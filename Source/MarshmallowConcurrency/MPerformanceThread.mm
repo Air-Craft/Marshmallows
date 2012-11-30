@@ -145,6 +145,7 @@ struct _MPerformanceThreadMapEqual {
                         for (const auto& invoc :_invocationsToRemoveSet) {
                             _invocationsDict.erase(invoc);
                         }
+                        _invocationsToRemoveSet.clear();
                     }
                 }            
                 
@@ -184,7 +185,8 @@ struct _MPerformanceThreadMapEqual {
                         @synchronized(_invocationsToRemoveSetMutex) {
                             // Additional _paused check in case thread has been _paused during run loop
                             if (not self.paused and invoc and not _invocationsToRemoveSet.count(invoc)) {
-                                [invoc invoke];
+                                    [invoc invoke];
+
                             }
                         }
                     }
