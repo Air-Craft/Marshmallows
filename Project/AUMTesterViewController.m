@@ -59,7 +59,7 @@
         /////////////////////////////////////////
         
         MPerformanceThread *thd = [MPerformanceThread thread];
-        
+        thd.timingResolution = 0.0005;
         
         /////////////////////////////////////////
         // AU GRAPH SETUP
@@ -98,9 +98,9 @@
 
         // Load the file
         //        NSURL *fileURL = [[NSBundle mainBundle] URLForResource:@"SWHarp-C3-Medium" withExtension:@"wav"];
-        NSURL *file1URL = [[NSBundle mainBundle] URLForResource:@"OngKarNirankar" withExtension:@"m4a"];
+        NSURL *file1URL = [[NSBundle mainBundle] URLForResource:@"Bach-Great-Organ-Works-1" withExtension:@"mp3"];
         NSURL *file2URL = [[NSBundle mainBundle] URLForResource:@"SWHarp-Eb4-Medium" withExtension:@"wav"];
-        NSURL *outFileURL = [NSURL URLForDocumentDirectoryWithAppendedPath:@"caf"];
+        NSURL *outFileURL = [NSURL URLForDocumentDirectoryWithAppendedPath:@"something.caf"];
         DLOGs(outFileURL);
         
         [_aumFPU1 loadAudioFileFromURL:file1URL];

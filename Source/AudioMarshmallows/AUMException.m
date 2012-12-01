@@ -54,7 +54,7 @@ NSString *const kAUMAudioIncompatibleFileFormatException = @"kAUMAudioIncompatib
 
 - (NSString *)OSStatusAsNSString
 {
-    char str[10];
+    char str[10]="";
     OSStatus error = _OSStatus;
     
     // see if it appears to be a 4-char-code

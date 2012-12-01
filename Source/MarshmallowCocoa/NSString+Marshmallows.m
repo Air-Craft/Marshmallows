@@ -15,7 +15,7 @@
 
 + (NSString *)mm_ErrorCodeStringFromOSStatus:(OSStatus)anOSStatus
 {
-    char str[10];
+    char str[10]="";
     OSStatus error = anOSStatus;
     
     // see if it appears to be a 4-char-code

@@ -35,6 +35,7 @@
 		A656818A1666674B00836EFF /* MCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = A65681891666674B00836EFF /* MCompatibility.m */; };
 		A656818B1666674B00836EFF /* MCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = A65681891666674B00836EFF /* MCompatibility.m */; };
 		A656818C1666674B00836EFF /* MCompatibility.m in Sources */ = {isa = PBXBuildFile; fileRef = A65681891666674B00836EFF /* MCompatibility.m */; };
+		A660E184166A93D4005F38B8 /* Bach-Great-Organ-Works-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A660E183166A93D4005F38B8 /* Bach-Great-Organ-Works-1.mp3 */; };
 		A660E56E163D2E1800C4284A /* AUMTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B415DC125900D1CA05 /* AUMTypes.m */; };
 		A660E56F163D2E3100C4284A /* AUMGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582AE15DC125900D1CA05 /* AUMGraph.m */; };
 		A660E570163D2E3100C4284A /* AUMRemoteIOUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B582B215DC125900D1CA05 /* AUMRemoteIOUnit.m */; };
@@ -74,7 +75,6 @@
 		A664EFDC15CEEBB400182FFD /* MDTimeProfilerOC.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840213151DD86100BDC2D2 /* MDTimeProfilerOC.mm */; };
 		A664EFDD15CEEBBB00182FFD /* MarshmallowMathFunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = CE840216151DD86100BDC2D2 /* MarshmallowMathFunctions.c */; };
 		A664EFE615CEECB800182FFD /* MMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A664EFE515CEECB800182FFD /* MMAppDelegate.m */; };
-		A66E7CD5163164A400565D93 /* OngKarNirankar.m4a in Resources */ = {isa = PBXBuildFile; fileRef = A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */; };
 		A69F3A95165E2D2000116B0D /* MCachedModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = A69F3A94165E2D2000116B0D /* MCachedModalStoryboardSegue.m */; };
 		A69F3A96165E2D2000116B0D /* MCachedModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = A69F3A94165E2D2000116B0D /* MCachedModalStoryboardSegue.m */; };
 		A69F3A97165E2D2000116B0D /* MCachedModalStoryboardSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = A69F3A94165E2D2000116B0D /* MCachedModalStoryboardSegue.m */; };
@@ -232,13 +232,13 @@
 		A65681881666674B00836EFF /* MCompatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MCompatibility.h; path = MarshmallowMisc/MCompatibility.h; sourceTree = "<group>"; };
 		A65681891666674B00836EFF /* MCompatibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MCompatibility.m; path = MarshmallowMisc/MCompatibility.m; sourceTree = "<group>"; };
 		A6568190166668E000836EFF /* MarshmallowMisc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MarshmallowMisc.h; path = MarshmallowMisc/MarshmallowMisc.h; sourceTree = "<group>"; };
+		A660E183166A93D4005F38B8 /* Bach-Great-Organ-Works-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Bach-Great-Organ-Works-1.mp3"; sourceTree = "<group>"; };
 		A664EFB515CEEB8900182FFD /* libMarshmallowsStaticLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMarshmallowsStaticLib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A664EFB915CEEB8900182FFD /* MarshmallowsStaticLib-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarshmallowsStaticLib-Prefix.pch"; sourceTree = "<group>"; };
 		A664EFBA15CEEB8900182FFD /* MarshmallowsStaticLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarshmallowsStaticLib.h; sourceTree = "<group>"; };
 		A664EFBC15CEEB8900182FFD /* MarshmallowsStaticLib.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarshmallowsStaticLib.m; sourceTree = "<group>"; };
 		A664EFE415CEECB800182FFD /* MMAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMAppDelegate.h; sourceTree = "<group>"; };
 		A664EFE515CEECB800182FFD /* MMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMAppDelegate.m; sourceTree = "<group>"; };
-		A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = OngKarNirankar.m4a; sourceTree = "<group>"; };
 		A69F3A93165E2D2000116B0D /* MCachedModalStoryboardSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCachedModalStoryboardSegue.h; sourceTree = "<group>"; };
 		A69F3A94165E2D2000116B0D /* MCachedModalStoryboardSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCachedModalStoryboardSegue.m; sourceTree = "<group>"; };
 		A6ADEBE316330E7E00420769 /* AUMTesterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUMTesterViewController.m; sourceTree = "<group>"; };
@@ -553,8 +553,8 @@
 		CE28687814BA0D6C001E11D7 /* Project */ = {
 			isa = PBXGroup;
 			children = (
+				A660E183166A93D4005F38B8 /* Bach-Great-Organ-Works-1.mp3 */,
 				A6AE6EA01637FFA400EC70AC /* SWHarp-Eb4-Medium.wav */,
-				A66E7CD4163164A400565D93 /* OngKarNirankar.m4a */,
 				A6D881641630373500D11296 /* SWHarp-C3-Medium.wav */,
 				A664EFE415CEECB800182FFD /* MMAppDelegate.h */,
 				A664EFE515CEECB800182FFD /* MMAppDelegate.m */,
@@ -855,9 +855,9 @@
 			files = (
 				CE28688014BA0D6C001E11D7 /* InfoPlist.strings in Resources */,
 				A6D881651630373500D11296 /* SWHarp-C3-Medium.wav in Resources */,
-				A66E7CD5163164A400565D93 /* OngKarNirankar.m4a in Resources */,
 				A6D7D12B1637F04D0097BE06 /* AUMTesterView.xib in Resources */,
 				A6AE6EA11637FFA400EC70AC /* SWHarp-Eb4-Medium.wav in Resources */,
+				A660E184166A93D4005F38B8 /* Bach-Great-Organ-Works-1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
