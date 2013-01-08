@@ -20,4 +20,5 @@
 - (void)removeObjectsForKeys:(NSArray *)keyArray;
 - (void)removeAllObjects;
 - (void)addEntriesFromObjectKeyDictionary:(MNSMutableObjectKeyDictionary *)otherDictionary;
+- (NSArray *)allKeys;
 @end
