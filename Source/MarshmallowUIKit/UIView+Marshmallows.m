@@ -6,12 +6,36 @@
  */
 
 #import "UIView+Marshmallows.h"
+#import <objc/runtime.h>
+
+/// Key for objc_*AssociatedObject functions
+static char _rotation;
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - UIView (Marshmallows)
 /////////////////////////////////////////////////////////////////////////
 
 @implementation UIView (Marshmallows)
+
+- (CGFloat)rotation
+{
+    NSNumber *n = objc_getAssociatedObject(self, &_rotation);
+    return n.floatValue;
+}
+
+- (void)setRotation:(CGFloat)rotation
+{
+    // Get the delta required to align the view to the new rotation
+    CGFloat delta = rotation - _rotation;
+    
+    // Do the rotation and update the property
+    self.transform = CGAffineTransformMakeRotation(delta);
+    
+    // Must convert to an object for this trick to work
+    objc_setAssociatedObject(self, &_rotation, @(rotation), OBJC_ASSOCIATION_COPY);
+}
+
+/////////////////////////////////////////////////////////////////////////
 
 - (void)moveByDeltaX:(CGFloat)delX deltaY:(CGFloat)delY
 {

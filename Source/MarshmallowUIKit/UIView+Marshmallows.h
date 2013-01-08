@@ -13,6 +13,8 @@
  */
 @interface UIView (Marshmallows)
 
+@property (nonatomic) CGFloat rotation;
+
 /** @name Positioning convenience methods */
 - (void)moveByDeltaX:(CGFloat)delX deltaY:(CGFloat)delY;
 - (void)moveOriginToX:(CGFloat)theX;
