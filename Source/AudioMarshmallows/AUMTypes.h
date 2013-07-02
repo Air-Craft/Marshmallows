@@ -30,6 +30,7 @@ typedef struct {
     AudioFileTypeID fileTypeId;
     AudioStreamBasicDescription streamFormat;
     UInt32 codecManufacturer;
+    char extension[5];      // 4 digits plus \0 null
 } AUMAudioFileFormatDescription;
 
 
