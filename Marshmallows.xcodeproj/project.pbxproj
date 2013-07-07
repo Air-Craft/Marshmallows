@@ -14,6 +14,7 @@
 		A636EDC0163011B00037F211 /* AUMAudioSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A636EDBF163011AF0037F211 /* AUMAudioSession.m */; };
 		A636EDC1163011B00037F211 /* AUMAudioSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A636EDBF163011AF0037F211 /* AUMAudioSession.m */; };
 		A63FF35C178735C900C2B674 /* NSDate+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A63FF35B178735C900C2B674 /* NSDate+Marshmallows.m */; };
+		A63FF35D1789D95200C2B674 /* NSDate+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A63FF35B178735C900C2B674 /* NSDate+Marshmallows.m */; };
 		A6434F8F161F4E2D00496EAC /* MCAtomicType.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F8E161F4E2D00496EAC /* MCAtomicType.mm */; };
 		A6434F97161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F96161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm */; };
 		A6434F98161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm in Sources */ = {isa = PBXBuildFile; fileRef = A6434F96161F4E5B00496EAC /* AUMFilePlaybackGeneratorRCB.mm */; };
@@ -898,6 +899,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63FF35D1789D95200C2B674 /* NSDate+Marshmallows.m in Sources */,
 				A660E573163D2E5D00C4284A /* AUMUnitAbstract.m in Sources */,
 				A660E56F163D2E3100C4284A /* AUMGraph.m in Sources */,
 				A660E570163D2E3100C4284A /* AUMRemoteIOUnit.m in Sources */,

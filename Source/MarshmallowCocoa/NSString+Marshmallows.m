@@ -31,6 +31,78 @@
     return [NSString stringWithUTF8String:str];
 }
 
+
+/////////////////////////////////////////////////////////////////////////
+#pragma mark - App & User Directory convenience functions
+/////////////////////////////////////////////////////////////////////////
+
++ (NSString *)pathForDirectory:(NSSearchPathDirectory)directoryConstant domainMask:(NSSearchPathDomainMask)domainMask
+{
+    NSFileManager* sharedFM = [NSFileManager defaultManager];
+    NSArray *possiblepaths = [sharedFM URLsForDirectory:directoryConstant
+                                             inDomains:domainMask];
+    NSURL *path = nil;
+    
+    if ([possiblepaths count] >= 1) {
+        // Use the first directory (if multiple are returned)
+        path = [possiblepaths objectAtIndex:0];
+    }
+    
+    return path.path;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
++ (NSString *)pathForApplicationSupportDataDirectory
+{
+    NSString *appSupportDir = [self pathForDirectory:NSApplicationSupportDirectory domainMask:NSUserDomainMask];
+    
+    // If a valid app support directory exists, add the
+    // app's bundle ID to it to specify the final directory.
+    if (appSupportDir) {
+        NSString *appBundleID = [[NSBundle mainBundle] bundleIdentifier];
+        return [appSupportDir stringByAppendingPathComponent:appBundleID];
+    } else
+        return nil;
+}
+
+/////////////////////////////////////////////////////////////////////////
+
++ (NSString *)pathForApplicationSupportWithAppendedPath:(NSString *)pathToAppend
+{
+    return [[self pathForApplicationSupportDataDirectory] stringByAppendingPathComponent:pathToAppend];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
++ (NSString *)pathForUserDirectory
+{
+    return [self pathForDirectory:NSUserDirectory domainMask:NSUserDomainMask];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
++ (NSString *)pathForUserDirectoryWithAppendedPath:(NSString *)pathToAppend
+{
+    return [[self pathForUserDirectory] stringByAppendingPathComponent:pathToAppend];
+    
+}
+
+/////////////////////////////////////////////////////////////////////////
+
++ (NSString *)pathForDocumentDirectory
+{
+    return [self pathForDirectory:NSDocumentDirectory domainMask:NSUserDomainMask];
+}
+
+/////////////////////////////////////////////////////////////////////////
+
++ (NSString *)pathForDocumentDirectoryWithAppendedPath:(NSString *)pathToAppend
+{
+    return [[self pathForDocumentDirectory] stringByAppendingPathComponent:pathToAppend];
+}
+
+
 @end
 
 /// @}
