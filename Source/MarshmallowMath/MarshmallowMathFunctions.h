@@ -7,31 +7,34 @@
 //
 
 //
-#import <tgmath.h>
 #ifndef MarshmallowMath_h
 #define MarshmallowMath_h
+
+#import <tgmath.h>
+#include <CoreGraphics/CoreGraphics.h>
+
 
 #ifdef __cplusplus
 extern "C" {
 #endif
     
 /** Maps a value in one range propertionately into another range */
-const float MM_MapLinearRange(float inVal, float inMin, float inMax, float outMin, float outMax);
+inline const CGFloat MM_MapLinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat outMin, CGFloat outMax);
 
 /////////////////////////////////////////////////////////////////////////
     
 /** Maps the in value onto one of two connected but not smooth ranges depending on whether it falls above or below inMed.  inMed maps to outMed */
-const float MM_MapBilinearRange(float inVal, float inMin, float inMax, float inMed, float outMin, float outMax, float outMed) ;
+inline const CGFloat MM_MapBilinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat inMed, CGFloat outMin, CGFloat outMax, CGFloat outMed) ;
 
 /////////////////////////////////////////////////////////////////////////
     
 /** Return the value if between min and max otherwise return min or max.  */
-const float MM_Clamp(float inVal, float minVal, float maxVal);
+inline const CGFloat MM_Clamp(CGFloat inVal, CGFloat minVal, CGFloat maxVal);
     
     
 /////////////////////////////////////////////////////////////////////////
     
-const float MM_Wrap(float inVal, float min, float max);
+inline const CGFloat MM_Wrap(CGFloat inVal, CGFloat min, CGFloat max);
     
 #ifdef __cplusplus
 }

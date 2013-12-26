@@ -1,17 +1,18 @@
 #include <tgmath.h>
+#include <CoreGraphics/CoreGraphics.h>
 #include "MarshmallowMathFunctions.h"
 
 
 /////////////////////////////////////////////////////////////////////////
 
-const float MM_MapLinearRange(float inVal, float inMin, float inMax, float outMin, float outMax)
+const CGFloat MM_MapLinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat outMin, CGFloat outMax)
 {
     return ( (inVal-inMin) / (inMax-inMin) * (outMax-outMin) + outMin );
 }
 
 /////////////////////////////////////////////////////////////////////////
 
-const float MM_MapBilinearRange(float inVal, float inMin, float inMax, float inMed, float outMin, float outMax, float outMed) 
+const CGFloat MM_MapBilinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat inMed, CGFloat outMin, CGFloat outMax, CGFloat outMed) 
 {
     if (inVal <= inMed) {
         return MM_MapLinearRange(inVal, inMin, inMed, outMin, outMed);
@@ -22,16 +23,16 @@ const float MM_MapBilinearRange(float inVal, float inMin, float inMax, float inM
 
 /////////////////////////////////////////////////////////////////////////
 
-const float MM_Clamp(float inVal, float minVal, float maxVal)
+const CGFloat MM_Clamp(CGFloat inVal, CGFloat minVal, CGFloat maxVal)
 {
     return (inVal < minVal ? minVal : (inVal > maxVal ? maxVal : inVal));
 }
 
 /////////////////////////////////////////////////////////////////////////
 
-const float MM_Wrap(float inVal, float min, float max)
+const CGFloat MM_Wrap(CGFloat inVal, CGFloat min, CGFloat max)
 {
-    const float range = max - min;
+    const CGFloat range = max - min;
     
     // Optomisations
     if (inVal >= min) {
