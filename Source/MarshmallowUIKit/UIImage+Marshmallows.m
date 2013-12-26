@@ -21,9 +21,9 @@
     CGImageRef imageRef = [self CGImage];
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);//CGColorSpaceCreateDeviceRGB();
     NSUInteger dataSize = height * width * MM_UIIMAGE_BYTES_PER_PIXEL;
-    unsigned char *rawData = malloc(dataSize);
+    unsigned char *rawData = calloc(width*height, sizeof(GLubyte)*MM_UIIMAGE_BYTES_PER_PIXEL);
     NSUInteger bytesPerRow = width * MM_UIIMAGE_BYTES_PER_PIXEL;
     NSUInteger bitsPerComponent = 8;
     CGContextRef context = CGBitmapContextCreate(rawData, width, height,
