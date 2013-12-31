@@ -18,7 +18,7 @@
 - (id)init 
 {
     if (self = [super init]) {
-        invocationTimerDict = [MNSMutableObjectKeyDictionary dictionary];
+        invocationTimerDict = [MWeakKeyMutableDictionary dictionary];
     }
     return self;
 }

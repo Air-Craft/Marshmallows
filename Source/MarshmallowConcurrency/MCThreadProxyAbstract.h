@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "MThreadProtocol.h"
-#import "MNSMutableObjectKeyDictionary.h"
+#import "MWeakKeyMutableDictionary.h"
 
 @interface MCThreadProxyAbstract : NSObject <MThreadProtocol> 
 {
-    MNSMutableObjectKeyDictionary *invocationIntervalDict;
+    MWeakKeyMutableDictionary *invocationIntervalDict;
 }
 
 @end

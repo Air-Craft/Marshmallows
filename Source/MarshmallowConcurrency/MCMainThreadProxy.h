@@ -7,7 +7,7 @@
 //
 
 #import "MCThreadProxyAbstract.h"
-#import "MNSMutableObjectKeyDictionary.h"
+#import "MWeakKeyMutableDictionary.h"
 
 /**
  \brief Uses NSTimer's to run task on the main thread
@@ -17,7 +17,7 @@
  */
 @interface MCMainThreadProxy : MCThreadProxyAbstract 
 {
-    MNSMutableObjectKeyDictionary *invocationTimerDict;
+    MWeakKeyMutableDictionary *invocationTimerDict;
 }
 
 @end

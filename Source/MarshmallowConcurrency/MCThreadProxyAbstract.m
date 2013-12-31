@@ -24,7 +24,7 @@
 - (id)init 
 {
     if (self = [super init]) {
-        invocationIntervalDict = [MNSMutableObjectKeyDictionary dictionary];
+        invocationIntervalDict = [MWeakKeyMutableDictionary dictionary];
     }
     return self;
     

@@ -58,10 +58,9 @@
 		A664EFC915CEEBA800182FFD /* MACrossfadeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F3151DD86100BDC2D2 /* MACrossfadeLayer.m */; };
 		A664EFCA15CEEBA800182FFD /* MAImageCrossfadeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F5151DD86100BDC2D2 /* MAImageCrossfadeLayer.m */; };
 		A664EFCB15CEEBA800182FFD /* MAImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F7151DD86100BDC2D2 /* MAImageLayer.m */; };
-		A664EFCC15CEEBA800182FFD /* MNSMutableObjectKeyDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */; };
+		A664EFCC15CEEBA800182FFD /* MWeakKeyMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FC151DD86100BDC2D2 /* MWeakKeyMutableDictionary.m */; };
 		A664EFCD15CEEBA800182FFD /* NSArray+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */; };
 		A664EFCE15CEEBA800182FFD /* NSError+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */; };
-		A664EFCF15CEEBA800182FFD /* NSTimer+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */; };
 		A664EFD015CEEBA800182FFD /* MCMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */; };
 		A664EFD115CEEBA800182FFD /* MPerformanceThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MPerformanceThread.mm */; };
 		A664EFD215CEEBA800182FFD /* MCThreadProxyAbstract.m in Sources */ = {isa = PBXBuildFile; fileRef = CE84020A151DD86100BDC2D2 /* MCThreadProxyAbstract.m */; };
@@ -92,6 +91,7 @@
 		A6BE0C6715D017D000E0F43D /* UIView+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6BE0C6515D017D000E0F43D /* UIView+Marshmallows.m */; };
 		A6CBD2B815D273F700A7933E /* MRUncaughtExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */; };
 		A6CBD2B915D273F700A7933E /* MRUncaughtExceptions.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */; };
+		A6CED30B187093E000CB0521 /* MStrongKeyMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = A6CED30A187093E000CB0521 /* MStrongKeyMutableDictionary.m */; };
 		A6D69D3E15D52E44009828CF /* MUIDraggablePane.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */; };
 		A6D69D3F15D52E44009828CF /* MUIDraggablePane.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */; };
 		A6D7D1271637DF6F0097BE06 /* NSString+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = A6D7D1261637DF6F0097BE06 /* NSString+Marshmallows.m */; };
@@ -142,14 +142,12 @@
 		CE840235151DD86100BDC2D2 /* MAImageCrossfadeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F5151DD86100BDC2D2 /* MAImageCrossfadeLayer.m */; };
 		CE840236151DD86100BDC2D2 /* MAImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F7151DD86100BDC2D2 /* MAImageLayer.m */; };
 		CE840237151DD86100BDC2D2 /* MAImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401F7151DD86100BDC2D2 /* MAImageLayer.m */; };
-		CE840238151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */; };
-		CE840239151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */; };
+		CE840238151DD86100BDC2D2 /* MWeakKeyMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FC151DD86100BDC2D2 /* MWeakKeyMutableDictionary.m */; };
+		CE840239151DD86100BDC2D2 /* MWeakKeyMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FC151DD86100BDC2D2 /* MWeakKeyMutableDictionary.m */; };
 		CE84023A151DD86100BDC2D2 /* NSArray+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */; };
 		CE84023B151DD86100BDC2D2 /* NSArray+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */; };
 		CE84023C151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */; };
 		CE84023D151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */; };
-		CE84023E151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */; };
-		CE84023F151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */; };
 		CE840240151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */; };
 		CE840241151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */; };
 		CE840242151DD86100BDC2D2 /* MPerformanceThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE840208151DD86100BDC2D2 /* MPerformanceThread.mm */; };
@@ -269,6 +267,8 @@
 		A6CBD2B515D273F700A7933E /* MarshmallowRecovery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowRecovery.h; sourceTree = "<group>"; };
 		A6CBD2B615D273F700A7933E /* MRUncaughtExceptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRUncaughtExceptions.h; sourceTree = "<group>"; };
 		A6CBD2B715D273F700A7933E /* MRUncaughtExceptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRUncaughtExceptions.m; sourceTree = "<group>"; };
+		A6CED309187093E000CB0521 /* MStrongKeyMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MStrongKeyMutableDictionary.h; sourceTree = "<group>"; };
+		A6CED30A187093E000CB0521 /* MStrongKeyMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MStrongKeyMutableDictionary.m; sourceTree = "<group>"; };
 		A6D69D3C15D52E44009828CF /* MUIDraggablePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUIDraggablePane.h; sourceTree = "<group>"; };
 		A6D69D3D15D52E44009828CF /* MUIDraggablePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MUIDraggablePane.m; sourceTree = "<group>"; };
 		A6D69D4115D531D3009828CF /* MUITypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MUITypes.h; sourceTree = "<group>"; };
@@ -325,14 +325,12 @@
 		CE8401F7151DD86100BDC2D2 /* MAImageLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAImageLayer.m; sourceTree = "<group>"; };
 		CE8401F8151DD86100BDC2D2 /* MarshmallowAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowAnimation.h; sourceTree = "<group>"; };
 		CE8401FA151DD86100BDC2D2 /* MarshmallowCocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowCocoa.h; sourceTree = "<group>"; };
-		CE8401FB151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNSMutableObjectKeyDictionary.h; sourceTree = "<group>"; };
-		CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNSMutableObjectKeyDictionary.m; sourceTree = "<group>"; };
+		CE8401FB151DD86100BDC2D2 /* MWeakKeyMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWeakKeyMutableDictionary.h; sourceTree = "<group>"; };
+		CE8401FC151DD86100BDC2D2 /* MWeakKeyMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWeakKeyMutableDictionary.m; sourceTree = "<group>"; };
 		CE8401FD151DD86100BDC2D2 /* NSArray+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Marshmallows.h"; sourceTree = "<group>"; };
 		CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Marshmallows.m"; sourceTree = "<group>"; };
 		CE8401FF151DD86100BDC2D2 /* NSError+Marshmallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+Marshmallows.h"; sourceTree = "<group>"; };
 		CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+Marshmallows.m"; sourceTree = "<group>"; };
-		CE840201151DD86100BDC2D2 /* NSTimer+MMBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+MMBlocks.h"; sourceTree = "<group>"; };
-		CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+MMBlocks.m"; sourceTree = "<group>"; };
 		CE840204151DD86100BDC2D2 /* MarshmallowConcurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarshmallowConcurrency.h; sourceTree = "<group>"; };
 		CE840205151DD86100BDC2D2 /* MCMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCMainThreadProxy.h; sourceTree = "<group>"; };
 		CE840206151DD86100BDC2D2 /* MCMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCMainThreadProxy.m; sourceTree = "<group>"; };
@@ -665,15 +663,15 @@
 			isa = PBXGroup;
 			children = (
 				CE8401FA151DD86100BDC2D2 /* MarshmallowCocoa.h */,
-				CE8401FB151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.h */,
-				CE8401FC151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m */,
+				CE8401FB151DD86100BDC2D2 /* MWeakKeyMutableDictionary.h */,
+				CE8401FC151DD86100BDC2D2 /* MWeakKeyMutableDictionary.m */,
+				A6CED309187093E000CB0521 /* MStrongKeyMutableDictionary.h */,
+				A6CED30A187093E000CB0521 /* MStrongKeyMutableDictionary.m */,
 				A6D947BD15DBE6D9002B42E0 /* NSArray+NSDictionary+Subscripting.h */,
 				CE8401FD151DD86100BDC2D2 /* NSArray+Marshmallows.h */,
 				CE8401FE151DD86100BDC2D2 /* NSArray+Marshmallows.m */,
 				CE8401FF151DD86100BDC2D2 /* NSError+Marshmallows.h */,
 				CE840200151DD86100BDC2D2 /* NSError+Marshmallows.m */,
-				CE840201151DD86100BDC2D2 /* NSTimer+MMBlocks.h */,
-				CE840202151DD86100BDC2D2 /* NSTimer+MMBlocks.m */,
 				A6434FA51622EB5F00496EAC /* NSInvocation+MMBlocks.h */,
 				A6434FA61622EB5F00496EAC /* NSInvocation+MMBlocks.m */,
 				A6D7D1251637DF6F0097BE06 /* NSString+Marshmallows.h */,
@@ -833,7 +831,7 @@
 		CE28678214B36EC5001E11D7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 			};
 			buildConfigurationList = CE28678514B36EC5001E11D7 /* Build configuration list for PBXProject "Marshmallows" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -917,10 +915,9 @@
 				A664EFC915CEEBA800182FFD /* MACrossfadeLayer.m in Sources */,
 				A664EFCA15CEEBA800182FFD /* MAImageCrossfadeLayer.m in Sources */,
 				A664EFCB15CEEBA800182FFD /* MAImageLayer.m in Sources */,
-				A664EFCC15CEEBA800182FFD /* MNSMutableObjectKeyDictionary.m in Sources */,
+				A664EFCC15CEEBA800182FFD /* MWeakKeyMutableDictionary.m in Sources */,
 				A664EFCD15CEEBA800182FFD /* NSArray+Marshmallows.m in Sources */,
 				A664EFCE15CEEBA800182FFD /* NSError+Marshmallows.m in Sources */,
-				A664EFCF15CEEBA800182FFD /* NSTimer+MMBlocks.m in Sources */,
 				A664EFD015CEEBA800182FFD /* MCMainThreadProxy.m in Sources */,
 				A664EFD115CEEBA800182FFD /* MPerformanceThread.mm in Sources */,
 				A664EFD215CEEBA800182FFD /* MCThreadProxyAbstract.m in Sources */,
@@ -961,15 +958,15 @@
 				CE840228151DD86100BDC2D2 /* MMAnimator.m in Sources */,
 				CE84022A151DD86100BDC2D2 /* MMAnimatorTimingBlock.m in Sources */,
 				CE84022C151DD86100BDC2D2 /* MMSimpleAnimator.m in Sources */,
+				A6CED30B187093E000CB0521 /* MStrongKeyMutableDictionary.m in Sources */,
 				CE84022E151DD86100BDC2D2 /* MMSimplePinnedAnimator.m in Sources */,
 				CE840230151DD86100BDC2D2 /* MMGLK.m in Sources */,
 				CE840232151DD86100BDC2D2 /* MACrossfadeLayer.m in Sources */,
 				CE840234151DD86100BDC2D2 /* MAImageCrossfadeLayer.m in Sources */,
 				CE840236151DD86100BDC2D2 /* MAImageLayer.m in Sources */,
-				CE840238151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m in Sources */,
+				CE840238151DD86100BDC2D2 /* MWeakKeyMutableDictionary.m in Sources */,
 				CE84023A151DD86100BDC2D2 /* NSArray+Marshmallows.m in Sources */,
 				CE84023C151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */,
-				CE84023E151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */,
 				CE840240151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */,
 				CE840242151DD86100BDC2D2 /* MPerformanceThread.mm in Sources */,
 				CE840244151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */,
@@ -1030,10 +1027,9 @@
 				CE840233151DD86100BDC2D2 /* MACrossfadeLayer.m in Sources */,
 				CE840235151DD86100BDC2D2 /* MAImageCrossfadeLayer.m in Sources */,
 				CE840237151DD86100BDC2D2 /* MAImageLayer.m in Sources */,
-				CE840239151DD86100BDC2D2 /* MNSMutableObjectKeyDictionary.m in Sources */,
+				CE840239151DD86100BDC2D2 /* MWeakKeyMutableDictionary.m in Sources */,
 				CE84023B151DD86100BDC2D2 /* NSArray+Marshmallows.m in Sources */,
 				CE84023D151DD86100BDC2D2 /* NSError+Marshmallows.m in Sources */,
-				CE84023F151DD86100BDC2D2 /* NSTimer+MMBlocks.m in Sources */,
 				CE840241151DD86100BDC2D2 /* MCMainThreadProxy.m in Sources */,
 				CE840243151DD86100BDC2D2 /* MPerformanceThread.mm in Sources */,
 				CE840245151DD86100BDC2D2 /* MCThreadProxyAbstract.m in Sources */,
@@ -1131,11 +1127,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1150,11 +1147,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1167,11 +1168,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_CXX_LIBRARY = "compiler-default";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1179,9 +1181,12 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

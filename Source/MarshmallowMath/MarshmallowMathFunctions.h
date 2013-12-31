@@ -33,8 +33,9 @@ inline const CGFloat MM_Clamp(CGFloat inVal, CGFloat minVal, CGFloat maxVal);
     
     
 /////////////////////////////////////////////////////////////////////////
-    
-inline const CGFloat MM_Wrap(CGFloat inVal, CGFloat min, CGFloat max);
+
+/** Can't inline this for some reason because it uses tgmath */
+const CGFloat MM_Wrap(CGFloat inVal, CGFloat min, CGFloat max);
     
 #ifdef __cplusplus
 }
