@@ -2,18 +2,18 @@
 //  Created by Hari Karam Singh on 16/12/2011.
 //  Copyright (c) 2011 Amritvela / Club 15CC.  MIT License.
 //
-#import "MNSMutableObjectKeyDictionary.h"
+#import "MWeakKeyMutableDictionary.h"
 
-@implementation MNSMutableObjectKeyDictionary
+@implementation MWeakKeyMutableDictionary
 
-+ (id)dictionary 
++ (instancetype)dictionary
 {
     return [[self alloc] init];
 }
 
 /////////////////////////////////////////////////////////////////////////
 
-- (id)init
+- (instancetype)init
 {
     if (self = [super init]) {
         dict = [[NSMutableDictionary alloc] init]; 
@@ -69,7 +69,7 @@
 
 - (void)removeObjectsForKeys:(NSArray *)keyArray
 {
-    mutationCount++;
+    // no need as it's covered in removeObjectForKey:  mutationCount++;
     // Convert key array to NSValue with pointers array
     for (id key in keyArray) {
         [self removeObjectForKey:key];
@@ -87,9 +87,8 @@
 
 /////////////////////////////////////////////////////////////////////////
 
-- (void)addEntriesFromObjectKeyDictionary:(MNSMutableObjectKeyDictionary *)otherDictionary
+- (void)addEntriesFromWeakKeyDictionary:(MWeakKeyMutableDictionary *)otherDictionary
 {
-    mutationCount++;
     // Fast enum undoes the keys.
     for (id aKey in otherDictionary) {
         [self setObject:[otherDictionary objectForKey:aKey] forKey:aKey];

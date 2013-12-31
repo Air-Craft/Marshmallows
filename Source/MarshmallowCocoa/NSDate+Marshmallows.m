@@ -79,8 +79,8 @@
  */
 - (NSString *)timeOfDay
 {
-    NSInteger hour = self.currentHour;
-    NSInteger minute = self.currentMinute;
+    NSInteger hour = [[self class] currentHour];
+//    NSInteger minute = [[self class] currentMinute];
     
     if (hour >= 4 && hour < 6)  return NSLocalizedString(@"Early Morning", nil);
     else if (hour >= 6 && hour < 11)        return NSLocalizedString(@"Morning", nil);
@@ -90,7 +90,7 @@
     else if (hour >= 20 && hour < 23)  return NSLocalizedString(@"Night", nil);
     else if (hour >= 23 || hour < 4)   return NSLocalizedString(@"Late Night", nil);
     else [NSException raise:NSInternalInconsistencyException format:@"Hour out of bounds for date: %i", hour];
-
+    return nil;
 }
 
 
