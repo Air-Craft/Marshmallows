@@ -62,58 +62,76 @@
  #define DEBUG_LOG_CHANNEL_9     1
  */
 
-#if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_1) && DEBUG_LOG_CHANNEL_1 !=0
+#ifndef DLOG1
+#if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_1) && DEBUG_LOG_CHANNEL_1 !=0 &&
 #   define DLOG1(fmt, ...)      DLOG(fmt, ##__VA_ARGS__)
 #else
 #   define DLOG1(...)
 #endif
+#endif
 
+#ifndef DLOG2
 #if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_2) && DEBUG_LOG_CHANNEL_2 != 0
 #   define DLOG2(fmt, ...)      DLOG(fmt, ##__VA_ARGS__)
 #else
 #   define DLOG2(...)
 #endif
+#endif
 
+#ifndef DLOG3
 #if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_3) && DEBUG_LOG_CHANNEL_3 != 0
 #   define DLOG3(fmt, ...)      DLOG(fmt, ##__VA_ARGS__)
 #else
 #   define DLOG3(...)
 #endif
+#endif
 
+#ifndef DLOG4
 #if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_4) && DEBUG_LOG_CHANNEL_4 != 0
 #   define DLOG4(fmt, ...)      DLOG(fmt, ##__VA_ARGS__)
 #else
 #   define DLOG4(...)
 #endif
+#endif
 
+#ifndef DLOG5
 #if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_5) && DEBUG_LOG_CHANNEL_5 != 0
 #   define DLOG5(fmt, ...)      DLOG(fmt, ##__VA_ARGS__)
 #else
 #   define DLOG5(...)
 #endif
+#endif
 
+#ifndef DLOG6
 #if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_6) && DEBUG_LOG_CHANNEL_6 != 0
 #   define DLOG6(fmt, ...)      DLOG(fmt, ##__VA_ARGS__)
 #else
 #   define DLOG6(...)
 #endif
+#endif
 
+#ifndef DLOG7
 #if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_7) && DEBUG_LOG_CHANNEL_7 != 0
 #   define DLOG7(fmt, ...)      DLOG(fmt, ##__VA_ARGS__)
 #else
 #   define DLOG7(...)
 #endif
+#endif
 
+#ifndef DLOG8
 #if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_8) && DEBUG_LOG_CHANNEL_8 != 0
 #   define DLOG8(fmt, ...)      DLOG(fmt, ##__VA_ARGS__)
 #else
 #   define DLOG8(...)
 #endif
+#endif
 
+#ifndef DLOG9
 #if defined(DEBUG) && defined(DEBUG_LOG_CHANNEL_9) && DEBUG_LOG_CHANNEL_9 != 0
 #   define DLOG9(fmt, ...)      DLOG(fmt, ##__VA_ARGS__)
 #else
 #   define DLOG9(...)
+#endif
 #endif
 
 /// @}

@@ -89,7 +89,7 @@
     else if (hour >= 17 && hour < 20)  return NSLocalizedString(@"Evening", nil);
     else if (hour >= 20 && hour < 23)  return NSLocalizedString(@"Night", nil);
     else if (hour >= 23 || hour < 4)   return NSLocalizedString(@"Late Night", nil);
-    else [NSException raise:NSInternalInconsistencyException format:@"Hour out of bounds for date: %i", hour];
+    else [NSException raise:NSInternalInconsistencyException format:@"Hour out of bounds for date: %i", (int)hour];
     return nil;
 }
 

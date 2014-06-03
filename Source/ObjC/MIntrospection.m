@@ -6,10 +6,10 @@
 //  Copyright (c) 2011 Amritvela / Club 15CC.  MIT License.
 //
 
-#import "CEObjectiveCRuntime.h"
+#import "MIntrospection.h"
 #include <string.h>
 
-@implementation CEObjectiveCRuntime
+@implementation MIntrospection
 
 + (NSArray *)arrayOfClassNamesFilteredByPredicate:(NSPredicate *)predicate
 {

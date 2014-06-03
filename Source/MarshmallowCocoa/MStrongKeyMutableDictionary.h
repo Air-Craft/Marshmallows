@@ -29,5 +29,6 @@
 
 - (NSArray *)allKeys;
 
+- (void)enumerateKeysAndObjectsUsingBlock:(void (^)(id key, id obj, BOOL *stop))block;
 
 @end

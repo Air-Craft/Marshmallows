@@ -17,7 +17,7 @@
 
 #import "GLKit/MMGLK.h"
 
-#import "ObjC/CEObjectiveCRuntime.h"
+#import "ObjC/MIntrospection.h"
 
 #import "Animator/MMAnimator.h"
 #import "Animator/MMSimpleAnimator.h"

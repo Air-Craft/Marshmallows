@@ -28,7 +28,7 @@ GLuint MM_GLKCompileShader(NSString *shaderName,  GLenum shaderType)
     // Source and compile the shader code
     GLuint shaderHandle = glCreateShader(shaderType);    
     const char * shaderStringUTF8 = [shaderString UTF8String];    
-    int shaderStringLength = [shaderString length];
+    GLint shaderStringLength = (GLint)[shaderString length];
     glShaderSource(shaderHandle, 1, &shaderStringUTF8, &shaderStringLength);
     glCompileShader(shaderHandle);
     

@@ -109,20 +109,22 @@
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len
 {
-    if (state->state >= dict.count) {
+    // We're after items starting at index state->state (I think!)
+    NSUInteger cnt = dict.count - state->state;
+    if (cnt <= 0) {
         return 0;
     }
     
     // Convert the keys to a C array
     NSUInteger i = 0;
     __unsafe_unretained id *objects; 
-    objects = (__unsafe_unretained id *)malloc(sizeof(id) * dict.count);
-    for (NSValue *v in [dict allKeys]) {
+    objects = (__unsafe_unretained id *)malloc(sizeof(id) * cnt);
+    for (NSValue *v in [[dict allKeys] subarrayWithRange:NSMakeRange(state->state, cnt)]) {
         objects[i++] = (__unsafe_unretained id)[v pointerValue];
     }
     
     state->itemsPtr = objects;
-    state->state = i;
+    state->state += cnt;
     state->mutationsPtr = &mutationCount;
     
     return i;

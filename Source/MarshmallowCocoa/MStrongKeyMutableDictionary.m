@@ -54,9 +54,15 @@
     _mutationCount++;
     
     // Replace if exists otherwise add it
-    NSInteger idx = [self _indexForKey:key];
+    NSUInteger idx = [self _indexForKey:key];
     if (idx != NSNotFound) {
-        [_values replaceObjectAtIndex:idx withObject:obj];
+        // "nil" means remove
+        if (!obj) {
+            [_values removeObjectAtIndex:(NSUInteger)idx];
+            [_keys removeObjectAtIndex:(NSUInteger)idx];
+        } else {
+            [_values replaceObjectAtIndex:(NSUInteger)idx withObject:obj];
+        }
     } else {
         [_keys addObject:key];
         [_values addObject:obj];
@@ -75,7 +81,7 @@
 
 - (id)objectForKeyedSubscript:(id)key
 {
-    NSInteger idx = [_keys indexOfObject:key];
+    NSUInteger idx = [_keys indexOfObject:key];
     
     if (idx != NSNotFound) {
         return _values[idx];
@@ -87,7 +93,7 @@
 
 - (void)removeObjectForKey:(id)aKey
 {
-    NSInteger idx = [_keys indexOfObject:aKey];
+    NSUInteger idx = [_keys indexOfObject:aKey];
     if (idx != NSNotFound) {
         _mutationCount++;
 
@@ -134,6 +140,18 @@
     return [_keys copy];
 }
 
+//---------------------------------------------------------------------
+
+- (void)enumerateKeysAndObjectsUsingBlock:(void (^)(id, id, BOOL *))block
+{
+    for (NSUInteger i=0; i<_keys.count; i++) {
+
+        BOOL stop = NO;
+        block(_keys[i], _values[i], &stop);
+        if (stop) break;
+    }
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - NSFastEnumeration
@@ -141,30 +159,35 @@
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id [])buffer count:(NSUInteger)len
 {
-    NSUInteger cnt = _keys.count;
-    if (state->state >= cnt) {
+    // We're after items starting at index state->state (I think!)
+    NSUInteger cnt = _keys.count - state->state;
+    if (cnt <= 0) {
         return 0;
     }
     
-    // ?? If state.state contains the start idx then this isnt quite right, unless it is always 0
+    // Convert a C array
+    __unsafe_unretained id *objects;
+    objects = (__unsafe_unretained id *)malloc(sizeof(id) * cnt);
+    [_keys getObjects:objects range:NSMakeRange(state->state, cnt)];
     
-    // Convert the keys to a C array
-    [_keys getObjects:state->itemsPtr range:NSMakeRange(0, cnt)];
-    
-    state->state = cnt;
+    state->state += cnt;
     state->mutationsPtr = &_mutationCount;
+    state->itemsPtr = objects;
     
     return cnt;
 }
+
+//---------------------------------------------------------------------
+
 
 /////////////////////////////////////////////////////////////////////////
 #pragma mark - Additional Privates
 /////////////////////////////////////////////////////////////////////////
 
 /** The index in the keys/values arrays or NSNotFound */
-- (NSInteger)_indexForKey:(id)aKey
+- (NSUInteger)_indexForKey:(id)aKey
 {
-    __block NSInteger resIdx = NSNotFound;
+    __block NSUInteger resIdx = NSNotFound;
     [_keys enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if (obj == aKey) {
             resIdx = idx;

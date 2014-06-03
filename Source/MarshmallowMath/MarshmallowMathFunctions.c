@@ -3,16 +3,16 @@
 #include "MarshmallowMathFunctions.h"
 
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
 const CGFloat MM_MapLinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat outMin, CGFloat outMax)
 {
     return ( (inVal-inMin) / (inMax-inMin) * (outMax-outMin) + outMin );
 }
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
-const CGFloat MM_MapBilinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat inMed, CGFloat outMin, CGFloat outMax, CGFloat outMed) 
+const CGFloat MM_MapBilinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat inMed, CGFloat outMin, CGFloat outMax, CGFloat outMed)
 {
     if (inVal <= inMed) {
         return MM_MapLinearRange(inVal, inMin, inMed, outMin, outMed);
@@ -21,14 +21,14 @@ const CGFloat MM_MapBilinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, C
     }
 }
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
 const CGFloat MM_Clamp(CGFloat inVal, CGFloat minVal, CGFloat maxVal)
 {
     return (inVal < minVal ? minVal : (inVal > maxVal ? maxVal : inVal));
 }
 
-/////////////////////////////////////////////////////////////////////////
+//---------------------------------------------------------------------
 
 const CGFloat MM_Wrap(CGFloat inVal, CGFloat min, CGFloat max)
 {

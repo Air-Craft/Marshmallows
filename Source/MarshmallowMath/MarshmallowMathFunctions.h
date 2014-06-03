@@ -19,17 +19,17 @@ extern "C" {
 #endif
     
 /** Maps a value in one range propertionately into another range */
-inline const CGFloat MM_MapLinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat outMin, CGFloat outMax);
+const CGFloat MM_MapLinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat outMin, CGFloat outMax);
 
 /////////////////////////////////////////////////////////////////////////
     
 /** Maps the in value onto one of two connected but not smooth ranges depending on whether it falls above or below inMed.  inMed maps to outMed */
-inline const CGFloat MM_MapBilinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat inMed, CGFloat outMin, CGFloat outMax, CGFloat outMed) ;
+const CGFloat MM_MapBilinearRange(CGFloat inVal, CGFloat inMin, CGFloat inMax, CGFloat inMed, CGFloat outMin, CGFloat outMax, CGFloat outMed) ;
 
 /////////////////////////////////////////////////////////////////////////
     
 /** Return the value if between min and max otherwise return min or max.  */
-inline const CGFloat MM_Clamp(CGFloat inVal, CGFloat minVal, CGFloat maxVal);
+const CGFloat MM_Clamp(CGFloat inVal, CGFloat minVal, CGFloat maxVal);
     
     
 /////////////////////////////////////////////////////////////////////////
