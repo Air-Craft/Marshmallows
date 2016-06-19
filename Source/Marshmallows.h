@@ -23,7 +23,7 @@
 #import "Animator/MMSimpleAnimator.h"
 #import "Animator/MMSimplePinnedAnimator.h"
 #import "Animator/MMAnimatorTimingBlock.h"
-
+#import "CoreGraphics/CoreGraphics.h"
 
 // ^ old way   v new way
 

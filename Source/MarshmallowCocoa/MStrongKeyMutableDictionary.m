@@ -64,6 +64,7 @@
             [_values replaceObjectAtIndex:(NSUInteger)idx withObject:obj];
         }
     } else {
+        if (obj == nil) [NSException raise:NSInvalidArgumentException format:@"MStrongKeyMutableDictionary cannot set nil on a key that does not exist."];
         [_keys addObject:key];
         [_values addObject:obj];
     }
@@ -138,6 +139,13 @@
 - (NSArray *)allKeys
 {
     return [_keys copy];
+}
+
+//---------------------------------------------------------------------
+
+- (NSArray *)allValues
+{
+    return [_values copy];
 }
 
 //---------------------------------------------------------------------

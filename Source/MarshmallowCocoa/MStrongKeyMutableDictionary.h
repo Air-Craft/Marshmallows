@@ -28,6 +28,7 @@
 - (void)addEntriesFromStrongKeyDictionary:(MStrongKeyMutableDictionary *)otherDictionary;
 
 - (NSArray *)allKeys;
+- (NSArray *)allValues;
 
 - (void)enumerateKeysAndObjectsUsingBlock:(void (^)(id key, id obj, BOOL *stop))block;
 
