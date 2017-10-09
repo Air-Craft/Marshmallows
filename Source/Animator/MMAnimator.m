@@ -32,8 +32,10 @@
     if (self = [super init]) {
         
         // Set default properties
-        timingFunction = MMAnimatorTimingLinear;
+//        timingFunction = MMAnimatorTimingLinear;
+        timingFunction = ^(CFTimeInterval t) { return t; };
         status = kMMAnimatorNotStarted;
+        
         
         // 0 or NO for everything else.
     }

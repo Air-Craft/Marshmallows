@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <QuartzCore/QuartzCore.h>
-#import "MMAnimatorTimingBlock.h"
+//#import "MMAnimatorTimingBlock.h"  Xcode9+ couldn't compile them :( llvm bug I think
 
 /**
  The running status of the animation
@@ -47,7 +47,8 @@ typedef enum {
     CFTimeInterval startTime;
     
     // Property ivar declared explicitly for subclasses to have access to
-    MMAnimatorTimingBlock timingFunction;
+    CFTimeInterval (^timingFunction)(CFTimeInterval);
+//    MMAnimatorTimingBlock timingFunction;
     CFTimeInterval beginTimeOffset;
     CFTimeInterval duration;
     CGFloat currentValue;
@@ -60,7 +61,8 @@ typedef enum {
 #pragma mark Properties
 
 /** A block based timing function defining the pacing of the animation. Defaults to nil indicating linear pacing. */
-@property (atomic, strong) MMAnimatorTimingBlock timingFunction;
+//@property (atomic, strong) MMAnimatorTimingBlock timingFunction;
+@property (atomic, strong) CFTimeInterval (^timingFunction)(CFTimeInterval);
 
 /** Time to wait from call to start in order to actually bgin the animation. Defaults to 0. */
 @property (atomic) CFTimeInterval beginTimeOffset;
